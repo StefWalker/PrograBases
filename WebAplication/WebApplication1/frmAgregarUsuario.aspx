@@ -23,7 +23,7 @@
                 <asp:Label ID="lblerror" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>            
             </tr>
             <tr>
-                <td colspan="2" align="center"><asp:Button ID="lblerror" runat="server" Text="Siguiente" Width="170px" OnClick="btnGuardar_Click" /></td>
+                <td colspan="2" align="center"><asp:Button ID="btnGuardar" runat="server" Text="Siguiente" Width="170px" OnClick="btnGuardar_Click" /></td>
             </tr>
         </table>
     </div>

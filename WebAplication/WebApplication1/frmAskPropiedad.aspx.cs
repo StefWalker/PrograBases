@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class WebForm4 : System.Web.UI.Page
+    public partial class frmAskPropiedad : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,5 +21,6 @@ namespace WebApplication1
         {
             Response.Redirect("frmAgregarPropiedad.aspx");
         }
+
     }
 }

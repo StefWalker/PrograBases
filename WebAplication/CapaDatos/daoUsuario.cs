@@ -19,7 +19,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("UsuarioRead", cnx);
+                cmd = new SqlCommand("UsuarioSearch", cnx);
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
                 cmd.Parameters.AddWithValue("@Password", password);
                 cmd.CommandType = CommandType.StoredProcedure;

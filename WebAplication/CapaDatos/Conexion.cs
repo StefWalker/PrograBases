@@ -12,7 +12,7 @@ namespace CapaDatos
         public SqlConnection Conectar()
         {
             SqlConnection cn = new SqlConnection();
-            cn.ConnectionString = @"Data Source= DESKTOP-4133A9M ; Initial Catalog = ProyectoBases; Integrated Security=true";
+            cn.ConnectionString = @"Data Source= DESKTOP-C8JSNS0 ; Initial Catalog = ProyectoBases; Integrated Security=true";
             return cn;
         }
     }

@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAskPropiedad.aspx" />
+    <Content Include="frmAskPropietario.aspx" />
     <Content Include="frmBuscarPropiedad.aspx" />
     <Content Include="estilos.css" />
     <Content Include="frmAgregarUsuario.aspx" />
@@ -83,8 +85,6 @@
     <Content Include="frmLogin.aspx" />
     <Content Include="frmAgregarPropietario.aspx" />
     <Content Include="frmAgregarPropietarioCompleto.aspx" />
-    <Content Include="frmAskPropiedad.aspx" />
-    <Content Include="frmAskPropietario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anonimo.Master.cs">
@@ -93,6 +93,20 @@
     </Compile>
     <Compile Include="Anonimo.Master.designer.cs">
       <DependentUpon>Anonimo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskPropiedad.aspx.cs">
+      <DependentUpon>frmAskPropiedad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskPropiedad.aspx.designer.cs">
+      <DependentUpon>frmAskPropiedad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskPropietario.aspx.cs">
+      <DependentUpon>frmAskPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskPropietario.aspx.designer.cs">
+      <DependentUpon>frmAskPropietario.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBuscarPropiedad.aspx.cs">
       <DependentUpon>frmBuscarPropiedad.aspx</DependentUpon>
@@ -164,20 +178,6 @@
     </Compile>
     <Compile Include="frmAgregarPropietarioCompleto.aspx.designer.cs">
       <DependentUpon>frmAgregarPropietarioCompleto.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmAskPropiedad.aspx.cs">
-      <DependentUpon>frmAskPropiedad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAskPropiedad.aspx.designer.cs">
-      <DependentUpon>frmAskPropiedad.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmAskPropietario.aspx.cs">
-      <DependentUpon>frmAskPropietario.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAskPropietario.aspx.designer.cs">
-      <DependentUpon>frmAskPropietario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
