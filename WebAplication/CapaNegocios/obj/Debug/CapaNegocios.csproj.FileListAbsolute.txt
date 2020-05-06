@@ -1,0 +1,22 @@
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaNegocios.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaNegocios.pdb
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaDatos.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaEntidades.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaDatos.pdb
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\bin\Debug\CapaEntidades.pdb
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\obj\Debug\CapaNegocios.csprojAssemblyReference.cache
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\obj\Debug\CapaNegocios.csproj.CoreCompileInputs.cache
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\obj\Debug\CapaNegocios.csproj.CopyComplete
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\obj\Debug\CapaNegocios.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaNegocios\obj\Debug\CapaNegocios.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaNegocios.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaNegocios.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaDatos.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaEntidades.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaDatos.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\bin\Debug\CapaEntidades.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\obj\Debug\CapaNegocios.csprojAssemblyReference.cache
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\obj\Debug\CapaNegocios.csproj.CoreCompileInputs.cache
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\obj\Debug\CapaNegocios.csproj.CopyComplete
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\obj\Debug\CapaNegocios.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaNegocios\obj\Debug\CapaNegocios.pdb

@@ -1,0 +1,87 @@
+﻿body 
+{
+    margin:0;
+    padding:0;
+    color:#555;
+    font-size:12px;
+    line-height:17px;
+    font-family:"Calibri";
+    background-color:#fff;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+h2
+{
+    text-align: center;
+
+}
+a,a:link, a:visited 
+{
+    color: #00ff90;
+    font-weight: normal;
+    text-decoration: none;
+
+}
+a:hover 
+{
+    text-decoration:underline;
+}
+#abrigo_general
+{
+    width: 1240px;
+    margin: 0 auto;
+    height: 458px;
+}
+#content_Login
+{
+    margin-top: 80 px;
+    overflow: hidden;
+    width: 720px;
+    position: relative;
+    padding-bottom: 10 px; 
+}
+#banner 
+{
+    background:url(Imagenes/descarga.jpg);
+    height: 233px;
+}
+#contenido_izquierdo 
+{
+    float:left;
+    width:195px;
+    height:350px;
+    overflow-y: scroll;
+    text-align:center;
+    text-anchor:middle;
+    margin-left :5px;
+    margin-top:15px;
+}
+#contenido_izquierdo .etiqueta
+{
+    float: left;
+    width: 168px;
+    height:20px;
+    text-align: left;
+    margin-left:5px;
+    margin-top:5px;
+}
+#contenido_derecho
+{
+    float: right;
+    width:755px;
+    height:400px;
+    overflow-y:scroll;
+    margin-left:10px;
+}
+.alinear
+{
+    text-align:left;
+}
+#abrigo_formulario
+{
+    float: left;
+    width: 450 px;
+    margin-left:100px;
+
+}

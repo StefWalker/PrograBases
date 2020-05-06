@@ -1,0 +1,72 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Anonimo.master.cs" Inherits="WebApplication1.Anonimo" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="estilos.css" rel="stylesheet" type =" text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style2 {
+            margin-left: 99px;
+        }
+        .auto-style3 {
+            margin-right: 0px;
+        }
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="abrigo_general">
+            <div id="banner"><h2>Programadores de todo el mundo </h2></div>
+            
+            <div id="contenido_izquierdo" class="auto-style3" >
+                <h2><P><font size=5>Servicios</font></P></h2>
+              
+                <div class="etiqueta">
+                    <asp:Button ID="AgregarUsuario" runat="server" Text="Agregar Usuario" OnClick="AgregarUsuario_Click" Width="170px"  />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="BuscarUsuario" runat="server" Text="Buscar Usuario" OnClick="BuscarUsuario_Click" Width="170px"  />
+               </div>
+               <div class="etiqueta">
+                    <asp:Button ID="ModificarUsuario" runat="server" Text="Modificar Usuario" OnClick="ModificarUsuario_Click" Width="170px" />
+               </div>
+               <div class="etiqueta">
+                    <asp:Button ID="Button1" runat="server" Text="Agregar propiedad" OnClick="AgregarPropiedad_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button3" runat="server" Text="Agregar propietario" OnClick="AgregarPropietario_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button2" runat="server" Text="Buscar Propiedad" OnClick="BuscarPropiedad_Click" Width="170px" />
+               </div>
+            </div>
+            <div id="contenido_derecho" class="auto-style2"> 
+                <div style=" width: 740px">
+                    <div style=" text-align:right ; float:left ; width: 590px">Nombre de Usuario:
+                        <asp:Label ID="NombreUsuario" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div style="float: left; text-align:right; width:140px ">
+                        <asp:LinkButton ID="lbtlogout" runat="server" OnClick="lbtlogout_Click">Logout</asp:LinkButton>
+
+
+                    </div>
+
+
+                </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <!-- todo codigo -->
+            </asp:ContentPlaceHolder>
+
+
+
+            </div>
+           
+        </div>
+    </form>
+</body>
+</html>

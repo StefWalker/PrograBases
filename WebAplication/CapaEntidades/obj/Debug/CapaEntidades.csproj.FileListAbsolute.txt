@@ -1,0 +1,12 @@
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\obj\Debug\CapaEntidades.csprojAssemblyReference.cache
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\obj\Debug\CapaEntidades.csproj.CoreCompileInputs.cache
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\ferla\source\repos\WebApplication1\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\bin\Debug\CapaEntidades.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\bin\Debug\CapaEntidades.pdb
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.csprojAssemblyReference.cache
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.csproj.CoreCompileInputs.cache
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.dll
+C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.pdb
