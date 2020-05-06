@@ -16,3 +16,12 @@ C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaD
 C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
 C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaDatos\obj\Debug\CapaDatos.dll
 C:\Users\Dylan Torres Walker\Desktop\GitHub\BasesDatosProgra\WebAplication\CapaDatos\obj\Debug\CapaDatos.pdb
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\bin\Debug\CapaDatos.dll
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\bin\Debug\CapaDatos.pdb
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\bin\Debug\CapaEntidades.dll
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\bin\Debug\CapaEntidades.pdb
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\obj\Debug\CapaDatos.csprojAssemblyReference.cache
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\obj\Debug\CapaDatos.csproj.CopyComplete
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\obj\Debug\CapaDatos.dll
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaDatos\obj\Debug\CapaDatos.pdb
