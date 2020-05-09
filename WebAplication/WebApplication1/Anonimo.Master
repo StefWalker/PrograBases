@@ -44,6 +44,9 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button2" runat="server" Text="Buscar Propiedad" OnClick="BuscarPropiedad_Click" Width="170px" />
                </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button4" runat="server" Text="Eliminar Entidades" OnClick="Eliminar_Click" Width="170px" />
+               </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

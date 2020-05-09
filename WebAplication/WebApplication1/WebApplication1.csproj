@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAgregarPropiedadUsuario.aspx" />
+    <Content Include="frmAskDelete.aspx" />
     <Content Include="frmAskPropiedad.aspx" />
     <Content Include="frmAskPropietario.aspx" />
     <Content Include="frmBuscarPropiedad.aspx" />
@@ -74,6 +76,8 @@
     <Content Include="frmAgregarUsuario.aspx" />
     <Content Include="frmAgregarPropiedad.aspx" />
     <Content Include="frmBuscar.aspx" />
+    <Content Include="frmDeletePropiedad.aspx" />
+    <Content Include="frmDeletePropietario.aspx" />
     <Content Include="frmModificar.aspx" />
     <Content Include="frmPrincipal.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
@@ -93,6 +97,20 @@
     </Compile>
     <Compile Include="Anonimo.Master.designer.cs">
       <DependentUpon>Anonimo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmAgregarPropiedadUsuario.aspx.cs">
+      <DependentUpon>frmAgregarPropiedadUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAgregarPropiedadUsuario.aspx.designer.cs">
+      <DependentUpon>frmAgregarPropiedadUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskDelete.aspx.cs">
+      <DependentUpon>frmAskDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskDelete.aspx.designer.cs">
+      <DependentUpon>frmAskDelete.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmAskPropiedad.aspx.cs">
       <DependentUpon>frmAskPropiedad.aspx</DependentUpon>
@@ -135,6 +153,20 @@
     </Compile>
     <Compile Include="frmBuscar.aspx.designer.cs">
       <DependentUpon>frmBuscar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeletePropiedad.aspx.cs">
+      <DependentUpon>frmDeletePropiedad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeletePropiedad.aspx.designer.cs">
+      <DependentUpon>frmDeletePropiedad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeletePropietario.aspx.cs">
+      <DependentUpon>frmDeletePropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeletePropietario.aspx.designer.cs">
+      <DependentUpon>frmDeletePropietario.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmModificar.aspx.cs">
       <DependentUpon>frmModificar.aspx</DependentUpon>

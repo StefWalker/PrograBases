@@ -22,5 +22,9 @@ namespace WebApplication1
             Response.Redirect("frmAgregarPropiedad.aspx");
         }
 
+        protected void btnConUsu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmAgregarPropiedadUsuario.aspx");
+        }
     }
 }

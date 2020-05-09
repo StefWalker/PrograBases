@@ -11,34 +11,25 @@ namespace WebApplication1
 {
 
 
-    public partial class frmAskPropiedad
+    public partial class frmAskDelete
     {
 
         /// <summary>
-        /// Control btnNueva.
+        /// Control btnDel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNueva;
+        protected global::System.Web.UI.WebControls.Button btnDel;
 
         /// <summary>
-        /// Control btnConPro.
+        /// Control btnDelPro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConPro;
-
-        /// <summary>
-        /// Control btnConUsu.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConUsu;
+        protected global::System.Web.UI.WebControls.Button btnDelPro;
     }
 }
