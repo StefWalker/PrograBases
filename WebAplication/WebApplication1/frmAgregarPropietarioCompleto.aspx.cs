@@ -36,7 +36,7 @@ namespace WebApplication1
                 obj3.Propiedad = Int32.Parse(txtNumeroPropiedad.Text);
                 obj3.Propietario = Int32.Parse(TextBox1.Text);
 
-                if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negPropiedad.AgregarPropietario(obj2) == 1) && (negProPro.AgregarProPro(obj3) == 1)) //Si lo crea debe irse a la pagina donde crea el usuario 
+                if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negPropietario.AgregarPropietario(obj2) == 1) && (negProPro.AgregarProPro(obj3) == 1)) //Si lo crea debe irse a la pagina donde crea el usuario 
                 {
                     Response.Redirect("frmPrincipal.aspx");
                 }

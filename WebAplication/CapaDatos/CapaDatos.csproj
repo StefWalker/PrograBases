@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="daoPropietario.cs" />
     <Compile Include="daoProPro.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="daoPropiedad.cs" />

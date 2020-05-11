@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="negPropietario.cs" />
     <Compile Include="negProPro.cs" />
     <Compile Include="negProUsuario.cs" />
     <Compile Include="negPropiedad.cs" />

@@ -20,10 +20,7 @@ namespace CapaNegocios
         {
             return daoPropiedad.BuscarPropiedad(numero);
         }
-        public static int AgregarPropietario(entPropietario obj)
-        {
-            return daoPropiedad.AgregarPropietario(obj);
-        }
+        
     }
 }
 

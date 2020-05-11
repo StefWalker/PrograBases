@@ -1,16 +1,17 @@
 ﻿using CapaEntidades;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Data;
+using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public class daoPropiedad
+    public class daoPropietario
     {
-        public static int AgregarPropiedad(entPropiedad obj)
+        public static int AgregarPropietario(entPropietario obj)
         {
             int Indicador = 0;
             SqlCommand cmd = null;
@@ -18,12 +19,9 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("PropiedadInsert ", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", obj.NumPropiedad);
-                cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
-                cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
-                cmd.Parameters.AddWithValue("@Fecha_Creacion", obj.Fecha_Creacion);
+                cmd = new SqlCommand("PropietarioInsert ", cnx);
+                cmd.Parameters.AddWithValue("@Identificacion", obj.Identificacion);
+                cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -40,28 +38,25 @@ namespace CapaDatos
             }
             return Indicador;
         }
-        public static entPropiedad BuscarPropiedad(int numero)
+        public static entPropietario BuscarPropietario(int id)
         {
-            entPropiedad obj = null;
+            entPropietario obj = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             try
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("BuscarPropiedad", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", numero);
+                cmd = new SqlCommand("BuscarPropietario", cnx);
+                cmd.Parameters.AddWithValue("@Identificacion", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
-                obj = new entPropiedad();
+                obj = new entPropietario();
                 dr.Read();
-                obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                obj.Valor = Convert.ToDecimal(dr["Valor"].ToString());
-                obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
-                obj.Descripcion = dr["Descripcion"].ToString();
-                obj.Fecha_Creacion = Convert.ToDateTime(dr["Fecha_Creacion"].ToString());
-                obj.Direccion = dr["Direccion"].ToString();
+                obj.Identificacion = Convert.ToInt32(dr["Identificacion"].ToString());
+                obj.Nombre = dr["Nombre"].ToString();
+
             }
             catch
             {
@@ -73,6 +68,5 @@ namespace CapaDatos
             }
             return obj;
         }
-        
     }
 }

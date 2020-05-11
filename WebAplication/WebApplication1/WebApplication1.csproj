@@ -76,6 +76,7 @@
     <Content Include="frmAgregarUsuario.aspx" />
     <Content Include="frmAgregarPropiedad.aspx" />
     <Content Include="frmBuscar.aspx" />
+    <Content Include="frmBuscarPropietario.aspx" />
     <Content Include="frmDeletePropiedad.aspx" />
     <Content Include="frmDeletePropietario.aspx" />
     <Content Include="frmModificar.aspx" />
@@ -153,6 +154,13 @@
     </Compile>
     <Compile Include="frmBuscar.aspx.designer.cs">
       <DependentUpon>frmBuscar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarPropietario.aspx.cs">
+      <DependentUpon>frmBuscarPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBuscarPropietario.aspx.designer.cs">
+      <DependentUpon>frmBuscarPropietario.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDeletePropiedad.aspx.cs">
       <DependentUpon>frmDeletePropiedad.aspx</DependentUpon>
