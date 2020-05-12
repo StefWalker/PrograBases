@@ -8,6 +8,7 @@ namespace CapaEntidades
 {
     public class entProPro
     {
+        public int ID_PxP { get; set; }
         public int Propiedad { get; set; }
         public int Propietario { get; set; }
     }

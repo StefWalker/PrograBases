@@ -81,6 +81,7 @@
     <Content Include="frmDeletePropietario.aspx" />
     <Content Include="frmModificar.aspx" />
     <Content Include="frmPrincipal.aspx" />
+    <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
     <Content Include="Imagenes\descarga.jpg" />
     <Content Include="Imagenes\descarga.png" />
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="frmPrincipal.aspx.designer.cs">
       <DependentUpon>frmPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnirProPro.aspx.cs">
+      <DependentUpon>frmUnirProPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUnirProPro.aspx.designer.cs">
+      <DependentUpon>frmUnirProPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUnirUserPro.aspx.cs">
       <DependentUpon>frmUnirUserPro.aspx</DependentUpon>
