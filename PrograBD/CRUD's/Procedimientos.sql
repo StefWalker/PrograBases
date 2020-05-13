@@ -137,8 +137,7 @@ CREATE PROC PropiedadUpdateB
 	 @NumPropiedad INT,
 	 @Valor MONEY,
 	 @Descripción VARCHAR(250),
-	 @Direccion VARCHAR(250),
-	 @Fecha_Creacion DATE
+	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
 IF(@Valor IS NULL)
@@ -157,8 +156,7 @@ UPDATE Propiedad
 SET  NumPropiedad = @NumPropiedad,
 	 Valor = @Valor,
 	 Descripción	= @Descripción,
-	 Direccion = @Direccion,
-	 Fecha_Creacion = @Fecha_Creacion
+	 Direccion = @Direccion
 WHERE  (NumPropiedad = @NumPropiedad)
 END
 GO
