@@ -10,8 +10,9 @@ GO
 BEGIN
 	CREATE TABLE TipoDoc 
 	(
-	  ID_TDoc INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-      Tipo VARCHAR(100) NOT NULL
+		ID_TDoc INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		TipoDoc INT NOT NULL,
+		Tipo VARCHAR(100) NOT NULL
 	);
 END
 
@@ -22,11 +23,14 @@ DROP PROC TipoDocInsert
 END
 GO
 CREATE PROCEDURE TipoDocInsert
+	  @TipoDoc INT,
 	  @Tipo Varchar (100)
 AS
 BEGIN
-INSERT INTO TipoDoc( Tipo)
-    VALUES (@Tipo)
+INSERT INTO TipoDoc(TipoDoc,
+					Tipo)
+    VALUES (@TipoDoc,
+			@Tipo)
 END
 
 -- Read de tabla TipoDoc 
@@ -36,10 +40,11 @@ BEGIN
 END 
 GO
 CREATE PROC TipoDocRead
+	@TipoDoc INT,
     @ID_TDoc int
 AS 
 BEGIN 
-    SELECT ID_TDoc, Tipo
+    SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (ID_TDoc = @ID_TDoc) 
 END
@@ -52,12 +57,13 @@ DROP PROC TipoDocUpdate
 END 
 GO
 CREATE PROC TipoDocUpdate
+	 @TipoDoc INT,
 	 @ID_TDoc INT,
 	 @Tipo Varchar (100) 
 AS 
 BEGIN 
 UPDATE TipoDoc
-SET  Tipo= @Tipo
+SET  Tipo= @Tipo, TipoDoc = @TipoDoc
 WHERE  (ID_TDoc = @ID_TDoc)
 END
 GO

@@ -8,14 +8,26 @@ CREATE TABLE Propiedad
   Valor MONEY NOT NULL,
   Descripción VARCHAR(250) NOT NULL,
   Direccion VARCHAR(250) NOT NULL,
-  Fecha_Creacion DATE NOT NULL
+  Fecha_Creacion DATE NOT NULL,
+  Activo BIT NOT NULL
+);
+
+CREATE TABLE TipoDoc
+(
+  ID_TDoc INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  TipoDoc INT NOT NULL,
+  Tipo VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Propietario
 (
   ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   Identificacion INT NOT NULL,
-  Nombre VARCHAR(100) NOT NULL
+  Nombre VARCHAR(100) NOT NULL,
+  Fecha_Creacion DATE NOT NULL,
+  Activo BIT NOT NULL,
+  ID_TDoc INT NOT NULL,
+  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 
 CREATE TABLE Usuario
@@ -23,18 +35,16 @@ CREATE TABLE Usuario
   ID_Usuario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   Nombre VARCHAR(100) NOT NULL,
   Password VARCHAR(100) NOT NULL,
-  TipoUsuario VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE TipoDoc
-(
-  ID_TDoc INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-  Tipo VARCHAR(100) NOT NULL
+  TipoUsuario VARCHAR(100) NOT NULL,
+  Fecha_Creacion DATE NOT NULL,
+  Activo BIT NOT NULL
 );
 
 CREATE TABLE PropJuridico
 (
-  ID_Juridico INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
+  ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
+  Nombre VARCHAR(50) NOT NULL,
+  ID_Juridico INT NOT NULL,
   ID_TDoc INT NOT NULL,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
@@ -42,6 +52,7 @@ CREATE TABLE PropJuridico
 CREATE TABLE ConceptoCobro
 (
   ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+  TasaInteresMoratorio REAL NOT NULL,
   Concepto VARCHAR(100) NOT NULL,
   FechaVencimiento DATE NOT NULL,
   Fecha DATE NOT NULL,
@@ -54,7 +65,7 @@ CREATE TABLE CC_Fijo
   Monto MONEY NOT NULL
 );
 
-CREATE TABLE CC_Consumo
+CREATE TABLE CC_ConsumoAgua
 (
   ID_Con INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
   Valor_m3 MONEY NOT NULL

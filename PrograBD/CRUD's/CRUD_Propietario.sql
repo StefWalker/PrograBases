@@ -12,7 +12,11 @@ BEGIN
 	(
 	  ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	  Identificacion INT NOT NULL,
-      Nombre VARCHAR(100) NOT NULL
+	  Nombre VARCHAR(100) NOT NULL,
+	  Fecha_Creacion DATE NOT NULL,
+      Activo BIT NOT NULL,
+	  ID_TDoc INT NOT NULL,
+	  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 	);
 END
 
@@ -24,16 +28,19 @@ END
 GO
 CREATE PROCEDURE InsertPropietario
 	  @Identificacion INT,
-	  @Nombre VARCHAR (100)
+	  @Nombre VARCHAR (100),
+	  @ID_TDoc INT
 	 
 AS
 BEGIN
 INSERT INTO Propietario(
 	   Identificacion,
-	   Nombre)
+	   Nombre,
+	   ID_TDoc)
     VALUES (
 	   @Identificacion,
-	   @Nombre)
+	   @Nombre,
+	   @ID_TDoc)
 END
 
 -- Read de tabla propietario 
@@ -46,7 +53,7 @@ CREATE PROC ReadPropietario
     @ID_Propietario int
 AS 
 BEGIN 
-    SELECT ID_Propietario,Identificacion,Nombre 
+    SELECT ID_Propietario,Identificacion,Nombre,ID_TDoc 
     FROM   Propietario
     WHERE  (ID_Propietario = @ID_Propietario) 
 END
@@ -61,12 +68,14 @@ GO
 CREATE PROC PropietarioUpdate
 	 @ID_Propietario INT,
 	 @Identificacion INT,
-	 @Nombre VARCHAR (100)
+	 @Nombre VARCHAR(100),
+	 @ID_TDoc int
 AS 
 BEGIN 
 UPDATE Propietario
 SET  Identificacion= @Identificacion,
-	 Nombre = @Nombre
+	 Nombre = @Nombre,
+	 ID_TDoc = @ID_TDoc
 WHERE  (ID_Propietario = @ID_Propietario)
 END
 GO

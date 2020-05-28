@@ -8,12 +8,14 @@ DROP TABLE Usuario
 END
 GO
 BEGIN
-	CREATE TABLE Usuario 
+	CREATE TABLE Usuario
 	(
-	   ID_Usuario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-       Nombre VARCHAR(100) NOT NULL,
-       Password VARCHAR(100) NOT NULL,
-       TipoUsuario VARCHAR(100) NOT NULL
+		ID_Usuario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		Nombre VARCHAR(100) NOT NULL,
+		Password VARCHAR(100) NOT NULL,
+		TipoUsuario VARCHAR(100) NOT NULL,
+		Fecha_Creacion DATE NOT NULL,
+		Activo BIT NOT NULL
 	);
 END
 
@@ -26,17 +28,22 @@ GO
 CREATE PROCEDURE UsuarioInsert
 	   @Nombre VARCHAR (100),
        @Password VARCHAR (100),
-       @TipoUsuario VARCHAR (100)
+       @TipoUsuario VARCHAR (100),
+	   @Fecha_Creacion Date
 AS
 BEGIN
 INSERT INTO Usuario(  
 	   Nombre,
 	   Password,
-	   TipoUsuario)
+	   TipoUsuario,
+	   Fecha_Creacion,
+	   Activo)
     VALUES (
 	   @Nombre,
 	   @Password,
-	   @TipoUsuario)
+	   @TipoUsuario,
+	   @Fecha_Creacion,
+	   1)
 END
 
 -- Read de tabla Usuario 

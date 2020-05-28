@@ -11,13 +11,14 @@ GO
 BEGIN
 	CREATE TABLE Propiedad
 	(
-	  ID_Propiedad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	  NumPropiedad INT NOT NULL,
-	  Valor MONEY NOT NULL,
-	  Descripción VARCHAR(250) NOT NULL,
-	  Direccion VARCHAR(250) NOT NULL,
-	  Fecha_Creacion DATE NOT NULL
-	);
+		 ID_Propiedad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		 NumPropiedad INT NOT NULL,
+		 Valor MONEY NOT NULL,
+		 Descripción VARCHAR(250) NOT NULL,
+		 Direccion VARCHAR(250) NOT NULL,
+		 Fecha_Creacion DATE NOT NULL,
+		 Activo BIT NOT NULL
+);
 END
 
 -- Insert en tabla propiedad
@@ -40,13 +41,15 @@ INSERT INTO Propiedad(
 	   Valor,
 	   Descripción,
 	   Direccion,
-	   Fecha_Creacion)
+	   Fecha_Creacion,
+	   Activo)
     VALUES (
 	   @NumPropiedad,
 	   @Valor,
 	   @Descripción,
 	   @Direccion,
-	   @Fecha_Creacion)
+	   @Fecha_Creacion,
+	   1)
 END
 
 -- Read de tabla propiedad

@@ -4,17 +4,18 @@
 USE [ProyectoBases]
 
 BEGIN
-DROP TABLE CC_Consumo 
+DROP TABLE CC_ConsumoAgua 
 END
 GO
 BEGIN
-	CREATE TABLE CC_Consumo
+	CREATE TABLE CC_ConsumoAgua
 	(
-	  ID_Cons INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
+	  ID_Con INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
 	  Valor_m3 MONEY NOT NULL
 	);
 END
 
+USE [ProyectoBases]
 -- Insert en tabla Concepto Cobro Fijo
 IF OBJECT_ID('CCConsumoInsert') IS NOT NULL
 BEGIN 
@@ -26,8 +27,8 @@ CREATE PROCEDURE CCConsumoInsert
 	 @Valor_m3 MONEY
 AS
 BEGIN
-INSERT INTO CC_Consumo(
-	 ID_Cons,
+INSERT INTO CC_ConsumoAgua(
+	 ID_Con,
 	 Valor_m3)
 	 VALUES(
 	 @ID_Cons,
@@ -44,9 +45,9 @@ CREATE PROC CCConsumoRead
 	@ID_Cons int
 AS 
 BEGIN 
-    SELECT ID_Cons, Valor_m3
-    FROM   CC_Consumo
-    WHERE  (ID_Cons = @ID_Cons) 
+    SELECT ID_Con, Valor_m3
+    FROM   CC_ConsumoAgua
+    WHERE  (ID_Con = @ID_Cons) 
 END
 GO
 
@@ -61,9 +62,9 @@ CREATE PROC CCConsumoUpdate
 	 @Valor_m3 MONEY
 AS 
 BEGIN 
-UPDATE CC_Consumo
+UPDATE CC_ConsumoAgua
 SET  Valor_m3 = @Valor_m3
-WHERE  (ID_Cons = @ID_Cons)
+WHERE  (ID_Con = @ID_Cons)
 END
 GO
 
@@ -78,7 +79,7 @@ CREATE PROC CCConsumoDelete
 AS 
 BEGIN 
 DELETE
-FROM   CC_Consumo
-WHERE  ID_Cons = @ID_Cons
+FROM   CC_ConsumoAgua
+WHERE  ID_Con = @ID_Cons
 END
 GO
