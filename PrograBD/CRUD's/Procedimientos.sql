@@ -88,7 +88,7 @@ WHERE  ID_Propietario = @ID_Propietario
 END
 GO
 
-
+USE [ProyectoBases]
 -- Delete de tabla propietario por nombre y identificacion de propietario
 IF OBJECT_ID('PropietarioDeleteByName') IS NOT NULL
 BEGIN 
@@ -100,8 +100,8 @@ CREATE PROC PropietarioDeleteByName
 	@Nombre VARCHAR (100)
 AS 
 BEGIN 
-DELETE
-FROM   Propietario
+UPDATE Propietario
+SET Activo = 0
 WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
  
 END
@@ -118,8 +118,8 @@ CREATE PROC PropiedadDeleteByNum
     @NumPropiedad int
 AS 
 BEGIN 
-DELETE
-FROM   Propiedad
+UPDATE Propiedad
+SET	Activo = 0
 WHERE  NumPropiedad = @NumPropiedad
 END
 GO
