@@ -91,6 +91,7 @@
     <Content Include="frmLogin.aspx" />
     <Content Include="frmAgregarPropietario.aspx" />
     <Content Include="frmAgregarPropietarioCompleto.aspx" />
+    <Content Include="frmBuscarPropJuridico.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anonimo.Master.cs">
@@ -226,6 +227,13 @@
     </Compile>
     <Compile Include="frmAgregarPropietarioCompleto.aspx.designer.cs">
       <DependentUpon>frmAgregarPropietarioCompleto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarPropJuridico.aspx.cs">
+      <DependentUpon>frmBuscarPropJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBuscarPropJuridico.aspx.designer.cs">
+      <DependentUpon>frmBuscarPropJuridico.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
