@@ -14,6 +14,6 @@ namespace CapaEntidades
         public string Descripcion { get; set; }
         public string Direccion { get; set; }
         public DateTime Fecha_Creacion { get; set; }
-        public DateTime Activo { get; set; }
+        public int  Activo { get; set; }
     }
 }

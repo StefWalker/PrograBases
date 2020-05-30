@@ -20,11 +20,10 @@ namespace WebApplication1
         {
             if (txtID.Text != "")  //cambiar 
             {
-                entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
+                entPropJuridico obj = negPropJuridico.BuscarPropJuridico(Convert.ToInt32(txtID.Text));
                 if (obj != null)
                 {
-
-                    ID.Text = Convert.ToString(obj.Identificacion);
+                    
                     Nombre.Text = obj.Nombre;
 
                 }

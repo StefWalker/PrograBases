@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="entPropJuridico.cs" />
     <Compile Include="entProPro.cs" />
     <Compile Include="entPropietario.cs" />
     <Compile Include="entPropiedad.cs" />

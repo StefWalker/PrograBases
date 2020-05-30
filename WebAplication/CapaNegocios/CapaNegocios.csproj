@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="negPropietario.cs" />
+    <Compile Include="negPropJuridico.cs" />
     <Compile Include="negProPro.cs" />
     <Compile Include="negProUsuario.cs" />
     <Compile Include="negPropiedad.cs" />
