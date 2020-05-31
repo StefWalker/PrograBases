@@ -1,4 +1,4 @@
-USE [ProyectoBases]
+USE [PrograBases]
 
 -- Read de tabla Usuario 
 IF OBJECT_ID('UsuarioSearch') IS NOT NULL
@@ -11,12 +11,75 @@ CREATE PROC UsuarioSearch
     @Password VARCHAR (100)
 AS 
 BEGIN 
-    SELECT ID_Usuario,Nombre,Password,TipoUsuario
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario, Activo
 	FROM   Usuario
     WHERE  (Nombre = @Nombre AND Password = @Password) 
 END
 GO
 
+-- Search Propietario Juridico
+IF OBJECT_ID('BuscarPropJuridico') IS NOT NULL
+BEGIN 
+DROP PROC BuscarPropJuridico
+END 
+GO
+CREATE PROC BuscarPropJuridico
+    @Documento INT
+AS 
+BEGIN 
+    SELECT ID_Propietario, Documento, ID_TDoc, Activo
+	FROM   PropJuridico
+    WHERE  (Documento = @Documento) 
+END
+GO
+
+-- Search Tipo Documento
+IF OBJECT_ID('TipoDocSearch') IS NOT NULL
+BEGIN 
+DROP PROC TipoDocSearch
+END 
+GO
+CREATE PROC TipoDocSearch
+    @TipoDoc INT
+AS 
+BEGIN 
+    SELECT ID_TDoc, TipoDoc, Tipo
+	FROM   TipoDoc
+    WHERE  (TipoDoc = @TipoDoc) 
+END
+GO
+
+-- Search Propietario
+IF OBJECT_ID('PropiedadSearch') IS NOT NULL
+BEGIN 
+DROP PROC PropiedadSearch
+END 
+GO
+CREATE PROC PropiedadSearch
+    @NumPropiedad INT
+AS 
+BEGIN 
+    SELECT NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion, Activo
+	FROM   Propiedad
+    WHERE  (NumPropiedad = @NumPropiedad) 
+END
+GO
+
+-- Search Propietario
+IF OBJECT_ID('PropietarioSearch') IS NOT NULL
+BEGIN 
+DROP PROC PropietarioSearch
+END 
+GO
+CREATE PROC PropietarioSearch
+    @Identificacion INT
+AS 
+BEGIN 
+    SELECT ID_Propietario, Identificacion, Nombre, Fecha_Creacion, Activo, ID_TDoc
+	FROM   Propietario
+    WHERE  (Identificacion = @Identificacion) 
+END
+GO
 
 -- Read de tabla Usuario por nombre
 IF OBJECT_ID('BuscarUsuario') IS NOT NULL
@@ -28,104 +91,12 @@ CREATE PROC BuscarUsuario
     @Nombre VARCHAR (100)
 AS 
 BEGIN 
-    SELECT ID_Usuario,Nombre,Password,TipoUsuario
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario, Activo
 	FROM   Usuario
     WHERE  (Nombre = @Nombre)
 END
 GO
 
-
--- Delete de tabla Pro_x_Usuario por numero de propiedad
-IF OBJECT_ID('Pro_x_UsuarioDeleteByNum') IS NOT NULL
-BEGIN 
-DROP PROC Pro_x_UsuarioDeleteByNum
-END 
-GO
-CREATE PROC Pro_x_UsuarioDeleteByNum 
-    @ID_Propiedad INT
-AS 
-BEGIN 
-DELETE
-FROM   Pro_x_Usuario
-WHERE  ID_Propiedad = @ID_Propiedad
- 
-END
-GO
-
-
--- Delete de tabla PxP por numero de propiedad
-IF OBJECT_ID('Pro_x_ProDeleteByNum') IS NOT NULL
-BEGIN 
-DROP PROC Pro_x_ProDeleteByNum
-END 
-GO
-CREATE PROC Pro_x_ProDeleteByNum 
-    @ID_Propiedad INT
-AS 
-BEGIN 
-DELETE
-FROM   Pro_x_Pro
-WHERE  ID_Propiedad = @ID_Propiedad
- 
-END
-GO
-
-
--- Delete de tabla PxP por ID de propietario 
-IF OBJECT_ID('Pro_x_ProDeleteByPro') IS NOT NULL
-BEGIN 
-DROP PROC Pro_x_ProDeleteByPro
-END 
-GO
-CREATE PROC Pro_x_ProDeleteByPro 
-    @ID_Propietario INT
-AS 
-BEGIN 
-DELETE
-FROM   Pro_x_Pro
-WHERE  ID_Propietario = @ID_Propietario
- 
-END
-GO
-
-USE [ProyectoBases]
--- Delete de tabla propietario por nombre y identificacion de propietario
-IF OBJECT_ID('PropietarioDeleteByName') IS NOT NULL
-BEGIN 
-DROP PROC PropietarioDeleteByName
-END 
-GO
-CREATE PROC PropietarioDeleteByName 
-    @Identificacion INT,
-	@Nombre VARCHAR (100)
-AS 
-BEGIN 
-UPDATE Propietario
-SET Activo = 0
-WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
- 
-END
-GO
-
-
--- Delete de tabla propiedad por numero de propiedad
-IF OBJECT_ID('PropiedadDeleteByNum') IS NOT NULL
-BEGIN 
-DROP PROC PropiedadDeleteByNum
-END 
-GO
-CREATE PROC PropiedadDeleteByNum 
-    @NumPropiedad int
-AS 
-BEGIN 
-UPDATE Propiedad
-SET	Activo = 0
-WHERE  NumPropiedad = @NumPropiedad
-END
-GO
-
-
-USE [ProyectoBases]
 -- Update de tabla propiedad
 IF OBJECT_ID('PropiedadUpdateB') IS NOT NULL
 BEGIN 
@@ -160,7 +131,6 @@ SET  NumPropiedad = @NumPropiedad,
 WHERE  (NumPropiedad = @NumPropiedad)
 END
 GO
-
 
 -- Update de tabla Usuario 
 IF OBJECT_ID('UsuarioUpdateB') IS NOT NULL
@@ -198,7 +168,6 @@ WHERE  (Nombre = @Nombre AND Password = @Password)
 END
 GO
 
-
 -- Update de tabla propietario 
 IF OBJECT_ID('PropietarioUpdateB') IS NOT NULL
 BEGIN 
@@ -225,5 +194,95 @@ UPDATE Propietario
 SET  Identificacion= @Identificacion,
 	 Nombre = @Nombre
 WHERE  (Identificacion = @Identificacion)
+END
+GO
+
+-- Update de tabla Propietario Juridico
+IF OBJECT_ID('ProJuridicoUpdateB') IS NOT NULL
+BEGIN 
+DROP PROC ProJuridicoUpdateB
+END 
+GO
+CREATE PROC ProJuridicoUpdateB
+	 @Documento INT,
+	 @NewDocumento INT,
+     @ID_TDoc INT
+AS 
+BEGIN 
+IF(@NewDocumento IS NULL)
+BEGIN
+	SET @NewDocumento = (SELECT Documento FROM PropJuridico WHERE (Documento = @Documento))
+END
+UPDATE PropJuridico
+SET  Documento = @NewDocumento,
+	 ID_TDoc = @ID_TDoc
+WHERE  (Documento = @Documento)
+END
+GO
+
+-- Delete de tabla Propietario Juridico por numero de docuento
+IF OBJECT_ID('PropJuricoDeleteB') IS NOT NULL
+BEGIN 
+DROP PROC PropJuricoDeleteB
+END 
+GO
+CREATE PROC PropJuricoDeleteB 
+    @Documento int
+AS 
+BEGIN 
+UPDATE PropJuridico
+SET	Activo = 0
+WHERE  Documento = @Documento
+END
+GO
+
+-- Delete de tabla Usuario por nombre y contraseña
+IF OBJECT_ID('UsuarioDeleteB') IS NOT NULL
+BEGIN 
+DROP PROC UsuarioDeleteB
+END 
+GO
+CREATE PROC UsuarioDeleteB 
+    @Nombre VARCHAR(100),
+	@Password VARCHAR(100)
+AS 
+BEGIN 
+UPDATE Usuario
+SET	Activo = 0
+WHERE  (Nombre = @Nombre AND Password = @Password)
+END
+GO
+
+-- Delete de tabla propietario por nombre y identificacion de propietario
+IF OBJECT_ID('PropietarioDeleteByName') IS NOT NULL
+BEGIN 
+DROP PROC PropietarioDeleteByName
+END 
+GO
+CREATE PROC PropietarioDeleteByName 
+    @Identificacion INT,
+	@Nombre VARCHAR (100)
+AS 
+BEGIN 
+UPDATE Propietario
+SET Activo = 0
+WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
+ 
+END
+GO
+
+-- Delete de tabla propiedad por numero de propiedad
+IF OBJECT_ID('PropiedadDeleteByNum') IS NOT NULL
+BEGIN 
+DROP PROC PropiedadDeleteByNum
+END 
+GO
+CREATE PROC PropiedadDeleteByNum 
+    @NumPropiedad int
+AS 
+BEGIN 
+UPDATE Propiedad
+SET	Activo = 0
+WHERE  NumPropiedad = @NumPropiedad
 END
 GO

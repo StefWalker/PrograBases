@@ -1,7 +1,7 @@
 -- CRUD  PropJuridico
 -- Creacion de tabla PropJuridico  
 
-USE [ProyectoBases]
+USE [PrograBases]
 
 BEGIN
 DROP TABLE PropJuridico
@@ -12,13 +12,12 @@ BEGIN
 	(
 		 ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
 		 Documento INT NOT NULL,
-		 ID_Juridico INT NOT NULL,
 		 ID_TDoc INT NOT NULL,
+		 Activo BIT NOT NULL,
 		 FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 END
 
-USE [ProyectoBases]
 -- Insert en tabla PropJuridico 
 IF OBJECT_ID('PropJuridicoInsert') IS NOT NULL
 BEGIN 
@@ -35,13 +34,13 @@ BEGIN
 INSERT INTO PropJuridico(
 	   ID_Propietario,
 	   Documento,
-	   ID_Juridico,
-	   ID_TDoc)
+	   ID_TDoc,
+	   Activo)
     VALUES (
 	   @ID_Propietario,
 	   @Documento,
-	   @ID_Juridico,
-	   @ID_TDoc)
+	   @ID_TDoc,
+	   1)
 END
 
 -- Read de tabla PropJuridico 
@@ -54,7 +53,7 @@ CREATE PROC PropJuridicoRead
     @ID_Propietario int
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_Juridico, ID_TDoc
+    SELECT ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
     WHERE  (ID_Propietario = @ID_Propietario) 
 END
@@ -69,14 +68,12 @@ GO
 CREATE PROC PropJuridicoUpdate
 	 @ID_Propietario INT,
 	 @Documento INT,
-	 @ID_Juridico INT,
 	 @ID_TDoc INT
 AS 
 BEGIN 
 UPDATE PropJuridico
 SET  ID_TDoc= @ID_TDoc,
-	 Documento = @Documento,
-	 ID_Juridico = @ID_Juridico
+	 Documento = @Documento
 WHERE  (ID_Propietario = @ID_Propietario)
 END
 GO

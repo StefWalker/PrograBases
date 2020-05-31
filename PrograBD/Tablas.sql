@@ -1,5 +1,5 @@
 
-USE [ProyectoBases]
+USE [PrograBases]
 
 CREATE TABLE Propiedad
 (
@@ -40,11 +40,13 @@ CREATE TABLE Usuario
   Activo BIT NOT NULL
 );
 
+USE [PrograBases]
 CREATE TABLE PropJuridico
 (
   ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
   Documento INT NOT NULL,
   ID_TDoc INT NOT NULL,
+  Activo BIT NOT NULL,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 
