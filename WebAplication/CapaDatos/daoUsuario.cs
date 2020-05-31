@@ -31,6 +31,7 @@ namespace CapaDatos
                 obj.Password = dr["Password"].ToString();
                 obj.ID_Usuario = Convert.ToInt32(dr["ID_Usuario"].ToString());
                 obj.TipoUsuario = dr["TipoUsuario"].ToString();
+                obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
             }
             catch
             {

@@ -43,8 +43,7 @@ CREATE TABLE Usuario
 CREATE TABLE PropJuridico
 (
   ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
-  Nombre VARCHAR(50) NOT NULL,
-  ID_Juridico INT NOT NULL,
+  Documento INT NOT NULL,
   ID_TDoc INT NOT NULL,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );

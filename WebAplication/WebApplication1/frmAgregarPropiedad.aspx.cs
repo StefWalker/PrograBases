@@ -26,19 +26,36 @@ namespace WebApplication1
                 obj.Valor = decimal.Parse(txtValor.Text);
                 obj.Direccion = txtDireccion.Text;
                 obj.Descripcion = txtDescripcion.Text;
-                obj.Fecha_Creacion = DateTime.Parse(txtFecha.Text);
-
-                entProPro obj2 = new entProPro();
-                obj2.Propiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                obj2.Propietario = Int32.Parse(TextBox1.Text);
-
-                if ((negPropiedad.AgregarPropiedad(obj) == 1)&&(negProPro.AgregarProPro(obj2) == 1)) //Si lo crea debe irse a la pagina donde crea el usuario 
+                if (negPropiedad.AgregarPropiedad(obj) == 1)
                 {
-                    Response.Redirect("frmPrincipal.aspx");
+                    entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(TextBox1.Text));
+                    entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(TextBox1.Text));
+                    if (obj1.Activo == 1 && obj1 != null && obj2.Activo == 1 && obj2 != null)
+                    {
+                        entProPro obj3 = new entProPro();
+                        obj3.Propiedad = obj2.ID_Propiedad;
+                        obj3.Propietario = obj1.ID_Propietario;
+                        if (negProPro.AgregarProPro(obj3) == 1)
+                        {
+                            Response.Redirect("frmPrincipal.aspx");
+                        }
+                        else
+                        {
+                            lblerror.Text = "No se pudo agregar"; //Sino tira error 
+                            lblerror.Visible = true;
+                            //la pagina de unir 
+                        }
+                    }
+                    else
+                    {
+                        lblerror.Text = "No se encontro el Propietario"; //Sino tira error 
+                        lblerror.Visible = true;
+                        //agregar que se vaya a la otra ventana 
+                    }
                 }
                 else
                 {
-                    lblerror.Text = "No se pudo agregar"; //Sino tira error 
+                    lblerror.Text = "No se pudo agregar la propiedad "; //Sino tira error 
                     lblerror.Visible = true;
                 }
             }

@@ -46,6 +46,7 @@
     <Compile Include="negProPro.cs" />
     <Compile Include="negProUsuario.cs" />
     <Compile Include="negPropiedad.cs" />
+    <Compile Include="negTipoDoc.cs" />
     <Compile Include="negUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

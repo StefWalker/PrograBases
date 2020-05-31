@@ -46,6 +46,7 @@
     <Compile Include="entPropietario.cs" />
     <Compile Include="entPropiedad.cs" />
     <Compile Include="entProUsuario.cs" />
+    <Compile Include="entTipoDoc.cs" />
     <Compile Include="entUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

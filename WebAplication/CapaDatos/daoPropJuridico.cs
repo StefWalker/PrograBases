@@ -19,9 +19,9 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("PropietarioInsert ", cnx);
-                cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                cmd.Parameters.AddWithValue("@ID_Juridico", obj.ID_Juridico);
+                cmd = new SqlCommand("InsertPropJuridico ", cnx);
+                cmd.Parameters.AddWithValue("@Documento", obj.Documento);
+                cmd.Parameters.AddWithValue("@ID_Propietario", obj.ID_Propietario);
                 cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
@@ -39,26 +39,26 @@ namespace CapaDatos
             }
             return Indicador;
         }
-        public static entPropJuridico BuscarPropJuridico(int numero)
+        public static entPropJuridico BuscarPropJuridico(int documento )
         {
             entPropJuridico  obj = null;
-            SqlCommand cmd = null;    //Cambiar el nombre del crud 
+            SqlCommand cmd = null;    
             SqlDataReader dr = null;
             try
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("BuscarPropietario", cnx);
-                cmd.Parameters.AddWithValue("@Nombre", numero);
+                cmd = new SqlCommand("BuscarPropJuridico", cnx);
+                cmd.Parameters.AddWithValue("@Documento ", documento );
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
                 obj = new entPropJuridico();
                 dr.Read();
                 obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
-                obj.Nombre = dr["Nombre"].ToString();
-                obj.ID_Juridico = Convert.ToInt32(dr["ID_Juridico"].ToString());
+                obj.Documento  = Convert.ToInt32(dr["Documento"].ToString());
                 obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
+                obj.Activo  = Convert.ToInt32(dr["Activo "].ToString());
 
             }
             catch

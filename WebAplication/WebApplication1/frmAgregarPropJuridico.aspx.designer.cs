@@ -11,35 +11,26 @@ namespace WebApplication1
 {
 
 
-    public partial class frmAgregarPropietario
+    public partial class frmAgregarPropJuridico
     {
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control IdPropFisico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox IdPropFisico;
 
         /// <summary>
-        /// Control txtIdentificacion.
+        /// Control IdJuridico.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdentificacion;
-
-        /// <summary>
-        /// Control DropDownList1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox IdJuridico;
 
         /// <summary>
         /// Control txtNombre.
@@ -48,7 +39,7 @@ namespace WebApplication1
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombre;
+        protected global::System.Web.UI.WebControls.DropDownList txtNombre;
 
         /// <summary>
         /// Control lblerror.

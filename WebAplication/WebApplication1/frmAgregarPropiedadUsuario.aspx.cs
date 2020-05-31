@@ -25,19 +25,38 @@ namespace WebApplication1
                 obj.Valor = decimal.Parse(txtValor.Text);
                 obj.Direccion = txtDireccion.Text;
                 obj.Descripcion = txtDescripcion.Text;
-                obj.Fecha_Creacion = DateTime.Parse(txtFecha.Text);
-
-                entProUsuario obj2 = new entProUsuario();
-                obj2.ID_Propiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                obj2.ID_Usuario = Int32.Parse(TextBox1.Text);
-
-                if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negProUsuario.AgregarProUsuario(obj2) == 1)) //Si lo crea debe irse a la pagina donde crea el usuario 
+                if (negPropiedad.AgregarPropiedad(obj) == 1)
                 {
-                    Response.Redirect("frmPrincipal.aspx");
+                    entUsuario obj1 = negUsuario.BuscarUsuario(TextBox1.Text);
+                    entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(TextBox1.Text));
+                    if (obj1.Activo == 1 && obj1 != null && obj2.Activo == 1 && obj2 != null)
+                    {
+                       
+                        entProUsuario obj3 = new entProUsuario();
+                        obj3.ID_Propiedad = obj2.ID_Propiedad;
+                        obj3.ID_Usuario = obj1.ID_Usuario;
+
+                        if (negProUsuario.AgregarProUsuario(obj3) == 1)
+                        {
+                            Response.Redirect("frmPrincipal.aspx");
+                        }
+                        else
+                        {
+                            lblerror.Text = "No se pudo unir la propiedad y el usuario "; //Sino tira error 
+                            lblerror.Visible = true;
+                            //la pagina de unir 
+                        }
+                    }
+                    else
+                    {
+                        lblerror.Text = "No se encontra el usuario "; //Sino tira error 
+                        lblerror.Visible = true;
+                        //agregar que se vaya a la otra ventana 
+                    }
                 }
                 else
                 {
-                    lblerror.Text = "No se pudo agregar"; //Sino tira error 
+                    lblerror.Text = "No se pudo agregar la propiedad "; //Sino tira error 
                     lblerror.Visible = true;
                 }
             }
@@ -46,6 +65,7 @@ namespace WebApplication1
                 lblerror.Text = "Faltan ingresar campos"; // En caso de que falten datos 
                 lblerror.Visible = true;
             }
+        
         }
     }
 }

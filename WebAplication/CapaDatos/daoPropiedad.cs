@@ -62,6 +62,7 @@ namespace CapaDatos
                 obj.Descripcion = dr["Descripcion"].ToString();
                 obj.Fecha_Creacion = Convert.ToDateTime(dr["Fecha_Creacion"].ToString());
                 obj.Direccion = dr["Direccion"].ToString();
+                obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
             }
             catch
             {
