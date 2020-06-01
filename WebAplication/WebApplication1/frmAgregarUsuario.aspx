@@ -14,9 +14,12 @@
                 <td>Password: </td>
                 <td> <asp:TextBox ID="txtPassword" runat="server" width="200px"></asp:TextBox></td>
             </tr>
-            <tr>
-                <td>Tipo de Usuario: </td>
-                <td> <asp:TextBox ID="txtUsuario" runat="server" width="200px"></asp:TextBox></td>
+             <tr>
+                <td>Tipo de Usuario:&nbsp; </td>
+                <td> <asp:DropDownList ID="lista" runat="server" width="200px">
+                    <asp:ListItem Value="1">Usuario</asp:ListItem>
+                    <asp:ListItem Value="2">Administrador</asp:ListItem>
+                    </asp:DropDownList></td>
             </tr>
             <tr>
                <td colspan="2"></td>

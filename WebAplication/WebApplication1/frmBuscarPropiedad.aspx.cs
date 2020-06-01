@@ -21,14 +21,14 @@ namespace WebApplication1
             if (txtNumero.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumero.Text));
-                if (obj != null)
+                if (obj != null && obj.Activo == 1 )
                 {
 
                     Numero.Text = Convert.ToString(obj.NumPropiedad);
                     Valor.Text = Convert.ToString(obj.Valor);
                     Direccion.Text = obj.Direccion;
                     Descripcion.Text = obj.Descripcion;
-                    Fecha.Text = Convert.ToString(obj.Fecha_Creacion);
+                   
 
                 }
                 else

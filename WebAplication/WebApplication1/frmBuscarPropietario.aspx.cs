@@ -21,9 +21,10 @@ namespace WebApplication1
             if (txtID.Text != "")
             {
                 entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
-                if (obj != null)
+                if (obj != null && obj.Activo == 1 )
                 {
 
+                 //   entTipoDoc obj1 = negTipoDoc.BuscarTipoDoc(Convert.ToInt32(txtID.Text)); hacer el search con el id y agregar el tipo  
                     ID.Text = Convert.ToString(obj.Identificacion);
                     Nombre.Text = obj.Nombre;
                     

@@ -18,8 +18,13 @@
     <asp:Label ID="Label1" runat="server" Text="Identificación:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="ID" runat="server" Font-Size="Medium"></asp:Label>
     <br />
+    <asp:Label ID="Label3" runat="server" Text="Tipo de Identificacion :  " Font-Size="Medium"></asp:Label>
+    <asp:Label ID="Label4" runat="server" Font-Size="Medium"></asp:Label>
+    <br />
+    <br />
     <asp:Label ID="Label2" runat="server" Text="Nombre:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Nombre" runat="server" Font-Size="Medium" ></asp:Label>
+
     <tr>
        <td colspan="2" align ="Center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>

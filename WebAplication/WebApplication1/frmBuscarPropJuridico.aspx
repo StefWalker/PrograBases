@@ -15,14 +15,14 @@
     <br />
     <br />
     <br />
-    <asp:Label ID="Label1" runat="server" Text="IdJuridico:  " Font-Size="Medium"></asp:Label>
+    <asp:Label ID="Label1" runat="server" Text="Identificacion Juridica:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="ID" runat="server" Font-Size="Medium"></asp:Label>
     <br />
     <asp:Label ID="Label2" runat="server" Text="Tipo del documento:  " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="Nombre" runat="server" Font-Size="Medium" ></asp:Label>
+    <asp:Label ID="Tipo" runat="server" Font-Size="Medium" ></asp:Label>
     <br />
     <asp:Label ID="Label3" runat="server" Text="Nombre del propietario fisico:  " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="Label4" runat="server" Font-Size="Medium" ></asp:Label>
+    <asp:Label ID="PropFisico" runat="server" Font-Size="Medium" ></asp:Label>
         <br />
     <asp:Label ID="Label5" runat="server" Text="Identificación del propietario:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Label6" runat="server" Font-Size="Medium" ></asp:Label>

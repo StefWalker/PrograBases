@@ -36,7 +36,7 @@ namespace WebApplication1
         }
         protected void BuscarUsuario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmBuscar.aspx");
+            Response.Redirect("frmBuscarUsuario.aspx");
         }
 
         protected void ModificarUsuario_Click(object sender, EventArgs e)

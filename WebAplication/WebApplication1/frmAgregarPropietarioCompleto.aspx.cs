@@ -20,36 +20,55 @@ namespace WebApplication1
         {
 
 
-            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtFecha.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && TextBox1.Text != "")
+            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomProp.Text != "" && IdProp.Text != "")
             {
-                entPropiedad obj = new entPropiedad();
-                obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                obj.Valor = decimal.Parse(txtValor.Text);
-                obj.Direccion = txtDireccion.Text;
-                obj.Descripcion = txtDescripcion.Text;
-               
-
-                entPropietario obj2 = new entPropietario();
-                obj2.Identificacion = Int32.Parse(TextBox1.Text);
-                obj2.Nombre = TextBox2.Text;
-
-                entProPro obj3 = new entProPro();
-                obj3.Propiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                obj3.Propietario = Int32.Parse(TextBox1.Text);
-
-                if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negPropietario.AgregarPropietario(obj2) == 1) && (negProPro.AgregarProPro(obj3) == 1)) //Si lo crea debe irse a la pagina donde crea el usuario 
+                entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(Convert.ToInt32(lista.SelectedValue));
+                if (objTipo != null)
                 {
-                    Response.Redirect("frmPrincipal.aspx");
+                    entPropiedad obj = new entPropiedad();
+                    obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
+                    obj.Valor = decimal.Parse(txtValor.Text);
+                    obj.Direccion = txtDireccion.Text;
+                    obj.Descripcion = txtDescripcion.Text;
+
+
+                    entPropietario obj2 = new entPropietario();
+                    obj2.Identificacion = Int32.Parse(IdProp.Text);
+                    obj2.Nombre = NomProp.Text;
+                    obj2.ID_TDoc = objTipo.ID_TDoc;
+
+                    if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negPropietario.AgregarPropietario(obj2) == 1))
+                    {
+                        entProPro obj3 = new entProPro();
+                        obj3.Propiedad = obj.ID_Propiedad;
+                        obj3.Propietario = obj2.ID_Propietario;
+
+                        if (negProPro.AgregarProPro(obj3) == 1)
+                        {
+                            Response.Redirect("frmPrincipal.aspx");
+                        }
+                        else
+                        {
+                            lblerror.Text = "No se pudo unir correctamente"; //Enviar a la pagina de unir PRO PRO 
+                            lblerror.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        lblerror.Text = "No se pudo agregar, verifique los datos de la propiedad y el propietario"; //Sino tira error 
+                        lblerror.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblerror.Text = "No se pudo agregar"; //Sino tira error 
+                    lblerror.Text = "Seleccione un tipo de identificacion"; //Sino tira error 
                     lblerror.Visible = true;
                 }
             }
-            else //Buscar Usuario y agregarlo a esa propiedad , agregar lo de guardan propiedad 
+            else
             {
-                Response.Redirect("frmPrincipal.aspx");
+                lblerror.Text = "No se permite dejar espacios vacios"; //Sino tira error 
+                lblerror.Visible = true;
             }
         }
     }

@@ -18,11 +18,11 @@ namespace WebApplication1
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            //dos condiciones una que este vacio o
+            
             if (txtNombre.Text != "")
             {
                 entUsuario obj = negUsuario.BuscarUsuario(txtNombre.Text);
-                if (obj != null)
+                if (obj != null && obj.Activo == 1)
                 {
                   
                     Nombre.Text = obj.Nombre;

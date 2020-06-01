@@ -18,21 +18,36 @@ namespace WebApplication1
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(txtNombre.Text!= "" && txtPassword.Text != "" && txtUsuario.Text != "" )
+            if(txtNombre.Text!= "" && txtPassword.Text != "" )
             {
                 entUsuario obj = new entUsuario();
                 obj.Nombre = txtNombre.Text;
                 obj.Password = txtPassword.Text;
-                obj.TipoUsuario = txtUsuario.Text;
-
-                if (negUsuario.AgregarUsuario(obj) == 1)
+                if(lista.SelectedValue == "1")
                 {
-                    Response.Redirect("frmUnirUserPro.aspx");
+                    obj.TipoUsuario = "Usuario";
+                    if (negUsuario.AgregarUsuario(obj) == 1)
+                    {
+                        Response.Redirect("frmUnirUserPro.aspx");
+                    }
+                    else
+                    {
+                        lblerror.Text = "No se pudo agregar el usuario";
+                        lblerror.Visible = true;
+                    }
                 }
                 else
                 {
-                    lblerror.Text = "No se pudo agregar el usuario";
-                    lblerror.Visible = true;
+                    obj.TipoUsuario = "Administrador";
+                    if (negUsuario.AgregarUsuario(obj) == 1)
+                    {
+                        Response.Redirect("frmUnirUserPro.aspx");
+                    }
+                    else
+                    {
+                        lblerror.Text = "No se pudo agregar el usuario";
+                        lblerror.Visible = true;
+                    }
                 }
             }
             else

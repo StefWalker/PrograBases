@@ -16,7 +16,7 @@
                 <td> <asp:TextBox ID="IdPropFisico" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>
-                <td>Identificacion: </td>
+                <td>Identificacion Juridica: </td>
                 <td> <asp:TextBox ID="IdJuridico" runat="server" width="200px"></asp:TextBox></td>
             </tr>
              <tr>

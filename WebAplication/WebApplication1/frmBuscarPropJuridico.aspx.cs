@@ -21,10 +21,11 @@ namespace WebApplication1
             if (txtID.Text != "")  //cambiar 
             {
                 entPropJuridico obj = negPropJuridico.BuscarPropJuridico(Convert.ToInt32(txtID.Text));
-                if (obj != null)
+                if (obj != null && obj.Activo == 1)
                 {
                     
-                    Nombre.Text = obj.Nombre;
+                    ID.Text = Convert.ToString(obj.Documento);
+                    //Tipo.Text = obj. HACER SEARCH CON ID TIPO ID PROPIETARIO 
 
                 }
                 else
