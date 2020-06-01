@@ -41,7 +41,7 @@ namespace WebApplication1
 
         protected void ModificarUsuario_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificar.aspx");
+            Response.Redirect("frmModificarUsuario.aspx");
         }
 
         protected void AgregarPropiedad_Click(object sender, EventArgs e)

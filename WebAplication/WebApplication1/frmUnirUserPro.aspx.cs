@@ -22,7 +22,7 @@ namespace WebApplication1
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
                 entUsuario obj1 = negUsuario.BuscarUsuario(txtUsuario.Text);
-                if (obj != null && obj1 != null)
+                if (obj != null && obj.Activo == 1  && obj1 != null && obj1.Activo==1 )
                 { 
                     int user = obj1.ID_Usuario;
                     int prop = obj.ID_Propiedad;
@@ -36,7 +36,7 @@ namespace WebApplication1
                     }
                     else
                     {
-                        lblError.Text = "No se unieron correctamente";
+                        lblError.Text = "No se unieron correctamente, error del sistema";
                         lblError.Visible = true;
                     }
                 }

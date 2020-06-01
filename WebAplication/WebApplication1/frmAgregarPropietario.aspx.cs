@@ -45,13 +45,15 @@ namespace WebApplication1
                             else
                             {
                                 lblerror.Text = "No se pudo unir Propiedad con Propietario"; //Sino tira error 
-                                lblerror.Visible = true; // tirar a la de unir 
+                                lblerror.Visible = true;
+                                Response.Redirect("frmUnirProPro.aspx");
                             }
                         }
                         else
                         {
                             lblerror.Text = "No se pudo unir Propiedad con Propietario, verifique el numero de propiedad"; //Sino tira error 
                             lblerror.Visible = true; // tirar a la de unir 
+                            Response.Redirect("frmUnirProPro.aspx");
                         }
                     }
                     else

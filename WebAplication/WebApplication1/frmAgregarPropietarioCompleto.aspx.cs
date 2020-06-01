@@ -51,12 +51,14 @@ namespace WebApplication1
                         {
                             lblerror.Text = "No se pudo unir correctamente"; //Enviar a la pagina de unir PRO PRO 
                             lblerror.Visible = true;
+                            Response.Redirect("frmUnirProPro.aspx");
                         }
                     }
                     else
                     {
                         lblerror.Text = "No se pudo agregar, verifique los datos de la propiedad y el propietario"; //Sino tira error 
                         lblerror.Visible = true;
+                        Response.Redirect("frmUnirProPro.aspx");
                     }
                 }
                 else

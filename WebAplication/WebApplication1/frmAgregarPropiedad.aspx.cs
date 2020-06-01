@@ -43,14 +43,14 @@ namespace WebApplication1
                         {
                             lblerror.Text = "No se pudo agregar"; //Sino tira error 
                             lblerror.Visible = true;
-                            //la pagina de unir 
+                            Response.Redirect("frmUnirProPro.aspx");
                         }
                     }
                     else
                     {
                         lblerror.Text = "No se encontro el Propietario"; //Sino tira error 
                         lblerror.Visible = true;
-                        //agregar que se vaya a la otra ventana 
+                        Response.Redirect("frmUnirProPro.aspx");
                     }
                 }
                 else

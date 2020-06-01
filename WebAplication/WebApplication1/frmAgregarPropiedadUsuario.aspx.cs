@@ -44,14 +44,14 @@ namespace WebApplication1
                         {
                             lblerror.Text = "No se pudo unir la propiedad y el usuario "; //Sino tira error 
                             lblerror.Visible = true;
-                            //la pagina de unir 
+                            Response.Redirect("frmUnirUserPro .aspx");
                         }
                     }
                     else
                     {
                         lblerror.Text = "No se encontra el usuario "; //Sino tira error 
                         lblerror.Visible = true;
-                        //agregar que se vaya a la otra ventana 
+                        Response.Redirect("frmUnirUserPro .aspx");
                     }
                 }
                 else
