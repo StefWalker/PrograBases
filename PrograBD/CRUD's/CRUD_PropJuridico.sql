@@ -1,7 +1,7 @@
 -- CRUD  PropJuridico
 -- Creacion de tabla PropJuridico  
 
-USE [PrograBases]
+USE [ProyectoBases]
 
 BEGIN
 DROP TABLE PropJuridico

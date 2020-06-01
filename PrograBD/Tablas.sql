@@ -1,5 +1,5 @@
 
-USE [PrograBases]
+USE [ProyectoBases]
 
 CREATE TABLE Propiedad
 (

@@ -1,4 +1,4 @@
-USE [PrograBases]
+USE [ProyectoBases]
 
 -- Read de tabla Usuario 
 IF OBJECT_ID('UsuarioSearch') IS NOT NULL
@@ -30,6 +30,22 @@ BEGIN
     SELECT ID_Propietario, Documento, ID_TDoc, Activo
 	FROM   PropJuridico
     WHERE  (Documento = @Documento) 
+END
+GO
+
+-- Search Propietario Juridico por ID
+IF OBJECT_ID('PropJuridicoSearchID') IS NOT NULL
+BEGIN 
+DROP PROC PropJuridicoSearchID
+END 
+GO
+CREATE PROC PropJuridicoSearchID
+    @ID_Propietario INT
+AS 
+BEGIN 
+    SELECT ID_Propietario, Documento, ID_TDoc, Activo
+	FROM   PropJuridico
+    WHERE  (ID_Propietario = @ID_Propietario) 
 END
 GO
 
@@ -104,13 +120,17 @@ DROP PROC PropiedadUpdateB
 END 
 GO
 CREATE PROC PropiedadUpdateB
-	 @ID_Propiedad INT,
 	 @NumPropiedad INT,
+	 @NewNumPropiedad INT,
 	 @Valor MONEY,
 	 @Descripción VARCHAR(250),
 	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
+IF(@NewNumPropiedad IS NULL)
+BEGIN
+	SET @NewNumPropiedad = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+END
 IF(@Valor IS NULL)
 BEGIN
 	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
@@ -124,7 +144,7 @@ BEGIN
 	SET @Direccion = (SELECT Direccion FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 UPDATE Propiedad
-SET  NumPropiedad = @NumPropiedad,
+SET  NumPropiedad = @NewNumPropiedad,
 	 Valor = @Valor,
 	 Descripción	= @Descripción,
 	 Direccion = @Direccion
@@ -139,7 +159,6 @@ DROP PROC UsuarioUpdateB
 END 
 GO
 CREATE PROC UsuarioUpdateB
-	 @ID_Usuario INT ,
 	 @Nombre VARCHAR (100),
 	 @NewName VARCHAR (100),
      @Password VARCHAR (100),
@@ -175,7 +194,6 @@ DROP PROC PropietarioUpdateB
 END 
 GO
 CREATE PROC PropietarioUpdateB
-	 @ID_Propietario INT,
 	 @Identificacion INT,
 	 @NewIdentificacion INT,
 	 @Nombre VARCHAR (100),
