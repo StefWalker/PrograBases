@@ -13,7 +13,7 @@
         <table style="height: 110px">
             <tr>
                 <td>Numero de Propiedad: </td>
-                <td> <asp:TextBox ID="TextBox1" runat="server" width="200px"></asp:TextBox></td>
+                <td> <asp:TextBox ID="NumPropiedad" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>
                 <td colspan="2" align="center" class="auto-style4"></td>
@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>Tipo Documento:&nbsp; </td>
-                <td> <asp:DropDownList ID="DropDownList1" runat="server" width="200px">
+                <td> <asp:DropDownList ID="lista" runat="server" width="200px">
                     <asp:ListItem Value="1">Cedula Nacional</asp:ListItem>
                     <asp:ListItem Value="2">Cedula Residente</asp:ListItem>
                     <asp:ListItem Value="3">Pasaporte</asp:ListItem>

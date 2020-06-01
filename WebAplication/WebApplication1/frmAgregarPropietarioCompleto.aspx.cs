@@ -19,6 +19,7 @@ namespace WebApplication1
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
+
             if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtFecha.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && TextBox1.Text != "")
             {
                 entPropiedad obj = new entPropiedad();
@@ -26,7 +27,7 @@ namespace WebApplication1
                 obj.Valor = decimal.Parse(txtValor.Text);
                 obj.Direccion = txtDireccion.Text;
                 obj.Descripcion = txtDescripcion.Text;
-                obj.Fecha_Creacion = DateTime.Parse(txtFecha.Text);
+               
 
                 entPropietario obj2 = new entPropietario();
                 obj2.Identificacion = Int32.Parse(TextBox1.Text);

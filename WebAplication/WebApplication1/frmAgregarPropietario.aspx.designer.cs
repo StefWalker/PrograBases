@@ -15,13 +15,13 @@ namespace WebApplication1
     {
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control NumPropiedad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox NumPropiedad;
 
         /// <summary>
         /// Control txtIdentificacion.
@@ -33,13 +33,13 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox txtIdentificacion;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control lista.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList lista;
 
         /// <summary>
         /// Control txtNombre.

@@ -13,7 +13,7 @@
         <table>
             <tr>
                 <td>Identificacion: </td>
-                <td> <asp:TextBox ID="TextBox1" runat="server" width="200px"></asp:TextBox></td>
+                <td> <asp:TextBox ID="IdPropietario" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>
                 <td colspan="2" align="center" class="auto-style4"></td>

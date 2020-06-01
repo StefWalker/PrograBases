@@ -22,6 +22,7 @@ namespace CapaDatos
                 cmd = new SqlCommand("PropietarioInsert ", cnx);
                 cmd.Parameters.AddWithValue("@Identificacion", obj.Identificacion);
                 cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
+                cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();

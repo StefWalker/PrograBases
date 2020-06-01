@@ -16,10 +16,6 @@ namespace CapaNegocios
         {
             return daoUsuario.Login(nombre, password);
         }
-        public static List<entUsuario> ListarUsuarios()
-        {
-            return daoUsuario.ListarUsuarios();
-        }
         public static int AgregarUsuario(entUsuario obj)
         {
             return daoUsuario.AgregarUsuario(obj);

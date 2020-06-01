@@ -13,11 +13,22 @@
         <table>
             <tr>
                 <td>Identificacion: </td>
-                <td> <asp:TextBox ID="TextBox1" runat="server" width="200px"></asp:TextBox></td>
+                <td> <asp:TextBox ID="IdProp" runat="server" width="200px"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td>Tipo Documento:&nbsp; </td>
+                <td> <asp:DropDownList ID="lista" runat="server" width="200px">
+                    <asp:ListItem Value="1">Cedula Nacional</asp:ListItem>
+                    <asp:ListItem Value="2">Cedula Residente</asp:ListItem>
+                    <asp:ListItem Value="3">Pasaporte</asp:ListItem>
+                    <asp:ListItem Value="4">Cedula Juridica</asp:ListItem>
+                    <asp:ListItem Value="5">Registro Civil</asp:ListItem>
+                    <asp:ListItem Value="6">Cedula Extranjero</asp:ListItem>
+                    </asp:DropDownList></td>
             </tr>
              <tr>
                 <td>Nombre de Propietario:&nbsp; </td>
-                <td> <asp:TextBox ID="TextBox2" runat="server" width="200px"></asp:TextBox></td>
+                <td> <asp:TextBox ID="NomProp" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>
                 <td colspan="2" align="center" class="auto-style4"></td>

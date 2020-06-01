@@ -18,7 +18,7 @@ namespace WebApplication1
 
         protected void btnGuardar_Click1(object sender, EventArgs e)
         {
-            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtFecha.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && TextBox1.Text != "")
+            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtFecha.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomUsuario.Text != "")
             {
                 entPropiedad obj = new entPropiedad();
                 obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
@@ -27,8 +27,8 @@ namespace WebApplication1
                 obj.Descripcion = txtDescripcion.Text;
                 if (negPropiedad.AgregarPropiedad(obj) == 1)
                 {
-                    entUsuario obj1 = negUsuario.BuscarUsuario(TextBox1.Text);
-                    entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(TextBox1.Text));
+                    entUsuario obj1 = negUsuario.BuscarUsuario(NomUsuario.Text);
+                    entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
                     if (obj1.Activo == 1 && obj1 != null && obj2.Activo == 1 && obj2 != null)
                     {
                        

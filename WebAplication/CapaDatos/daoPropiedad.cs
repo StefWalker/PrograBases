@@ -23,7 +23,6 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@Valor", obj.Valor);
                 cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
                 cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
-                cmd.Parameters.AddWithValue("@Fecha_Creacion", obj.Fecha_Creacion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -60,7 +59,6 @@ namespace CapaDatos
                 obj.Valor = Convert.ToDecimal(dr["Valor"].ToString());
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                 obj.Descripcion = dr["Descripcion"].ToString();
-                obj.Fecha_Creacion = Convert.ToDateTime(dr["Fecha_Creacion"].ToString());
                 obj.Direccion = dr["Direccion"].ToString();
                 obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
             }

@@ -44,41 +44,6 @@ namespace CapaDatos
             return obj;
         }
 
-        public static List<entUsuario> ListarUsuarios()
-        {
-            SqlCommand cmd = null;
-            SqlDataReader dr = null;
-            List<entUsuario> lista = null;
-            try
-            {
-                Conexion cn = new Conexion();
-                SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("ListarUsuarios", cnx);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cnx.Open();
-                dr = cmd.ExecuteReader();
-                lista = new List<entUsuario>();
-                while (dr.Read())
-                {
-                    entUsuario c = new entUsuario();
-                    c.ID_Usuario = Convert.ToInt32(dr["ID_Usuario"].ToString());
-                    c.Nombre = dr["Nombre"].ToString();
-                    c.Password = dr["Password"].ToString();
-                    c.TipoUsuario = dr["TipoUsuario"].ToString();
-                    lista.Add(c);
-
-                }
-            }
-            catch (Exception e)
-            {
-                lista = null;
-            }
-            finally
-            {
-                cmd.Connection.Close();
-            }
-            return lista;
-        }
         public static int AgregarUsuario(entUsuario obj)
         {
             int Indicador = 0;
@@ -127,6 +92,7 @@ namespace CapaDatos
                 obj.Password = dr["Password"].ToString();
                 obj.ID_Usuario = Convert.ToInt32(dr["ID_Usuario"].ToString());
                 obj.TipoUsuario = dr["TipoUsuario"].ToString();
+                obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
 
             }
             catch

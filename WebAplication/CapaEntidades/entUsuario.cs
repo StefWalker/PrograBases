@@ -12,7 +12,6 @@ namespace CapaEntidades
         public string Nombre { get; set; }
         public string Password { get; set; }
         public string TipoUsuario { get; set; }
-        public DateTime Fecha_Creacion { get; set; }
         public int Activo { get; set; }
 
     }
