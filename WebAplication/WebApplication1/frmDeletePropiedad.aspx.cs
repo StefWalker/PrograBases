@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +17,17 @@ namespace WebApplication1
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmPrincipal.aspx");
+            int delete = negPropiedad.DeletePropiedad(Convert.ToInt32(txtNumPropiedad.Text));
+            if (delete == 1)
+            {
+                Response.Redirect("frmPrincipal.aspx");
+            }
+            else
+            {
+
+                lblerror.Text = "No se logró borrar correctamente el propietario"; //Sino tira error 
+                lblerror.Visible = true;
+            }
         }
     }
 }

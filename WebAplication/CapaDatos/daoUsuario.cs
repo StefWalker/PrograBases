@@ -105,6 +105,33 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static int DeleteUsuario(string nombre, string password)
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("UsuarioDeleteB", cnx);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Password", password);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
 
     }
 }

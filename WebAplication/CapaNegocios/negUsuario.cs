@@ -24,5 +24,9 @@ namespace CapaNegocios
         {
             return daoUsuario.BuscarUsuario(nombre);
         }
+        public static int DeleteUsuario(string nombre, string password)
+        {
+            return daoUsuario.DeleteUsuario(nombre, password);
+        }
     }
 }

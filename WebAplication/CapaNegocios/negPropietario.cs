@@ -18,5 +18,9 @@ namespace CapaNegocios
         {
             return daoPropietario.BuscarPropietario(id);
         }
+        public static int DeletePropietario(int identificacion, string nombre)
+        {
+            return daoPropietario.DeletePropietario(identificacion, nombre);
+        }
     }
 }

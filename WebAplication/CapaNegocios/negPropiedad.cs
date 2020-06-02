@@ -20,7 +20,10 @@ namespace CapaNegocios
         {
             return daoPropiedad.BuscarPropiedad(numero);
         }
-        
+        public static int DeletePropiedad(int numero)
+        {
+            return daoPropiedad.DeletePropiedad(numero);
+        }
     }
 }
 

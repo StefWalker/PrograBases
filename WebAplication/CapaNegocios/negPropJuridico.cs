@@ -18,6 +18,10 @@ namespace CapaNegocios
         {
             return daoPropJuridico.BuscarPropJuridico(documento);
         }
-        
+        public static int DeletePropJuridico(int documento)
+        {
+            return daoPropJuridico.DeletePropJuridico(documento);
+        }
+
     }
 }

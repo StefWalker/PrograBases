@@ -72,5 +72,32 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static int DeletePropietario(int identificacion , string nombre )
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("PropietarioDeleteByName ", cnx);
+                cmd.Parameters.AddWithValue("@Identificacion ", identificacion);
+                cmd.Parameters.AddWithValue("@Nombre ", nombre);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
     }
 }
