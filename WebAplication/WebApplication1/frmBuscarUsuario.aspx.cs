@@ -22,7 +22,7 @@ namespace WebApplication1
             if (txtNombre.Text != "")
             {
                 entUsuario obj = negUsuario.BuscarUsuario(txtNombre.Text);
-                if (obj != null && obj.Activo == 1)
+                if (obj != null ) // quite activo usuario
                 {
                   
                     Nombre.Text = obj.Nombre;

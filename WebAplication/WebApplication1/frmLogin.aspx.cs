@@ -25,7 +25,7 @@ namespace WebApplication1
             if (txtUsuario.Text != "" && txtpass.Text != "")
             {
                 entUsuario obj = negUsuario.Login(txtUsuario.Text, txtpass.Text);
-                if (obj != null && obj.Activo == 1  && obj.TipoUsuario == "Administrador")
+                if (obj != null)
                 {
                     Session["Nombre"] = obj;
                     Response.Redirect("frmPrincipal.aspx");
