@@ -58,7 +58,6 @@ namespace CapaDatos
                 obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
                 obj.Documento  = Convert.ToInt32(dr["Documento"].ToString());
                 obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
-                obj.Activo  = Convert.ToInt32(dr["Activo "].ToString());
 
             }
             catch

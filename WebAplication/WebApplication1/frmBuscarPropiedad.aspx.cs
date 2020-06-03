@@ -21,7 +21,7 @@ namespace WebApplication1
             if (txtNumero.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumero.Text));
-                if (obj != null && obj.Activo == 1 )
+                if (obj != null )
                 {
 
                     Numero.Text = Convert.ToString(obj.NumPropiedad);

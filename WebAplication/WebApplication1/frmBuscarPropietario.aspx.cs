@@ -21,7 +21,7 @@ namespace WebApplication1
             if (txtID.Text != "")
             {
                 entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
-                if (obj != null && obj.Activo == 1 )
+                if (obj != null )
                 {
 
                     entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc); 

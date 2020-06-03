@@ -29,7 +29,7 @@ namespace WebApplication1
                 {
                     entUsuario obj1 = negUsuario.BuscarUsuario(NomUsuario.Text);
                     entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
-                    if ( obj1 != null && obj2.Activo == 1 && obj2 != null) // quite activo us
+                    if ( obj1 != null && obj2 != null) // quite activo us
                     {
                        
                         entProUsuario obj3 = new entProUsuario();

@@ -30,7 +30,7 @@ namespace WebApplication1
                 {
                     entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropietario.Text));
                     entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
-                    if (obj1.Activo == 1 && obj1 != null && obj2.Activo == 1 && obj2 != null)
+                    if (obj1 != null  && obj2 != null)
                     {
                         entProPro obj3 = new entProPro();
                         obj3.Propiedad = obj2.ID_Propiedad;

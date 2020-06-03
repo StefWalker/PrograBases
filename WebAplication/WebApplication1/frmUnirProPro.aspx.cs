@@ -22,7 +22,7 @@ namespace WebApplication1
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
                 entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
-                if (obj != null && obj.Activo == 1 &&  obj1 != null && obj1.Activo == 1)
+                if (obj != null  &&  obj1 != null )
                 {
                     int propietario = obj1.ID_Propietario;
                     int prop = obj.ID_Propiedad;

@@ -60,7 +60,7 @@ namespace CapaDatos
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                 obj.Descripcion = dr["Descripcion"].ToString();
                 obj.Direccion = dr["Direccion"].ToString();
-                obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
+               
             }
             catch
             {

@@ -21,7 +21,7 @@ namespace WebApplication1
             if (txtID.Text != "")  //cambiar 
             {
                 entPropJuridico obj = negPropJuridico.BuscarPropJuridico(Convert.ToInt32(txtID.Text));
-                if (obj != null && obj.Activo == 1)
+                if (obj != null )
                 {
                     entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc);
                     entPropietario obj2 = negPropietario.BuscarPropietarioID(obj.ID_Propietario);

@@ -21,7 +21,7 @@ namespace WebApplication1
             if (IdPropFisico.Text != "" && IdJuridico.Text != "" && txtNombre.Text != "")
             {
                 entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropFisico.Text));
-                if (obj.Activo == 1 && obj != null)
+                if (obj != null)
                 {
                     entTipoDoc obj2 = negTipoDoc.BuscarTipoDoc(Convert.ToInt32(txtNombre.SelectedValue));
 

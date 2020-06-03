@@ -22,7 +22,7 @@ namespace WebApplication1
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
                 entUsuario obj1 = negUsuario.BuscarUsuario(txtUsuario.Text);
-                if (obj != null && obj.Activo == 1  && obj1 != null ) // quite activo usuario
+                if (obj != null  && obj1 != null ) // quite activo usuario
                 { 
                     int user = obj1.ID_Usuario;
                     int prop = obj.ID_Propiedad;
