@@ -34,10 +34,6 @@
                 <td>Direccion: </td>
                 <td> <asp:TextBox ID="txtDireccion" runat="server" width="200px"></asp:TextBox></td>
             </tr>
-             <tr>
-                <td>Fecha de Creación </td>
-                <td> <asp:TextBox ID="txtFecha" runat="server" width="200px"></asp:TextBox></td>
-            </tr>
             <tr>
                <td colspan="2" class="auto-style4"></td>
                 <asp:Label ID="lblerror" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>            
