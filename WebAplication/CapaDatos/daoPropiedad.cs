@@ -18,7 +18,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("PropiedadInsert ", cnx);
+                cmd = new SqlCommand("PropiedadInsert", cnx);
                 cmd.Parameters.AddWithValue("@NumPropiedad", obj.NumPropiedad);
                 cmd.Parameters.AddWithValue("@Valor", obj.Valor);
                 cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);

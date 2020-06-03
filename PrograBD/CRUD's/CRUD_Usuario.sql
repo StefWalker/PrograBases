@@ -28,8 +28,7 @@ GO
 CREATE PROCEDURE UsuarioInsert
 	   @Nombre VARCHAR (100),
        @Password VARCHAR (100),
-       @TipoUsuario VARCHAR (100),
-	   @Fecha_Creacion Date
+       @TipoUsuario VARCHAR (100)
 AS
 BEGIN
 INSERT INTO Usuario(  
@@ -42,7 +41,7 @@ INSERT INTO Usuario(
 	   @Nombre,
 	   @Password,
 	   @TipoUsuario,
-	   @Fecha_Creacion,
+	   GETDATE(),
 	   1)
 END
 
@@ -58,7 +57,7 @@ AS
 BEGIN 
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
-    WHERE  (ID_Usuario = @ID_Usuario) 
+    WHERE  (ID_Usuario = @ID_Usuario AND Activo = 1) 
 END
 GO
 

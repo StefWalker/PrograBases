@@ -64,7 +64,7 @@ AS
 BEGIN 
     SELECT ID_Propiedad, NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion
     FROM   Propiedad  
-    WHERE  (ID_Propiedad = @ID_Propiedad) 
+    WHERE  (ID_Propiedad = @ID_Propiedad  AND Activo = 1) 
 END
 GO
 

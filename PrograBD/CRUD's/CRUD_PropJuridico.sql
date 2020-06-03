@@ -55,7 +55,7 @@ AS
 BEGIN 
     SELECT ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (ID_Propietario = @ID_Propietario) 
+    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
 END
 GO
 
