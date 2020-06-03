@@ -11,9 +11,9 @@ CREATE PROC UsuarioSearch
     @Password VARCHAR (100)
 AS 
 BEGIN 
-    SELECT ID_Usuario,Nombre,Password,TipoUsuario, Activo
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
-    WHERE  (Nombre = @Nombre AND Password = @Password) 
+    WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1) 
 END
 GO
 
