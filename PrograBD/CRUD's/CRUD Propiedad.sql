@@ -31,8 +31,7 @@ CREATE PROCEDURE PropiedadInsert
 	  @NumPropiedad INT,
 	  @Valor MONEY,
 	  @Descripción VARCHAR(250),
-	  @Direccion VARCHAR(250),
-	  @Fecha_Creacion DATE
+	  @Direccion VARCHAR(250)
 	 
 AS
 BEGIN
@@ -48,7 +47,7 @@ INSERT INTO Propiedad(
 	   @Valor,
 	   @Descripción,
 	   @Direccion,
-	   @Fecha_Creacion,
+	   GETDATE(),
 	   1)
 END
 

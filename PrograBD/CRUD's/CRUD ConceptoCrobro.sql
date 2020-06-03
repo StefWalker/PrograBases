@@ -10,11 +10,12 @@ GO
 BEGIN
 	CREATE TABLE ConceptoCobro
 	(
-	  ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	  Concepto VARCHAR(100) NOT NULL,
-	  FechaVencimiento DATE NOT NULL,
-	  Fecha DATE NOT NULL,
-	  Activo BIT NOT NULL
+	   ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	   TasaInteresMoratorio REAL NOT NULL,
+       Concepto VARCHAR(100) NOT NULL,
+       FechaVencimiento DATE NOT NULL,
+       Fecha DATE NOT NULL,
+       Activo BIT NOT NULL
 	);
 END
 
@@ -25,6 +26,7 @@ DROP PROC CCobroInsert
 END
 GO
 CREATE PROCEDURE CCobroInsert
+	 @TasaInteresMoratorio REAL,
 	 @Concepto VARCHAR(100),
 	 @FechaVencimiento DATE,
 	 @Fecha DATE,
@@ -32,15 +34,17 @@ CREATE PROCEDURE CCobroInsert
 AS
 BEGIN
 INSERT INTO ConceptoCobro(
+	 TasaInteresMoratorio,
 	 Concepto,
 	 FechaVencimiento,
 	 Fecha,
 	 Activo)
 	 VALUES(
+	 @TasaInteresMoratorio,
 	 @Concepto,
 	 @FechaVencimiento,
-	 @Fecha,
-	 @Activo)
+	 GETDATE(),
+	 1)
 END
 
 -- Read en tabla Concepto Cobro

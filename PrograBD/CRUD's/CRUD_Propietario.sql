@@ -36,10 +36,14 @@ BEGIN
 INSERT INTO Propietario(
 	   Identificacion,
 	   Nombre,
+	   Fecha_Creacion,
+	   Activo,
 	   ID_TDoc)
     VALUES (
 	   @Identificacion,
 	   @Nombre,
+	   GETDATE(),
+	   1,
 	   @ID_TDoc)
 END
 
