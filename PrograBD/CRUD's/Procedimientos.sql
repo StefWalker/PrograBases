@@ -27,9 +27,9 @@ CREATE PROC BuscarPropJuridico
     @Documento INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_TDoc, Activo
+    SELECT ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (Documento = @Documento) 
+    WHERE  (Documento = @Documento AND Activo = 1) 
 END
 GO
 
@@ -43,9 +43,9 @@ CREATE PROC PropJuridicoSearchID
     @ID_Propietario INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_TDoc, Activo
+    SELECT ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (ID_Propietario = @ID_Propietario) 
+    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
 END
 GO
 
@@ -75,9 +75,9 @@ CREATE PROC PropiedadSearch
     @NumPropiedad INT
 AS 
 BEGIN 
-    SELECT NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion, Activo
+    SELECT NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion
 	FROM   Propiedad
-    WHERE  (NumPropiedad = @NumPropiedad) 
+    WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
 END
 GO
 
@@ -91,9 +91,9 @@ CREATE PROC PropietarioSearch
     @Identificacion INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Identificacion, Nombre, Fecha_Creacion, Activo, ID_TDoc
+    SELECT ID_Propietario, Identificacion, Nombre, Fecha_Creacion, ID_TDoc
 	FROM   Propietario
-    WHERE  (Identificacion = @Identificacion) 
+    WHERE  (Identificacion = @Identificacion AND Activo = 1) 
 END
 GO
 
@@ -107,9 +107,9 @@ CREATE PROC BuscarUsuario
     @Nombre VARCHAR (100)
 AS 
 BEGIN 
-    SELECT ID_Usuario,Nombre,Password,TipoUsuario, Activo
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
-    WHERE  (Nombre = @Nombre)
+    WHERE  (Nombre = @Nombre AND Activo = 1)
 END
 GO
 
@@ -183,7 +183,7 @@ SET  Nombre = @NewName,
 	 Password = @NewPassword,
 	 TipoUsuario = @TipoUsuario
 
-WHERE  (Nombre = @Nombre AND Password = @Password)
+WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1)
 END
 GO
 
@@ -211,7 +211,7 @@ END
 UPDATE Propietario
 SET  Identificacion= @Identificacion,
 	 Nombre = @Nombre
-WHERE  (Identificacion = @Identificacion)
+WHERE  (Identificacion = @Identificacion AND Activo = 1)
 END
 GO
 
@@ -234,7 +234,7 @@ END
 UPDATE PropJuridico
 SET  Documento = @NewDocumento,
 	 ID_TDoc = @ID_TDoc
-WHERE  (Documento = @Documento)
+WHERE  (Documento = @Documento AND Activo = 1)
 END
 GO
 
