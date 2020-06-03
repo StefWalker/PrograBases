@@ -15,5 +15,9 @@ namespace CapaNegocios
         {
             return daoTipoDoc.BuscarTipoDoc(tipo);
         }
+        public static entTipoDoc BuscarTipoID(int id)
+        {
+            return daoTipoDoc.BuscarTipoID(id);
+        }
     }
 }

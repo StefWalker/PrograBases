@@ -23,9 +23,13 @@ namespace WebApplication1
                 entPropJuridico obj = negPropJuridico.BuscarPropJuridico(Convert.ToInt32(txtID.Text));
                 if (obj != null && obj.Activo == 1)
                 {
-                    
+                    entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc);
+                    entPropietario obj2 = negPropietario.BuscarPropietarioID(obj.ID_Propietario);
                     ID.Text = Convert.ToString(obj.Documento);
-                    //Tipo.Text = obj. HACER SEARCH CON ID TIPO ID PROPIETARIO 
+                    Tipo.Text = obj1.Tipo;
+                    PropFisico.Text = obj2.Nombre;
+                    IDProp.Text = Convert.ToString(obj2.Identificacion);
+                    
 
                 }
                 else

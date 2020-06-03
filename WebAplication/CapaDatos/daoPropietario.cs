@@ -99,5 +99,38 @@ namespace CapaDatos
             }
             return Indicador;
         }
+        public static entPropietario BuscarPropietarioID(int id)
+        {
+            entPropietario obj = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ReadPropietario", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propietario", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                obj = new entPropietario();
+                dr.Read();
+                obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
+                obj.Identificacion = Convert.ToInt32(dr["Identificacion"].ToString());
+                obj.Nombre = dr["Nombre"].ToString();
+                obj.Activo = Convert.ToInt32(dr["Activo"].ToString());
+                obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
+
+            }
+            catch
+            {
+                obj = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return obj;
+        }
     }
 }

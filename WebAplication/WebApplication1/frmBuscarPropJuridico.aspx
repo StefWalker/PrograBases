@@ -25,7 +25,7 @@
     <asp:Label ID="PropFisico" runat="server" Font-Size="Medium" ></asp:Label>
         <br />
     <asp:Label ID="Label5" runat="server" Text="Identificación del propietario:  " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="Label6" runat="server" Font-Size="Medium" ></asp:Label>
+    <asp:Label ID="IDProp" runat="server" Font-Size="Medium" ></asp:Label>
     <tr>
        <td colspan="2" align ="Center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>

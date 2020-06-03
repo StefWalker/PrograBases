@@ -44,6 +44,38 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static entTipoDoc BuscarTipoID(int id)
+        {
+            entTipoDoc obj = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("TipoDocRead", cnx);
+                cmd.Parameters.AddWithValue("@ID_TDoc",id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                obj = new entTipoDoc();
+                dr.Read();
+                obj.TipoDoc = Convert.ToInt32(dr["TipoDoc"].ToString());
+                obj.Tipo = dr["Tipo"].ToString();
+                obj.ID_TDoc = Convert.ToInt32(dr["ID_TipoDoc"].ToString());
+
+
+            }
+            catch
+            {
+                obj = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return obj;
+        }
 
     }
 }

@@ -24,9 +24,10 @@ namespace WebApplication1
                 if (obj != null && obj.Activo == 1 )
                 {
 
-                 //   entTipoDoc obj1 = negTipoDoc.BuscarTipoDoc(Convert.ToInt32(txtID.Text)); hacer el search con el id y agregar el tipo  
+                    entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc); 
                     ID.Text = Convert.ToString(obj.Identificacion);
                     Nombre.Text = obj.Nombre;
+                    Tipo.Text = obj1.Tipo;
                     
                 }
                 else
