@@ -23,5 +23,15 @@ namespace WebApplication1
         {
             Response.Redirect("frmDeletePropietario.aspx");
         }
+
+        protected void btnDelUsu_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmDeleteUsuario.aspx");
+        }
+
+        protected void btnDelJur_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmDeletePropJuridico.aspx");
+        }
     }
 }

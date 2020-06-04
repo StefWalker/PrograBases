@@ -1,11 +1,11 @@
 ﻿using CapaEntidades;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace CapaDatos
 {
@@ -28,10 +28,9 @@ namespace CapaDatos
                 dr = cmd.ExecuteReader();
                 obj = new entTipoDoc();
                 dr.Read();
+                obj.ID_TDoc = Convert.ToInt32(dr["ID_TipoDoc"].ToString());
                 obj.TipoDoc = Convert.ToInt32(dr["TipoDoc"].ToString());
                 obj.Tipo = dr["Tipo"].ToString();
-                obj.ID_TDoc= Convert.ToInt32(dr["ID_TipoDoc"].ToString());
-
 
             }
             catch

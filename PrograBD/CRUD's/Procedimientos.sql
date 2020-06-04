@@ -122,7 +122,7 @@ GO
 CREATE PROC PropiedadUpdateB
 	 @NumPropiedad INT,
 	 @NewNumPropiedad INT,
-	 @Valor MONEY,
+	 @Valor DECIMAL,
 	 @Descripción VARCHAR(250),
 	 @Direccion VARCHAR(250)
 AS 

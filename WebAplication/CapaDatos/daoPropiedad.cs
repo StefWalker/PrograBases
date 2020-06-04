@@ -56,7 +56,7 @@ namespace CapaDatos
                 obj = new entPropiedad();
                 dr.Read();
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                obj.Valor = Convert.ToDecimal(dr["Valor"].ToString());
+                obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                 obj.Descripcion = dr["Descripcion"].ToString();
                 obj.Direccion = dr["Direccion"].ToString();

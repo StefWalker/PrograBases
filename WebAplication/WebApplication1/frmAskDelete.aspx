@@ -17,6 +17,12 @@
             <tr>
                 <td colspan="2" align="center"><asp:Button ID="btnDelPro" runat="server" Text="Eliminar Propietario" Width="211px" OnClick="btnDelPro_Click" /></td>
             </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button1" runat="server" Text="Eliminar Usuario" Width="208px" OnClick="btnDelUsu_Click" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button2" runat="server" Text="Eliminar Propietario Juridico" Width="211px" OnClick="btnDelJur_Click" /></td>
+            </tr>
         </table>
     </div>
 </asp:Content>

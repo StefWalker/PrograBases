@@ -22,12 +22,18 @@ namespace WebApplication1
 
             if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomProp.Text != "" && IdProp.Text != "")
             {
-                entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(Convert.ToInt32(lista.SelectedValue));
-                if (objTipo != null)
+                entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(2);
+                if (objTipo == null)
+                {
+                    lblerror.Text = "No se pudo agregar, verifique el tipo"; //Sino tira error 
+                    lblerror.Visible = true;
+                   
+                }
+                else if (objTipo != null)
                 {
                     entPropiedad obj = new entPropiedad();
                     obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                    obj.Valor = decimal.Parse(txtValor.Text);
+                    obj.Valor = int.Parse(txtValor.Text);
                     obj.Direccion = txtDireccion.Text;
                     obj.Descripcion = txtDescripcion.Text;
 
@@ -53,24 +59,19 @@ namespace WebApplication1
                             lblerror.Visible = true;
                             Response.Redirect("frmUnirProPro.aspx");
                         }
+
                     }
                     else
                     {
-                        lblerror.Text = "No se pudo agregar, verifique los datos de la propiedad y el propietario"; //Sino tira error 
+                        lblerror.Text = "No se pudo agregar correctamente "; //Sino tira error 
                         lblerror.Visible = true;
-                        Response.Redirect("frmUnirProPro.aspx");
                     }
                 }
                 else
                 {
-                    lblerror.Text = "Seleccione un tipo de identificacion"; //Sino tira error 
+                    lblerror.Text = "No se permite dejar espacios vacios"; //Sino tira error 
                     lblerror.Visible = true;
                 }
-            }
-            else
-            {
-                lblerror.Text = "No se permite dejar espacios vacios"; //Sino tira error 
-                lblerror.Visible = true;
             }
         }
     }

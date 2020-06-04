@@ -63,5 +63,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmAskDelete.aspx");
         }
+
+        protected void BuscarPropietario_Click1(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarPropietario.aspx");
+        }
     }
 }

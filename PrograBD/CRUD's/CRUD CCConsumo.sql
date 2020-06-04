@@ -11,7 +11,7 @@ BEGIN
 	CREATE TABLE CC_ConsumoAgua
 	(
 	  ID_Con INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-	  Valor_m3 MONEY NOT NULL
+	  Valor_m3 Decimal NOT NULL
 	);
 END
 
@@ -24,7 +24,7 @@ END
 GO
 CREATE PROCEDURE CCConsumoInsert
 	 @ID_Cons INT,
-	 @Valor_m3 MONEY
+	 @Valor_m3 Decimal
 AS
 BEGIN
 INSERT INTO CC_ConsumoAgua(
@@ -59,7 +59,7 @@ END
 GO
 CREATE PROC CCConsumoUpdate
 	 @ID_Cons int,
-	 @Valor_m3 MONEY
+	 @Valor_m3 Decimal
 AS 
 BEGIN 
 UPDATE CC_ConsumoAgua

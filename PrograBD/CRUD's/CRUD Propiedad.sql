@@ -13,7 +13,7 @@ BEGIN
 	(
 		 ID_Propiedad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 		 NumPropiedad INT NOT NULL,
-		 Valor MONEY NOT NULL,
+		 Valor INT NOT NULL,
 		 Descripción VARCHAR(250) NOT NULL,
 		 Direccion VARCHAR(250) NOT NULL,
 		 Fecha_Creacion DATE NOT NULL,
@@ -29,7 +29,7 @@ END
 GO
 CREATE PROCEDURE PropiedadInsert
 	  @NumPropiedad INT,
-	  @Valor MONEY,
+	  @Valor INT,
 	  @Descripción VARCHAR(250),
 	  @Direccion VARCHAR(250)
 	 
@@ -76,7 +76,7 @@ GO
 CREATE PROC PropiedadUpdate
 	 @ID_Propiedad INT,
 	 @NumPropiedad INT,
-	 @Valor MONEY,
+	 @Valor INT,
 	 @Descripción VARCHAR(250),
 	 @Direccion VARCHAR(250),
 	 @Fecha_Creacion DATE

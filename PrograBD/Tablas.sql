@@ -5,7 +5,7 @@ CREATE TABLE Propiedad
 (
   ID_Propiedad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   NumPropiedad INT NOT NULL,
-  Valor MONEY NOT NULL,
+  Valor INT NOT NULL,
   Descripción VARCHAR(250) NOT NULL,
   Direccion VARCHAR(250) NOT NULL,
   Fecha_Creacion DATE NOT NULL,
@@ -40,7 +40,6 @@ CREATE TABLE Usuario
   Activo BIT NOT NULL
 );
 
-USE [PrograBases]
 CREATE TABLE PropJuridico
 (
   ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE PropJuridico
 CREATE TABLE ConceptoCobro
 (
   ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-  TasaInteresMoratorio REAL NOT NULL,
+  TasaInteresMoratorio INT NOT NULL,
   Concepto VARCHAR(100) NOT NULL,
   FechaVencimiento DATE NOT NULL,
   Fecha DATE NOT NULL,
@@ -63,13 +62,13 @@ CREATE TABLE ConceptoCobro
 CREATE TABLE CC_Fijo
 (
   ID_Fijo INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-  Monto MONEY NOT NULL
+  Monto DECIMAL NOT NULL
 );
 
 CREATE TABLE CC_ConsumoAgua
 (
   ID_Con INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-  Valor_m3 MONEY NOT NULL
+  Valor_m3 DECIMAL NOT NULL
 );
 
 CREATE TABLE CC_Porcentual
@@ -81,7 +80,7 @@ CREATE TABLE CC_Porcentual
 CREATE TABLE Intereses_Monetarios
 (
   ID_IM INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-  Monto MONEY NOT NULL
+  Monto DECIMAL NOT NULL
 );
 
 CREATE TABLE Pro_x_Pro
@@ -89,6 +88,7 @@ CREATE TABLE Pro_x_Pro
   ID_PxP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Propiedad INT NOT NULL,
   ID_Propietario INT NOT NULL,
+  Activo BIT NOT NULL,
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 );
@@ -98,6 +98,7 @@ CREATE TABLE Pro_x_Usuario
   ID_PxU INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Propiedad INT NOT NULL,
   ID_Usuario INT NOT NULL,
+  Activo BIT NOT NULL,
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
 );
@@ -107,6 +108,7 @@ CREATE TABLE Pro_x_CC
   ID_PxC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_CC INT NOT NULL,
   ID_Propiedad INT NOT NULL,
+  Activo BIT NOT NULL,
   FOREIGN KEY (ID_CC) REFERENCES ConceptoCobro(ID_CC),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );

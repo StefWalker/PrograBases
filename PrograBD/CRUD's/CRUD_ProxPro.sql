@@ -13,6 +13,7 @@ BEGIN
 	   ID_PxP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	   ID_Propiedad INT NOT NULL,
 	   ID_Propietario INT NOT NULL,
+	   Activo BIT NOT NULL,
        FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
        FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 	);
@@ -32,12 +33,14 @@ AS
 BEGIN
 INSERT INTO Pro_x_Pro(
 	   ID_Propiedad ,
-	   ID_Propietario)
+	   ID_Propietario,
+	   Activo)
 
     VALUES (
 
 	   @ID_Propiedad ,
-	   @ID_Propietario )
+	   @ID_Propietario,
+	   1)
 	  
 END
 
@@ -53,7 +56,7 @@ AS
 BEGIN 
     SELECT ID_PxP, ID_Propiedad ,ID_Propietario
     FROM   Pro_x_Pro 
-    WHERE  (ID_PxP = @ID_PxP) 
+    WHERE  (ID_PxP = @ID_PxP AND Activo = 1) 
 END
 GO
 
@@ -74,7 +77,7 @@ UPDATE Pro_x_Pro
 SET  ID_Propiedad = @ID_Propiedad,
 	 ID_Propietario= @ID_Propietario
 	 
-WHERE  (ID_PxP = @ID_PxP)
+WHERE  (ID_PxP = @ID_PxP AND  Activo = 1)
 END
 GO
 

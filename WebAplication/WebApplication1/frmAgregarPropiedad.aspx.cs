@@ -23,7 +23,7 @@ namespace WebApplication1
             {
                 entPropiedad obj = new entPropiedad();
                 obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                obj.Valor = decimal.Parse(txtValor.Text);
+                obj.Valor = Int32.Parse(txtValor.Text);
                 obj.Direccion = txtDireccion.Text;
                 obj.Descripcion = txtDescripcion.Text;
                 if (negPropiedad.AgregarPropiedad(obj) == 1)

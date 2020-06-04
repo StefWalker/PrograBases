@@ -26,10 +26,7 @@
     <br />
     <asp:Label ID="lblDireccion" runat="server" Text="Direccion: " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Direccion" runat="server" Font-Size="Medium"></asp:Label>
-    <br />
-    <asp:Label ID="lblFecha" runat="server" Text="Fecha de inscripcion: " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="Fecha" runat="server" Font-Size="Medium"></asp:Label>
-    <br />
+
     <tr>
        <td colspan="2" align ="Center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>

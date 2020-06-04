@@ -11,7 +11,7 @@ BEGIN
 	CREATE TABLE Intereses_Monetarios
 	(
 	  ID_IM INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-	  Monto MONEY NOT NULL
+	  Monto Decimal NOT NULL
 	);
 END
 
@@ -23,7 +23,7 @@ END
 GO
 CREATE PROCEDURE InteresesInsert
 	 @ID_IM INT,
-	 @Monto MONEY
+	 @Monto Decimal
 AS
 BEGIN
 INSERT INTO Intereses_Monetarios(
@@ -58,7 +58,7 @@ END
 GO
 CREATE PROC InteresesUpdate
 	 @ID_IM int,
-	 @Monto MONEY
+	 @Monto Decimal
 AS 
 BEGIN 
 UPDATE Intereses_Monetarios

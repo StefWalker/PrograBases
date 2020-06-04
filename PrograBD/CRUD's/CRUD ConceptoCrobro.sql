@@ -11,7 +11,7 @@ BEGIN
 	CREATE TABLE ConceptoCobro
 	(
 	   ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	   TasaInteresMoratorio REAL NOT NULL,
+	   TasaInteresMoratorio INT NOT NULL,
        Concepto VARCHAR(100) NOT NULL,
        FechaVencimiento DATE NOT NULL,
        Fecha DATE NOT NULL,
@@ -26,7 +26,7 @@ DROP PROC CCobroInsert
 END
 GO
 CREATE PROCEDURE CCobroInsert
-	 @TasaInteresMoratorio REAL,
+	 @TasaInteresMoratorio INT,
 	 @Concepto VARCHAR(100),
 	 @FechaVencimiento DATE,
 	 @Fecha DATE,
@@ -57,9 +57,9 @@ CREATE PROC CCobroRead
 	 @ID_CC int
 AS 
 BEGIN 
-    SELECT ID_CC, FechaVencimiento, Fecha, Activo
+    SELECT ID_CC, FechaVencimiento, Fecha
     FROM   ConceptoCobro  
-    WHERE  (ID_CC = @ID_CC) 
+    WHERE  (ID_CC = @ID_CC AND Activo = 1) 
 END
 GO
 
@@ -70,6 +70,7 @@ DROP PROC CCobroUpdate
 END 
 GO
 CREATE PROC CCobroUpdate
+	 @TasaInteresMoratorio INT,
 	 @ID_CC INT,
 	 @Concepto VARCHAR(100),
 	 @FechaVencimiento DATE,
@@ -78,11 +79,12 @@ CREATE PROC CCobroUpdate
 AS 
 BEGIN 
 UPDATE ConceptoCobro
-SET  Concepto = @Concepto,
+SET  TasaInteresMoratorio = @TasaInteresMoratorio,
+	 Concepto = @Concepto,
 	 FechaVencimiento = @FechaVencimiento,
 	 Fecha	= @Fecha,
 	 Activo = @Activo
-WHERE  (ID_CC = @ID_CC)
+WHERE  (ID_CC = @ID_CC AND Activo = 1)
 END
 GO
 

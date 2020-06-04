@@ -13,6 +13,7 @@ BEGIN
 	   ID_PxU INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	   ID_Propiedad INT NOT NULL,
 	   ID_Usuario INT NOT NULL,
+	   Activo BIT NOT NULL,
 	   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
 	   FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
 	);
@@ -33,12 +34,13 @@ AS
 BEGIN
 INSERT INTO Pro_x_Usuario(
 	   ID_Propiedad ,
-	   ID_Usuario)
+	   ID_Usuario,
+	   Activo)
 
     VALUES (
-
 	   @ID_Propiedad ,
-	   @ID_Usuario )
+	   @ID_Usuario,
+	   1)
 	  
 END
 
@@ -54,7 +56,7 @@ AS
 BEGIN 
     SELECT ID_PxU, ID_Propiedad ,ID_Usuario
     FROM   Pro_x_Usuario 
-    WHERE  (ID_PxU = @ID_PxU) 
+    WHERE  (ID_PxU = @ID_PxU AND Activo = 1) 
 END
 GO
 
@@ -75,7 +77,7 @@ UPDATE Pro_x_Usuario
 SET  ID_Propiedad = @ID_Propiedad,
 	 ID_Usuario= @ID_Usuario
 	 
-WHERE  (ID_PxU = @ID_PxU)
+WHERE  (ID_PxU = @ID_PxU AND Activo = 1)
 END
 GO
 
