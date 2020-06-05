@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmBuscarProPro.aspx" />
+    <Content Include="frmDeleteProPro.aspx" />
     <Content Include="frmDeleteUserPro.aspx" />
     <Content Include="frmAgregarPropiedadUsuario.aspx" />
     <Content Include="frmAgregarPropJuridico.aspx" />
@@ -107,6 +109,20 @@
     </Compile>
     <Compile Include="Anonimo.Master.designer.cs">
       <DependentUpon>Anonimo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmBuscarProPro.aspx.cs">
+      <DependentUpon>frmBuscarProPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBuscarProPro.aspx.designer.cs">
+      <DependentUpon>frmBuscarProPro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeleteProPro.aspx.cs">
+      <DependentUpon>frmDeleteProPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeleteProPro.aspx.designer.cs">
+      <DependentUpon>frmDeleteProPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDeleteUserPro.aspx.cs">
       <DependentUpon>frmDeleteUserPro.aspx</DependentUpon>

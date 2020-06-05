@@ -56,6 +56,9 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button7" runat="server" Text="Crear unión Propiedad Usuario" OnClick="UnirProUser_Click" Width="170px" />
                </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button8" runat="server" Text="Buscar Propiedad de un Propietario" OnClick="ReadProPro_Click" Width="170px" />
+               </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

@@ -16,5 +16,9 @@ namespace CapaNegocios
         {
             return daoProUsuario.AgregarProUsuario(obj);
         }
-     }
+        public static int DeleteProUser(int ID_Propiedad, int ID_Usuario)
+        {
+            return daoProUsuario.DeleteProUser(ID_Propiedad,ID_Usuario);
+        }
+    }
 }

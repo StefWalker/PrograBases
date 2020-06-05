@@ -78,5 +78,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmUnirProPro.aspx");
         }
+
+        protected void ReadProPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarProPro.aspx");
+        }
     }
 }

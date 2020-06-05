@@ -20,17 +20,26 @@ namespace WebApplication1
         {
             entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
             entUsuario obj1 = negUsuario.BuscarUsuario(txtUser.Text);
-            int delete = negPropietario.DeletePropietario(Convert.ToInt32(txtIdentificacion.Text), txtNombre.Text);
-            if (delete == 1)
+            if(obj != null && obj1 != null)
             {
-                Response.Redirect("frmPrincipal.aspx");
+                int delete = negProUsuario.DeleteProUser( obj.ID_Propiedad, obj1.ID_Usuario);
+                if (delete == 1)
+                {
+                    Response.Redirect("frmPrincipal.aspx");
+                }
+                else
+                {
+
+                    lblerror.Text = "No se logró borrar correctamente "; //Sino tira error 
+                    lblerror.Visible = true;
+                }
             }
             else
             {
-
-                lblerror.Text = "No se logró borrar correctamente el propietario"; //Sino tira error 
+                lblerror.Text = "No se encontraron los datos ingresados "; //Sino tira error 
                 lblerror.Visible = true;
             }
+            
         }
     }
 }

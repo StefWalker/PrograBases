@@ -16,5 +16,13 @@ namespace CapaNegocios
         {
             return daoProPro.AgregarProPro(obj);
         }
+        public static int DeleteProPro(int ID_Propiedad, int ID_Propietario)
+        {
+            return daoProPro.DeleteProPro(ID_Propiedad, ID_Propietario);
+        }
+        public static entProPro BuscarProPro(int ID_Propiedad, int ID_Propietario)
+        {
+            return daoProPro.BuscarProPro(ID_Propiedad, ID_Propietario);
+        }
     }
 }

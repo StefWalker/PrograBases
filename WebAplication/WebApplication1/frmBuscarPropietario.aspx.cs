@@ -34,7 +34,7 @@ namespace WebApplication1
                     else
                     {
 
-                        lbError.Text = "Este propietario no se encuentra en la base de datos";
+                        lbError.Text = "Este propietario no se encuentra en la base de datos Aqui";
                         lbError.Visible = true;
                     }
                 }

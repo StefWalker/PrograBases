@@ -51,8 +51,8 @@ namespace WebApplication1
                             if (obj3 != null && obj4 != null)
                             {
                                 entProPro obj5 = new entProPro();
-                                obj5.Propiedad = obj3.ID_Propiedad;
-                                obj5.Propietario = obj4.ID_Propietario;
+                                obj5.ID_Propiedad = obj3.ID_Propiedad;
+                                obj5.ID_Propietario = obj4.ID_Propietario;
                                 if (negProPro.AgregarProPro(obj5) == 1)
                                 {
                                     Response.Redirect("frmPrincipal.aspx");

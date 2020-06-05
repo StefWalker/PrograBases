@@ -27,8 +27,8 @@ namespace WebApplication1
                     int propietario = obj1.ID_Propietario;
                     int prop = obj.ID_Propiedad;
                     entProPro obj2 = new entProPro();
-                    obj2.Propiedad = prop;
-                    obj2.Propietario = propietario;
+                    obj2.ID_Propiedad = prop;
+                    obj2.ID_Propietario = propietario;
 
                     if (negProPro.AgregarProPro(obj2) == 1)
                     {

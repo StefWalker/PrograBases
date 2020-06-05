@@ -36,7 +36,12 @@ namespace WebApplication1
 
         protected void btnUserPro_Click(object sender, EventArgs e)
         {
+            Response.Redirect("frmDeleteUserPro.aspx");
+        }
 
+        protected void btnProPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmDeleteProPro.aspx");
         }
     }
 }
