@@ -75,7 +75,7 @@ CREATE PROC PropiedadSearch
     @NumPropiedad INT
 AS 
 BEGIN 
-    SELECT NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion
+    SELECT NumPropiedad, Valor, Descripción, Direccion
 	FROM   Propiedad
     WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
 END
@@ -91,7 +91,7 @@ CREATE PROC PropietarioSearch
     @Identificacion INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Identificacion, Nombre, Fecha_Creacion, ID_TDoc
+    SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
 	FROM   Propietario
     WHERE  (Identificacion = @Identificacion AND Activo = 1) 
 END

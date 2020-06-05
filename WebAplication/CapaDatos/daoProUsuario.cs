@@ -37,5 +37,32 @@ namespace CapaDatos
             }
             return Indicador;
         }
+        public static int DeleteProUser(int ID_Propiedad, int ID_Usuario )
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("Pro_x_UsuarioDelete", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propiedad ", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@ID_Usuario ",ID_Usuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
     }
 }

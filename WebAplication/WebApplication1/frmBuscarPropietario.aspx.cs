@@ -24,11 +24,19 @@ namespace WebApplication1
                 if (obj != null )
                 {
 
-                    entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc); 
-                    ID.Text = Convert.ToString(obj.Identificacion);
-                    Nombre.Text = obj.Nombre;
-                    Tipo.Text = obj1.Tipo;
-                    
+                    entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc);
+                    if (obj1 != null)
+                    {
+                        ID.Text = Convert.ToString(obj.Identificacion);
+                        Nombre.Text = obj.Nombre;
+                        Tipo.Text = obj1.Tipo;
+                    }
+                    else
+                    {
+
+                        lbError.Text = "Este propietario no se encuentra en la base de datos";
+                        lbError.Visible = true;
+                    }
                 }
                 else
                 {

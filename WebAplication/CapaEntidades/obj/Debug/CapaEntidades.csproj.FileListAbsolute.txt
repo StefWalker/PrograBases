@@ -21,3 +21,4 @@ C:\Users\Dylan Torres Walker\Desktop\GitHub\PrograBases\WebAplication\CapaEntida
 C:\Users\Dylan Torres Walker\Desktop\GitHub\PrograBases\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.csproj.CoreCompileInputs.cache
 C:\Users\Dylan Torres Walker\Desktop\GitHub\PrograBases\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.dll
 C:\Users\Dylan Torres Walker\Desktop\GitHub\PrograBases\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.pdb
+C:\Users\ferla\OneDrive\Documents\GitHub\PrograBases\WebAplication\CapaEntidades\obj\Debug\CapaEntidades.csprojAssemblyReference.cache

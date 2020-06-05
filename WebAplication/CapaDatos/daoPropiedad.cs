@@ -21,7 +21,7 @@ namespace CapaDatos
                 cmd = new SqlCommand("PropiedadInsert", cnx);
                 cmd.Parameters.AddWithValue("@NumPropiedad", obj.NumPropiedad);
                 cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
+                cmd.Parameters.AddWithValue("@Descripción", obj.Descripcion);
                 cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
@@ -48,7 +48,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("BuscarPropiedad", cnx);
+                cmd = new SqlCommand("PropiedadSearch", cnx);
                 cmd.Parameters.AddWithValue("@NumPropiedad", numero);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
@@ -58,7 +58,7 @@ namespace CapaDatos
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
                 obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
-                obj.Descripcion = dr["Descripcion"].ToString();
+                obj.Descripcion = dr["Descripción"].ToString();
                 obj.Direccion = dr["Direccion"].ToString();
                
             }

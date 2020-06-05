@@ -18,7 +18,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("Pro_x_ProInsert ", cnx);
+                cmd = new SqlCommand("ProxProInsert", cnx);
                 cmd.Parameters.AddWithValue("@ID_Propiedad", obj.Propiedad);
                 cmd.Parameters.AddWithValue("@ID_Propietario", obj.Propietario);
                 cmd.CommandType = CommandType.StoredProcedure;

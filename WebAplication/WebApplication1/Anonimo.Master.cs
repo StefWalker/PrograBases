@@ -68,5 +68,15 @@ namespace WebApplication1
         {
             Response.Redirect("frmBuscarPropietario.aspx");
         }
+
+        protected void UnirProUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmUnirUserPro.aspx");
+        }
+
+        protected void UnirProPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmUnirProPro.aspx");
+        }
     }
 }

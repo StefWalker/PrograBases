@@ -19,7 +19,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("PropietarioInsert ", cnx);
+                cmd = new SqlCommand("InsertPropietario", cnx);
                 cmd.Parameters.AddWithValue("@Identificacion", obj.Identificacion);
                 cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
                 cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);
@@ -48,7 +48,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("BuscarPropietario", cnx);
+                cmd = new SqlCommand("PropietarioSearch", cnx);
                 cmd.Parameters.AddWithValue("@Identificacion", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();

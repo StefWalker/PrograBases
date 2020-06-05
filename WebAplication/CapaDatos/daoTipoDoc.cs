@@ -28,7 +28,7 @@ namespace CapaDatos
                 dr = cmd.ExecuteReader();
                 obj = new entTipoDoc();
                 dr.Read();
-                obj.ID_TDoc = Convert.ToInt32(dr["ID_TipoDoc"].ToString());
+                obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
                 obj.TipoDoc = Convert.ToInt32(dr["TipoDoc"].ToString());
                 obj.Tipo = dr["Tipo"].ToString();
 

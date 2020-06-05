@@ -22,10 +22,10 @@ END
 -- Insert en tabla PxP
 IF OBJECT_ID('PropiedadInsert') IS NOT NULL
 BEGIN 
-DROP PROC PropiedadInsert 
+DROP PROC ProxProInsert 
 END
 GO
-CREATE PROCEDURE PropiedadInsert
+CREATE PROCEDURE ProxProInsert
 	  @ID_Propiedad INT ,
 	  @ID_Propietario INT
 	  

@@ -31,39 +31,67 @@ namespace WebApplication1
                 }
                 else if (objTipo != null)
                 {
-                    entPropiedad obj = new entPropiedad();
-                    obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
-                    obj.Valor = int.Parse(txtValor.Text);
-                    obj.Direccion = txtDireccion.Text;
-                    obj.Descripcion = txtDescripcion.Text;
-
-
                     entPropietario obj2 = new entPropietario();
                     obj2.Identificacion = Int32.Parse(IdProp.Text);
                     obj2.Nombre = NomProp.Text;
                     obj2.ID_TDoc = objTipo.ID_TDoc;
 
-                    if ((negPropiedad.AgregarPropiedad(obj) == 1) && (negPropietario.AgregarPropietario(obj2) == 1))
+                    if (negPropietario.AgregarPropietario(obj2) == 1)
                     {
-                        entProPro obj3 = new entProPro();
-                        obj3.Propiedad = obj.ID_Propiedad;
-                        obj3.Propietario = obj2.ID_Propietario;
-
-                        if (negProPro.AgregarProPro(obj3) == 1)
+                        entPropiedad obj = new entPropiedad();
+                        obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
+                        obj.Valor = int.Parse(txtValor.Text);
+                        obj.Direccion = txtDireccion.Text;
+                        obj.Descripcion = txtDescripcion.Text;
+                        if (negPropiedad.AgregarPropiedad(obj) == 1)
                         {
-                            Response.Redirect("frmPrincipal.aspx");
+                            entPropiedad obj3 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
+                            entPropietario obj4 = negPropietario.BuscarPropietario(Convert.ToInt32(IdProp.Text));
+
+                            if (obj3 != null && obj4 != null)
+                            {
+                                entProPro obj5 = new entProPro();
+                                obj5.Propiedad = obj3.ID_Propiedad;
+                                obj5.Propietario = obj4.ID_Propietario;
+                                if (negProPro.AgregarProPro(obj5) == 1)
+                                {
+                                    Response.Redirect("frmPrincipal.aspx");
+                                }
+
+                                else
+                                {
+                                    lblerror.Text = "No se pudo unir correctamente"; //Enviar a la pagina de unir PRO PRO 
+                                    lblerror.Visible = true;
+                                    Response.Redirect("frmUnirProPro.aspx");
+                                }
+                            }
+                            else
+                            {
+                                lblerror.Text = "No se encontro ni propietario o propiedad"; //Enviar a la pagina de unir PRO PRO 
+                                lblerror.Visible = true;
+                            }   
+                           
+                            
                         }
                         else
                         {
-                            lblerror.Text = "No se pudo unir correctamente"; //Enviar a la pagina de unir PRO PRO 
+                            lblerror.Text = "No se pudo agregar la propiedad"; //Enviar a la pagina de unir PRO PRO 
                             lblerror.Visible = true;
-                            Response.Redirect("frmUnirProPro.aspx");
+                            Response.Redirect("frmAgregarPropiedad.aspx");  //tirar a propiedad con propietario ya que propietario si y propiedad no se agrego 
                         }
 
                     }
+                else
+                 {
+                     lblerror.Text = "No se pudo agregar correctamente "; //Sino tira error 
+                     lblerror.Visible = true;
+                 }
+                   
+                        
+                    }
                     else
                     {
-                        lblerror.Text = "No se pudo agregar correctamente "; //Sino tira error 
+                        lblerror.Text = "No se pudo agregar correctamente ni propietario ni propiedad"; //Sino tira error 
                         lblerror.Visible = true;
                     }
                 }
@@ -72,7 +100,7 @@ namespace WebApplication1
                     lblerror.Text = "No se permite dejar espacios vacios"; //Sino tira error 
                     lblerror.Visible = true;
                 }
-            }
+            
         }
     }
 }
