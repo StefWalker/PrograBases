@@ -39,11 +39,6 @@ namespace WebApplication1
             Response.Redirect("frmBuscarUsuario.aspx");
         }
 
-        protected void ModificarUsuario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmModificarUsuario.aspx");
-        }
-
         protected void AgregarPropiedad_Click(object sender, EventArgs e)
         {
             Response.Redirect("frmAskPropiedad.aspx");
@@ -82,6 +77,16 @@ namespace WebApplication1
         protected void ReadProPro_Click(object sender, EventArgs e)
         {
             Response.Redirect("frmBuscarProPro.aspx");
+        }
+
+        protected void ReadProUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarProUser.aspx");
+        }
+
+        protected void Modificar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmAskModificar.aspx");
         }
     }
 }

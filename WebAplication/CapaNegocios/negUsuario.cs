@@ -28,5 +28,9 @@ namespace CapaNegocios
         {
             return daoUsuario.DeleteUsuario(nombre, password);
         }
+        public static int ModificarUsuario(entUsuario obj, string nombreviejo, string passwordvieja)
+        {
+            return daoUsuario.ModificarUsuario(obj, nombreviejo,passwordvieja);
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Anonimo.Master" AutoEventWireup="true" CodeBehind="frmAgregarPropietarioCompleto.aspx.cs" Inherits="WebApplication1.frmAgregarPropietarioCompleto" %>
+﻿3<%@ Page Title="" Language="C#" MasterPageFile="~/Anonimo.Master" AutoEventWireup="true" CodeBehind="frmAgregarPropietarioCompleto.aspx.cs" Inherits="WebApplication1.frmAgregarPropietarioCompleto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style4 {

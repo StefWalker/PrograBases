@@ -20,5 +20,9 @@ namespace CapaNegocios
         {
             return daoProUsuario.DeleteProUser(ID_Propiedad,ID_Usuario);
         }
+        public static entProUsuario BuscarProUsuario(int ID_Propiedad, int ID_Usuario)
+        {
+            return daoProUsuario.BuscarProUsuario(ID_Propiedad, ID_Usuario);
+        }
     }
 }

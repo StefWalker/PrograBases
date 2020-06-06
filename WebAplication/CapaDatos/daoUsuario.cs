@@ -132,6 +132,36 @@ namespace CapaDatos
             }
             return Indicador;
         }
+        public static int ModificarUsuario(entUsuario obj, string nombreviejo, string passwordvieja)
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("UsuarioUpdateB", cnx);
+                cmd.Parameters.AddWithValue("@Nombre", nombreviejo);
+                cmd.Parameters.AddWithValue("@Password", passwordvieja);
+                cmd.Parameters.AddWithValue("@NewName", obj.Nombre);
+                cmd.Parameters.AddWithValue("@NewPassword", obj.Password);
+                cmd.Parameters.AddWithValue("@TipoUsuario", obj.TipoUsuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
 
     }
 }

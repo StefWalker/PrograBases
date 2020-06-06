@@ -4,26 +4,30 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="abrigo_formulario"> 
         <h2>Modificar Usuario</h2>
-    <tr>
-    <asp:Label ID="ModUsuario" runat="server" Text="Usuario que desea Modificar "></asp:Label>
-    </tr>
-    <br />
+     <asp:Label ID="modificar" runat="server" Text="Nombre del usuario: "></asp:Label>
     <br />
     <tr>
-        <td colspan="2" align ="left"> <asp:TextBox ID="TextBox1" runat="server" Width="170px" ></asp:TextBox> </td>
+        <td colspan="2" align ="left"> <asp:TextBox ID="txtNom" runat="server" Width="170px" ></asp:TextBox> </td>
     </tr>
+    <br />
+        <asp:Label ID="Label1" runat="server" Text="Confirmar contraseña: "></asp:Label>
+    <br />
+    <tr>
+        <td colspan="2" align ="left"> <asp:TextBox ID="password" runat="server" Width="170px" ></asp:TextBox> </td>
+    </tr>
+    <br />
     <br />
         <table> 
             <tr> 
-                <td> Nombre:</td>
+                <td> Nuevo Nombre:</td>
                 <td><asp:textbox ID="txtNombre" runat="server" width="200px"></asp:textbox> </td>
             </tr>
             <tr> 
-                <td> Contraseña:</td>
+                <td> Nueva Contraseña:</td>
                 <td><asp:textbox ID="txtPassword" runat="server" width="200px"></asp:textbox> </td>
             </tr>
             <tr> 
-                <td> Tipo de Usuario:</td>
+                <td> Cambiar Tipo:</td>
                 <td><asp:textbox ID="txtTipoUsuario" runat="server" width="200px"></asp:textbox> </td>
             </tr>
             <tr> 

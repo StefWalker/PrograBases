@@ -64,5 +64,37 @@ namespace CapaDatos
             }
             return Indicador;
         }
+        public static entProUsuario BuscarProUsuario(int ID_Propiedad, int ID_Usuario)
+        {
+            entProUsuario obj = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("Pro_x_UsuarioRead", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@ID_Usuario", ID_Usuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                obj = new entProUsuario();
+                dr.Read();
+                obj.ID_PxU = Convert.ToInt32(dr["ID_PxU"].ToString());
+                obj.ID_Usuario = Convert.ToInt32(dr["ID_Usuario"].ToString());
+                obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
+
+            }
+            catch
+            {
+                obj = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return obj;
+        }
     }
 }

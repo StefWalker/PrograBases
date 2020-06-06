@@ -24,6 +24,10 @@ namespace CapaNegocios
         {
             return daoPropiedad.DeletePropiedad(numero);
         }
+        public static int ModificarPropiedad(entPropiedad obj, int numViejo)
+        {
+            return daoPropiedad.ModificarPropiedad(obj,numViejo);
+        }
     }
 }
 

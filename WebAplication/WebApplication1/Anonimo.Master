@@ -33,7 +33,7 @@
                     <asp:Button ID="BuscarUsuario" runat="server" Text="Buscar Usuario" OnClick="BuscarUsuario_Click" Width="170px"  />
                </div>
                <div class="etiqueta">
-                    <asp:Button ID="ModificarUsuario" runat="server" Text="Modificar Usuario" OnClick="ModificarUsuario_Click" Width="170px" />
+                    <asp:Button ID="ModificarUsuario" runat="server" Text="Modificar entidades" OnClick="Modificar_Click" Width="170px" />
                </div>
                <div class="etiqueta">
                     <asp:Button ID="Button1" runat="server" Text="Agregar propiedad" OnClick="AgregarPropiedad_Click" Width="170px" />
@@ -58,6 +58,9 @@
                </div>
                 <div class="etiqueta">
                     <asp:Button ID="Button8" runat="server" Text="Buscar Propiedad de un Propietario" OnClick="ReadProPro_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button9" runat="server" Text="Buscar Propiedad de un usuario" OnClick="ReadProUser_Click" Width="170px" />
                </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
