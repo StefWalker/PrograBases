@@ -130,5 +130,33 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static int ModificarPropietario(entPropietario obj, int idVieja)
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("PropietarioUpdateB", cnx);
+                cmd.Parameters.AddWithValue("@Identificacion", idVieja);
+                cmd.Parameters.AddWithValue("@NewNombre", obj.Nombre);
+                cmd.Parameters.AddWithValue("@NewIdentificacion", obj.Identificacion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
     }
 }

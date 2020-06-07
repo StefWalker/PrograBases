@@ -96,5 +96,33 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static int ModificarProPro(entProPro obj)
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("Pro_x_ProUpdate", cnx);
+                cmd.Parameters.AddWithValue("@ID_PxP", obj.ID_PxP);
+                cmd.Parameters.AddWithValue("@ID_Propiedad", obj.ID_Propiedad);
+                cmd.Parameters.AddWithValue("@ID_Propietario", obj.ID_Propietario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
     }
 }

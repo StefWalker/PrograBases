@@ -26,5 +26,9 @@ namespace CapaNegocios
         {
             return daoPropietario.BuscarPropietarioID(id);
         }
+        public static int ModificarPropietario(entPropietario obj, int idVieja)
+        {
+            return daoPropietario.ModificarPropietario(obj, idVieja);
+        }
     }
 }

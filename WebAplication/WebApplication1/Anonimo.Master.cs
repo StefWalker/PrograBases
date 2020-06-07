@@ -88,5 +88,15 @@ namespace WebApplication1
         {
             Response.Redirect("frmAskModificar.aspx");
         }
+
+        protected void AgregarPropJuridico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmAskAgregarJuridico.aspx");
+        }
+
+        protected void BuscarPropJuridico_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarPropJuridico.aspx");
+        }
     }
 }

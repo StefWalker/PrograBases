@@ -31,17 +31,17 @@ namespace WebApplication1
 
         protected void btnModificarProPro_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificarUsuario.aspx");
+            Response.Redirect("frmModificarProPro.aspx");
         }
 
         protected void btnModificarUserPro_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificarUsuario.aspx");
+            Response.Redirect("frmModificarProUser.aspx");
         }
 
         protected void btnModificarProp_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificarUsuario.aspx");
+            Response.Redirect("frmModificarPropietario.aspx");
         }
     }
 }

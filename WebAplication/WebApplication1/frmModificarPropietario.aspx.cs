@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidades;
+using CapaNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +14,56 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text != "")
+            {
+                entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
+                if (obj1 != null)
+                {
+                    entPropietario obj = new entPropietario();
+                    obj.Nombre = txtNom.Text;
+                    if (txtIdentificacion.Text == "")
+                    {
+                        obj.Identificacion = obj1.Identificacion;
+                        if (negPropietario.ModificarPropietario(obj, Int32.Parse(txtID.Text)) == 1)
+                        {
+                            Response.Redirect("frmPrincipal.aspx");
+                        }
+                        else
+                        {
+                            lblerror.Text = "No se pudo modificar el propietario1";
+                            lblerror.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        obj.Identificacion = Int32.Parse(txtIdentificacion.Text);
+                        if (negPropietario.ModificarPropietario(obj, Int32.Parse(txtID.Text)) == 1)
+                        {
+                            Response.Redirect("frmPrincipal.aspx");
+                        }
+                        else
+                        {
+                            lblerror.Text = "No se pudo modificar el propietario";
+                            lblerror.Visible = true;
+                        }
+                    }
+                }
+                else
+                {
+                    lblerror.Text = "No se logro encontrar el propietario";
+                    lblerror.Visible = true;
+                }
+            }
+            else
+            {
+                lblerror.Text = "Debe ingresar la identificacion para buscar";
+                lblerror.Visible = true;
+            }
+               
         }
     }
 }

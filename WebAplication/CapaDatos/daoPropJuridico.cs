@@ -19,7 +19,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("InsertPropJuridico ", cnx);
+                cmd = new SqlCommand("PropJuridicoInsert", cnx);
                 cmd.Parameters.AddWithValue("@Documento", obj.Documento);
                 cmd.Parameters.AddWithValue("@ID_Propietario", obj.ID_Propietario);
                 cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);

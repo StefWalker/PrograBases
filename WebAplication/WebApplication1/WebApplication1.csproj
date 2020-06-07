@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="frmAskAgregarJuridico.aspx" />
     <Content Include="frmAskModificar.aspx" />
     <Content Include="frmBuscarProPro.aspx" />
     <Content Include="frmBuscarProUser.aspx" />
@@ -90,6 +91,8 @@
     <Content Include="frmDeleteUsuario.aspx" />
     <Content Include="frmModificarPropietario.aspx" />
     <Content Include="frmModificarPropJuridico.aspx" />
+    <Content Include="frmModificarProPro.aspx" />
+    <Content Include="frmModificarProUser.aspx" />
     <Content Include="frmModificarUsuario.aspx" />
     <Content Include="frmPrincipal.aspx" />
     <Content Include="frmUnirProPro.aspx" />
@@ -111,6 +114,13 @@
     </Compile>
     <Compile Include="Anonimo.Master.designer.cs">
       <DependentUpon>Anonimo.Master</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskAgregarJuridico.aspx.cs">
+      <DependentUpon>frmAskAgregarJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskAgregarJuridico.aspx.designer.cs">
+      <DependentUpon>frmAskAgregarJuridico.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmAskModificar.aspx.cs">
       <DependentUpon>frmAskModificar.aspx</DependentUpon>
@@ -265,6 +275,20 @@
     </Compile>
     <Compile Include="frmModificarPropJuridico.aspx.designer.cs">
       <DependentUpon>frmModificarPropJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmModificarProPro.aspx.cs">
+      <DependentUpon>frmModificarProPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmModificarProPro.aspx.designer.cs">
+      <DependentUpon>frmModificarProPro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmModificarProUser.aspx.cs">
+      <DependentUpon>frmModificarProUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmModificarProUser.aspx.designer.cs">
+      <DependentUpon>frmModificarProUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmModificarUsuario.aspx.cs">
       <DependentUpon>frmModificarUsuario.aspx</DependentUpon>
