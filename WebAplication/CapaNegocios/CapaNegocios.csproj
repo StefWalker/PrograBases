@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="negConceptoCobro.cs" />
+    <Compile Include="negProCC.cs" />
     <Compile Include="negPropietario.cs" />
     <Compile Include="negPropJuridico.cs" />
     <Compile Include="negProPro.cs" />

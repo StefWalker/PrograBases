@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class frmUnirProPro : System.Web.UI.Page
+    public partial class frmUnirProCC : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,19 +18,19 @@ namespace WebApplication1
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtProp.Text != "" && txtID.Text != "")
+            if (TextBox1.Text != "" && NumPropiedad.Text != "")
             {
-                entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
-                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(txtID.Text);
-                if (obj != null  &&  obj1 != null )
+                entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(NumPropiedad.Text));
+                entPropietario obj1 = negPropietario.BuscarPropietario(TextBox1.Text);
+                if (obj != null && obj1 != null)
                 {
-                    int concepto = obj1.ID_CC;
+                    int propietario = obj1.ID_Propietario;
                     int prop = obj.ID_Propiedad;
-                    entProCC obj2 = new entProCC();
+                    entProPro obj2 = new entProPro();
                     obj2.ID_Propiedad = prop;
-                    obj2.ID_CC = concepto;
+                    obj2.ID_Propietario = propietario;
 
-                    if (negProCC.AgregarProCC(obj2) == 1)
+                    if (negProPro.AgregarProPro(obj2) == 1)
                     {
                         Response.Redirect("frmPrincipal.aspx");
                     }
@@ -51,7 +51,7 @@ namespace WebApplication1
                 lblError.Text = "Faltan datos por ingresar";
                 lblError.Visible = true;
             }
-        
+
         }
     }
 }
