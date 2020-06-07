@@ -89,12 +89,14 @@ DROP PROC Pro_x_UsuarioDelete
 END 
 GO
 CREATE PROC Pro_x_UsuarioDelete 
-    @ID_PxU INT
+    @ID_Propiedad INT,
+	 @ID_Usuario INT 
 AS 
 BEGIN 
-DELETE
-FROM   Pro_x_Usuario
-WHERE  ID_PxU = @ID_PxU
+UPDATE Pro_x_Usuario
+SET Activo = 0
+WHERE  ID_Propiedad=@ID_Propiedad AND ID_Usuario =@ID_Usuario
+	 
  
 END
 GO

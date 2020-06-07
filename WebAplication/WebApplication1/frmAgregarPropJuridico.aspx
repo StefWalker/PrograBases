@@ -12,7 +12,14 @@
         <br />
         <table style="height: 110px">
             <tr>
-                <td>ID Documento de Propietario Fisico: </td>
+                <td>Numero de Propiedad: </td>
+                <td> <asp:TextBox ID="NumPropiedad" runat="server" width="200px"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center" class="auto-style4"></td>
+            </tr>
+            <tr>
+                <td>Identificacion de Propietario Fisico: </td>
                 <td> <asp:TextBox ID="IdPropFisico" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>

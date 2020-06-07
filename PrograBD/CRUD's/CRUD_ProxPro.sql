@@ -18,9 +18,10 @@ BEGIN
        FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 	);
 END
-
+USE [ProyectoBases]
 -- Insert en tabla PxP
-IF OBJECT_ID('PropiedadInsert') IS NOT NULL
+
+IF OBJECT_ID('ProxProInsert') IS NOT NULL
 BEGIN 
 DROP PROC ProxProInsert 
 END
@@ -37,13 +38,12 @@ INSERT INTO Pro_x_Pro(
 	   Activo)
 
     VALUES (
-
 	   @ID_Propiedad ,
 	   @ID_Propietario,
 	   1)
 	  
 END
-
+USE [ProyectoBases]
 -- Read de tabla PxP
 IF OBJECT_ID('Pro_x_ProRead') IS NOT NULL
 BEGIN 
@@ -88,12 +88,14 @@ DROP PROC Pro_x_ProDelete
 END 
 GO
 CREATE PROC Pro_x_ProDelete 
-    @ID_PxP INT
+    @ID_Propiedad INT,
+	 @ID_Propietario INT
 AS 
 BEGIN 
-DELETE
-FROM   Pro_x_Pro
-WHERE  ID_PxP = @ID_PxP
+UPDATE Pro_x_Pro
+SET Activo = 0
+WHERE  ID_Propiedad = @ID_Propiedad  AND ID_Propietario = @ID_Propietario
  
 END
 GO
+ 

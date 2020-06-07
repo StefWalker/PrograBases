@@ -18,7 +18,7 @@ BEGIN
 		 Activo BIT NOT NULL
 );
 END
-
+USE [ProyectoBases]
 -- Insert en tabla propiedad
 IF OBJECT_ID('PropiedadInsert') IS NOT NULL
 BEGIN 
@@ -55,7 +55,7 @@ CREATE PROC PropiedadRead
     @ID_Propiedad int
 AS 
 BEGIN 
-    SELECT ID_Propiedad, NumPropiedad, Valor, Descripción, Direccion, Fecha_Creacion
+    SELECT ID_Propiedad, NumPropiedad, Valor, Direccion
     FROM   Propiedad  
     WHERE  (ID_Propiedad = @ID_Propiedad  AND Activo = 1) 
 END

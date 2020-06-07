@@ -126,21 +126,21 @@ CREATE PROC PropiedadUpdateB
 	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
-IF(@NewNumPropiedad IS NULL)
+IF(@NewNumPropiedad = '')
 BEGIN
 	SET @NewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
-IF(@Valor IS NULL)
+IF(@Valor = '')
 BEGIN
 	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
-IF(@Direccion IS NULL)
+IF(@Direccion = '')
 BEGIN
 	SET @Direccion = (SELECT Direccion FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 UPDATE Propiedad
 SET  NumPropiedad = @NewNumPropiedad,
-	 Valor = convert(varchar,cast(@Valor as money),1),
+	 Valor = cast(@Valor as money),
 	 Direccion = @Direccion
 WHERE  (NumPropiedad = @NumPropiedad)
 END
@@ -160,15 +160,15 @@ CREATE PROC UsuarioUpdateB
      @TipoUsuario VARCHAR (100)
 AS 
 BEGIN 
-IF(@NewName IS NULL)
+IF(@NewName = '')
 BEGIN
 	SET @NewName = (SELECT Nombre FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
-IF(@NewPassword IS NULL)
+IF(@NewPassword = '')
 BEGIN
 	SET @NewPassword = (SELECT Password FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
-IF(@TipoUsuario IS NULL)
+IF(@TipoUsuario = '')
 BEGIN
 	SET @TipoUsuario = (SELECT TipoUsuario FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
@@ -190,21 +190,20 @@ GO
 CREATE PROC PropietarioUpdateB
 	 @Identificacion INT,
 	 @NewIdentificacion INT,
-	 @Nombre VARCHAR (100),
 	 @NewNombre VARCHAR (100)
 AS 
 BEGIN
-IF(@NewIdentificacion IS NULL)
+IF(@NewIdentificacion = '')
 BEGIN
 	SET @NewIdentificacion = (SELECT Identificacion FROM Propietario WHERE Identificacion = @Identificacion)
 END
-IF(@NewNombre IS NULL)
+IF(@NewNombre = '')
 BEGIN
 	SET @NewNombre = (SELECT Nombre FROM Propietario WHERE Identificacion = @Identificacion)
 END
 UPDATE Propietario
 SET  Identificacion= @Identificacion,
-	 Nombre = @Nombre
+	 Nombre =  @NewNombre
 WHERE  (Identificacion = @Identificacion AND Activo = 1)
 END
 GO

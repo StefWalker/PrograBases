@@ -31,7 +31,7 @@ namespace WebApplication1
                     if (obj2 != null  && obj3 != null )
                     {
                         Numero.Text = Convert.ToString(obj.NumPropiedad);
-                        Valor.Text = Convert.ToString(obj.Valor);
+                        //Valor.Text = Convert.ToString(obj.Valor);
                         Direccion.Text = obj.Direccion;
                         ID.Text = Convert.ToString(obj1.Identificacion);
                         Tipo.Text = obj3.Tipo;

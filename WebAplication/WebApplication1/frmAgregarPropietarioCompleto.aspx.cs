@@ -20,7 +20,7 @@ namespace WebApplication1
         {
 
 
-            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomProp.Text != "" && IdProp.Text != "")
+            if (txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomProp.Text != "" && IdProp.Text != "")
             {
                 entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(2);
                 if (objTipo == null)
@@ -42,7 +42,6 @@ namespace WebApplication1
                         obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
                         obj.Valor = int.Parse(txtValor.Text);
                         obj.Direccion = txtDireccion.Text;
-                        obj.Descripcion = txtDescripcion.Text;
                         if (negPropiedad.AgregarPropiedad(obj) == 1)
                         {
                             entPropiedad obj3 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));

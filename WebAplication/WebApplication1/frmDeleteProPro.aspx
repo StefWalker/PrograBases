@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="abrigo_formulario"> 
-      <h2>Eliminar unión entre un usuario y una propiedad</h2>
+      <h2>Eliminar unión entre un propietario y una propiedad</h2>
         <br />
         <table>
             <tr>

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Globalization;
 
 namespace CapaDatos
 {
@@ -55,7 +56,8 @@ namespace CapaDatos
                 obj = new entPropiedad();
                 dr.Read();
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
+                // obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
+               // obj.Valor = int.Parse("Valor", NumberStyles.Currency);
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                 obj.Direccion = dr["Direccion"].ToString();
                

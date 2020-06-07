@@ -18,7 +18,7 @@ BEGIN
 	  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 	);
 END
-
+USE [ProyectoBases]
 -- Insert en tabla propietario 
 IF OBJECT_ID('InsertPropietario') IS NOT NULL
 BEGIN 

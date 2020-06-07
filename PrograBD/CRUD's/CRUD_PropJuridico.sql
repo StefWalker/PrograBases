@@ -18,7 +18,7 @@ BEGIN
 		 FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 END
-
+USE [ProyectoBases]
 -- Insert en tabla PropJuridico 
 IF OBJECT_ID('PropJuridicoInsert') IS NOT NULL
 BEGIN 

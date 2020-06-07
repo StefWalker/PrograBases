@@ -1,4 +1,4 @@
-﻿3<%@ Page Title="" Language="C#" MasterPageFile="~/Anonimo.Master" AutoEventWireup="true" CodeBehind="frmAgregarPropietarioCompleto.aspx.cs" Inherits="WebApplication1.frmAgregarPropietarioCompleto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Anonimo.Master" AutoEventWireup="true" CodeBehind="frmAgregarPropietarioCompleto.aspx.cs" Inherits="WebApplication1.frmAgregarPropietarioCompleto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style4 {
@@ -40,10 +40,6 @@
              <tr>
                 <td>Valor de la propiedad: </td>
                 <td> <asp:TextBox ID="txtValor" runat="server" width="200px"></asp:TextBox></td>
-            </tr>
-            <tr>
-                <td>Descripción: </td>
-                <td> <asp:TextBox ID="txtDescripcion" runat="server" width="200px" ></asp:TextBox></td>
             </tr>
             <tr>
                 <td>Direccion: </td>

@@ -18,7 +18,7 @@ namespace WebApplication1
 
         protected void btnGuardar_Click2(object sender, EventArgs e)
         {
-            if (IdPropFisico.Text != "" && IdJuridico.Text != "" && txtNombre.Text != "")
+            if (IdPropFisico.Text != "" && IdJuridico.Text != "" && txtNombre.Text != "" && NumPropiedad.Text != "")
             {
                 entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropFisico.Text));
                 if (obj != null)

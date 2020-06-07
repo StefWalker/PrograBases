@@ -27,10 +27,6 @@
                 <td> <asp:TextBox ID="txtValor" runat="server" width="200px"></asp:TextBox></td>
             </tr>
             <tr>
-                <td>Descripción: </td>
-                <td> <asp:TextBox ID="txtDescripcion" runat="server" width="200px" ></asp:TextBox></td>
-            </tr>
-            <tr>
                 <td>Direccion: </td>
                 <td> <asp:TextBox ID="txtDireccion" runat="server" width="200px"></asp:TextBox></td>
             </tr>
