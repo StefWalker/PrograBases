@@ -30,7 +30,11 @@ namespace CapaNegocios
         }
         public static int ModificarUsuario(entUsuario obj, string nombreviejo, string passwordvieja)
         {
-            return daoUsuario.ModificarUsuario(obj, nombreviejo,passwordvieja);
+            return daoUsuario.ModificarUsuario(obj, nombreviejo, passwordvieja);
+        }
+        public static List<entUsuario> ListarUsuarios(int ID_Propiedad)
+        {
+            return daoUsuario.ListarUsuarios(ID_Propiedad);
         }
     }
 }

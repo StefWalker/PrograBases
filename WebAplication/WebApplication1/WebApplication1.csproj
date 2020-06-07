@@ -95,8 +95,11 @@
     <Content Include="frmModificarProUser.aspx" />
     <Content Include="frmModificarUsuario.aspx" />
     <Content Include="frmPrincipal.aspx" />
+    <Content Include="frmPropiedadesPropietario.aspx" />
+    <Content Include="frmPropiedadesUsuario.aspx" />
     <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
+    <Content Include="frmUserPropiedades.aspx" />
     <Content Include="Imagenes\descarga.jpg" />
     <Content Include="Imagenes\descarga.png" />
     <Content Include="Web.config">
@@ -304,6 +307,20 @@
     <Compile Include="frmPrincipal.aspx.designer.cs">
       <DependentUpon>frmPrincipal.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmPropiedadesPropietario.aspx.cs">
+      <DependentUpon>frmPropiedadesPropietario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPropiedadesPropietario.aspx.designer.cs">
+      <DependentUpon>frmPropiedadesPropietario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPropiedadesUsuario.aspx.cs">
+      <DependentUpon>frmPropiedadesUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPropiedadesUsuario.aspx.designer.cs">
+      <DependentUpon>frmPropiedadesUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmUnirProPro.aspx.cs">
       <DependentUpon>frmUnirProPro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -317,6 +334,13 @@
     </Compile>
     <Compile Include="frmUnirUserPro.aspx.designer.cs">
       <DependentUpon>frmUnirUserPro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserPropiedades.aspx.cs">
+      <DependentUpon>frmUserPropiedades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUserPropiedades.aspx.designer.cs">
+      <DependentUpon>frmUserPropiedades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmLogin.aspx.cs">

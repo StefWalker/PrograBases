@@ -140,7 +140,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("UsuarioUpdateB", cnx);
+                cmd = new SqlCommand("UsuarioUpdate", cnx);
                 cmd.Parameters.AddWithValue("@Nombre", nombreviejo);
                 cmd.Parameters.AddWithValue("@Password", passwordvieja);
                 cmd.Parameters.AddWithValue("@NewName", obj.Nombre);
@@ -161,6 +161,43 @@ namespace CapaDatos
 
             }
             return Indicador;
+        }
+        public static List<entUsuario> ListarUsuarios(int ID_Propiedad)
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entUsuario> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarUsuarios", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entUsuario>();
+                while (dr.Read())
+                {
+                    entUsuario C = new entUsuario();
+                    C.Nombre = dr["Nombre"].ToString();
+                    C.Password = dr["Password"].ToString();
+                    C.TipoUsuario = dr["TipoUsuario"].ToString();
+                    C.ID_Usuario = Convert.ToInt32(dr["ID_Usuario"].ToString());
+                    lista.Add(C);
+                }
+            }
+            catch (Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
         }
 
     }

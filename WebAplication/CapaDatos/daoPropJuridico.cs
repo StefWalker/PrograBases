@@ -56,7 +56,7 @@ namespace CapaDatos
                 obj = new entPropJuridico();
                 dr.Read();
                 obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
-                obj.Documento  = Convert.ToInt32(dr["Documento"].ToString());
+                obj.Documento  = dr["Documento"].ToString();
                 obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
 
             }

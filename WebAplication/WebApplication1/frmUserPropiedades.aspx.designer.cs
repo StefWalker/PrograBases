@@ -11,26 +11,26 @@ namespace WebApplication1
 {
 
 
-    public partial class frmPropiedadesPropietario
+    public partial class frmUserPropiedades
     {
 
         /// <summary>
-        /// Control buscarPropietario.
+        /// Control buscarPropiedad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label buscarPropietario;
+        protected global::System.Web.UI.WebControls.Label buscarPropiedad;
 
         /// <summary>
-        /// Control txtID.
+        /// Control txtNum.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.TextBox txtNum;
 
         /// <summary>
         /// Control lblerror.
@@ -51,12 +51,12 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Control grvPropiedades.
+        /// Control grvUsuarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvPropiedades;
+        protected global::System.Web.UI.WebControls.GridView grvUsuarios;
     }
 }

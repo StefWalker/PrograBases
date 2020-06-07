@@ -7,7 +7,7 @@ CREATE TABLE Propiedad
   NumPropiedad INT NOT NULL,
   Valor MONEY NOT NULL,
   Direccion VARCHAR(250) NOT NULL,
-  Activo BIT NOT NULL
+  Activo BIT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE TipoDoc
@@ -22,7 +22,7 @@ CREATE TABLE Propietario
   ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   Identificacion VARCHAR(250) NOT NULL,
   Nombre VARCHAR(100) NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   ID_TDoc INT NOT NULL,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
@@ -33,7 +33,7 @@ CREATE TABLE Usuario
   Nombre VARCHAR(100) NOT NULL,
   Password VARCHAR(100) NOT NULL,
   TipoUsuario VARCHAR(100) NOT NULL,
-  Activo BIT NOT NULL
+  Activo BIT NOT NULL  DEFAULT 1
 );
 
 CREATE TABLE PropJuridico
@@ -42,7 +42,7 @@ CREATE TABLE PropJuridico
   ID_Propietario INT REFERENCES Propietario(ID_Propietario) NOT NULL,
   Documento VARCHAR(250) NOT NULL,
   ID_TDoc INT NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 
@@ -53,7 +53,7 @@ CREATE TABLE ConceptoCobro
   Concepto VARCHAR(100) NOT NULL,
   FechaVencimiento INT NOT NULL,
   Fecha INT NOT NULL,
-  Activo BIT NOT NULL
+  Activo BIT NOT NULL  DEFAULT 1
 );
 
 CREATE TABLE CC_Fijo
@@ -85,7 +85,7 @@ CREATE TABLE Pro_x_Pro
   ID_PxP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Propiedad INT NOT NULL,
   ID_Propietario INT NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 );
@@ -95,7 +95,7 @@ CREATE TABLE Pro_x_Usuario
   ID_PxU INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Propiedad INT NOT NULL,
   ID_Usuario INT NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
 );
@@ -105,7 +105,7 @@ CREATE TABLE Pro_x_CC
   ID_PxC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_CC INT NOT NULL,
   ID_Propiedad INT NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   FOREIGN KEY (ID_CC) REFERENCES ConceptoCobro(ID_CC),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
@@ -115,42 +115,8 @@ CREATE TABLE PJur_x_Pro
   ID_JxP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Juridico INT NOT NULL,
   ID_Propiedad INT NOT NULL,
-  Activo BIT NOT NULL,
+  Activo BIT NOT NULL  DEFAULT 1,
   FOREIGN KEY (ID_Juridico) REFERENCES PropJuridico(ID_Juridico),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
-/*
-CREATE TABLE PropFisico
-(
-  ID_Fisico INT IDENTITY(1,1),
-  ID_Propietario INT NOT NULL,
-  PRIMARY KEY (ID_Fisico),
-  FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
-);
-
-CREATE TABLE ServicioPendiente
-(
-  ID_ServicioPend INT NOT NULL,
-  Fec INT NOT NULL,
-  PRIMARY KEY (ID_ServicioPend)
-);
-
-CREATE TABLE Recibo
-(
-  ID_Recibo INT NOT NULL,
-  Fecha DATE NOT NULL,
-  FechaVencimiento DATE NOT NULL,
-  Monto INT NOT NULL,
-  Pendiente  NOT NULL,
-  PRIMARY KEY (ID_Recibo)
-);
-
-CREATE TABLE Comprobante_Pago
-(
-  ID INT NOT NULL,
-  Fecha DATE NOT NULL,
-  Total INT NOT NULL,
-  PRIMARY KEY (ID)
-);
-*/

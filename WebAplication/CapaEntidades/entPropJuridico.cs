@@ -9,7 +9,7 @@ using System.Threading.Tasks;
     public class entPropJuridico
     {
         public int ID_Propietario { get; set; }
-        public int Documento  { get; set; }
+        public String Documento  { get; set; }
         public int ID_TDoc { get; set; }
         public int ID_Juridico { get; set; }
 

@@ -62,12 +62,12 @@ END
 GO
 
 -- Update de tabla propietario 
-IF OBJECT_ID('PropietarioUpdate') IS NOT NULL
+IF OBJECT_ID('PropietarioUpdateB') IS NOT NULL
 BEGIN 
-DROP PROC PropietarioUpdate
+DROP PROC PropietarioUpdateB
 END 
 GO
-CREATE PROC PropietarioUpdate
+CREATE PROC PropietarioUpdateB
 	 @Identificacion VARCHAR(250),
 	 @NewIdentificacion INT,
 	 @NewNombre VARCHAR (100)
@@ -83,10 +83,9 @@ BEGIN
 END
 UPDATE Propietario
 SET  Identificacion= @Identificacion,
-	 Nombre = @NewNombre
+	 Nombre =  @NewNombre
 WHERE  (Identificacion = @Identificacion AND Activo = 1)
 END
-
 GO
 
 -- Delete de tabla propietario
@@ -102,6 +101,42 @@ BEGIN
 DELETE
 FROM   Propietario
 WHERE  ID_Propietario = @ID_Propietario
+ 
+END
+GO
+
+------------------------Procedimientos extras---------------------------
+-- Search Propietario por medio de la identificacion 
+
+IF OBJECT_ID('PropietarioSearch') IS NOT NULL
+BEGIN 
+DROP PROC PropietarioSearch
+END 
+GO
+CREATE PROC PropietarioSearch
+    @Identificacion VARCHAR(250)
+AS 
+BEGIN 
+    SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
+	FROM   Propietario
+    WHERE  (Identificacion = @Identificacion AND Activo = 1) 
+END
+GO
+
+-- Delete de tabla propietario por nombre y identificacion de propietario
+IF OBJECT_ID('PropietarioDeleteByName') IS NOT NULL
+BEGIN 
+DROP PROC PropietarioDeleteByName
+END 
+GO
+CREATE PROC PropietarioDeleteByName 
+    @Identificacion VARCHAR(250),
+	@Nombre VARCHAR (100)
+AS 
+BEGIN 
+UPDATE Propietario
+SET Activo = 0
+WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
  
 END
 GO

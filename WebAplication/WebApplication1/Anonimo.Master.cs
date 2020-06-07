@@ -98,5 +98,21 @@ namespace WebApplication1
         {
             Response.Redirect("frmBuscarPropJuridico.aspx");
         }
+
+        protected void VerPropiedadesPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmPropiedadesPropietario.aspx");
+        }
+
+        protected void VerPropiedadesUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmPropiedadesUsuario.aspx");
+        }
+
+        protected void VerUsuariosPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmUserPropiedades.aspx");
+        }
+    
     }
 }

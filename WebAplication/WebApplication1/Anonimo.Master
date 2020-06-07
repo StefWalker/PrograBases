@@ -68,6 +68,15 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button11" runat="server" Text="Buscar propietario juridico" OnClick="BuscarPropJuridico_Click" Width="170px" />
                </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button12" runat="server" Text="Ver Propiedades de un propietario" OnClick="VerPropiedadesPro_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button13" runat="server" Text="Ver Propiedades de un usuario" OnClick="VerPropiedadesUser_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button14" runat="server" Text="Ver Usuarios de una propiedad" OnClick="VerUsuariosPro_Click" Width="170px" />
+               </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

@@ -84,3 +84,20 @@ WHERE  ID_TDoc= @ID_TDoc
  
 END
 GO
+
+-------------------------Procedimientos extras-----------------------------
+-- Search Tipo Documento
+IF OBJECT_ID('TipoDocSearch') IS NOT NULL
+BEGIN 
+DROP PROC TipoDocSearch
+END 
+GO
+CREATE PROC TipoDocSearch
+    @TipoDoc INT
+AS 
+BEGIN 
+    SELECT ID_TDoc, TipoDoc, Tipo
+	FROM   TipoDoc
+    WHERE  (TipoDoc = @TipoDoc) 
+END
+GO

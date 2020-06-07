@@ -9,21 +9,21 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class frmPropiedadesPropietario : System.Web.UI.Page
+    public partial class frmPropiedadesUsuario : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(txtID.Text != null)
+            if (txtUser.Text != null)
             {
-                entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
-                if(obj != null)
+                entUsuario obj = negUsuario.BuscarUsuario(txtUser.Text);
+                if (obj != null)
                 {
-                    grvPropiedades.DataSource = negPropiedad.ListarPropiedades(obj.ID_Propietario);
+                    grvPropiedades.DataSource = negPropiedad.ListarPropiedadesUser(obj.ID_Usuario);
                     grvPropiedades.DataBind();
                 }
                 else

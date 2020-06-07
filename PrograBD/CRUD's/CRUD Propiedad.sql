@@ -62,13 +62,12 @@ END
 GO
 
 -- Update de tabla propiedad
-IF OBJECT_ID('PropiedadUpdate') IS NOT NULL
+IF OBJECT_ID('PropiedadUpdateB') IS NOT NULL
 BEGIN 
-DROP PROC PropiedadUpdate
+DROP PROC PropiedadUpdateB
 END 
 GO
-CREATE PROC PropiedadUpdate
-	
+CREATE PROC PropiedadUpdateB
 	 @NumPropiedad INT,
 	 @NewNumPropiedad INT,
 	 @Valor INT,
@@ -89,9 +88,9 @@ BEGIN
 END
 UPDATE Propiedad
 SET  NumPropiedad = @NewNumPropiedad,
-	 Valor = @Valor,
+	 Valor = cast(@Valor as money),
 	 Direccion = @Direccion
-WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1)
+WHERE  (NumPropiedad = @NumPropiedad)
 END
 GO
 
@@ -108,5 +107,37 @@ BEGIN
 DELETE
 FROM   Propiedad
 WHERE  ID_Propiedad = @ID_Propiedad
+END
+GO
+
+------------------------Procedimientos extras --------------------------
+-- Realiza un search por medio del numero de propiedad
+IF OBJECT_ID('PropiedadSearch') IS NOT NULL
+BEGIN 
+DROP PROC PropiedadSearch
+END 
+GO
+CREATE PROC PropiedadSearch
+    @NumPropiedad INT
+AS 
+BEGIN 
+    SELECT NumPropiedad, convert(varchar,cast(Valor as int),1), Direccion
+	FROM   Propiedad
+    WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
+END
+GO
+-- Delete de tabla propiedad por numero de propiedad
+IF OBJECT_ID('PropiedadDeleteByNum') IS NOT NULL
+BEGIN 
+DROP PROC PropiedadDeleteByNum
+END 
+GO
+CREATE PROC PropiedadDeleteByNum 
+    @NumPropiedad int
+AS 
+BEGIN 
+UPDATE Propiedad
+SET	Activo = 0
+WHERE  NumPropiedad = @NumPropiedad
 END
 GO

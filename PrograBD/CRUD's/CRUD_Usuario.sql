@@ -61,26 +61,26 @@ GO
 -- Update de tabla Usuario 
 IF OBJECT_ID('UsuarioUpdate') IS NOT NULL
 BEGIN 
-DROP PROC UsuarioUpdate
+DROP PROC UsuarioUpdateB
 END 
 GO
-CREATE PROC UsuarioUpdate
-	@Nombre VARCHAR (100),
+CREATE PROC UsuarioUpdateB
+	 @Nombre VARCHAR (100),
 	 @NewName VARCHAR (100),
      @Password VARCHAR (100),
 	 @NewPassword VARCHAR (100),
      @TipoUsuario VARCHAR (100)
 AS 
 BEGIN 
-IF(@NewName = ' ')
+IF(@NewName = '')
 BEGIN
 	SET @NewName = (SELECT Nombre FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
-IF(@NewPassword = ' ')
+IF(@NewPassword = '')
 BEGIN
 	SET @NewPassword = (SELECT Password FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
-IF(@TipoUsuario = ' ')
+IF(@TipoUsuario = '')
 BEGIN
 	SET @TipoUsuario = (SELECT TipoUsuario FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
 END
@@ -91,22 +91,70 @@ SET  Nombre = @NewName,
 
 WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1)
 END
-
 GO
 
--- Delete de tabla Usuario
-IF OBJECT_ID('UsuarioDelete') IS NOT NULL
+-- Delete de tabla Usuario por nombre y contraseña
+IF OBJECT_ID('UsuarioDeleteB') IS NOT NULL
 BEGIN 
-DROP PROC UsuarioDelete
+DROP PROC UsuarioDeleteB
 END 
 GO
-CREATE PROC UsuarioDelete
-    @ID_Usuario int
+CREATE PROC UsuarioDeleteB 
+    @Nombre VARCHAR(100),
+	@Password VARCHAR(100)
 AS 
 BEGIN 
-DELETE
-FROM  Usuario
-WHERE  ID_Usuario= @ID_Usuario
- 
+UPDATE Usuario
+SET	Activo = 0
+WHERE  (Nombre = @Nombre AND Password = @Password)
 END
 GO
+
+-----------------------------Procedimientos extras ----------------------------------------
+-- Search por medio del nombre y la contraseña
+
+IF OBJECT_ID('UsuarioSearch') IS NOT NULL
+BEGIN 
+    DROP PROC UsuarioSearch
+END 
+GO
+CREATE PROC UsuarioSearch
+    @Nombre VARCHAR (100),
+    @Password VARCHAR (100)
+AS 
+BEGIN 
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario
+	FROM   Usuario
+    WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1) 
+END
+GO
+-- Buscar el usuario unicamente por medio del nombre 
+
+IF OBJECT_ID('BuscarUsuario') IS NOT NULL
+BEGIN 
+    DROP PROC BuscarUsuario
+END 
+GO
+CREATE PROC BuscarUsuario
+    @Nombre VARCHAR (100)
+AS 
+BEGIN 
+    SELECT ID_Usuario,Nombre,Password,TipoUsuario
+	FROM   Usuario
+    WHERE  (Nombre = @Nombre AND Activo = 1)
+END
+GO
+ALTER PROCEDURE [dbo].[ListarUsuarios]
+	@ID_Propiedad INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT Usuario.ID_Usuario,Usuario.Nombre,Usuario.Password,Usuario.TipoUsuario
+	FROM Usuario INNER JOIN Pro_x_Usuario
+	on Pro_x_Usuario.ID_Propiedad = @ID_Propiedad AND Usuario.ID_Usuario = Pro_x_Usuario.ID_Usuario
+	where Usuario.Activo = 1
+END

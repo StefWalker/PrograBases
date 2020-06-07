@@ -26,7 +26,15 @@ namespace CapaNegocios
         }
         public static int ModificarPropiedad(entPropiedad obj, int numViejo)
         {
-            return daoPropiedad.ModificarPropiedad(obj,numViejo);
+            return daoPropiedad.ModificarPropiedad(obj, numViejo);
+        }
+        public static List<entPropiedad> ListarPropiedades(int ID_Propietario)
+        {
+            return daoPropiedad.ListarPropiedades(ID_Propietario);
+        }
+        public static List<entPropiedad> ListarPropiedadesUser(int ID_Usuario)
+        {
+            return daoPropiedad.ListarPropiedadesUser(ID_Usuario);
         }
     }
 }

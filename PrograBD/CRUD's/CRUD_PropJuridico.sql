@@ -45,40 +45,44 @@ INSERT INTO PropJuridico(
 END
 
 
--- Read de tabla PropJuridico 
-IF OBJECT_ID('PropJuridicoRead') IS NOT NULL
+-- Read de tabla PropJuridico , busca por medio del ID y lee todo
+IF OBJECT_ID('PropJuridicoSearchID') IS NOT NULL
 BEGIN 
-    DROP PROC PropJuridicoRead
+DROP PROC PropJuridicoSearchID
 END 
 GO
-CREATE PROC PropJuridicoRead
-    @ID_Juridico int
+CREATE PROC PropJuridicoSearchID
+    @ID_Propietario INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_TDoc
+    SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (ID_Juridico = @ID_Juridico AND Activo = 1) 
+    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
 END
 GO
 
--- Update de tabla PropJuridico 
-IF OBJECT_ID('PropJuridicoUpdate') IS NOT NULL
+GO
+
+--- Update de tabla Propietario Juridico
+IF OBJECT_ID('ProJuridicoUpdateB') IS NOT NULL
 BEGIN 
-DROP PROC PropJuridicoUpdate
+DROP PROC ProJuridicoUpdateB
 END 
 GO
-CREATE PROC PropJuridicoUpdate
-	 @ID_Juridico INT,
-	 @ID_Propietario INT,
+CREATE PROC ProJuridicoUpdateB
 	 @Documento VARCHAR(250),
-	 @ID_TDoc INT
+	 @NewDocumento INT,
+     @ID_TDoc INT
 AS 
 BEGIN 
+IF(@NewDocumento IS NULL)
+BEGIN
+	SET @NewDocumento = (SELECT Documento FROM PropJuridico WHERE (Documento = @Documento))
+END
 UPDATE PropJuridico
-SET  ID_Propietario = @ID_Propietario,
-	 ID_TDoc= @ID_TDoc,
-	 Documento = @Documento
-WHERE  (ID_Juridico = @ID_Juridico)
+SET  Documento = @NewDocumento,
+	 ID_TDoc = @ID_TDoc
+WHERE  (Documento = @Documento AND Activo = 1)
 END
 GO
 
@@ -96,5 +100,38 @@ DELETE
 FROM   PropJuridico
 WHERE  ID_Juridico = @ID_Juridico
  
+END
+GO
+
+--------------Procedimientos extras----------------------------
+-- Search Propietario Juridico
+IF OBJECT_ID('BuscarPropJuridico') IS NOT NULL
+BEGIN 
+DROP PROC BuscarPropJuridico
+END 
+GO
+CREATE PROC BuscarPropJuridico
+    @Documento VARCHAR(250)
+AS 
+BEGIN 
+    SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
+	FROM   PropJuridico
+    WHERE  (Documento = @Documento AND Activo = 1) 
+END
+GO
+
+-- Delete de tabla Propietario Juridico por numero de documento
+IF OBJECT_ID('PropJuricoDeleteB') IS NOT NULL
+BEGIN 
+DROP PROC PropJuricoDeleteB
+END 
+GO
+CREATE PROC PropJuricoDeleteB 
+    @Documento VARCHAR(250)
+AS 
+BEGIN 
+UPDATE PropJuridico
+SET	Activo = 0
+WHERE  Documento = @Documento
 END
 GO

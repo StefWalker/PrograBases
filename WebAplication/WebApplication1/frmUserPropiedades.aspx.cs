@@ -9,22 +9,22 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class frmPropiedadesPropietario : System.Web.UI.Page
+    public partial class frmUserPropiedades : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if(txtID.Text != null)
+            if (txtNum.Text != null)
             {
-                entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
-                if(obj != null)
+                entPropiedad obj = negPropiedad.BuscarPropiedad(Int32.Parse(txtNum.Text));
+                if (obj != null)
                 {
-                    grvPropiedades.DataSource = negPropiedad.ListarPropiedades(obj.ID_Propietario);
-                    grvPropiedades.DataBind();
+                    grvUsuarios.DataSource = negUsuario.ListarUsuarios(obj.ID_Propiedad);
+                    grvUsuarios.DataBind();
                 }
                 else
                 {

@@ -128,5 +128,79 @@ namespace CapaDatos
             return Indicador;
         }
 
+        public static List<entPropiedad> ListarPropiedades(int ID_Propietario)
+        {
+           
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entPropiedad> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarPropiedades", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propietario", ID_Propietario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entPropiedad>();
+                while(dr.Read())
+                {
+                    entPropiedad C = new entPropiedad();
+                    C.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
+                    C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
+                    C.Direccion = dr["Direccion"].ToString();
+                    lista.Add(C);
+                }
+            }
+            catch(Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
+        }
+        public static List<entPropiedad> ListarPropiedadesUser(int ID_Usuario)
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entPropiedad> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarPropiedadesUser", cnx);
+                cmd.Parameters.AddWithValue("@ID_Usuario", ID_Usuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entPropiedad>();
+                while (dr.Read())
+                {
+                    entPropiedad C = new entPropiedad();
+                    C.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
+                    C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
+                    C.Direccion = dr["Direccion"].ToString();
+                    lista.Add(C);
+                }
+            }
+            catch (Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
+        }
+
+
     }
 }

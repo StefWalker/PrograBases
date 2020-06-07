@@ -27,7 +27,7 @@ namespace WebApplication1
 
                     entPropJuridico obj1 = new entPropJuridico();
 
-                    obj1.Documento = Int32.Parse(IdJuridico.Text);
+                    obj1.Documento = IdJuridico.Text;
                     obj1.ID_Propietario = obj.ID_Propietario;
                     obj1.ID_TDoc = obj2.ID_TDoc;
 

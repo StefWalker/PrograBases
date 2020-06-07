@@ -11,26 +11,26 @@ namespace WebApplication1
 {
 
 
-    public partial class frmPropiedadesPropietario
+    public partial class frmPropiedadesUsuario
     {
 
         /// <summary>
-        /// Control buscarPropietario.
+        /// Control buscarUsuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label buscarPropietario;
+        protected global::System.Web.UI.WebControls.Label buscarUsuario;
 
         /// <summary>
-        /// Control txtID.
+        /// Control txtUser.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtID;
+        protected global::System.Web.UI.WebControls.TextBox txtUser;
 
         /// <summary>
         /// Control lblerror.
