@@ -11,17 +11,17 @@ namespace WebApplication1
 {
 
 
-    public partial class frmModificarPropJuridico
+    public partial class frmUnirPJurxPro
     {
 
         /// <summary>
-        /// Control modificar.
+        /// Control txtProp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label modificar;
+        protected global::System.Web.UI.WebControls.TextBox txtProp;
 
         /// <summary>
         /// Control txtID.
@@ -33,39 +33,21 @@ namespace WebApplication1
         protected global::System.Web.UI.WebControls.TextBox txtID;
 
         /// <summary>
-        /// Control txtIdentificacion.
+        /// Control lblError.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdentificacion;
+        protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
-        /// Control txtFisico.
+        /// Control btnGuardar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFisico;
-
-        /// <summary>
-        /// Control lblerror.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblerror;
-
-        /// <summary>
-        /// Control btnModificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificar;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
     }
 }

@@ -113,6 +113,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmUserPropiedades.aspx");
         }
-    
+
+        protected void UnirProProJur_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmUnirPJurxPro.aspx");
+        }
     }
 }

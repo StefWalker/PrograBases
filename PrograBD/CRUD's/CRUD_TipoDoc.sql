@@ -16,7 +16,7 @@ BEGIN
 	);
 END
 
--- Insert en tabla TipoDoc 
+--Insert en tabla TipoDoc 
 IF OBJECT_ID('TipoDocInsert') IS NOT NULL
 BEGIN 
 DROP PROC TipoDocInsert

@@ -18,7 +18,7 @@
     <asp:Label ID="Label1" runat="server" Text="Identificacion Juridica:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="ID" runat="server" Font-Size="Medium"></asp:Label>
     <br />
-    <asp:Label ID="Label2" runat="server" Text="Tipo del documento:  " Font-Size="Medium"></asp:Label>
+    <asp:Label ID="Label2" runat="server" Text="Tipo del documento juridico:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Tipo" runat="server" Font-Size="Medium" ></asp:Label>
     <br />
     <asp:Label ID="Label3" runat="server" Text="Nombre del propietario fisico:  " Font-Size="Medium"></asp:Label>
@@ -26,6 +26,10 @@
         <br />
     <asp:Label ID="Label5" runat="server" Text="Identificación del propietario:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="IDProp" runat="server" Font-Size="Medium" ></asp:Label>
+    <br />
+    <asp:Label ID="Label4" runat="server" Text="Tipo del documento fisico:  " Font-Size="Medium"></asp:Label>
+    <asp:Label ID="TipoFisico" runat="server" Font-Size="Medium" ></asp:Label>
+    <br />
     <tr>
        <td colspan="2" align ="Center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>

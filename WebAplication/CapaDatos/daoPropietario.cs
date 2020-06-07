@@ -57,7 +57,7 @@ namespace CapaDatos
                 obj = new entPropietario();
                 dr.Read();
                 obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
-                obj.Identificacion = Convert.ToInt32(dr["Identificacion"].ToString());
+                obj.Identificacion =dr["Identificacion"].ToString();
                 obj.Nombre = dr["Nombre"].ToString();
                 obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
 
@@ -116,7 +116,7 @@ namespace CapaDatos
                 obj = new entPropietario();
                 dr.Read();
                 obj.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
-                obj.Identificacion = Convert.ToInt32(dr["Identificacion"].ToString());
+                obj.Identificacion = dr["Identificacion"].ToString();
                 obj.Nombre = dr["Nombre"].ToString();
                 obj.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
 

@@ -26,7 +26,7 @@ namespace WebApplication1
                 if (objDOC != null)
                 {
                     entPropietario obj1 = new entPropietario();
-                    obj1.Identificacion = Int32.Parse(txtIdentificacion.Text);
+                    obj1.Identificacion = txtIdentificacion.Text;
                     obj1.Nombre = txtNombre.Text;
                     obj1.ID_TDoc = objDOC.ID_TDoc;
                     if (negPropietario.AgregarPropietario(obj1) == 1)

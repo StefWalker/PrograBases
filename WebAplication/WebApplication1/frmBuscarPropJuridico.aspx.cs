@@ -20,21 +20,31 @@ namespace WebApplication1
         {
             if (txtID.Text != "")  //cambiar 
             {
-                entPropJuridico obj = negPropJuridico.BuscarPropJuridico(Convert.ToInt32(txtID.Text));
+                entPropJuridico obj = negPropJuridico.BuscarPropJuridico(txtID.Text);
                 if (obj != null )
                 {
                     entTipoDoc obj1 = negTipoDoc.BuscarTipoID(obj.ID_TDoc);
                     entPropietario obj2 = negPropietario.BuscarPropietarioID(obj.ID_Propietario);
-                    ID.Text = Convert.ToString(obj.Documento);
-                    Tipo.Text = obj1.Tipo;
-                    PropFisico.Text = obj2.Nombre;
-                    IDProp.Text = Convert.ToString(obj2.Identificacion);
+                    if(obj1 != null && obj2 != null)
+                    {
+                        ID.Text = Convert.ToString(obj.Documento);
+                        Tipo.Text = obj1.Tipo;
+                        PropFisico.Text = obj2.Nombre;
+                        IDProp.Text = Convert.ToString(obj2.Identificacion);
+                        entTipoDoc obj3 = negTipoDoc.BuscarTipoID(obj2.ID_TDoc);
+                        TipoFisico.Text = obj3.Tipo;
+                    }
+                    else
+                    {
+                        lbError.Text = "Este propietario no se encuentra en la base de datos";
+                        lbError.Visible = true;
+                    }
                     
 
                 }
                 else
                 {
-                    lbError.Text = "Este propietario no se encuentra en la base de datos";
+                    lbError.Text = "Este propietario juridico no se encuentra en la base de datos";
                     lbError.Visible = true;
                 }
             }
