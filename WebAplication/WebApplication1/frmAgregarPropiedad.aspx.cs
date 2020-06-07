@@ -19,13 +19,12 @@ namespace WebApplication1
         protected void btnGuardar_Click1(object sender, EventArgs e)
         {
 
-            if (txtDescripcion.Text != "" && txtNumeroPropiedad.Text != "" && txtValor.Text != ""  && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && IdPropietario.Text != "")
+            if (txtNumeroPropiedad.Text != "" && txtValor.Text != ""  && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && IdPropietario.Text != "")
             {
                 entPropiedad obj = new entPropiedad();
                 obj.NumPropiedad = Int32.Parse(txtNumeroPropiedad.Text);
                 obj.Valor = Int32.Parse(txtValor.Text);
                 obj.Direccion = txtDireccion.Text;
-                obj.Descripcion = txtDescripcion.Text;
                 if (negPropiedad.AgregarPropiedad(obj) == 1)
                 {
                     entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropietario.Text));

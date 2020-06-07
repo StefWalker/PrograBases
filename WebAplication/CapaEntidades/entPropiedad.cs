@@ -11,7 +11,6 @@ namespace CapaEntidades
         public int ID_Propiedad { get; set; }
         public int NumPropiedad { get; set; }
         public int Valor { get; set; }
-        public string Descripcion { get; set; }
         public string Direccion { get; set; }
         
     }

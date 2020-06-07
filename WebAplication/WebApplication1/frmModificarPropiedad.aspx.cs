@@ -26,7 +26,6 @@ namespace WebApplication1
                 if(txtValor.Text == "")
                 {
                     obj.Valor = obj1.Valor;
-                    obj.Descripcion = txtDescripcion.Text;
                     obj.Direccion = txtDireccion.Text;
                     if (negPropiedad.ModificarPropiedad(obj, Int32.Parse(txtNum.Text)) == 1)
                     {
@@ -41,7 +40,6 @@ namespace WebApplication1
                 else
                 {
                     obj.Valor = Int32.Parse(txtValor.Text);
-                    obj.Descripcion = txtDescripcion.Text;
                     obj.Direccion = txtDireccion.Text;
                     if (negPropiedad.ModificarPropiedad(obj, Int32.Parse(txtNum.Text)) == 1)
                     {
@@ -62,7 +60,6 @@ namespace WebApplication1
                 {
                     int valorp = obj1.Valor;
                     obj.Valor = valorp;
-                    obj.Descripcion = txtDescripcion.Text;
                     obj.Direccion = txtDireccion.Text;
                     if (negPropiedad.ModificarPropiedad(obj, Int32.Parse(txtNum.Text)) == 1)
                     {
@@ -77,7 +74,6 @@ namespace WebApplication1
                 else
                 {
                     obj.Valor = Int32.Parse(txtValor.Text);
-                    obj.Descripcion = txtDescripcion.Text;
                     obj.Direccion = txtDireccion.Text;
                     if (negPropiedad.ModificarPropiedad(obj, Int32.Parse(txtNum.Text)) == 1)
                     {

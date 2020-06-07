@@ -21,7 +21,6 @@ namespace CapaDatos
                 cmd = new SqlCommand("PropiedadInsert", cnx);
                 cmd.Parameters.AddWithValue("@NumPropiedad", obj.NumPropiedad);
                 cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Descripción", obj.Descripcion);
                 cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
@@ -58,7 +57,6 @@ namespace CapaDatos
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
                 obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
-                obj.Descripcion = dr["Descripción"].ToString();
                 obj.Direccion = dr["Direccion"].ToString();
                
             }
@@ -110,7 +108,6 @@ namespace CapaDatos
                 cmd.Parameters.AddWithValue("@NumPropiedad", numViejo);
                 cmd.Parameters.AddWithValue("@NewNumPropiedad", obj.NumPropiedad);
                 cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Descripción", obj.Descripcion);
                 cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();

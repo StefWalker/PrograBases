@@ -21,9 +21,6 @@
     <asp:Label ID="lblValor" runat="server" Text="Valor: " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Valor" runat="server" Font-Size="Medium" ></asp:Label>
     <br />
-    <asp:Label ID="lblDescripcion" runat="server" Text="Descripcion: " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="Descripcion" runat="server" Font-Size="Medium"></asp:Label>
-    <br />
     <asp:Label ID="lblDireccion" runat="server" Text="Direccion: " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Direccion" runat="server" Font-Size="Medium"></asp:Label>
 

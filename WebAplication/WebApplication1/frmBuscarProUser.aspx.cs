@@ -32,7 +32,6 @@ namespace WebApplication1
                         Numero.Text = Convert.ToString(obj.NumPropiedad);
                         Valor.Text = Convert.ToString(obj.Valor);
                         Direccion.Text = obj.Direccion;
-                        Descripcion.Text = obj.Descripcion;
                         Nombre.Text = obj1.Nombre;
                         Password.Text = obj1.Password;
                         Nombre.Text = obj1.Nombre;
