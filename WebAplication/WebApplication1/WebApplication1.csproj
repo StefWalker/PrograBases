@@ -97,6 +97,7 @@
     <Content Include="frmPrincipal.aspx" />
     <Content Include="frmPropiedadesPropietario.aspx" />
     <Content Include="frmPropiedadesUsuario.aspx" />
+    <Content Include="frmUnirPJurxPro.aspx" />
     <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
     <Content Include="frmUserPropiedades.aspx" />
@@ -320,6 +321,13 @@
     </Compile>
     <Compile Include="frmPropiedadesUsuario.aspx.designer.cs">
       <DependentUpon>frmPropiedadesUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmUnirPJurxPro.aspx.cs">
+      <DependentUpon>frmUnirPJurxPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmUnirPJurxPro.aspx.designer.cs">
+      <DependentUpon>frmUnirPJurxPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUnirProPro.aspx.cs">
       <DependentUpon>frmUnirProPro.aspx</DependentUpon>

@@ -16,6 +16,8 @@ BEGIN
 	);
 END
 
+
+USE [ProyectoBases]
 -- Insert en tabla Concepto Cobro Fijo
 IF OBJECT_ID('CCFijoInsert') IS NOT NULL
 BEGIN 

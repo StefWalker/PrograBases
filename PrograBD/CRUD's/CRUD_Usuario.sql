@@ -18,7 +18,7 @@ BEGIN
 	);
 END
 
--- Insert en tabla Usuario
+--Insert en tabla Usuario
 IF OBJECT_ID('UsuarioInsert') IS NOT NULL
 BEGIN 
 DROP PROC UsuarioInsert
@@ -144,17 +144,3 @@ BEGIN
     WHERE  (Nombre = @Nombre AND Activo = 1)
 END
 GO
-ALTER PROCEDURE [dbo].[ListarUsuarios]
-	@ID_Propiedad INT
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	SELECT Usuario.ID_Usuario,Usuario.Nombre,Usuario.Password,Usuario.TipoUsuario
-	FROM Usuario INNER JOIN Pro_x_Usuario
-	on Pro_x_Usuario.ID_Propiedad = @ID_Propiedad AND Usuario.ID_Usuario = Pro_x_Usuario.ID_Usuario
-	where Usuario.Activo = 1
-END

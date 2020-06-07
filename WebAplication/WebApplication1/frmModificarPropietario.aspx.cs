@@ -40,7 +40,7 @@ namespace WebApplication1
                     }
                     else
                     {
-                        obj.Identificacion = Int32.Parse(txtIdentificacion.Text);
+                        obj.Identificacion = txtIdentificacion.Text;
                         if (negPropietario.ModificarPropietario(obj, Int32.Parse(txtID.Text)) == 1)
                         {
                             Response.Redirect("frmPrincipal.aspx");

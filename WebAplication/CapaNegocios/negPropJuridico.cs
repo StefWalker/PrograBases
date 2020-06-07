@@ -14,7 +14,7 @@ namespace CapaNegocios
         {
             return daoPropJuridico.AgregarPropJuridico(obj);
         }
-        public static entPropJuridico BuscarPropJuridico(int documento)
+        public static entPropJuridico BuscarPropJuridico(string documento)
         {
             return daoPropJuridico.BuscarPropJuridico(documento);
         }
@@ -22,6 +22,9 @@ namespace CapaNegocios
         {
             return daoPropJuridico.DeletePropJuridico(documento);
         }
-
+        public static int ModificarPropJuridico(entPropJuridico obj, string documento)
+        {
+            return daoPropJuridico.ModificarPropJuridico(obj, documento);
+        }
     }
 }

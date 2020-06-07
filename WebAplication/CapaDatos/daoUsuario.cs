@@ -140,7 +140,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("UsuarioUpdate", cnx);
+                cmd = new SqlCommand("UsuarioUpdateB", cnx);
                 cmd.Parameters.AddWithValue("@Nombre", nombreviejo);
                 cmd.Parameters.AddWithValue("@Password", passwordvieja);
                 cmd.Parameters.AddWithValue("@NewName", obj.Nombre);

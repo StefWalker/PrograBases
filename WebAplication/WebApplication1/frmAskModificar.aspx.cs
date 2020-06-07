@@ -26,7 +26,7 @@ namespace WebApplication1
 
         protected void btnModificarJuridico_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificarUsuario.aspx");
+            Response.Redirect("frmModificarPropJuridico.aspx");
         }
 
         protected void btnModificarProPro_Click(object sender, EventArgs e)

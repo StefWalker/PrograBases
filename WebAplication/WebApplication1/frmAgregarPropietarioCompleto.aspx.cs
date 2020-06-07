@@ -32,7 +32,7 @@ namespace WebApplication1
                 else if (objTipo != null)
                 {
                     entPropietario obj2 = new entPropietario();
-                    obj2.Identificacion = Int32.Parse(IdProp.Text);
+                    obj2.Identificacion = IdProp.Text;
                     obj2.Nombre = NomProp.Text;
                     obj2.ID_TDoc = objTipo.ID_TDoc;
 
