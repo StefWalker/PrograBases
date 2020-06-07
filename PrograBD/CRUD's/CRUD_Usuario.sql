@@ -14,7 +14,6 @@ BEGIN
 		Nombre VARCHAR(100) NOT NULL,
 		Password VARCHAR(100) NOT NULL,
 		TipoUsuario VARCHAR(100) NOT NULL,
-		Fecha_Creacion DATE NOT NULL,
 		Activo BIT NOT NULL
 	);
 END
@@ -35,13 +34,11 @@ INSERT INTO Usuario(
 	   Nombre,
 	   Password,
 	   TipoUsuario,
-	   Fecha_Creacion,
 	   Activo)
     VALUES (
 	   @Nombre,
 	   @Password,
 	   @TipoUsuario,
-	   GETDATE(),
 	   1)
 END
 
