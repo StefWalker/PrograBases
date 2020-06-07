@@ -14,9 +14,7 @@ BEGIN
 		 ID_Propiedad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 		 NumPropiedad INT NOT NULL,
 		 Valor INT NOT NULL,
-		 Descripción VARCHAR(250) NOT NULL,
 		 Direccion VARCHAR(250) NOT NULL,
-		 Fecha_Creacion DATE NOT NULL,
 		 Activo BIT NOT NULL
 );
 END
@@ -38,16 +36,12 @@ BEGIN
 INSERT INTO Propiedad(
 	   NumPropiedad,
 	   Valor,
-	   Descripción,
 	   Direccion,
-	   Fecha_Creacion,
 	   Activo)
     VALUES (
 	   @NumPropiedad,
-	   @Valor,
-	   @Descripción,
+	   convert(varchar,cast(@Valor as money),1),
 	   @Direccion,
-	   GETDATE(),
 	   1)
 END
 
@@ -78,21 +72,16 @@ CREATE PROC PropiedadUpdate
 	 @NumPropiedad INT,
 	 @NewNumPropiedad INT,
 	 @Valor INT,
-	 @Descripción VARCHAR(250),
 	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
 IF(@NewNumPropiedad = '')
 BEGIN
-	SET @NewNumPropiedad = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+	SET @NewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 IF(@Valor = '')
 BEGIN
 	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
-END
-IF(@Descripción = '')
-BEGIN
-	SET @Descripción = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 IF(@Direccion = '')
 BEGIN
@@ -101,7 +90,6 @@ END
 UPDATE Propiedad
 SET  NumPropiedad = @NewNumPropiedad,
 	 Valor = @Valor,
-	 Descripción	= @Descripción,
 	 Direccion = @Direccion
 WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1)
 END

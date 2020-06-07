@@ -13,7 +13,6 @@ BEGIN
 	  ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	  Identificacion INT NOT NULL,
 	  Nombre VARCHAR(100) NOT NULL,
-	  Fecha_Creacion DATE NOT NULL,
       Activo BIT NOT NULL,
 	  ID_TDoc INT NOT NULL,
 	  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
@@ -36,13 +35,11 @@ BEGIN
 INSERT INTO Propietario(
 	   Identificacion,
 	   Nombre,
-	   Fecha_Creacion,
 	   Activo,
 	   ID_TDoc)
     VALUES (
 	   @Identificacion,
 	   @Nombre,
-	   GETDATE(),
 	   1,
 	   @ID_TDoc)
 END

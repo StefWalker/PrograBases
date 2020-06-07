@@ -10,7 +10,8 @@ GO
 BEGIN
 	CREATE TABLE PropJuridico
 	(
-		 ID_Propietario INT PRIMARY KEY REFERENCES Propietario(ID_Propietario) NOT NULL,
+	     ID_Juridico INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+		 ID_Propietario INT REFERENCES Propietario(ID_Propietario) NOT NULL,
 		 Documento INT NOT NULL,
 		 ID_TDoc INT NOT NULL,
 		 Activo BIT NOT NULL,
@@ -25,7 +26,7 @@ DROP PROC PropJuridicoInsert
 END
 GO
 CREATE PROCEDURE PropJuridicoInsert
-	 	  @ID_Propietario INT,
+	  @ID_Propietario INT,
 	  @Documento INT,
 	  @ID_TDoc INT 
 AS
@@ -50,12 +51,12 @@ BEGIN
 END 
 GO
 CREATE PROC PropJuridicoRead
-    @ID_Propietario int
+    @ID_Juridico int
 AS 
 BEGIN 
     SELECT ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
+    WHERE  (ID_Juridico = @ID_Juridico AND Activo = 1) 
 END
 GO
 
@@ -66,15 +67,17 @@ DROP PROC PropJuridicoUpdate
 END 
 GO
 CREATE PROC PropJuridicoUpdate
+	 @ID_Juridico INT,
 	 @ID_Propietario INT,
 	 @Documento INT,
 	 @ID_TDoc INT
 AS 
 BEGIN 
 UPDATE PropJuridico
-SET  ID_TDoc= @ID_TDoc,
+SET  ID_Propietario = @ID_Propietario,
+	 ID_TDoc= @ID_TDoc,
 	 Documento = @Documento
-WHERE  (ID_Propietario = @ID_Propietario)
+WHERE  (ID_Juridico = @ID_Juridico)
 END
 GO
 
@@ -85,12 +88,12 @@ DROP PROC PropJuridicoDelete
 END 
 GO
 CREATE PROC PropJuridicoDelete
-    @ID_Propietario int
+    @ID_Juridico int
 AS 
 BEGIN 
 DELETE
 FROM   PropJuridico
-WHERE  ID_Propietario = @ID_Propietario
+WHERE  ID_Juridico = @ID_Juridico
  
 END
 GO

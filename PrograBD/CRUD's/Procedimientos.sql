@@ -27,7 +27,7 @@ CREATE PROC BuscarPropJuridico
     @Documento INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_TDoc
+    SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
     WHERE  (Documento = @Documento AND Activo = 1) 
 END
@@ -43,7 +43,7 @@ CREATE PROC PropJuridicoSearchID
     @ID_Propietario INT
 AS 
 BEGIN 
-    SELECT ID_Propietario, Documento, ID_TDoc
+    SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
     WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
 END
@@ -75,7 +75,7 @@ CREATE PROC PropiedadSearch
     @NumPropiedad INT
 AS 
 BEGIN 
-    SELECT NumPropiedad, Valor, Descripción, Direccion
+    SELECT NumPropiedad, convert(varchar,cast(Valor as int),1), Direccion
 	FROM   Propiedad
     WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
 END
@@ -122,22 +122,17 @@ GO
 CREATE PROC PropiedadUpdateB
 	 @NumPropiedad INT,
 	 @NewNumPropiedad INT,
-	 @Valor DECIMAL,
-	 @Descripción VARCHAR(250),
+	 @Valor INT,
 	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
 IF(@NewNumPropiedad IS NULL)
 BEGIN
-	SET @NewNumPropiedad = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+	SET @NewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 IF(@Valor IS NULL)
 BEGIN
 	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
-END
-IF(@Descripción IS NULL)
-BEGIN
-	SET @Descripción = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
 END
 IF(@Direccion IS NULL)
 BEGIN
@@ -145,8 +140,7 @@ BEGIN
 END
 UPDATE Propiedad
 SET  NumPropiedad = @NewNumPropiedad,
-	 Valor = @Valor,
-	 Descripción	= @Descripción,
+	 Valor = convert(varchar,cast(@Valor as money),1),
 	 Direccion = @Direccion
 WHERE  (NumPropiedad = @NumPropiedad)
 END
