@@ -25,9 +25,8 @@ DROP PROC PropJuridicoInsert
 END
 GO
 CREATE PROCEDURE PropJuridicoInsert
-	  @ID_Propietario INT,
+	 	  @ID_Propietario INT,
 	  @Documento INT,
-	  @ID_Juridico INT,
 	  @ID_TDoc INT 
 AS
 BEGIN
@@ -42,6 +41,7 @@ INSERT INTO PropJuridico(
 	   @ID_TDoc,
 	   1)
 END
+
 
 -- Read de tabla PropJuridico 
 IF OBJECT_ID('PropJuridicoRead') IS NOT NULL

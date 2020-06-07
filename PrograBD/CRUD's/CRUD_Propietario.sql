@@ -70,18 +70,25 @@ DROP PROC PropietarioUpdate
 END 
 GO
 CREATE PROC PropietarioUpdate
-	 @ID_Propietario INT,
 	 @Identificacion INT,
-	 @Nombre VARCHAR(100),
-	 @ID_TDoc int
+	 @NewIdentificacion INT,
+	 @NewNombre VARCHAR (100)
 AS 
-BEGIN 
+BEGIN
+IF(@NewIdentificacion = '')
+BEGIN
+	SET @NewIdentificacion = (SELECT Identificacion FROM Propietario WHERE Identificacion = @Identificacion)
+END
+IF(@NewNombre = '')
+BEGIN
+	SET @NewNombre = (SELECT Nombre FROM Propietario WHERE Identificacion = @Identificacion)
+END
 UPDATE Propietario
 SET  Identificacion= @Identificacion,
-	 Nombre = @Nombre,
-	 ID_TDoc = @ID_TDoc
-WHERE  (ID_Propietario = @ID_Propietario)
+	 Nombre = @NewNombre
+WHERE  (Identificacion = @Identificacion AND Activo = 1)
 END
+
 GO
 
 -- Delete de tabla propietario

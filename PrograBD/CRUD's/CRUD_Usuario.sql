@@ -68,19 +68,33 @@ DROP PROC UsuarioUpdate
 END 
 GO
 CREATE PROC UsuarioUpdate
-	 @ID_Usuario INT ,
-	 @Nombre VARCHAR (100),
+	@Nombre VARCHAR (100),
+	 @NewName VARCHAR (100),
      @Password VARCHAR (100),
+	 @NewPassword VARCHAR (100),
      @TipoUsuario VARCHAR (100)
 AS 
 BEGIN 
+IF(@NewName = ' ')
+BEGIN
+	SET @NewName = (SELECT Nombre FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+END
+IF(@NewPassword = ' ')
+BEGIN
+	SET @NewPassword = (SELECT Password FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+END
+IF(@TipoUsuario = ' ')
+BEGIN
+	SET @TipoUsuario = (SELECT TipoUsuario FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+END
 UPDATE Usuario
-SET  Nombre = @Nombre,
-	 Password = @Password,
+SET  Nombre = @NewName,
+	 Password = @NewPassword,
 	 TipoUsuario = @TipoUsuario
 
-WHERE  (ID_Usuario= @ID_Usuario)
+WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1)
 END
+
 GO
 
 -- Delete de tabla Usuario

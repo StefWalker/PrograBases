@@ -51,12 +51,12 @@ BEGIN
 END 
 GO
 CREATE PROC Pro_x_ProRead
-    @ID_PxP int
+     @ID_Propiedad int , @ID_Propietario int
 AS 
 BEGIN 
     SELECT ID_PxP, ID_Propiedad ,ID_Propietario
     FROM   Pro_x_Pro 
-    WHERE  (ID_PxP = @ID_PxP AND Activo = 1) 
+    WHERE  (ID_Propiedad = @ID_Propiedad AND ID_Propietario = @ID_Propietario AND Activo = 1) 
 END
 GO
 

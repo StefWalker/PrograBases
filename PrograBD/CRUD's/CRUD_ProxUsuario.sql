@@ -51,13 +51,14 @@ BEGIN
 END 
 GO
 CREATE PROC Pro_x_UsuarioRead
-    @ID_PxU int
+     @ID_Propiedad int, @ID_Usuario INT
 AS 
 BEGIN 
     SELECT ID_PxU, ID_Propiedad ,ID_Usuario
     FROM   Pro_x_Usuario 
-    WHERE  (ID_PxU = @ID_PxU AND Activo = 1) 
+    WHERE  (ID_Propiedad = @ID_Propiedad AND ID_Usuario = @ID_Usuario AND Activo = 1) 
 END
+
 GO
 
 -- Update de tabla Pro_x_Usuario

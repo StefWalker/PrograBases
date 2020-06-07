@@ -74,22 +74,36 @@ DROP PROC PropiedadUpdate
 END 
 GO
 CREATE PROC PropiedadUpdate
-	 @ID_Propiedad INT,
+	
 	 @NumPropiedad INT,
+	 @NewNumPropiedad INT,
 	 @Valor INT,
 	 @Descripción VARCHAR(250),
-	 @Direccion VARCHAR(250),
-	 @Fecha_Creacion DATE
-  
+	 @Direccion VARCHAR(250)
 AS 
 BEGIN 
+IF(@NewNumPropiedad = '')
+BEGIN
+	SET @NewNumPropiedad = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+END
+IF(@Valor = '')
+BEGIN
+	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+END
+IF(@Descripción = '')
+BEGIN
+	SET @Descripción = (SELECT Descripción FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+END
+IF(@Direccion = '')
+BEGIN
+	SET @Direccion = (SELECT Direccion FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+END
 UPDATE Propiedad
-SET  NumPropiedad = @NumPropiedad,
+SET  NumPropiedad = @NewNumPropiedad,
 	 Valor = @Valor,
 	 Descripción	= @Descripción,
-	 Direccion = @Direccion,
-	 Fecha_Creacion = @Fecha_Creacion
-WHERE  (ID_Propiedad = @ID_Propiedad)
+	 Direccion = @Direccion
+WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1)
 END
 GO
 

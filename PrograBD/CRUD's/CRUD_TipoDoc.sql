@@ -40,14 +40,14 @@ BEGIN
 END 
 GO
 CREATE PROC TipoDocRead
-	@TipoDoc INT,
-    @ID_TDoc int
+	@ID_TDoc int
 AS 
 BEGIN 
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (ID_TDoc = @ID_TDoc) 
 END
+
 GO
 
 -- Update de tabla TipoDoc 
