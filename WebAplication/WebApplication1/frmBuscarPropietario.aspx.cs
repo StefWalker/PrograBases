@@ -20,7 +20,7 @@ namespace WebApplication1
         {
             if (txtID.Text != "")
             {
-                entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
+                entPropietario obj = negPropietario.BuscarPropietario(txtID.Text);
                 if (obj != null )
                 {
 

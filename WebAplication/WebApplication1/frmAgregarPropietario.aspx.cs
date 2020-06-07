@@ -32,7 +32,7 @@ namespace WebApplication1
                     if (negPropietario.AgregarPropietario(obj1) == 1)
                     {
                         entPropiedad objPropiedad = negPropiedad.BuscarPropiedad(Convert.ToInt32(NumPropiedad.Text));
-                        entPropietario objPropietario = negPropietario.BuscarPropietario(Convert.ToInt32(txtIdentificacion.Text));
+                        entPropietario objPropietario = negPropietario.BuscarPropietario(txtIdentificacion.Text);
                         if (objPropiedad != null && objPropietario != null )
                         {
                             entProPro obj2 = new entProPro();

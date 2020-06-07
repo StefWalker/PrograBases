@@ -70,7 +70,9 @@
     <Content Include="frmAskAgregarJuridico.aspx" />
     <Content Include="frmAskModificar.aspx" />
     <Content Include="frmBuscarProPro.aspx" />
+    <Content Include="frmBuscarProProJur.aspx" />
     <Content Include="frmBuscarProUser.aspx" />
+    <Content Include="frmDeleteProJuridicoPro.aspx" />
     <Content Include="frmDeleteProPro.aspx" />
     <Content Include="frmDeleteUserPro.aspx" />
     <Content Include="frmAgregarPropiedadUsuario.aspx" />
@@ -92,11 +94,13 @@
     <Content Include="frmModificarPropietario.aspx" />
     <Content Include="frmModificarPropJuridico.aspx" />
     <Content Include="frmModificarProPro.aspx" />
+    <Content Include="frmModificarProProJuridico.aspx" />
     <Content Include="frmModificarProUser.aspx" />
     <Content Include="frmModificarUsuario.aspx" />
     <Content Include="frmPrincipal.aspx" />
     <Content Include="frmPropiedadesPropietario.aspx" />
     <Content Include="frmPropiedadesUsuario.aspx" />
+    <Content Include="frmPropietariosPropiedad.aspx" />
     <Content Include="frmUnirPJurxPro.aspx" />
     <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
@@ -140,12 +144,26 @@
     <Compile Include="frmBuscarProPro.aspx.designer.cs">
       <DependentUpon>frmBuscarProPro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmBuscarProProJur.aspx.cs">
+      <DependentUpon>frmBuscarProProJur.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmBuscarProProJur.aspx.designer.cs">
+      <DependentUpon>frmBuscarProProJur.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmBuscarProUser.aspx.cs">
       <DependentUpon>frmBuscarProUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmBuscarProUser.aspx.designer.cs">
       <DependentUpon>frmBuscarProUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeleteProJuridicoPro.aspx.cs">
+      <DependentUpon>frmDeleteProJuridicoPro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDeleteProJuridicoPro.aspx.designer.cs">
+      <DependentUpon>frmDeleteProJuridicoPro.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmDeleteProPro.aspx.cs">
       <DependentUpon>frmDeleteProPro.aspx</DependentUpon>
@@ -287,6 +305,13 @@
     <Compile Include="frmModificarProPro.aspx.designer.cs">
       <DependentUpon>frmModificarProPro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmModificarProProJuridico.aspx.cs">
+      <DependentUpon>frmModificarProProJuridico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmModificarProProJuridico.aspx.designer.cs">
+      <DependentUpon>frmModificarProProJuridico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmModificarProUser.aspx.cs">
       <DependentUpon>frmModificarProUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -321,6 +346,13 @@
     </Compile>
     <Compile Include="frmPropiedadesUsuario.aspx.designer.cs">
       <DependentUpon>frmPropiedadesUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmPropietariosPropiedad.aspx.cs">
+      <DependentUpon>frmPropietariosPropiedad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPropietariosPropiedad.aspx.designer.cs">
+      <DependentUpon>frmPropietariosPropiedad.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUnirPJurxPro.aspx.cs">
       <DependentUpon>frmUnirPJurxPro.aspx</DependentUpon>

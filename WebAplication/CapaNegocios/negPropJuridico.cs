@@ -26,5 +26,9 @@ namespace CapaNegocios
         {
             return daoPropJuridico.ModificarPropJuridico(obj, documento);
         }
+        public static List<entPropJuridico> ListarPropietariosJuridicos(int ID_Propiedad)
+        {
+            return daoPropJuridico.ListarPropietariosJuridicos(ID_Propiedad);
+        }
     }
 }

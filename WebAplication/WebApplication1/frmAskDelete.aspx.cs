@@ -43,5 +43,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmDeleteProPro.aspx");
         }
+
+        protected void btnPJurPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmDeleteProJuridicoPro.aspx");
+        }
     }
 }

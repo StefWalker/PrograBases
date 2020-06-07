@@ -125,6 +125,43 @@ namespace CapaDatos
             }
             return Indicador;
         }
+        public static List<entPropJuridico> ListarPropietariosJuridicos(int ID_Propiedad)
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entPropJuridico> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarPropietariosJuridicos", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entPropJuridico>();
+                while (dr.Read())
+                {
+                    entPropJuridico C = new entPropJuridico();
+                    C.ID_Juridico = Convert.ToInt32(dr["ID_Juridico"].ToString());
+                    C.ID_Propietario = Convert.ToInt32(dr["ID_Propietario"].ToString());
+                    C.Documento = dr["Documento"].ToString();
+                    C.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
+                    lista.Add(C);
+                }
+            }
+            catch (Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
+        }
 
     }
 }

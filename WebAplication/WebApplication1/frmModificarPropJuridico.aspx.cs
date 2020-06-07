@@ -26,7 +26,7 @@ namespace WebApplication1
                     entPropJuridico obj = new entPropJuridico();
                     if (txtFisico.Text != "")
                     {
-                        entPropietario obj2 = negPropietario.BuscarPropietario(Convert.ToInt32(txtFisico.Text));
+                        entPropietario obj2 = negPropietario.BuscarPropietario(txtFisico.Text);
                         obj.ID_Propietario = obj2.ID_Propietario;
                         if (txtIdentificacion.Text != "")
                         {

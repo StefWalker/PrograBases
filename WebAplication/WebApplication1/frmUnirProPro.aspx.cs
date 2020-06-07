@@ -21,7 +21,7 @@ namespace WebApplication1
             if (txtProp.Text != "" && txtID.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
-                entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(txtID.Text));
+                entPropietario obj1 = negPropietario.BuscarPropietario(txtID.Text);
                 if (obj != null  &&  obj1 != null )
                 {
                     int propietario = obj1.ID_Propietario;

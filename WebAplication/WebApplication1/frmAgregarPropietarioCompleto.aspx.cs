@@ -45,7 +45,7 @@ namespace WebApplication1
                         if (negPropiedad.AgregarPropiedad(obj) == 1)
                         {
                             entPropiedad obj3 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
-                            entPropietario obj4 = negPropietario.BuscarPropietario(Convert.ToInt32(IdProp.Text));
+                            entPropietario obj4 = negPropietario.BuscarPropietario(IdProp.Text);
 
                             if (obj3 != null && obj4 != null)
                             {

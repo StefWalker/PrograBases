@@ -27,7 +27,7 @@ namespace WebApplication1
                 obj.Direccion = txtDireccion.Text;
                 if (negPropiedad.AgregarPropiedad(obj) == 1)
                 {
-                    entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropietario.Text));
+                    entPropietario obj1 = negPropietario.BuscarPropietario(IdPropietario.Text);
                     entPropiedad obj2 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtNumeroPropiedad.Text));
                     if (obj1 != null  && obj2 != null)
                     {

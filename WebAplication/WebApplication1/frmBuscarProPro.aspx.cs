@@ -23,7 +23,7 @@ namespace WebApplication1
 
 
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
-                entPropietario obj1 = negPropietario.BuscarPropietario(Convert.ToInt32(txtId.Text));
+                entPropietario obj1 = negPropietario.BuscarPropietario(txtId.Text);
                 if (obj != null && obj1 != null)
                 {
                     entTipoDoc obj3 = negTipoDoc.BuscarTipoID(obj1.ID_TDoc);

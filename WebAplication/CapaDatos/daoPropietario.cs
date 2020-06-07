@@ -40,7 +40,7 @@ namespace CapaDatos
             }
             return Indicador;
         }
-        public static entPropietario BuscarPropietario(int id)
+        public static entPropietario BuscarPropietario(string id)
         {
             entPropietario obj = null;
             SqlCommand cmd = null;
@@ -159,6 +159,43 @@ namespace CapaDatos
             }
             return Indicador;
         }
-        
+        public static List<entPropietario> ListarPropietariosFisicos(int ID_Propiedad)
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entPropietario> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarPropietariosFisicos", cnx);
+                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entPropietario>();
+                while (dr.Read())
+                {
+                    entPropietario C = new entPropietario();
+                    C.ID_Propietario= Convert.ToInt32(dr["ID_Propietario"].ToString());
+                    C.Nombre= dr["Nombre"].ToString();
+                    C.Identificacion = dr["Identificacion"].ToString();
+                    C.ID_TDoc = Convert.ToInt32(dr["ID_TDoc"].ToString());
+                    lista.Add(C);
+                }
+            }
+            catch (Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
+        }
+
     }
 }

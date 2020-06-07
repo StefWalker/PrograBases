@@ -29,6 +29,9 @@
             <tr>
                 <td colspan="2" align="center"><asp:Button ID="Button4" runat="server" Text="Eliminar la union de un Usuario y una Propiedad" Width="211px" OnClick="btnUserPro_Click" /></td>
             </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button5" runat="server" Text="Eliminar la union de un propietario juridico y una Propiedad" Width="211px" OnClick="btnPJurPro_Click" /></td>
+            </tr>
         </table>
     </div>
 </asp:Content>

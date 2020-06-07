@@ -14,7 +14,7 @@ namespace CapaNegocios
         {
             return daoPropietario.AgregarPropietario(obj);
         }
-        public static entPropietario BuscarPropietario(int id)
+        public static entPropietario BuscarPropietario(string id)
         {
             return daoPropietario.BuscarPropietario(id);
         }
@@ -30,5 +30,9 @@ namespace CapaNegocios
         {
             return daoPropietario.ModificarPropietario(obj, idVieja);
         }
-    }
+        public static List<entPropietario> ListarPropietariosFisicos(int ID_Propiedad)
+        {
+            return daoPropietario.ListarPropietariosFisicos(ID_Propiedad);
+        }
+     }
 }

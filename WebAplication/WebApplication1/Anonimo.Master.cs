@@ -118,5 +118,15 @@ namespace WebApplication1
         {
             Response.Redirect("frmUnirPJurxPro.aspx");
         }
+
+        protected void ReadProProJur_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarProProJur.aspx");
+        }
+
+        protected void VerPropietariosPro_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmPropietariosPropiedad.aspx");
+        }
     }
 }

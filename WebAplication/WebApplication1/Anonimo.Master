@@ -15,6 +15,7 @@
         }
         .auto-style3 {
             margin-right: 0px;
+            width: 237px;
         }
         </style>
 </head>
@@ -65,6 +66,9 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button9" runat="server" Text="Buscar Propiedad de un usuario" OnClick="ReadProUser_Click" Width="170px" />
                </div>
+                 <div class="etiqueta">
+                    <asp:Button ID="Button16" runat="server" Text="Buscar Propiedad de un Propietario Juridico" OnClick="ReadProProJur_Click" Width="170px" />
+               </div>
                 <div class="etiqueta">
                     <asp:Button ID="Button10" runat="server" Text="Agregar propietario juridico" OnClick="AgregarPropJuridico_Click" Width="170px" />
                </div>
@@ -79,6 +83,9 @@
                </div>
                 <div class="etiqueta">
                     <asp:Button ID="Button14" runat="server" Text="Ver Usuarios de una propiedad" OnClick="VerUsuariosPro_Click" Width="170px" />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button17" runat="server" Text="Ver Propietarios de una propiedad" OnClick="VerPropietariosPro_Click" Width="170px" />
                </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 

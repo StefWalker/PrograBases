@@ -20,7 +20,7 @@ namespace WebApplication1
         {
             if (IdPropFisico.Text != "" && IdJuridico.Text != "" && txtNombre.Text != "" && NumPropiedad.Text != "")
             {
-                entPropietario obj = negPropietario.BuscarPropietario(Convert.ToInt32(IdPropFisico.Text));
+                entPropietario obj = negPropietario.BuscarPropietario(IdPropFisico.Text);
                 entPropiedad obj3 = negPropiedad.BuscarPropiedad(Convert.ToInt32(NumPropiedad.Text));
                 if (obj != null && obj3 != null)
                 {

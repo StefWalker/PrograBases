@@ -29,6 +29,9 @@
             <tr>
                 <td colspan="2" align="center"><asp:Button ID="Button4" runat="server" Text="Modificar unión entre ProxUser" Width="211px" OnClick="btnModificarUserPro_Click" /></td>
             </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button5" runat="server" Text="Modificar unión entre ProxPJuridico" Width="211px" OnClick="btnModificarPJurPro_Click" /></td>
+            </tr>
         </table>
     </div>
 </asp:Content>
