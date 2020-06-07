@@ -12,13 +12,14 @@ BEGIN
 	(
 	     ID_Juridico INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 		 ID_Propietario INT REFERENCES Propietario(ID_Propietario) NOT NULL,
-		 Documento INT NOT NULL,
+		 Documento VARCHAR(250) NOT NULL,
 		 ID_TDoc INT NOT NULL,
 		 Activo BIT NOT NULL,
 		 FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 END
-USE [ProyectoBases]
+
+
 -- Insert en tabla PropJuridico 
 IF OBJECT_ID('PropJuridicoInsert') IS NOT NULL
 BEGIN 
@@ -27,7 +28,7 @@ END
 GO
 CREATE PROCEDURE PropJuridicoInsert
 	  @ID_Propietario INT,
-	  @Documento INT,
+	  @Documento VARCHAR(250),
 	  @ID_TDoc INT 
 AS
 BEGIN
@@ -69,7 +70,7 @@ GO
 CREATE PROC PropJuridicoUpdate
 	 @ID_Juridico INT,
 	 @ID_Propietario INT,
-	 @Documento INT,
+	 @Documento VARCHAR(250),
 	 @ID_TDoc INT
 AS 
 BEGIN 

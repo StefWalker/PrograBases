@@ -11,14 +11,15 @@ BEGIN
 	CREATE TABLE Propietario 
 	(
 	  ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	  Identificacion INT NOT NULL,
+	  Identificacion VARCHAR(250) NOT NULL,
 	  Nombre VARCHAR(100) NOT NULL,
       Activo BIT NOT NULL,
 	  ID_TDoc INT NOT NULL,
 	  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 	);
 END
-USE [ProyectoBases]
+
+
 -- Insert en tabla propietario 
 IF OBJECT_ID('InsertPropietario') IS NOT NULL
 BEGIN 
@@ -26,7 +27,7 @@ DROP PROC InsertPropietario
 END
 GO
 CREATE PROCEDURE InsertPropietario
-	  @Identificacion INT,
+	  @Identificacion VARCHAR(250),
 	  @Nombre VARCHAR (100),
 	  @ID_TDoc INT
 	 
@@ -67,7 +68,7 @@ DROP PROC PropietarioUpdate
 END 
 GO
 CREATE PROC PropietarioUpdate
-	 @Identificacion INT,
+	 @Identificacion VARCHAR(250),
 	 @NewIdentificacion INT,
 	 @NewNombre VARCHAR (100)
 AS 

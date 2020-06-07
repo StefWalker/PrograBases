@@ -20,7 +20,7 @@ CREATE TABLE TipoDoc
 CREATE TABLE Propietario
 (
   ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-  Identificacion INT NOT NULL,
+  Identificacion VARCHAR(250) NOT NULL,
   Nombre VARCHAR(100) NOT NULL,
   Activo BIT NOT NULL,
   ID_TDoc INT NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE PropJuridico
 (
   ID_Juridico INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
   ID_Propietario INT REFERENCES Propietario(ID_Propietario) NOT NULL,
-  Documento INT NOT NULL,
+  Documento VARCHAR(250) NOT NULL,
   ID_TDoc INT NOT NULL,
   Activo BIT NOT NULL,
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)

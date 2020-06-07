@@ -24,7 +24,7 @@ DROP PROC BuscarPropJuridico
 END 
 GO
 CREATE PROC BuscarPropJuridico
-    @Documento INT
+    @Documento VARCHAR(250)
 AS 
 BEGIN 
     SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
@@ -88,7 +88,7 @@ DROP PROC PropietarioSearch
 END 
 GO
 CREATE PROC PropietarioSearch
-    @Identificacion INT
+    @Identificacion VARCHAR(250)
 AS 
 BEGIN 
     SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
@@ -188,7 +188,7 @@ DROP PROC PropietarioUpdateB
 END 
 GO
 CREATE PROC PropietarioUpdateB
-	 @Identificacion INT,
+	 @Identificacion VARCHAR(250),
 	 @NewIdentificacion INT,
 	 @NewNombre VARCHAR (100)
 AS 
@@ -215,7 +215,7 @@ DROP PROC ProJuridicoUpdateB
 END 
 GO
 CREATE PROC ProJuridicoUpdateB
-	 @Documento INT,
+	 @Documento VARCHAR(250),
 	 @NewDocumento INT,
      @ID_TDoc INT
 AS 
@@ -238,7 +238,7 @@ DROP PROC PropJuricoDeleteB
 END 
 GO
 CREATE PROC PropJuricoDeleteB 
-    @Documento int
+    @Documento VARCHAR(250)
 AS 
 BEGIN 
 UPDATE PropJuridico
@@ -271,7 +271,7 @@ DROP PROC PropietarioDeleteByName
 END 
 GO
 CREATE PROC PropietarioDeleteByName 
-    @Identificacion INT,
+    @Identificacion VARCHAR(250),
 	@Nombre VARCHAR (100)
 AS 
 BEGIN 
