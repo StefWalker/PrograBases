@@ -23,6 +23,6 @@
                 <td colspan="2" align="center" class="auto-style4"></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><asp:Button ID="lblerror" runat="server" Text="Guardar" Width="170px" OnClick="btnGuardar_Click" /></td>
+                <td colspan="2" align="center"><asp:Button ID="lblError" runat="server" Text="Guardar" Width="170px" OnClick="btnGuardar_Click" /></td>
             </tr>
 </asp:Content>

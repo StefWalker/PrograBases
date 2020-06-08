@@ -36,22 +36,31 @@ namespace WebApplication1
 
                     if (negPropJuridico.AgregarPropJuridico(obj1) == 1) //Si lo crea debe irse a la pagina donde crea el usuario 
                     {
-                        entPropJuridico juridico = negPropJuridico.BuscarPropJuridico(IdPropFisico.Text);
-                        entProxProJuridico obj4 = new entProxProJuridico();
-                        obj4.ID_Propiedad = obj3.ID_Propiedad;
-                        obj4.ID_Juridico = juridico.ID_Juridico;
-                        if (negProxProJuridico.AgregarProxProJuridico(obj4) == 1) //Si lo crea debe irse a la pagina donde crea el usuario 
+                        entPropJuridico juridico = negPropJuridico.BuscarPropJuridico(IdJuridico.Text);
+                        if (juridico != null)
                         {
-                            Response.Redirect("frmPrincipal.aspx");
+                            entProxProJuridico obj4 = new entProxProJuridico();
+                            obj4.ID_Propiedad = obj3.ID_Propiedad;
+                            obj4.ID_Juridico = juridico.ID_Juridico;
+                            if (negProxProJuridico.AgregarProxProJuridico(obj4) == 1) //Si lo crea debe irse a la pagina donde crea el usuario 
+                            {
+                                Response.Redirect("frmPrincipal.aspx");
 
+                            }
+                            else
+                            {
+                                lblerror.Text = "No se pudo unir el propietario y la propiedad"; //Sino tira error 
+                                lblerror.Visible = true;
+                                Response.Redirect("frmUnirPJurxPro.aspx");
+
+
+                            }
                         }
                         else
                         {
-                            lblerror.Text = "No se pudo unir el propietario y la propiedad"; //Sino tira error 
+                            lblerror.Text = "No se pudo unir el propietario juridico"; //Sino tira error 
                             lblerror.Visible = true;
                             Response.Redirect("frmUnirPJurxPro.aspx");
-
-
                         }
                     }
                     else

@@ -21,7 +21,6 @@ namespace WebApplication1
             if (txtPropiedad.Text != "" && txtUser.Text != "")
             {
 
-
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
                 entUsuario obj1 = negUsuario.BuscarUsuario(txtUser.Text);
                 if (obj != null && obj1 != null)

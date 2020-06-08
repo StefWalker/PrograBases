@@ -87,6 +87,18 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button17" runat="server" Text="Ver Propietarios de una propiedad" OnClick="VerPropietariosPro_Click" Width="170px" />
                </div>
+                 <div class="etiqueta">
+                    <asp:Button ID="Button18" runat="server" Text="Buscar ProxCC" OnClick="BuscarProxCC_Click" Width="170px" />
+               </div>
+                 <div class="etiqueta">
+                    <asp:Button ID="Button19" runat="server" Text="Modificar ProxCC" OnClick="UpdateProxCC_Click" Width="170px" />
+               </div>
+                 <div class="etiqueta">
+                    <asp:Button ID="Button20" runat="server" Text="Delete ProxCC" OnClick="DeleteProxCC_Click" Width="170px" />
+               </div>
+                 <div class="etiqueta">
+                    <asp:Button ID="Button21" runat="server" Text="Crear ProxCC" OnClick="AgregarProxCC_Click" Width="170px" />
+               </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

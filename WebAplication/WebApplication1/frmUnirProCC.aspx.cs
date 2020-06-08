@@ -21,16 +21,17 @@ namespace WebApplication1
             if (TextBox1.Text != "" && NumPropiedad.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(NumPropiedad.Text));
-                entPropietario obj1 = negPropietario.BuscarPropietario(TextBox1.Text);
+                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(Convert.ToInt32(TextBox1.Text));
                 if (obj != null && obj1 != null)
                 {
-                    int propietario = obj1.ID_Propietario;
+                    int concepto = obj1.ID_CC;
                     int prop = obj.ID_Propiedad;
-                    entProPro obj2 = new entProPro();
+                    entProCC obj2 = new entProCC();
                     obj2.ID_Propiedad = prop;
-                    obj2.ID_Propietario = propietario;
+                    obj2.ID_CC = concepto;
+                   
 
-                    if (negProPro.AgregarProPro(obj2) == 1)
+                    if (negProCC.AgregarProCC(obj2) == 1)
                     {
                         Response.Redirect("frmPrincipal.aspx");
                     }
@@ -53,5 +54,6 @@ namespace WebApplication1
             }
 
         }
+
     }
 }

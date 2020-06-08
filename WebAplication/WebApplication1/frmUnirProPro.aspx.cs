@@ -18,19 +18,19 @@ namespace WebApplication1
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (txtProp.Text != "" && txtID.Text != "")
+            if (txtID.Text != "" && txtProp.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtProp.Text));
-                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(txtID.Text);
-                if (obj != null  &&  obj1 != null )
+                entPropietario obj1 = negPropietario.BuscarPropietario(txtID.Text);
+                if (obj != null && obj1 != null)
                 {
-                    int concepto = obj1.ID_CC;
+                    int propietario = obj1.ID_Propietario;
                     int prop = obj.ID_Propiedad;
-                    entProCC obj2 = new entProCC();
+                    entProPro obj2 = new entProPro();
                     obj2.ID_Propiedad = prop;
-                    obj2.ID_CC = concepto;
+                    obj2.ID_Propietario = propietario;
 
-                    if (negProCC.AgregarProCC(obj2) == 1)
+                    if (negProPro.AgregarProPro(obj2) == 1)
                     {
                         Response.Redirect("frmPrincipal.aspx");
                     }
@@ -51,7 +51,9 @@ namespace WebApplication1
                 lblError.Text = "Faltan datos por ingresar";
                 lblError.Visible = true;
             }
-        
+
+
+
         }
     }
 }

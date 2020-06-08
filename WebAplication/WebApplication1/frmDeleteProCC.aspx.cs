@@ -18,7 +18,7 @@ namespace WebApplication1
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            entConceptoCobro obj = negConceptoCobro.BuscarConcepto(txtId.Text);
+            entConceptoCobro obj = negConceptoCobro.BuscarConcepto(Convert.ToInt32(txtId.Text));
             entPropiedad obj1 = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
             if (obj != null && obj1 != null)
             {

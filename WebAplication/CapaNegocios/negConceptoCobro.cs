@@ -10,7 +10,7 @@ namespace CapaNegocios
 {
     public class negConceptoCobro
     {
-        public static entConceptoCobro BuscarConcepto(string id)
+        public static entConceptoCobro BuscarConcepto(int id)
         {
             return daoConceptoCobro.BuscarConcepto(id);
         }

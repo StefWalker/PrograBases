@@ -21,7 +21,7 @@ namespace WebApplication1
             if (txtID.Text != "" && txtPropiedad.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
-                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(txtID.Text);
+                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(Convert.ToInt32(txtID.Text));
                 if (obj != null && obj1 != null)
                 {
                     entProCC obj2 = negProCC.BuscarProCC(obj.ID_Propiedad, obj1.ID_CC);
@@ -31,7 +31,7 @@ namespace WebApplication1
                         obj3.ID_PxC = obj2.ID_PxC;
                         if (txtConcepto.Text != "")
                         {
-                            entConceptoCobro obj4 = negConceptoCobro.BuscarConcepto(txtConcepto.Text);
+                            entConceptoCobro obj4 = negConceptoCobro.BuscarConcepto(Convert.ToInt32(txtConcepto.Text));
                             if (obj4 != null)
                             {
                                 obj3.ID_CC = obj4.ID_CC;

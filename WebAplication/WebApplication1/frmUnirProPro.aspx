@@ -3,13 +3,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table>
-     <h2>Unir Propiedad existente con usuario existente</h2>
+     <h2>Unir Propiedad existente con propietario existente</h2>
      <tr>
              <td>Numero de propiedad: </td>
              <td> <asp:TextBox ID="txtProp" runat="server" width="200px"></asp:TextBox></td>
      </tr>
      <tr>
-            <td>Identificación del usuario: </td>
+            <td>Identificacion del propietario: </td>
             <td> <asp:TextBox ID="txtID" runat="server" width="200px"></asp:TextBox></td>
     </tr>
     <tr>

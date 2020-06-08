@@ -128,5 +128,25 @@ namespace WebApplication1
         {
             Response.Redirect("frmPropietariosPropiedad.aspx");
         }
+
+        protected void BuscarProxCC_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBuscarProCC.aspx");
+        }
+
+        protected void UpdateProxCC_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmModificarProCC.aspx");
+        }
+
+        protected void DeleteProxCC_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmDeleteProCC.aspx");
+        }
+
+        protected void AgregarProxCC_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmUnirProCC.aspx");
+        }
     }
 }

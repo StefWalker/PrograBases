@@ -22,14 +22,14 @@ namespace WebApplication1
             if (txtPropiedad.Text != "" && txtId.Text != "")
             {
                 entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtPropiedad.Text));
-                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(txtId.Text);
+                entConceptoCobro obj1 = negConceptoCobro.BuscarConcepto(Convert.ToInt32(txtId.Text));
                 if (obj != null && obj1 != null)
                 {
                     entProCC obj2 = negProCC.BuscarProCC(obj.ID_Propiedad, obj1.ID_CC);
                     if (obj2 != null)
                     {
                         Numero.Text = Convert.ToString(obj.NumPropiedad);
-                        //Valor.Text = Convert.ToString(obj.Valor);
+                        
                         Direccion.Text = obj.Direccion;
                         Tipo.Text = Convert.ToString(obj1.TipoCC);
                         Concepto.Text = obj1.Concepto;
