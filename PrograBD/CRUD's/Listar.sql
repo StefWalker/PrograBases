@@ -51,3 +51,33 @@ BEGIN
 	on Pro_x_Usuario.ID_Propiedad = @ID_Propiedad AND Usuario.ID_Usuario = Pro_x_Usuario.ID_Usuario
 	where Usuario.Activo = 1
 END
+
+ALTER PROC [dbo].[ListarPropietariosJuridicos]
+	@ID_Propiedad INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT PropJuridico.Documento,PropJuridico.ID_Juridico,PropJuridico.ID_Propietario,PropJuridico.ID_TDoc
+	FROM PropJuridico INNER JOIN PJur_x_Pro
+	on PJur_x_Pro.ID_Propiedad = @ID_Propiedad AND PropJuridico.ID_Juridico = PJur_x_Pro.ID_Juridico
+	where PropJuridico.Activo = 1 AND PJur_x_Pro.Activo=1
+END
+
+ALTER PROC [dbo].[ListarPropietariosFisicos]
+	@ID_Propiedad INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT Propietario.ID_Propietario,Propietario.Identificacion,Propietario.Nombre,Propietario.ID_TDoc
+	FROM Propietario INNER JOIN Pro_x_Pro
+	on Pro_x_Pro.ID_Propiedad = @ID_Propiedad AND Propietario.ID_Propietario = Pro_x_Pro.ID_Propietario
+	where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
+END
