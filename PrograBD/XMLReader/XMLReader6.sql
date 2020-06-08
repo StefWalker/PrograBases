@@ -27,3 +27,7 @@ ON Propiedad.NumPropiedad = dataCobro.NumFinca
 inner join ConceptoCobro
 on dataCobro.idcobro = ConceptoCobro.ID_CC
 
+DROP TABLE ccobro
+DROP TABLE dataTable
+DROP TABLE dataCobro
+DROP TABLE juridicos
