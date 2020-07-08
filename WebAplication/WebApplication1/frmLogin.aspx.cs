@@ -25,10 +25,19 @@ namespace WebApplication1
             if (txtUsuario.Text != "" && txtpass.Text != "")
             {
                 entUsuario obj = negUsuario.Login(txtUsuario.Text, txtpass.Text);
-                if (obj != null && obj.TipoUsuario == "Administrador")
+                if (obj != null )
                 {
-                    Session["Nombre"] = obj;
-                    Response.Redirect("frmPrincipal.aspx");
+                    if (obj.TipoUsuario == "Administrador")
+                    {
+                        Session["Nombre"] = obj;
+                        Response.Redirect("frmPrincipal.aspx");
+                    }
+                    else
+                    {
+                        Session["Nombre"] = obj;
+                        Response.Redirect("frmPrincipalUser.aspx");
+                    }
+
                 }
                 else
                 {

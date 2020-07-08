@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AnonimoUser.master.cs" Inherits="WebApplication1.AnonimoUser" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+     <link href="estilos.css" rel="stylesheet" type =" text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style2 {
+            margin-left: 99px;
+        }
+        .auto-style3 {
+            margin-right: 0px;
+            width: 237px;
+        }
+        </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="abrigo_general">
+            <div id="banner"><h2>Programadores de todo el mundo </h2></div>
+            
+            <div id="contenido_izquierdo" class="auto-style3" >
+                 <h2><P><font size=5>Servicios</font></P></h2>
+              
+                <div class="etiqueta">
+                    <asp:Button ID="VerReciboProp" runat="server" Text="Ver Recibos de una propiedad" OnClick="VerRecibos_Click" Width="170px"  />
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="VerPropiedades" runat="server" Text="Ver mis propiedades" OnClick="VerPropiedades_Click" Width="170px"  />
+               </div>
+            </div>
+
+
+            <div id="contenido_derecho" class="auto-style2"> 
+                <div style=" width: 740px">
+                    <div style=" text-align:right ; float:left ; width: 590px">Nombre de Usuario:
+                        <asp:Label ID="NombreUsuario" runat="server" Text=""></asp:Label>
+                    </div>
+                    <div style="float: left; text-align:right; width:140px ">
+                        <asp:LinkButton ID="lbtlogout" runat="server" OnClick="lbtlogout_Click">Logout</asp:LinkButton>
+
+                    </div>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
