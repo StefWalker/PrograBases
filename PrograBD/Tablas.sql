@@ -139,3 +139,4 @@ CREATE TABLE Bitacora
   insertedby VARCHAR (20) NOT NULL, 
   insertedIn VARCHAR(20) NOT NULL
 );
+
