@@ -30,73 +30,14 @@ namespace WebApplication1
             Response.Redirect("frmLogin.aspx");
         }
 
-        protected void AgregarUsuario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmAgregarUsuario.aspx");
-        }
-        protected void BuscarUsuario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarUsuario.aspx");
-        }
-
-        protected void AgregarPropiedad_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmAskPropiedad.aspx");
-        }
-
-        protected void BuscarPropiedad_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarPropiedad.aspx");
-        }
-
-        protected void AgregarPropietario_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmAskPropietario.aspx");
-        }
-
         protected void Eliminar_Click(object sender, EventArgs e)
         {
             Response.Redirect("frmAskDelete.aspx");
         }
 
-        protected void BuscarPropietario_Click1(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarPropietario.aspx");
-        }
-
-        protected void UnirProUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmUnirUserPro.aspx");
-        }
-
-        protected void UnirProPro_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmUnirProPro.aspx");
-        }
-
-        protected void ReadProPro_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarProPro.aspx");
-        }
-
-        protected void ReadProUser_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarProUser.aspx");
-        }
-
         protected void Modificar_Click(object sender, EventArgs e)
         {
             Response.Redirect("frmAskModificar.aspx");
-        }
-
-        protected void AgregarPropJuridico_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmAskAgregarJuridico.aspx");
-        }
-
-        protected void BuscarPropJuridico_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarPropJuridico.aspx");
         }
 
         protected void VerPropiedadesPro_Click(object sender, EventArgs e)
@@ -114,39 +55,24 @@ namespace WebApplication1
             Response.Redirect("frmUserPropiedades.aspx");
         }
 
-        protected void UnirProProJur_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmUnirPJurxPro.aspx");
-        }
-
-        protected void ReadProProJur_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmBuscarProProJur.aspx");
-        }
-
         protected void VerPropietariosPro_Click(object sender, EventArgs e)
         {
             Response.Redirect("frmPropietariosPropiedad.aspx");
         }
 
-        protected void BuscarProxCC_Click(object sender, EventArgs e)
+        protected void Buscar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmBuscarProCC.aspx");
+            Response.Redirect("frmAskBuscar.aspx");
         }
 
-        protected void UpdateProxCC_Click(object sender, EventArgs e)
+        protected void Agregar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmModificarProCC.aspx");
+            Response.Redirect("frmAskAgregarEntidades.aspx");
         }
 
-        protected void DeleteProxCC_Click(object sender, EventArgs e)
+        protected void Uniones_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmDeleteProCC.aspx");
-        }
-
-        protected void AgregarProxCC_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmUnirProCC.aspx");
+            Response.Redirect("frmAskCrearUniones.aspx");
         }
     }
 }

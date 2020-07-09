@@ -22,59 +22,29 @@
 <body>
     <form id="form1" runat="server">
         <div id="abrigo_general">
-            <div id="banner"><h2>Programadores de todo el mundo </h2></div>
+            <div id="banner"><h2> </h2></div>
             
             <div id="contenido_izquierdo" class="auto-style3" >
                 <h2><P><font size=5>Servicios</font></P></h2>
               
-                <div class="etiqueta">
-                    <asp:Button ID="AgregarUsuario" runat="server" Text="Agregar Usuario" OnClick="AgregarUsuario_Click" Width="170px"  />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="BuscarUsuario" runat="server" Text="Buscar Usuario" OnClick="BuscarUsuario_Click" Width="170px"  />
-               </div>
+               
                <div class="etiqueta">
-                    <asp:Button ID="ModificarUsuario" runat="server" Text="Modificar entidades" OnClick="Modificar_Click" Width="170px" />
-               </div>
-               <div class="etiqueta">
-                    <asp:Button ID="Button1" runat="server" Text="Agregar propiedad" OnClick="AgregarPropiedad_Click" Width="170px" />
+                    <asp:Button ID="BuscarEntidades" runat="server" Text="Buscar entidades" OnClick="Buscar_Click" Width="170px" />
                </div>
                 <div class="etiqueta">
-                    <asp:Button ID="Button3" runat="server" Text="Agregar propietario" OnClick="AgregarPropietario_Click" Width="170px" />
+                    <asp:Button ID="Button2" runat="server" Text="Modificar entidades" OnClick="Modificar_Click" Width="170px" />
                </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button2" runat="server" Text="Buscar Propiedad" OnClick="BuscarPropiedad_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button5" runat="server" Text="Buscar Propietario" OnClick="BuscarPropietario_Click1" Width="170px" />
-               </div>
+
                 <div class="etiqueta">
                     <asp:Button ID="Button4" runat="server" Text="Eliminar Entidades" OnClick="Eliminar_Click" Width="170px" />
                </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button6" runat="server" Text="Crear unión Propiedad Propietario" OnClick="UnirProPro_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button7" runat="server" Text="Crear unión Propiedad Usuario" OnClick="UnirProUser_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button15" runat="server" Text="Crear unión Propiedad  Propietario Juridico" OnClick="UnirProProJur_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button8" runat="server" Text="Buscar Propiedad de un Propietario" OnClick="ReadProPro_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button9" runat="server" Text="Buscar Propiedad de un usuario" OnClick="ReadProUser_Click" Width="170px" />
+                 <div class="etiqueta">
+                    <asp:Button ID="Button1" runat="server" Text="Agregar Entidades" OnClick="Agregar_Click" Width="170px" />
                </div>
                  <div class="etiqueta">
-                    <asp:Button ID="Button16" runat="server" Text="Buscar Propiedad de un Propietario Juridico" OnClick="ReadProProJur_Click" Width="170px" />
+                    <asp:Button ID="Button3" runat="server" Text="Crear union entre entidades" OnClick="Uniones_Click" Width="170px" />
                </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button10" runat="server" Text="Agregar propietario juridico" OnClick="AgregarPropJuridico_Click" Width="170px" />
-               </div>
-                <div class="etiqueta">
-                    <asp:Button ID="Button11" runat="server" Text="Buscar propietario juridico" OnClick="BuscarPropJuridico_Click" Width="170px" />
-               </div>
+
                 <div class="etiqueta">
                     <asp:Button ID="Button12" runat="server" Text="Ver Propiedades de un propietario" OnClick="VerPropiedadesPro_Click" Width="170px" />
                </div>
@@ -87,18 +57,7 @@
                 <div class="etiqueta">
                     <asp:Button ID="Button17" runat="server" Text="Ver Propietarios de una propiedad" OnClick="VerPropietariosPro_Click" Width="170px" />
                </div>
-                 <div class="etiqueta">
-                    <asp:Button ID="Button18" runat="server" Text="Buscar ProxCC" OnClick="BuscarProxCC_Click" Width="170px" />
-               </div>
-                 <div class="etiqueta">
-                    <asp:Button ID="Button19" runat="server" Text="Modificar ProxCC" OnClick="UpdateProxCC_Click" Width="170px" />
-               </div>
-                 <div class="etiqueta">
-                    <asp:Button ID="Button20" runat="server" Text="Delete ProxCC" OnClick="DeleteProxCC_Click" Width="170px" />
-               </div>
-                 <div class="etiqueta">
-                    <asp:Button ID="Button21" runat="server" Text="Crear ProxCC" OnClick="AgregarProxCC_Click" Width="170px" />
-               </div>
+    
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

@@ -48,5 +48,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmModificarProProJuridico.aspx");
         }
+
+        protected void btnModificarProCConsumo_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmModificarProCC.aspx");
+        }
     }
 }

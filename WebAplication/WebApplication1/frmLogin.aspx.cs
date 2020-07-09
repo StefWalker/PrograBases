@@ -25,17 +25,22 @@ namespace WebApplication1
             if (txtUsuario.Text != "" && txtpass.Text != "")
             {
                 entUsuario obj = negUsuario.Login(txtUsuario.Text, txtpass.Text);
-                if (obj != null )
+                if (obj != null)
                 {
-                    if (obj.TipoUsuario == "Administrador")
+                    if (obj.TipoUsuario == "Administrador" || obj.TipoUsuario == "administrador" )
                     {
                         Session["Nombre"] = obj;
                         Response.Redirect("frmPrincipal.aspx");
                     }
-                    else
+                   if (obj.TipoUsuario == "Usuario" || obj.TipoUsuario == "usuario")
                     {
                         Session["Nombre"] = obj;
                         Response.Redirect("frmPrincipalUser.aspx");
+                    }
+                    else
+                    {
+                        lbError.Text = "El tipo de usuario es incorrecto";
+                        lbError.Visible = true;
                     }
 
                 }

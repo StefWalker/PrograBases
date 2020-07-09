@@ -24,13 +24,16 @@
                 <td colspan="2" align="center"><asp:Button ID="Button2" runat="server" Text="Eliminar Propietario Juridico" Width="211px" OnClick="btnDelJur_Click" /></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><asp:Button ID="Button3" runat="server" Text="Eliminar la union de un Propietario y una Propiedad" Width="211px" OnClick="btnProPro_Click" /></td>
+                <td colspan="2" align="center"><asp:Button ID="Button3" runat="server" Text="Eliminar la union de PropxPropiedad" Width="211px" OnClick="btnProPro_Click" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center"><asp:Button ID="Button4" runat="server" Text="Eliminar la union de un Usuario y una Propiedad" Width="211px" OnClick="btnUserPro_Click" /></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><asp:Button ID="Button5" runat="server" Text="Eliminar la union de un propietario juridico y una Propiedad" Width="211px" OnClick="btnPJurPro_Click" /></td>
+                <td colspan="2" align="center"><asp:Button ID="Button5" runat="server" Text="Eliminar la union de ProJurxPropiedad" Width="211px" OnClick="btnPJurPro_Click" /></td>
+            </tr>
+             <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button6" runat="server" Text="Eliminar la union de ProxCConsumo" Width="211px" OnClick="btnProCconsumo_Click" /></td>
             </tr>
         </table>
     </div>

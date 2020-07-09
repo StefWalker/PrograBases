@@ -67,7 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Formulario web1.aspx" />
+    <Content Include="frmAskAgregarEntidades.aspx" />
+    <Content Include="frmAskBuscar.aspx" />
+    <Content Include="frmAskCrearUniones.aspx" />
     <Content Include="frmModificarProCC.aspx" />
     <Content Include="frmPrincipalUser.aspx" />
     <Content Include="frmUnirProCC.aspx" />
@@ -137,12 +139,26 @@
     <Compile Include="AnonimoUser.Master.designer.cs">
       <DependentUpon>AnonimoUser.Master</DependentUpon>
     </Compile>
-    <Compile Include="Formulario web1.aspx.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
+    <Compile Include="frmAskAgregarEntidades.aspx.cs">
+      <DependentUpon>frmAskAgregarEntidades.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Formulario web1.aspx.designer.cs">
-      <DependentUpon>Formulario web1.aspx</DependentUpon>
+    <Compile Include="frmAskAgregarEntidades.aspx.designer.cs">
+      <DependentUpon>frmAskAgregarEntidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskBuscar.aspx.cs">
+      <DependentUpon>frmAskBuscar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskBuscar.aspx.designer.cs">
+      <DependentUpon>frmAskBuscar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmAskCrearUniones.aspx.cs">
+      <DependentUpon>frmAskCrearUniones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskCrearUniones.aspx.designer.cs">
+      <DependentUpon>frmAskCrearUniones.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmModificarProCC.aspx.cs">
       <DependentUpon>frmModificarProCC.aspx</DependentUpon>

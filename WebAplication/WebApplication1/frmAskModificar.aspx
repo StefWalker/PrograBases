@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="abrigo_formulario"> 
-      <h2>Eliminar Entidades</h2>
+      <h2>Modificar Entidades</h2>
         <br />
         <table style="height: 110px">
             <tr>
@@ -31,6 +31,9 @@
             </tr>
             <tr>
                 <td colspan="2" align="center"><asp:Button ID="Button5" runat="server" Text="Modificar unión entre ProxPJuridico" Width="211px" OnClick="btnModificarPJurPro_Click" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="Button6" runat="server" Text="Modificar unión entre ProxCConsumo" Width="211px" OnClick="btnModificarProCConsumo_Click" /></td>
             </tr>
         </table>
     </div>

@@ -11,7 +11,7 @@ namespace WebApplication1
 {
 
 
-    public partial class frmAskDelete
+    public partial class AskBuscar
     {
 
         /// <summary>
