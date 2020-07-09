@@ -7,7 +7,8 @@ CREATE TABLE Propiedad
   NumPropiedad INT NOT NULL,
   Valor MONEY NOT NULL,
   Direccion VARCHAR(250) NOT NULL,
-  Activo BIT NOT NULL DEFAULT 1
+  Activo BIT NOT NULL DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE()
 );
 
 CREATE TABLE TipoDoc
@@ -24,6 +25,7 @@ CREATE TABLE Propietario
   Nombre VARCHAR(100) NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1,
   ID_TDoc INT NOT NULL,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 
@@ -33,7 +35,8 @@ CREATE TABLE Usuario
   Nombre VARCHAR(100) NOT NULL,
   Password VARCHAR(100) NOT NULL,
   TipoUsuario VARCHAR(100) NOT NULL,
-  Activo BIT NOT NULL  DEFAULT 1
+  Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE()
 );
 
 CREATE TABLE PropJuridico
@@ -43,6 +46,7 @@ CREATE TABLE PropJuridico
   Documento VARCHAR(250) NOT NULL,
   ID_TDoc INT NOT NULL DEFAULT 4,
   Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 
@@ -52,7 +56,7 @@ CREATE TABLE ConceptoCobro
   TipoCC VARCHAR(50) NOT NULL,
   Concepto VARCHAR(100) NOT NULL,
   FechaVencimiento INT NOT NULL,
-  Fecha INT NOT NULL,
+  Fecha INT NOT NULL DEFAULT GETDATE(),
   Activo BIT NOT NULL  DEFAULT 1
 );
 
@@ -86,6 +90,7 @@ CREATE TABLE Pro_x_Pro
   ID_Propiedad INT NOT NULL,
   ID_Propietario INT NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 );
@@ -96,6 +101,7 @@ CREATE TABLE Pro_x_Usuario
   ID_Propiedad INT NOT NULL,
   ID_Usuario INT NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
   FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)
 );
@@ -106,6 +112,7 @@ CREATE TABLE Pro_x_CC
   ID_CC INT NOT NULL,
   ID_Propiedad INT NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_CC) REFERENCES ConceptoCobro(ID_CC),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
@@ -116,7 +123,19 @@ CREATE TABLE PJur_x_Pro
   ID_Juridico INT NOT NULL,
   ID_Propiedad INT NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1,
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   FOREIGN KEY (ID_Juridico) REFERENCES PropJuridico(ID_Juridico),
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
+CREATE TABLE Bitacora
+(
+  ID_Bitacora int identity (1, 1) PRIMARY KEY NOT NULL,
+  IdEntityType INT NOT NULL,
+  EntityId INT NOT NULL, 
+  jsonAntes VARCHAR (500) NOT NULL,
+  jsonDespues VARCHAR (500) NOT NULL,
+  insertedAt DATETIME NOT NULL, 
+  insertedby VARCHAR (20) NOT NULL, 
+  insertedIn VARCHAR(20) NOT NULL
+);

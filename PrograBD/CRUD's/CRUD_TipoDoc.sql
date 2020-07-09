@@ -26,12 +26,17 @@ CREATE PROCEDURE TipoDocInsert
 	  @TipoDoc INT,
 	  @Tipo Varchar (100)
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO TipoDoc(TipoDoc,
 					Tipo)
     VALUES (@TipoDoc,
 			@Tipo)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read de tabla TipoDoc 
 IF OBJECT_ID('TipoDocRead') IS NOT NULL
@@ -42,12 +47,15 @@ GO
 CREATE PROC TipoDocRead
 	@ID_TDoc int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (ID_TDoc = @ID_TDoc) 
-END
-
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update de tabla TipoDoc 
@@ -61,11 +69,15 @@ CREATE PROC TipoDocUpdate
 	 @ID_TDoc INT,
 	 @Tipo Varchar (100) 
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE TipoDoc
 SET  Tipo= @Tipo, TipoDoc = @TipoDoc
 WHERE  (ID_TDoc = @ID_TDoc)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla TipoDoc
@@ -77,12 +89,14 @@ GO
 CREATE PROC TipoDocDelete
     @ID_TDoc int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM  TipoDoc 
-WHERE  ID_TDoc= @ID_TDoc
- 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -------------------------Procedimientos extras-----------------------------
@@ -95,9 +109,13 @@ GO
 CREATE PROC TipoDocSearch
     @TipoDoc INT
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (TipoDoc = @TipoDoc) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

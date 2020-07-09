@@ -14,8 +14,8 @@ BEGIN
 	   TipoCC VARCHAR(50) NOT NULL,
 	   Concepto VARCHAR(100) NOT NULL,
 	   FechaVencimiento INT NOT NULL,
-	   Fecha INT NOT NULL,
-	   Activo BIT NOT NULL
+	   Fecha INT NOT NULL DEFAULT GETDATE(),
+	   Activo BIT NOT NULL DEFAULT 1
 	);
 END
 
@@ -32,7 +32,7 @@ CREATE PROCEDURE CCobroInsert
 	 @Fecha DATE,
 	 @Activo BIT
 AS
-BEGIN
+BEGIN TRY 
 INSERT INTO ConceptoCobro(
 	 TipoCC,
 	 Concepto,
@@ -45,7 +45,12 @@ INSERT INTO ConceptoCobro(
 	 @FechaVencimiento,
 	 GETDATE(),
 	 1)
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read en tabla Concepto Cobro
 IF OBJECT_ID('CCobroRead') IS NOT NULL
@@ -56,11 +61,15 @@ GO
 CREATE PROC CCobroRead
 	 @ID_CC int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_CC, FechaVencimiento, Fecha
     FROM   ConceptoCobro  
     WHERE  (ID_CC = @ID_CC AND Activo = 1) 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update en tabla Concepto Cobro
@@ -77,7 +86,7 @@ CREATE PROC CCobroUpdate
 	 @Fecha DATE,
 	 @Activo BIT
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE ConceptoCobro
 SET  TipoCC = @TipoCC,
 	 Concepto = @Concepto,
@@ -85,7 +94,11 @@ SET  TipoCC = @TipoCC,
 	 Fecha	= @Fecha,
 	 Activo = @Activo
 WHERE  (ID_CC = @ID_CC AND Activo = 1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete en tabla Concepto Cobro
@@ -97,9 +110,13 @@ GO
 CREATE PROC CCobroDelete 
     @ID_CC int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   ConceptoCobro
 WHERE  ID_CC = @ID_CC
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

@@ -13,12 +13,14 @@ BEGIN
 		ID_PxC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 		ID_CC INT NOT NULL, 
 		ID_Propiedad INT NOT NULL,
-		Activo BIT NOT NULL  DEFAULT 1,
+	    Activo BIT NOT NULL  DEFAULT 1,
+	    Fecha DATE NOT NULL DEFAULT GETDATE(),
 		FOREIGN KEY (ID_CC) REFERENCES ConceptoCobro(ID_CC),
 		FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 	);
 END
-USE [ProyectoBases]
+
+
 -- Insert en tabla PxC
 
 IF OBJECT_ID('ProxCCInsert') IS NOT NULL
@@ -31,7 +33,7 @@ CREATE PROCEDURE ProxCCInsert
 	  @ID_CC INT
 	  
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO Pro_x_CC(
 	   ID_Propiedad ,
 	   ID_CC,
@@ -41,8 +43,12 @@ INSERT INTO Pro_x_CC(
 	   @ID_Propiedad ,
 	   @ID_CC,
 	   1)
-	  
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read de tabla PxP
 IF OBJECT_ID('Pro_x_CCRead') IS NOT NULL
@@ -54,11 +60,15 @@ CREATE PROC Pro_x_CCRead
      @ID_Propiedad int , 
 	 @ID_CC int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_CC, ID_Propiedad
     FROM   Pro_x_CC 
     WHERE  (ID_Propiedad = @ID_Propiedad AND ID_CC = @ID_CC AND Activo = 1) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update de tabla PxP
@@ -73,13 +83,17 @@ CREATE PROC Pro_x_CCUpdate
 	 @ID_CC INT
   
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Pro_x_CC
 SET  ID_Propiedad = @ID_Propiedad,
 	 ID_CC= @ID_CC
 	 
 WHERE  (ID_PxC = @ID_PxC AND  Activo = 1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla PxP
@@ -92,10 +106,13 @@ CREATE PROC Pro_x_CCDelete
     @ID_Propiedad INT,
 	 @ID_CC INT
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Pro_x_CC
 SET Activo = 0
 WHERE  ID_Propiedad = @ID_Propiedad  AND ID_CC = @ID_CC
- 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

@@ -13,7 +13,8 @@ BEGIN
 	   ID_PxP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	   ID_Propiedad INT NOT NULL,
 	   ID_Propietario INT NOT NULL,
-	   Activo BIT NOT NULL,
+	   Activo BIT NOT NULL  DEFAULT 1,
+	   Fecha DATE NOT NULL DEFAULT GETDATE(),
        FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
        FOREIGN KEY (ID_Propietario) REFERENCES Propietario(ID_Propietario)
 	);
@@ -31,7 +32,7 @@ CREATE PROCEDURE ProxProInsert
 	  @ID_Propietario INT
 	  
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO Pro_x_Pro(
 	   ID_Propiedad ,
 	   ID_Propietario,
@@ -41,9 +42,13 @@ INSERT INTO Pro_x_Pro(
 	   @ID_Propiedad ,
 	   @ID_Propietario,
 	   1)
-	  
-END
-USE [ProyectoBases]
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
+
 -- Read de tabla PxP
 IF OBJECT_ID('Pro_x_ProRead') IS NOT NULL
 BEGIN 
@@ -53,11 +58,15 @@ GO
 CREATE PROC Pro_x_ProRead
      @ID_Propiedad int , @ID_Propietario int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_PxP, ID_Propiedad ,ID_Propietario
     FROM   Pro_x_Pro 
     WHERE  (ID_Propiedad = @ID_Propiedad AND ID_Propietario = @ID_Propietario AND Activo = 1) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update de tabla PxP
@@ -72,13 +81,17 @@ CREATE PROC Pro_x_ProUpdate
 	 @ID_Propietario INT
   
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Pro_x_Pro
 SET  ID_Propiedad = @ID_Propiedad,
 	 ID_Propietario= @ID_Propietario
 	 
 WHERE  (ID_PxP = @ID_PxP AND  Activo = 1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla PxP
@@ -91,11 +104,13 @@ CREATE PROC Pro_x_ProDelete
     @ID_Propiedad INT,
 	 @ID_Propietario INT
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Pro_x_Pro
 SET Activo = 0
 WHERE  ID_Propiedad = @ID_Propiedad  AND ID_Propietario = @ID_Propietario
- 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
- 

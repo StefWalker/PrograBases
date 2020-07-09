@@ -13,8 +13,9 @@ BEGIN
 	  ID_Propietario INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	  Identificacion VARCHAR(250) NOT NULL,
 	  Nombre VARCHAR(100) NOT NULL,
-      Activo BIT NOT NULL,
-	  ID_TDoc INT NOT NULL,
+	  Activo BIT NOT NULL  DEFAULT 1,
+      ID_TDoc INT NOT NULL,
+      Fecha DATE NOT NULL DEFAULT GETDATE(),
 	  FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 	);
 END
@@ -32,7 +33,7 @@ CREATE PROCEDURE InsertPropietario
 	  @ID_TDoc INT
 	 
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO Propietario(
 	   Identificacion,
 	   Nombre,
@@ -43,7 +44,12 @@ INSERT INTO Propietario(
 	   @Nombre,
 	   1,
 	   @ID_TDoc)
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read de tabla propietario 
 IF OBJECT_ID('ReadPropietario') IS NOT NULL
@@ -54,11 +60,15 @@ GO
 CREATE PROC ReadPropietario
     @ID_Propietario int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Propietario,Identificacion,Nombre,ID_TDoc 
     FROM   Propietario
     WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update de tabla propietario 
@@ -72,7 +82,7 @@ CREATE PROC PropietarioUpdateB
 	 @NewIdentificacion INT,
 	 @NewNombre VARCHAR (100)
 AS 
-BEGIN
+BEGIN TRY
 IF(@NewIdentificacion = '')
 BEGIN
 	SET @NewIdentificacion = (SELECT Identificacion FROM Propietario WHERE Identificacion = @Identificacion)
@@ -85,7 +95,11 @@ UPDATE Propietario
 SET  Identificacion= @Identificacion,
 	 Nombre =  @NewNombre
 WHERE  (Identificacion = @Identificacion AND Activo = 1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla propietario
@@ -97,12 +111,15 @@ GO
 CREATE PROC PropietarioDelete 
     @ID_Propietario int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   Propietario
 WHERE  ID_Propietario = @ID_Propietario
- 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 ------------------------Procedimientos extras---------------------------
@@ -116,11 +133,15 @@ GO
 CREATE PROC PropietarioSearch
     @Identificacion VARCHAR(250)
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
 	FROM   Propietario
     WHERE  (Identificacion = @Identificacion AND Activo = 1) 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla propietario por nombre y identificacion de propietario
@@ -133,10 +154,13 @@ CREATE PROC PropietarioDeleteByName
     @Identificacion VARCHAR(250),
 	@Nombre VARCHAR (100)
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Propietario
 SET Activo = 0
 WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
- 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

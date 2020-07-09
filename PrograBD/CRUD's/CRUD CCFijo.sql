@@ -28,14 +28,19 @@ CREATE PROCEDURE CCFijoInsert
 	 @ID_Fijo INT,
 	 @Monto Decimal
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO CC_Fijo(
 	 ID_Fijo,
 	 Monto)
 	 VALUES(
 	 @ID_Fijo,
 	 @Monto)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read en tabla Concepto Cobro Fijo
 IF OBJECT_ID('CCFijoRead') IS NOT NULL
@@ -46,11 +51,15 @@ GO
 CREATE PROC CCFijoRead
 	@ID_Fijo int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Fijo, Monto
     FROM   CC_Fijo  
     WHERE  (ID_Fijo = @ID_Fijo) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update en tabla Concepto Cobro Fijo
@@ -63,11 +72,15 @@ CREATE PROC CCFijoUpdate
 	 @ID_Fijo int,
 	 @Monto Decimal
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE CC_Fijo
 SET  Monto = @Monto
 WHERE  (ID_Fijo = @ID_Fijo)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete en tabla Concepto Cobro Fijo
@@ -79,9 +92,13 @@ GO
 CREATE PROC CCFijoDelete 
     @ID_Fijo int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   CC_Fijo
 WHERE  ID_Fijo = @ID_Fijo
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

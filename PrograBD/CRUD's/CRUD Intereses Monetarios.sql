@@ -25,14 +25,19 @@ CREATE PROCEDURE InteresesInsert
 	 @ID_IM INT,
 	 @Monto Decimal
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO Intereses_Monetarios(
 	 ID_IM,
 	 Monto)
 	 VALUES(
 	 @ID_IM,
 	 @Monto)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 -- Read en tabla Intereses Monetarios
 IF OBJECT_ID('InteresesRead') IS NOT NULL
@@ -43,11 +48,15 @@ GO
 CREATE PROC InteresesRead
 	@ID_IM int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_IM, Monto
     FROM   Intereses_Monetarios
     WHERE  (ID_IM = @ID_IM) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update en tabla Intereses Monetarios
@@ -60,11 +69,15 @@ CREATE PROC InteresesUpdate
 	 @ID_IM int,
 	 @Monto Decimal
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Intereses_Monetarios
 SET  Monto = @Monto
 WHERE  (ID_IM = @ID_IM)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete en tabla Intereses Monetarios
@@ -76,9 +89,13 @@ GO
 CREATE PROC InteresesDelete 
     @ID_IM int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   Intereses_Monetarios
 WHERE  ID_IM = @ID_IM
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

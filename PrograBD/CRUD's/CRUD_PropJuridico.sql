@@ -13,8 +13,9 @@ BEGIN
 	     ID_Juridico INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 		 ID_Propietario INT REFERENCES Propietario(ID_Propietario) NOT NULL,
 		 Documento VARCHAR(250) NOT NULL,
-		 ID_TDoc INT NOT NULL,
-		 Activo BIT NOT NULL,
+		 ID_TDoc INT NOT NULL DEFAULT 4,
+		 Activo BIT NOT NULL  DEFAULT 1,
+		 Fecha DATE NOT NULL DEFAULT GETDATE(),
 		 FOREIGN KEY (ID_TDoc) REFERENCES TipoDoc(ID_TDoc)
 );
 END
@@ -31,7 +32,7 @@ CREATE PROCEDURE PropJuridicoInsert
 	  @Documento VARCHAR(250),
 	  @ID_TDoc INT 
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO PropJuridico(
 	   ID_Propietario,
 	   Documento,
@@ -42,7 +43,12 @@ INSERT INTO PropJuridico(
 	   @Documento,
 	   @ID_TDoc,
 	   1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
 
 
 -- Read de tabla PropJuridico , busca por medio del ID y lee todo
@@ -54,13 +60,15 @@ GO
 CREATE PROC PropJuridicoSearchID
     @ID_Propietario INT
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
     WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
-END
-GO
-
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 --- Update de tabla Propietario Juridico
@@ -74,7 +82,7 @@ CREATE PROC ProJuridicoUpdateB
 	 @NewDocumento INT,
      @ID_TDoc INT
 AS 
-BEGIN 
+BEGIN TRY
 IF(@NewDocumento IS NULL)
 BEGIN
 	SET @NewDocumento = (SELECT Documento FROM PropJuridico WHERE (Documento = @Documento))
@@ -83,7 +91,11 @@ UPDATE PropJuridico
 SET  Documento = @NewDocumento,
 	 ID_TDoc = @ID_TDoc
 WHERE  (Documento = @Documento AND Activo = 1)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla PropJuridico 
@@ -95,12 +107,15 @@ GO
 CREATE PROC PropJuridicoDelete
     @ID_Juridico int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   PropJuridico
 WHERE  ID_Juridico = @ID_Juridico
- 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 --------------Procedimientos extras----------------------------
@@ -113,12 +128,18 @@ GO
 CREATE PROC BuscarPropJuridico
     @Documento VARCHAR(250)
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
     WHERE  (Documento = @Documento AND Activo = 1) 
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
+
+
 
 -- Delete de tabla Propietario Juridico por numero de documento
 IF OBJECT_ID('PropJuricoDeleteB') IS NOT NULL
@@ -129,9 +150,13 @@ GO
 CREATE PROC PropJuricoDeleteB 
     @Documento VARCHAR(250)
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE PropJuridico
 SET	Activo = 0
 WHERE  Documento = @Documento
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO

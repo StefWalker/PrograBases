@@ -15,7 +15,8 @@ BEGIN
 		 NumPropiedad INT NOT NULL,
 		 Valor INT NOT NULL,
 		 Direccion VARCHAR(250) NOT NULL,
-		 Activo BIT NOT NULL
+		 Activo BIT NOT NULL DEFAULT 1,
+		 Fecha DATE NOT NULL DEFAULT GETDATE()
 );
 END
 USE [ProyectoBases]
@@ -32,7 +33,7 @@ CREATE PROCEDURE PropiedadInsert
 	  @Direccion VARCHAR(250)
 	 
 AS
-BEGIN
+BEGIN TRY
 INSERT INTO Propiedad(
 	   NumPropiedad,
 	   Valor,
@@ -43,7 +44,13 @@ INSERT INTO Propiedad(
 	   convert(varchar,cast(@Valor as money),1),
 	   @Direccion,
 	   1)
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
+GO
+
 
 -- Read de tabla propiedad
 IF OBJECT_ID('PropiedadRead') IS NOT NULL
@@ -54,11 +61,15 @@ GO
 CREATE PROC PropiedadRead
     @ID_Propiedad int
 AS 
-BEGIN 
+BEGIN TRY
     SELECT ID_Propiedad, NumPropiedad, Valor, Direccion
     FROM   Propiedad  
     WHERE  (ID_Propiedad = @ID_Propiedad  AND Activo = 1) 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Update de tabla propiedad
@@ -73,7 +84,7 @@ CREATE PROC PropiedadUpdateB
 	 @Valor INT,
 	 @Direccion VARCHAR(250)
 AS 
-BEGIN 
+BEGIN TRY
 IF(@NewNumPropiedad = '')
 BEGIN
 	SET @NewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
@@ -91,7 +102,11 @@ SET  NumPropiedad = @NewNumPropiedad,
 	 Valor = cast(@Valor as money),
 	 Direccion = @Direccion
 WHERE  (NumPropiedad = @NumPropiedad)
-END
+END TRY
+BEGIN CATCH
+	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 -- Delete de tabla propiedad
@@ -103,11 +118,15 @@ GO
 CREATE PROC PropiedadDelete 
     @ID_Propiedad int
 AS 
-BEGIN 
+BEGIN TRY
 DELETE
 FROM   Propiedad
 WHERE  ID_Propiedad = @ID_Propiedad
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
 
 ------------------------Procedimientos extras --------------------------
@@ -120,12 +139,18 @@ GO
 CREATE PROC PropiedadSearch
     @NumPropiedad INT
 AS 
-BEGIN 
+BEGIN TRY
     SELECT NumPropiedad, convert(varchar,cast(Valor as int),1), Direccion
 	FROM   Propiedad
     WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
+
+
 -- Delete de tabla propiedad por numero de propiedad
 IF OBJECT_ID('PropiedadDeleteByNum') IS NOT NULL
 BEGIN 
@@ -135,9 +160,13 @@ GO
 CREATE PROC PropiedadDeleteByNum 
     @NumPropiedad int
 AS 
-BEGIN 
+BEGIN TRY
 UPDATE Propiedad
 SET	Activo = 0
 WHERE  NumPropiedad = @NumPropiedad
-END
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+END CATCH
 GO
