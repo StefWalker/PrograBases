@@ -28,9 +28,9 @@ DROP PROC InsertPropietario
 END
 GO
 CREATE PROCEDURE InsertPropietario
-	  @Identificacion VARCHAR(250),
-	  @Nombre VARCHAR (100),
-	  @ID_TDoc INT
+	  @inIdentificacion VARCHAR(250),
+	  @inNombre VARCHAR (100),
+	  @inID_TDoc INT
 	 
 AS
 BEGIN TRY
@@ -40,10 +40,10 @@ INSERT INTO Propietario(
 	   Activo,
 	   ID_TDoc)
     VALUES (
-	   @Identificacion,
-	   @Nombre,
+	   @inIdentificacion,
+	   @inNombre,
 	   1,
-	   @ID_TDoc)
+	   @inID_TDoc)
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -58,12 +58,12 @@ BEGIN
 END 
 GO
 CREATE PROC ReadPropietario
-    @ID_Propietario int
+    @inID_Propietario int
 AS 
 BEGIN TRY
     SELECT ID_Propietario,Identificacion,Nombre,ID_TDoc 
     FROM   Propietario
-    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
+    WHERE  (ID_Propietario = @inID_Propietario AND Activo = 1) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -78,23 +78,23 @@ DROP PROC PropietarioUpdateB
 END 
 GO
 CREATE PROC PropietarioUpdateB
-	 @Identificacion VARCHAR(250),
-	 @NewIdentificacion INT,
-	 @NewNombre VARCHAR (100)
+	 @inIdentificacion VARCHAR(250),
+	 @inNewIdentificacion INT,
+	 @inNewNombre VARCHAR (100)
 AS 
 BEGIN TRY
-IF(@NewIdentificacion = '')
+IF(@inNewIdentificacion = '')
 BEGIN
-	SET @NewIdentificacion = (SELECT Identificacion FROM Propietario WHERE Identificacion = @Identificacion)
+	SET @inNewIdentificacion = (SELECT Identificacion FROM Propietario WHERE Identificacion = @inIdentificacion)
 END
-IF(@NewNombre = '')
+IF(@inNewNombre = '')
 BEGIN
-	SET @NewNombre = (SELECT Nombre FROM Propietario WHERE Identificacion = @Identificacion)
+	SET @inNewNombre = (SELECT Nombre FROM Propietario WHERE Identificacion = @inIdentificacion)
 END
 UPDATE Propietario
-SET  Identificacion= @Identificacion,
-	 Nombre =  @NewNombre
-WHERE  (Identificacion = @Identificacion AND Activo = 1)
+SET  Identificacion= @inIdentificacion,
+	 Nombre =  @inNewNombre
+WHERE  (Identificacion = @inIdentificacion AND Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -109,12 +109,12 @@ DROP PROC PropietarioDelete
 END 
 GO
 CREATE PROC PropietarioDelete 
-    @ID_Propietario int
+    @inID_Propietario int
 AS 
 BEGIN TRY
 DELETE
 FROM   Propietario
-WHERE  ID_Propietario = @ID_Propietario
+WHERE  ID_Propietario = @inID_Propietario
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
@@ -131,12 +131,12 @@ DROP PROC PropietarioSearch
 END 
 GO
 CREATE PROC PropietarioSearch
-    @Identificacion VARCHAR(250)
+    @inIdentificacion VARCHAR(250)
 AS 
 BEGIN TRY
     SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
 	FROM   Propietario
-    WHERE  (Identificacion = @Identificacion AND Activo = 1) 
+    WHERE  (Identificacion = @inIdentificacion AND Activo = 1) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -151,13 +151,13 @@ DROP PROC PropietarioDeleteByName
 END 
 GO
 CREATE PROC PropietarioDeleteByName 
-    @Identificacion VARCHAR(250),
-	@Nombre VARCHAR (100)
+    @inIdentificacion VARCHAR(250),
+	@inNombre VARCHAR (100)
 AS 
 BEGIN TRY
 UPDATE Propietario
 SET Activo = 0
-WHERE  (Identificacion = @Identificacion AND Nombre = @Nombre)
+WHERE  (Identificacion = @inIdentificacion AND Nombre = @inNombre)
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

@@ -28,8 +28,8 @@ DROP PROC ProxProInsert
 END
 GO
 CREATE PROCEDURE ProxProInsert
-	  @ID_Propiedad INT ,
-	  @ID_Propietario INT
+	  @inID_Propiedad INT ,
+	  @inID_Propietario INT
 	  
 AS
 BEGIN TRY
@@ -39,8 +39,8 @@ INSERT INTO Pro_x_Pro(
 	   Activo)
 
     VALUES (
-	   @ID_Propiedad ,
-	   @ID_Propietario,
+	   @inID_Propiedad ,
+	   @inID_Propietario,
 	   1)
 END TRY
 BEGIN CATCH
@@ -56,12 +56,12 @@ BEGIN
 END 
 GO
 CREATE PROC Pro_x_ProRead
-     @ID_Propiedad int , @ID_Propietario int
+     @inID_Propiedad int , @inID_Propietario int
 AS 
 BEGIN TRY
     SELECT ID_PxP, ID_Propiedad ,ID_Propietario
     FROM   Pro_x_Pro 
-    WHERE  (ID_Propiedad = @ID_Propiedad AND ID_Propietario = @ID_Propietario AND Activo = 1) 
+    WHERE  (ID_Propiedad = @inID_Propiedad AND ID_Propietario = @inID_Propietario AND Activo = 1) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -76,17 +76,17 @@ DROP PROC Pro_x_ProUpdate
 END 
 GO
 CREATE PROC Pro_x_ProUpdate
-	 @ID_PxP INT,
-	 @ID_Propiedad INT ,
-	 @ID_Propietario INT
+	 @inID_PxP INT,
+	 @inID_Propiedad INT ,
+	 @inID_Propietario INT
   
 AS 
 BEGIN TRY
 UPDATE Pro_x_Pro
-SET  ID_Propiedad = @ID_Propiedad,
-	 ID_Propietario= @ID_Propietario
+SET  ID_Propiedad = @inID_Propiedad,
+	 ID_Propietario= @inID_Propietario
 	 
-WHERE  (ID_PxP = @ID_PxP AND  Activo = 1)
+WHERE  (ID_PxP = @inID_PxP AND  Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -101,13 +101,13 @@ DROP PROC Pro_x_ProDelete
 END 
 GO
 CREATE PROC Pro_x_ProDelete 
-    @ID_Propiedad INT,
-	 @ID_Propietario INT
+    @inID_Propiedad INT,
+	 @inID_Propietario INT
 AS 
 BEGIN TRY
 UPDATE Pro_x_Pro
 SET Activo = 0
-WHERE  ID_Propiedad = @ID_Propiedad  AND ID_Propietario = @ID_Propietario
+WHERE  ID_Propiedad = @inID_Propiedad  AND ID_Propietario = @inID_Propietario
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

@@ -38,7 +38,7 @@ namespace WebApplication1
 
         protected void VerRecibos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmVerPropiedades.aspx");
+            Response.Redirect("frmAskRecibos.aspx");
         }
     }
 }

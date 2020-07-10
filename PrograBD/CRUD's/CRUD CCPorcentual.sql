@@ -23,16 +23,16 @@ DROP PROC CCPorcentualInsert
 END
 GO
 CREATE PROCEDURE CCPorcentualInsert
-	 @ID_Por INT,
-	 @Porcentaje INT
+	 @inID_Por INT,
+	 @inPorcentaje INT
 AS
 BEGIN TRY
 INSERT INTO CC_Porcentual(
 	 ID_Por,
 	 Porcentaje)
 	 VALUES(
-	 @ID_Por,
-	 @Porcentaje)
+	 @inID_Por,
+	 @inPorcentaje)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -47,12 +47,12 @@ BEGIN
 END 
 GO
 CREATE PROC CCPorcentualRead
-	@ID_Por int
+	@inID_Por int
 AS 
 BEGIN TRY
     SELECT ID_Por, Porcentaje
     FROM   CC_Porcentual  
-    WHERE  (ID_Por = @ID_Por) 
+    WHERE  (ID_Por = @inID_Por) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -67,13 +67,13 @@ DROP PROC CCPorcentualUpdate
 END 
 GO
 CREATE PROC CCPorcentualUpdate
-	 @ID_Por int,
-	 @Porcentaje INT
+	 @inID_Por int,
+	 @inPorcentaje INT
 AS 
 BEGIN TRY
 UPDATE CC_Porcentual
-SET Porcentaje = @Porcentaje
-WHERE  (ID_Por = @ID_Por)
+SET Porcentaje = @inPorcentaje
+WHERE  (ID_Por = @inID_Por)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -88,12 +88,12 @@ DROP PROC CCPorcentualDelete
 END 
 GO
 CREATE PROC CCPorcentualDelete 
-    @ID_Por int
+    @inID_Por int
 AS 
 BEGIN TRY
 DELETE
 FROM   CC_Porcentual
-WHERE  ID_Por = @ID_Por
+WHERE  ID_Por = @inID_Por
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

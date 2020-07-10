@@ -28,9 +28,9 @@ DROP PROC PropJuridicoInsert
 END
 GO
 CREATE PROCEDURE PropJuridicoInsert
-	  @ID_Propietario INT,
-	  @Documento VARCHAR(250),
-	  @ID_TDoc INT 
+	  @inID_Propietario INT,
+	  @inDocumento VARCHAR(250),
+	  @inID_TDoc INT 
 AS
 BEGIN TRY
 INSERT INTO PropJuridico(
@@ -39,9 +39,9 @@ INSERT INTO PropJuridico(
 	   ID_TDoc,
 	   Activo)
     VALUES (
-	   @ID_Propietario,
-	   @Documento,
-	   @ID_TDoc,
+	   @inID_Propietario,
+	   @inDocumento,
+	   @inID_TDoc,
 	   1)
 END TRY
 BEGIN CATCH
@@ -58,12 +58,12 @@ DROP PROC PropJuridicoSearchID
 END 
 GO
 CREATE PROC PropJuridicoSearchID
-    @ID_Propietario INT
+    @inID_Propietario INT
 AS 
 BEGIN TRY
     SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (ID_Propietario = @ID_Propietario AND Activo = 1) 
+    WHERE  (ID_Propietario = @inID_Propietario AND Activo = 1) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -78,19 +78,19 @@ DROP PROC ProJuridicoUpdateB
 END 
 GO
 CREATE PROC ProJuridicoUpdateB
-	 @Documento VARCHAR(250),
-	 @NewDocumento INT,
-     @ID_TDoc INT
+	 @inDocumento VARCHAR(250),
+	 @inNewDocumento INT,
+     @inID_TDoc INT
 AS 
 BEGIN TRY
-IF(@NewDocumento IS NULL)
+IF(@inNewDocumento IS NULL)
 BEGIN
-	SET @NewDocumento = (SELECT Documento FROM PropJuridico WHERE (Documento = @Documento))
+	SET @inNewDocumento = (SELECT Documento FROM PropJuridico WHERE (Documento = @inDocumento))
 END
 UPDATE PropJuridico
-SET  Documento = @NewDocumento,
-	 ID_TDoc = @ID_TDoc
-WHERE  (Documento = @Documento AND Activo = 1)
+SET  Documento = @inNewDocumento,
+	 ID_TDoc = @inID_TDoc
+WHERE  (Documento = @inDocumento AND Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -105,12 +105,12 @@ DROP PROC PropJuridicoDelete
 END 
 GO
 CREATE PROC PropJuridicoDelete
-    @ID_Juridico int
+    @inID_Juridico int
 AS 
 BEGIN TRY
 DELETE
 FROM   PropJuridico
-WHERE  ID_Juridico = @ID_Juridico
+WHERE  ID_Juridico = @inID_Juridico
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
@@ -126,12 +126,12 @@ DROP PROC BuscarPropJuridico
 END 
 GO
 CREATE PROC BuscarPropJuridico
-    @Documento VARCHAR(250)
+    @inDocumento VARCHAR(250)
 AS 
 BEGIN TRY
     SELECT ID_Juridico, ID_Propietario, Documento, ID_TDoc
 	FROM   PropJuridico
-    WHERE  (Documento = @Documento AND Activo = 1) 
+    WHERE  (Documento = @inDocumento AND Activo = 1) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -148,12 +148,12 @@ DROP PROC PropJuricoDeleteB
 END 
 GO
 CREATE PROC PropJuricoDeleteB 
-    @Documento VARCHAR(250)
+    @inDocumento VARCHAR(250)
 AS 
 BEGIN TRY
 UPDATE PropJuridico
 SET	Activo = 0
-WHERE  Documento = @Documento
+WHERE  Documento = @inDocumento
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

@@ -29,10 +29,10 @@ DROP PROC PropiedadInsert
 END
 GO
 CREATE PROCEDURE PropiedadInsert
-	  @NumPropiedad INT,
-	  @Valor INT,
-	  @Descripción VARCHAR(250),
-	  @Direccion VARCHAR(250)
+	  @inNumPropiedad INT,
+	  @inValor INT,
+	  @inDescripción VARCHAR(250),
+	  @inDireccion VARCHAR(250)
 	 
 AS
 BEGIN TRY
@@ -42,9 +42,9 @@ INSERT INTO Propiedad(
 	   Direccion,
 	   Activo)
     VALUES (
-	   @NumPropiedad,
-	   convert(varchar,cast(@Valor as money),1),
-	   @Direccion,
+	   @inNumPropiedad,
+	   convert(varchar,cast(@inValor as money),1),
+	   @inDireccion,
 	   1)
 END TRY 
 BEGIN CATCH
@@ -61,12 +61,12 @@ BEGIN
 END 
 GO
 CREATE PROC PropiedadRead
-    @ID_Propiedad int
+    @inID_Propiedad int
 AS 
 BEGIN TRY
     SELECT ID_Propiedad, NumPropiedad, Valor, Direccion
     FROM   Propiedad  
-    WHERE  (ID_Propiedad = @ID_Propiedad  AND Activo = 1) 
+    WHERE  (ID_Propiedad = @inID_Propiedad  AND Activo = 1) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -81,29 +81,29 @@ DROP PROC PropiedadUpdateB
 END 
 GO
 CREATE PROC PropiedadUpdateB
-	 @NumPropiedad INT,
-	 @NewNumPropiedad INT,
-	 @Valor INT,
-	 @Direccion VARCHAR(250)
+	 @inNumPropiedad INT,
+	 @inNewNumPropiedad INT,
+	 @inValor INT,
+	 @inDireccion VARCHAR(250)
 AS 
 BEGIN TRY
-IF(@NewNumPropiedad = '')
+IF(@inNewNumPropiedad = '')
 BEGIN
-	SET @NewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+	SET @inNewNumPropiedad = (SELECT NumPropiedad FROM Propiedad WHERE NumPropiedad = @inNumPropiedad)
 END
-IF(@Valor = '')
+IF(@inValor = '')
 BEGIN
-	SET @Valor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+	SET @inValor = (SELECT Valor FROM Propiedad WHERE NumPropiedad = @inNumPropiedad)
 END
-IF(@Direccion = '')
+IF(@inDireccion = '')
 BEGIN
-	SET @Direccion = (SELECT Direccion FROM Propiedad WHERE NumPropiedad = @NumPropiedad)
+	SET @inDireccion = (SELECT Direccion FROM Propiedad WHERE NumPropiedad = @inNumPropiedad)
 END
 UPDATE Propiedad
-SET  NumPropiedad = @NewNumPropiedad,
-	 Valor = cast(@Valor as money),
-	 Direccion = @Direccion
-WHERE  (NumPropiedad = @NumPropiedad)
+SET  NumPropiedad = @inNewNumPropiedad,
+	 Valor = cast(@inValor as money),
+	 Direccion = @inDireccion
+WHERE  (NumPropiedad = @inNumPropiedad)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -118,12 +118,12 @@ DROP PROC PropiedadDelete
 END 
 GO
 CREATE PROC PropiedadDelete 
-    @ID_Propiedad int
+    @inID_Propiedad int
 AS 
 BEGIN TRY
 DELETE
 FROM   Propiedad
-WHERE  ID_Propiedad = @ID_Propiedad
+WHERE  ID_Propiedad = @inID_Propiedad
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
@@ -139,12 +139,12 @@ DROP PROC PropiedadSearch
 END 
 GO
 CREATE PROC PropiedadSearch
-    @NumPropiedad INT
+    @inNumPropiedad INT
 AS 
 BEGIN TRY
     SELECT NumPropiedad, convert(varchar,cast(Valor as int),1), Direccion
 	FROM   Propiedad
-    WHERE  (NumPropiedad = @NumPropiedad AND Activo = 1) 
+    WHERE  (NumPropiedad = @inNumPropiedad AND Activo = 1) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -160,12 +160,12 @@ DROP PROC PropiedadDeleteByNum
 END 
 GO
 CREATE PROC PropiedadDeleteByNum 
-    @NumPropiedad int
+    @inNumPropiedad int
 AS 
 BEGIN TRY
 UPDATE Propiedad
 SET	Activo = 0
-WHERE  NumPropiedad = @NumPropiedad
+WHERE  NumPropiedad = @inNumPropiedad
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

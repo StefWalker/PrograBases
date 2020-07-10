@@ -22,16 +22,16 @@ DROP PROC InteresesInsert
 END
 GO
 CREATE PROCEDURE InteresesInsert
-	 @ID_IM INT,
-	 @Monto Decimal
+	 @inID_IM INT,
+	 @inMonto Decimal
 AS
 BEGIN TRY
 INSERT INTO Intereses_Monetarios(
 	 ID_IM,
 	 Monto)
 	 VALUES(
-	 @ID_IM,
-	 @Monto)
+	 @inID_IM,
+	 @inMonto)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -46,12 +46,12 @@ BEGIN
 END 
 GO
 CREATE PROC InteresesRead
-	@ID_IM int
+	@inID_IM int
 AS 
 BEGIN TRY
     SELECT ID_IM, Monto
     FROM   Intereses_Monetarios
-    WHERE  (ID_IM = @ID_IM) 
+    WHERE  (ID_IM = @inID_IM) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -66,13 +66,13 @@ DROP PROC InteresesUpdate
 END 
 GO
 CREATE PROC InteresesUpdate
-	 @ID_IM int,
-	 @Monto Decimal
+	 @inID_IM int,
+	 @inMonto Decimal
 AS 
 BEGIN TRY
 UPDATE Intereses_Monetarios
-SET  Monto = @Monto
-WHERE  (ID_IM = @ID_IM)
+SET  Monto = @inMonto
+WHERE  (ID_IM = @inID_IM)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -87,12 +87,12 @@ DROP PROC InteresesDelete
 END 
 GO
 CREATE PROC InteresesDelete 
-    @ID_IM int
+    @inID_IM int
 AS 
 BEGIN TRY
 DELETE
 FROM   Intereses_Monetarios
-WHERE  ID_IM = @ID_IM
+WHERE  ID_IM = @inID_IM
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

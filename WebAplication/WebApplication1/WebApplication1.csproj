@@ -70,9 +70,13 @@
     <Content Include="frmAskAgregarEntidades.aspx" />
     <Content Include="frmAskBuscar.aspx" />
     <Content Include="frmAskCrearUniones.aspx" />
+    <Content Include="frmAskRecibos.aspx" />
     <Content Include="frmBitacora.aspx" />
+    <Content Include="frmComprobantes.aspx" />
     <Content Include="frmModificarProCC.aspx" />
     <Content Include="frmPrincipalUser.aspx" />
+    <Content Include="frmRecibosPagos.aspx" />
+    <Content Include="frmRecibosPendientes.aspx" />
     <Content Include="frmUnirProCC.aspx" />
     <Content Include="frmAskAgregarJuridico.aspx" />
     <Content Include="frmAskModificar.aspx" />
@@ -161,12 +165,26 @@
     <Compile Include="frmAskCrearUniones.aspx.designer.cs">
       <DependentUpon>frmAskCrearUniones.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmAskRecibos.aspx.cs">
+      <DependentUpon>frmAskRecibos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmAskRecibos.aspx.designer.cs">
+      <DependentUpon>frmAskRecibos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmBitacora.aspx.cs">
       <DependentUpon>frmBitacora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmBitacora.aspx.designer.cs">
       <DependentUpon>frmBitacora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmComprobantes.aspx.cs">
+      <DependentUpon>frmComprobantes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmComprobantes.aspx.designer.cs">
+      <DependentUpon>frmComprobantes.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmModificarProCC.aspx.cs">
       <DependentUpon>frmModificarProCC.aspx</DependentUpon>
@@ -181,6 +199,20 @@
     </Compile>
     <Compile Include="frmPrincipalUser.aspx.designer.cs">
       <DependentUpon>frmPrincipalUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecibosPagos.aspx.cs">
+      <DependentUpon>frmRecibosPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRecibosPagos.aspx.designer.cs">
+      <DependentUpon>frmRecibosPagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecibosPendientes.aspx.cs">
+      <DependentUpon>frmRecibosPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRecibosPendientes.aspx.designer.cs">
+      <DependentUpon>frmRecibosPendientes.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmUnirProCC.aspx.cs">
       <DependentUpon>frmUnirProCC.aspx</DependentUpon>

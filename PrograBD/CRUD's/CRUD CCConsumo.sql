@@ -24,16 +24,16 @@ DROP PROC CCConsumoInsert
 END
 GO
 CREATE PROCEDURE CCConsumoInsert
-	 @ID_Cons INT,
-	 @Valor_m3 Decimal
+	 @inID_Cons INT,
+	 @inValor_m3 Decimal
 AS
 BEGIN TRY
 INSERT INTO CC_ConsumoAgua(
 	 ID_Con,
 	 Valor_m3)
 	 VALUES(
-	 @ID_Cons,
-	 @Valor_m3)
+	 @inID_Cons,
+	 @inValor_m3)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -48,12 +48,12 @@ BEGIN
 END 
 GO
 CREATE PROC CCConsumoRead
-	@ID_Cons int
+	@inID_Cons int
 AS 
 BEGIN TRY
     SELECT ID_Con, Valor_m3
     FROM   CC_ConsumoAgua
-    WHERE  (ID_Con = @ID_Cons) 
+    WHERE  (ID_Con = @inID_Cons) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -68,13 +68,13 @@ DROP PROC CCConsumoUpdate
 END 
 GO
 CREATE PROC CCConsumoUpdate
-	 @ID_Cons int,
-	 @Valor_m3 Decimal
+	 @inID_Cons int,
+	 @inValor_m3 Decimal
 AS 
 BEGIN TRY
 UPDATE CC_ConsumoAgua
-SET  Valor_m3 = @Valor_m3
-WHERE  (ID_Con = @ID_Cons)
+SET  Valor_m3 = @inValor_m3
+WHERE  (ID_Con = @inID_Cons)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -89,12 +89,12 @@ DROP PROC CCConsumoDelete
 END 
 GO
 CREATE PROC CCConsumoDelete 
-    @ID_Cons int
+    @inID_Cons int
 AS 
 BEGIN TRY
 DELETE
 FROM   CC_ConsumoAgua
-WHERE  ID_Con = @ID_Cons
+WHERE  ID_Con = @inID_Cons
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

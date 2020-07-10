@@ -28,8 +28,8 @@ DROP PROC PJurxProInsert
 END
 GO
 CREATE PROCEDURE PJurxProInsert
-	  @ID_Propiedad INT ,
-	  @ID_Juridico INT
+	  @inID_Propiedad INT ,
+	  @inID_Juridico INT
 	  
 AS
 BEGIN TRY
@@ -39,8 +39,8 @@ INSERT INTO PJur_x_Pro(
 	   Activo)
 
     VALUES (
-	   @ID_Propiedad ,
-	   @ID_Juridico,
+	   @inID_Propiedad ,
+	   @inID_Juridico,
 	   1)
 END TRY 
 BEGIN CATCH
@@ -56,12 +56,12 @@ BEGIN
 END 
 GO
 CREATE PROC PJur_x_ProRead
-     @ID_Propiedad int , @ID_Juridico int
+     @inID_Propiedad int , @inID_Juridico int
 AS 
 BEGIN TRY
-    SELECT ID_JxP, ID_Propiedad ,@ID_Juridico
+    SELECT ID_JxP, ID_Propiedad ,@inID_Juridico
     FROM   PJur_x_Pro 
-    WHERE  (ID_Propiedad = @ID_Propiedad AND ID_Juridico = @ID_Juridico AND Activo = 1) 
+    WHERE  (ID_Propiedad = @inID_Propiedad AND ID_Juridico = @inID_Juridico AND Activo = 1) 
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -76,17 +76,17 @@ DROP PROC PJur_x_ProUpdate
 END 
 GO
 CREATE PROC PJur_x_ProUpdate
-	 @ID_PxP INT,
-	 @ID_Propiedad INT ,
-	 @ID_Juridico INT
+	 @inID_PxP INT,
+	 @inID_Propiedad INT ,
+	 @inID_Juridico INT
   
 AS 
 BEGIN TRY
 UPDATE PJur_x_Pro
-SET  ID_Propiedad = @ID_Propiedad,
-	 ID_Juridico= @ID_Juridico
+SET  ID_Propiedad = @inID_Propiedad,
+	 ID_Juridico= @inID_Juridico
 	 
-WHERE  (ID_JxP = @ID_PxP AND  Activo = 1)
+WHERE  (ID_JxP = @inID_PxP AND  Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -101,13 +101,13 @@ DROP PROC PJur_x_ProDelete
 END 
 GO
 CREATE PROC PJur_x_ProDelete 
-    @ID_Propiedad INT,
-	 @ID_Juridico INT
+    @inID_Propiedad INT,
+	 @inID_Juridico INT
 AS 
 BEGIN TRY
 UPDATE PJur_x_Pro
 SET Activo = 0
-WHERE  ID_Propiedad = @ID_Propiedad  AND ID_Juridico = @ID_Juridico
+WHERE  ID_Propiedad = @inID_Propiedad  AND ID_Juridico = @inID_Juridico
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

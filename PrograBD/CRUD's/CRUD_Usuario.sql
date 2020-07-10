@@ -26,9 +26,9 @@ DROP PROC UsuarioInsert
 END
 GO
 CREATE PROCEDURE UsuarioInsert
-	   @Nombre VARCHAR (100),
-       @Password VARCHAR (100),
-       @TipoUsuario VARCHAR (100)
+	   @inNombre VARCHAR (100),
+       @inPassword VARCHAR (100),
+       @inTipoUsuario VARCHAR (100)
 AS
 BEGIN TRY
 INSERT INTO Usuario(  
@@ -37,9 +37,9 @@ INSERT INTO Usuario(
 	   TipoUsuario,
 	   Activo)
     VALUES (
-	   @Nombre,
-	   @Password,
-	   @TipoUsuario,
+	   @inNombre,
+	   @inPassword,
+	   @inTipoUsuario,
 	   1)
 END TRY
 BEGIN CATCH
@@ -75,31 +75,31 @@ DROP PROC UsuarioUpdateB
 END 
 GO
 CREATE PROC UsuarioUpdateB
-	 @Nombre VARCHAR (100),
-	 @NewName VARCHAR (100),
-     @Password VARCHAR (100),
-	 @NewPassword VARCHAR (100),
-     @TipoUsuario VARCHAR (100)
+	 @inNombre VARCHAR (100),
+	 @inNewName VARCHAR (100),
+     @inPassword VARCHAR (100),
+	 @inNewPassword VARCHAR (100),
+     @inTipoUsuario VARCHAR (100)
 AS 
 BEGIN TRY
-IF(@NewName = '')
+IF(@inNewName = '')
 BEGIN
-	SET @NewName = (SELECT Nombre FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+	SET @inNewName = (SELECT Nombre FROM Usuario WHERE (Nombre = @inNombre AND Password = @inPassword))
 END
-IF(@NewPassword = '')
+IF(@inNewPassword = '')
 BEGIN
-	SET @NewPassword = (SELECT Password FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+	SET @inNewPassword = (SELECT Password FROM Usuario WHERE (Nombre = @inNombre AND Password = @inPassword))
 END
-IF(@TipoUsuario = '')
+IF(@inTipoUsuario = '')
 BEGIN
-	SET @TipoUsuario = (SELECT TipoUsuario FROM Usuario WHERE (Nombre = @Nombre AND Password = @Password))
+	SET @inTipoUsuario = (SELECT TipoUsuario FROM Usuario WHERE (Nombre = @inNombre AND Password = @inPassword))
 END
 UPDATE Usuario
-SET  Nombre = @NewName,
-	 Password = @NewPassword,
-	 TipoUsuario = @TipoUsuario
+SET  Nombre = @inNewName,
+	 Password = @inNewPassword,
+	 TipoUsuario = @inTipoUsuario
 
-WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1)
+WHERE  (Nombre = @inNombre AND Password = @inPassword AND Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -114,13 +114,13 @@ DROP PROC UsuarioDeleteB
 END 
 GO
 CREATE PROC UsuarioDeleteB 
-    @Nombre VARCHAR(100),
-	@Password VARCHAR(100)
+    @inNombre VARCHAR(100),
+	@inPassword VARCHAR(100)
 AS 
 BEGIN TRY
 UPDATE Usuario
 SET	Activo = 0
-WHERE  (Nombre = @Nombre AND Password = @Password)
+WHERE  (Nombre = @inNombre AND Password = @inPassword)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
@@ -137,13 +137,13 @@ BEGIN
 END 
 GO
 CREATE PROC UsuarioSearch
-    @Nombre VARCHAR (100),
-    @Password VARCHAR (100)
+    @inNombre VARCHAR (100),
+    @inPassword VARCHAR (100)
 AS 
 BEGIN TRY
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
-    WHERE  (Nombre = @Nombre AND Password = @Password AND Activo = 1) 
+    WHERE  (Nombre = @inNombre AND Password = @inPassword AND Activo = 1) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -160,12 +160,12 @@ BEGIN
 END 
 GO
 CREATE PROC BuscarUsuario
-    @Nombre VARCHAR (100)
+    @inNombre VARCHAR (100)
 AS 
 BEGIN TRY
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
-    WHERE  (Nombre = @Nombre AND Activo = 1)
+    WHERE  (Nombre = @inNombre AND Activo = 1)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;

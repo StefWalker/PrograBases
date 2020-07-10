@@ -23,14 +23,14 @@ DROP PROC TipoDocInsert
 END
 GO
 CREATE PROCEDURE TipoDocInsert
-	  @TipoDoc INT,
-	  @Tipo Varchar (100)
+	  @inTipoDoc INT,
+	  @inTipo Varchar (100)
 AS
 BEGIN TRY
 INSERT INTO TipoDoc(TipoDoc,
 					Tipo)
-    VALUES (@TipoDoc,
-			@Tipo)
+    VALUES (@inTipoDoc,
+			@inTipo)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -45,12 +45,12 @@ BEGIN
 END 
 GO
 CREATE PROC TipoDocRead
-	@ID_TDoc int
+	@inID_TDoc int
 AS 
 BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
-    WHERE  (ID_TDoc = @ID_TDoc) 
+    WHERE  (ID_TDoc = @inID_TDoc) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
@@ -65,14 +65,14 @@ DROP PROC TipoDocUpdate
 END 
 GO
 CREATE PROC TipoDocUpdate
-	 @TipoDoc INT,
-	 @ID_TDoc INT,
-	 @Tipo Varchar (100) 
+	 @inTipoDoc INT,
+	 @inID_TDoc INT,
+	 @inTipo Varchar (100) 
 AS 
 BEGIN TRY
 UPDATE TipoDoc
-SET  Tipo= @Tipo, TipoDoc = @TipoDoc
-WHERE  (ID_TDoc = @ID_TDoc)
+SET  Tipo= @inTipo, TipoDoc = @inTipoDoc
+WHERE  (ID_TDoc = @inID_TDoc)
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
@@ -107,12 +107,12 @@ DROP PROC TipoDocSearch
 END 
 GO
 CREATE PROC TipoDocSearch
-    @TipoDoc INT
+    @inTipoDoc INT
 AS 
 BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
-    WHERE  (TipoDoc = @TipoDoc) 
+    WHERE  (TipoDoc = @inTipoDoc) 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
