@@ -11,7 +11,8 @@ BEGIN
 	CREATE TABLE CC_ConsumoAgua
 	(
 	  ID_Con INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-	  Valor_m3 Decimal NOT NULL
+	  Valor_m3 Decimal NOT NULL,
+	  MontoMinimoRecibo INT NOT NULL
 	);
 END
 
