@@ -13,5 +13,10 @@ namespace WebApplication1
         {
 
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmPrincipal.aspx");
+        }
     }
 }

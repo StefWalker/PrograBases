@@ -74,5 +74,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmAskCrearUniones.aspx");
         }
+
+        protected void ConsultaBitacora_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmBitacora.aspx");
+        }
     }
 }
