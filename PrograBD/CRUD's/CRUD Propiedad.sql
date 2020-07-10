@@ -16,7 +16,9 @@ BEGIN
 		 Valor INT NOT NULL,
 		 Direccion VARCHAR(250) NOT NULL,
 		 Activo BIT NOT NULL DEFAULT 1,
-		 Fecha DATE NOT NULL DEFAULT GETDATE()
+		 Fecha DATE NOT NULL DEFAULT GETDATE(),
+		 M3Acumulados INT NOT NULL DEFAULT 0,
+		 M3AcumuladosUltimoRecibo INT NOT NULL DEFAULT 0
 );
 END
 USE [ProyectoBases]
