@@ -1,0 +1,5 @@
+<TipoTransConsumo>
+	<TransConsumo id="1" Nombre="Consumo Regular"/>
+	<TransConsumo id="2" Nombre="Ajuste Debito"/>
+	<TransConsumo id="3" Nombre="Ajuste Credito"/>
+</TipoTransConsumo>

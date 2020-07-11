@@ -1,0 +1,8 @@
+<TipoDocIdentidad>
+	<TipoDocId codigoDoc="1" descripcion="Cedula Nacional"/>
+	<TipoDocId codigoDoc="2" descripcion="Cedula Residente"/>
+	<TipoDocId codigoDoc="3" descripcion="Pasaporte"/>
+	<TipoDocId codigoDoc="4" descripcion="Cedula Juridica"/>
+	<TipoDocId codigoDoc="5" descripcion="Registro Civil"/>
+	<TipoDocId codigoDoc="6" descripcion="Cedula Extranjera"/>
+</TipoDocIdentidad>
