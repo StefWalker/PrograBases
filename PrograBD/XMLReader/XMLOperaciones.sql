@@ -13,15 +13,7 @@ BEGIN
 	BEGIN TRY
 		BEGIN TRAN
 		
-
-			/*DELETE FROM Pro_x_Pro
-			DELETE FROM Pro_x_Usuario
-			DELETE FROM Pro_x_CC
-			DELETE FROM PropJuridico
-
-			DELETE FROM Propiedad
-			DELETE FROM Propietario
-			DELETE FROM Usuario*/
+----Declaramos las tablas temporales-----------------------------------------------------------
 
 			DECLARE @Varios XML
 			DECLARE @TemporalFechas table (fecha date);
@@ -30,9 +22,10 @@ BEGIN
 			DECLARE @TemporalPropiedad table (NumTemp INT,ValTemp MONEY,DireccionTemp VARCHAR(250),Activo BIT,FechTemp DATE); 
 			/*DECLARE @TemporalPropJurid table (IDPropietario int,Documento Varchar(250),IDTipo int,Activo BIT,Fecha DATE);*/
 			SET NOCOUNT ON 
+-----Declaramos una fecha maxima y una minima para saber el inicio y final -------------------------------
 
-			DECLARE @fechaMin DATE
-			DECLARE @fechaMax DATE
+			DECLARE @fechaMinima DATE
+			DECLARE @fechaMaxima DATE
 
 			SELECT @Varios = C	
 			
@@ -43,29 +36,24 @@ BEGIN
 
 			EXEC sp_xml_preparedocument @hdoc OUTPUT, @Varios
 
-			INSERT INTO @TemporalFechas ([fecha])
+----Guardo las fechas a la tabla temporal----------------------------------------------
+			INSERT INTO @TemporalFechas (fecha)
 			SELECT convert(date, fechaInsercion, 121) [fechaInsercion]
 			FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia', 1)
 
 			WITH([fechaInsercion] VARCHAR (40) '@fecha');
-			----------------------------------------------------------------
-			
-			----------------------------------------------------
-			-------CREACION TABLA FECHAS Y VARIABLES DATE-------
-			----------------------------------------------------
 
-			SELECT @fechaMax = MAX(fecha) FROM @TemporalFechas 
-			SELECT @fechaMin = MIN(fecha) FROM @TemporalFechas 
+			SELECT @fechaMaxima = MAX(fecha) FROM @TemporalFechas 
+			SELECT @fechaMinima = MIN(fecha) FROM @TemporalFechas 
 			
 			DECLARE @fechaActual date
-			SET @fechaActual = @fechaMin;
+			SET @fechaActual = @fechaMinima;
 
 
-			----------------------------------------------
-			-------INSERCION DATOS VARIABLES TABLAS-------
-			----------------------------------------------
+			
+----Insercion de datos a las tablas temporales ----------------------------------------------
+--Propiedades----
 
-			---- INSERT PROPIEDADES ----
 			INSERT INTO @TemporalPropiedad (NumTemp ,ValTemp,DireccionTemp ,Activo ,FechTemp )
 
 			SELECT NumFinca,valor,direccion,1,convert(date, fechaLeida, 121) fechaLeida
@@ -77,23 +65,8 @@ BEGIN
 					fechaLeida VARCHAR(40) '../@fecha'
 				);
 			
-			------------------------------
-			----INSERT DE PROPIETARIOS----
+----Usuario-------
 
-			INSERT INTO @TemporalPropietario (IdentidadTemporal,NomTemp,Activo,TipoIdTemp,FechaTemp)
-
-			SELECT Id,Nom,1,TipoId,convert(date, FechaL, 121) FechaL
-			FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/Propietario', 2)
-				WITH(
-					Id VARCHAR(20) '@identificacion',
-					Nom VARCHAR(100) '@Nombre' ,
-					TipoId int '@TipoDocIdentidad',
-					FechaL VARCHAR(100) '../@fecha'
-				);
-
-			--------------------------
-			----INSERT DE USUARIOS----
-			
 			INSERT INTO @TemporalUsuario 
 			 (NomTemp ,PasswordTemp,TipoTemp,Activo,FechTemp) 
 
@@ -106,6 +79,20 @@ BEGIN
 					fechaL VARCHAR(100) '../@fecha'
 				);
 
+-----Propietario-------
+
+			INSERT INTO @TemporalPropietario (IdentidadTemporal,NomTemp,Activo,TipoIdTemp,FechaTemp)
+
+			SELECT Id,Nom,1,TipoId,convert(date, FechaL, 121) FechaL
+			FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/Propietario', 2)
+				WITH(
+					Id VARCHAR(20) '@identificacion',
+					Nom VARCHAR(100) '@Nombre' ,
+					TipoId int '@TipoDocIdentidad',
+					FechaL VARCHAR(100) '../@fecha'
+				);
+
+			
 /*
 			--------------------------
 			----INSERT DE PropJurid----
@@ -122,35 +109,30 @@ BEGIN
 
 
 			--------------------------------------------------------*/
-			WHILE (@fechaActual <= @fechaMax)
+
+-----Inicio del ciclo para insertar los archivos a las tablas reales con fechas------------------------
+
+			WHILE (@fechaActual <= @fechaMaxima)
 				BEGIN
 					SET NOCOUNT ON 
-					--------------------------
-					----INSERT PROPIEDADES----
+---Propiedades-----------
+				
 					INSERT INTO [dbo].[Propiedad] (NumPropiedad,Valor,Direccion,Activo,Fecha)
 					SELECT NumTemp ,ValTemp,DireccionTemp ,1,FechTemp  FROM @TemporalPropiedad 
 					WHERE [@TemporalPropiedad].[FechTemp] = @fechaActual ;
 
-					
-					------------------------------
-					----INSERT DE PROPIETARIOS----*/
+----Usuarios-----
+					INSERT INTO [dbo].[Usuario] (Nombre,Password,TipoUsuario,Activo,Fecha)				
+				    SELECT NomTemp ,PasswordTemp,TipoTemp,1,FechTemp FROM @TemporalUsuario
+					WHERE [@TemporalUsuario].[FechTemp] = @fechaActual ;
+
+---Propietarios-----
 
 					INSERT INTO [dbo].[Propietario] (Identificacion,Nombre,Activo,ID_TDoc,Fecha )
 
 					SELECT IdentidadTemporal,NomTemp,1,TipoIdTemp,FechaTemp FROM @TemporalPropietario
 					WHERE [@TemporalPropietario].FechaTemp = @fechaActual;
 
-					
-					--------------------------
-					----INSERT DE USUARIOS----
-			
-					INSERT INTO [dbo].[Usuario] (Nombre,Password,TipoUsuario,Activo,Fecha)				
-				    SELECT NomTemp ,PasswordTemp,TipoTemp,1,FechTemp FROM @TemporalUsuario
-					WHERE [@TemporalUsuario].[FechTemp] = @fechaActual ;
-						
-
-
-			
 					/*--------------------------------------
 					----INSERT DE PROPIETARIO JURIDICO----
 					Declare @ID int
@@ -163,12 +145,9 @@ BEGIN
 					INNER JOIN Propietario ON [NumId] = [NumIdJurid]
 					WHERE [@TemporalPropJurid].[Fech] = @fechaActual;
 					*/
-				 ---------------------------------
-					-- INSERTS DE TABLAS INTERMEDIAS --
-					---------------------------------
+--Insercion de las otras tablas , las intermedias -------------
 			
-					--------------------------------------
-					----INSERT PROPIEDAD por PROPIETARIO----
+--ProxPro--------------------
 
 					INSERT INTO [dbo].[Pro_x_Pro] (ID_Propiedad,ID_Propietario,Activo,Fecha)
 
@@ -183,8 +162,23 @@ BEGIN
 						INNER JOIN Propietario ON Ident = Propietario.Identificacion
 						WHERE fechaLeida = @fechaActual ;
 
-					--------------------------------------
-					--INSERT DE USUARIOS por PROPIEDAD
+--INSERT ProxCC-----------------REVISAR 
+
+					INSERT INTO [dbo].[Pro_x_CC] (ID_CC,ID_Propiedad,Activo,Fecha)
+
+					SELECT ConceptoCobro.ID_CC,Propiedad.ID_Propiedad,1,@fechaActual
+
+					FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/ConceptoCobroVersusPropiedad', 1)
+						WITH(
+							Finca VARCHAR(20) '@NumFinca' ,
+							Cobro VARCHAR(20) '@idcobro',
+							fechaLeida VARCHAR(100) '../@fecha'
+						)
+						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
+						INNER JOIN ConceptoCobro ON Cobro = ConceptoCobro.ID_CC
+						WHERE [fechaLeida] = @fechaActual ;
+
+-----ProxUser---------------
 
 
 					INSERT INTO [dbo].[Pro_x_Usuario]   (ID_Propiedad,ID_Usuario,Activo,Fecha)
@@ -201,23 +195,6 @@ BEGIN
 						INNER JOIN Usuario ON Usuario = Usuario.Nombre
 						WHERE [fechaLeida] = @fechaActual ;	
 
-					--------------------------------------
-					--INSERT DE CC POR PROPIEDADAES
-
-					INSERT INTO [dbo].[Pro_x_CC] (ID_CC,ID_Propiedad,Activo,Fecha)
-
-					SELECT ConceptoCobro.ID_CC,Propiedad.ID_Propiedad,1,@fechaActual
-
-					FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/ConceptoCobroVersusPropiedad', 1)
-						WITH(
-							Finca VARCHAR(20) '@NumFinca' ,
-							Cobro VARCHAR(20) '@idcobro',
-							fechaLeida VARCHAR(100) '../@fecha'
-						)
-						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
-						INNER JOIN ConceptoCobro ON Cobro = ConceptoCobro.ID_CC
-						WHERE [fechaLeida] = @fechaActual ;
-				
 					SELECT @fechaActual = DATEADD(DAY,1,@fechaActual);
 				END
 		COMMIT

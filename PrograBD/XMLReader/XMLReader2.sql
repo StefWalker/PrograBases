@@ -1,26 +1,18 @@
-USE[ProyectoBases]
 
-DECLARE @y xml
+Use[ProyectoBases]
+DECLARE @x xml
+SELECT @x = P
+FROM OPENROWSET (BULK 'C:\XML\Usuarios.xml', SINGLE_BLOB) AS Usuarios(P)
+DECLARE @hdoc int
 
-SELECT @y = L
-FROM OPENROWSET (BULK 'C:\XMLBases\Operaciones.xml', SINGLE_BLOB) AS Operaciones_por_Dia(L)
+EXEC sp_xml_preparedocument @hdoc OUTPUT, @x
 
---SELECT @y
+Insert into Usuario(Nombre, Password, TipoUsuario)
+Select *
+FROM OPENXML (@hdoc, '/Usuarios/Usuario', 1)
+WITH (
+		user VARCHAR(100),
+		password VARCHAR(100),
+		tipo VARCHAR(100))
 
-DECLARE @hdo int
-
-EXEC sp_xml_preparedocument @hdo OUTPUT, @y
-
-
-
-Insert into Propiedad(Direccion, Valor, NumPropiedad)
-Select * 
-From OPENXML (@hdo, '/Operaciones_por_Dia/OperacionDia/Propiedad', 1)
-with(
-	Direccion varchar(250),
-	Valor money,
-	NumFinca int)
-
-
-
-EXEC sp_xml_removedocument @hdo
+EXEC sp_xml_removedocument @hdoc

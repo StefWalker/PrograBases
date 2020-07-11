@@ -27,12 +27,12 @@ namespace WebApplication1
                 entUsuario obj = negUsuario.Login(txtUsuario.Text, txtpass.Text);
                 if (obj != null)
                 {
-                    if (obj.TipoUsuario == "Administrador" || obj.TipoUsuario == "administrador" )
+                    if (obj.TipoUsuario == "admin" || obj.TipoUsuario == "administrador" )
                     {
                         Session["Nombre"] = obj;
                         Response.Redirect("frmPrincipal.aspx");
                     }
-                   if (obj.TipoUsuario == "Usuario" || obj.TipoUsuario == "usuario")
+                   if (obj.TipoUsuario == "cliente" || obj.TipoUsuario == "usuario")
                     {
                         Session["Nombre"] = obj;
                         Response.Redirect("frmPrincipalUser.aspx");
