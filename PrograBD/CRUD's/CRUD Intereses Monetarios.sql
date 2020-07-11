@@ -32,10 +32,12 @@ INSERT INTO Intereses_Monetarios(
 	 VALUES(
 	 @inID_IM,
 	 @inMonto)
+	 return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -51,11 +53,13 @@ AS
 BEGIN TRY
     SELECT ID_IM, Monto
     FROM   Intereses_Monetarios
-    WHERE  (ID_IM = @inID_IM) 
+    WHERE  (ID_IM = @inID_IM)
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -73,10 +77,12 @@ BEGIN TRY
 UPDATE Intereses_Monetarios
 SET  Monto = @inMonto
 WHERE  (ID_IM = @inID_IM)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -93,9 +99,11 @@ BEGIN TRY
 DELETE
 FROM   Intereses_Monetarios
 WHERE  ID_IM = @inID_IM
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

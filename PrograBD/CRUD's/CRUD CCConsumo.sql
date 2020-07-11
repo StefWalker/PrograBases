@@ -34,10 +34,12 @@ INSERT INTO CC_ConsumoAgua(
 	 VALUES(
 	 @inID_Cons,
 	 @inValor_m3)
+	 return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -54,10 +56,12 @@ BEGIN TRY
     SELECT ID_Con, Valor_m3
     FROM   CC_ConsumoAgua
     WHERE  (ID_Con = @inID_Cons) 
+	return 1 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -75,10 +79,12 @@ BEGIN TRY
 UPDATE CC_ConsumoAgua
 SET  Valor_m3 = @inValor_m3
 WHERE  (ID_Con = @inID_Cons)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	 return -1 
 END CATCH
 GO
 
@@ -95,9 +101,11 @@ BEGIN TRY
 DELETE
 FROM   CC_ConsumoAgua
 WHERE  ID_Con = @inID_Cons
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

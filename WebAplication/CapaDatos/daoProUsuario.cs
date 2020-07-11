@@ -19,8 +19,8 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("Pro_x_UsuarioInsert ", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propiedad", obj.ID_Propiedad);
-                cmd.Parameters.AddWithValue("@ID_Usuario", obj.ID_Usuario);               
+                cmd.Parameters.AddWithValue("@inID_Propiedad", obj.ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Usuario", obj.ID_Usuario);               
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -46,8 +46,8 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("Pro_x_UsuarioDelete", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propiedad ", ID_Propiedad);
-                cmd.Parameters.AddWithValue("@ID_Usuario ",ID_Usuario);
+                cmd.Parameters.AddWithValue("@inID_Propiedad ", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Usuario ",ID_Usuario);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -74,8 +74,8 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("Pro_x_UsuarioRead", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
-                cmd.Parameters.AddWithValue("@ID_Usuario", ID_Usuario);
+                cmd.Parameters.AddWithValue("@inID_Propiedad", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Usuario", ID_Usuario);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -105,9 +105,9 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("Pro_x_UsuarioUpdate", cnx);
-                cmd.Parameters.AddWithValue("@ID_PxU", obj.ID_PxU);
-                cmd.Parameters.AddWithValue("@ID_Propiedad", obj.ID_Propiedad);
-                cmd.Parameters.AddWithValue("@ID_Usuario", obj.ID_Usuario);
+                cmd.Parameters.AddWithValue("@inID_PxU", obj.ID_PxU);
+                cmd.Parameters.AddWithValue("@inID_Propiedad", obj.ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Usuario", obj.ID_Usuario);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();

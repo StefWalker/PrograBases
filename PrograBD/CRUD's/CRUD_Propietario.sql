@@ -22,12 +22,12 @@ END
 
 
 -- Insert en tabla propietario 
-IF OBJECT_ID('InsertPropietario') IS NOT NULL
+IF OBJECT_ID('PropietarioInsert') IS NOT NULL
 BEGIN 
-DROP PROC InsertPropietario
+DROP PROC PropietarioInsert
 END
 GO
-CREATE PROCEDURE InsertPropietario
+CREATE PROCEDURE PropietarioInsert
 	  @inIdentificacion VARCHAR(250),
 	  @inNombre VARCHAR (100),
 	  @inID_TDoc INT
@@ -44,30 +44,34 @@ INSERT INTO Propietario(
 	   @inNombre,
 	   1,
 	   @inID_TDoc)
+	   return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
 -- Read de tabla propietario 
-IF OBJECT_ID('ReadPropietario') IS NOT NULL
+IF OBJECT_ID('PropietarioRead') IS NOT NULL
 BEGIN 
-    DROP PROC ReadPropietario
+    DROP PROC PropietarioRead
 END 
 GO
-CREATE PROC ReadPropietario
+CREATE PROC PropietarioRead
     @inID_Propietario int
 AS 
 BEGIN TRY
     SELECT ID_Propietario,Identificacion,Nombre,ID_TDoc 
     FROM   Propietario
     WHERE  (ID_Propietario = @inID_Propietario AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -95,14 +99,16 @@ UPDATE Propietario
 SET  Identificacion= @inIdentificacion,
 	 Nombre =  @inNewNombre
 WHERE  (Identificacion = @inIdentificacion AND Activo = 1)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
--- Delete de tabla propietario
+/*-- Delete de tabla propietario
 IF OBJECT_ID('PropietarioDelete') IS NOT NULL
 BEGIN 
 DROP PROC PropietarioDelete
@@ -115,13 +121,15 @@ BEGIN TRY
 DELETE
 FROM   Propietario
 WHERE  ID_Propietario = @inID_Propietario
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
-
+*/
 ------------------------Procedimientos extras---------------------------
 -- Search Propietario por medio de la identificacion 
 
@@ -137,10 +145,12 @@ BEGIN TRY
     SELECT ID_Propietario, Identificacion, Nombre, ID_TDoc
 	FROM   Propietario
     WHERE  (Identificacion = @inIdentificacion AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -158,9 +168,11 @@ BEGIN TRY
 UPDATE Propietario
 SET Activo = 0
 WHERE  (Identificacion = @inIdentificacion AND Nombre = @inNombre)
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

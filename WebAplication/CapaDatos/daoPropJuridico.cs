@@ -20,9 +20,9 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropJuridicoInsert", cnx);
-                cmd.Parameters.AddWithValue("@Documento", obj.Documento);
-                cmd.Parameters.AddWithValue("@ID_Propietario", obj.ID_Propietario);
-                cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);
+                cmd.Parameters.AddWithValue("@inDocumento", obj.Documento);
+                cmd.Parameters.AddWithValue("@inID_Propietario", obj.ID_Propietario);
+                cmd.Parameters.AddWithValue("@inID_TDoc", obj.ID_TDoc);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -48,8 +48,8 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("BuscarPropJuridico", cnx);
-                cmd.Parameters.AddWithValue("@Documento", documento );
+                cmd = new SqlCommand("PropJuridicoBuscar", cnx);
+                cmd.Parameters.AddWithValue("@inDocumento", documento );
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -79,7 +79,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropJuricoDeleteB", cnx);
-                cmd.Parameters.AddWithValue("@Documento ", documento);
+                cmd.Parameters.AddWithValue("@inDocumento ", documento);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -105,10 +105,10 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ProJuridicoUpdateB", cnx);
-                cmd.Parameters.AddWithValue("@Documento", documento);
-                cmd.Parameters.AddWithValue("@NewDocumento", obj.Documento);
-                cmd.Parameters.AddWithValue("@NuevoID_Propietario", obj.ID_Propietario);
-                cmd.Parameters.AddWithValue("@ID_TDoc ", obj.ID_TDoc);
+                cmd.Parameters.AddWithValue("@inDocumento", documento);
+                cmd.Parameters.AddWithValue("@inNewDocumento", obj.Documento);
+                cmd.Parameters.AddWithValue("@inNuevoID_Propietario", obj.ID_Propietario);
+                cmd.Parameters.AddWithValue("@inID_TDoc ", obj.ID_TDoc);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();

@@ -41,14 +41,16 @@ INSERT INTO Usuario(
 	   @inPassword,
 	   @inTipoUsuario,
 	   1)
+	   return 1 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
--- Read de tabla Usuario 
+/*-- Read de tabla Usuario 
 IF OBJECT_ID('UsuarioRead') IS NOT NULL
 BEGIN 
     DROP PROC UsuarioRead
@@ -61,13 +63,15 @@ BEGIN TRY
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
     WHERE  (ID_Usuario = @ID_Usuario AND Activo = 1) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
-
+*/
 -- Update de tabla Usuario 
 IF OBJECT_ID('UsuarioUpdate') IS NOT NULL
 BEGIN 
@@ -100,10 +104,12 @@ SET  Nombre = @inNewName,
 	 TipoUsuario = @inTipoUsuario
 
 WHERE  (Nombre = @inNombre AND Password = @inPassword AND Activo = 1)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -121,10 +127,12 @@ BEGIN TRY
 UPDATE Usuario
 SET	Activo = 0
 WHERE  (Nombre = @inNombre AND Password = @inPassword)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -144,10 +152,12 @@ BEGIN TRY
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
     WHERE  (Nombre = @inNombre AND Password = @inPassword AND Activo = 1) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -166,9 +176,11 @@ BEGIN TRY
     SELECT ID_Usuario,Nombre,Password,TipoUsuario
 	FROM   Usuario
     WHERE  (Nombre = @inNombre AND Activo = 1)
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

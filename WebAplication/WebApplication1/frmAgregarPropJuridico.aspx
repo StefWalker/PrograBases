@@ -41,7 +41,11 @@
                 <td colspan="2" align="center" class="auto-style4"></td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><asp:Button ID="lblerror" runat="server" Text="Guardar" Width="170px" OnClick="btnGuardar_Click2" /></td>
+               <td colspan="2"></td>
+                <asp:Label ID="lblerror" runat="server" Text="" Visible="false" ForeColor="Red"></asp:Label>            
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><asp:Button ID="guardar" runat="server" Text="Guardar" Width="170px" OnClick="btnGuardar_Click2" /></td>
             </tr>
         </table>
     </div>

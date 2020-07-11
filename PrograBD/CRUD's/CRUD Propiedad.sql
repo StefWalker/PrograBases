@@ -31,7 +31,6 @@ GO
 CREATE PROCEDURE PropiedadInsert
 	  @inNumPropiedad INT,
 	  @inValor INT,
-	  @inDescripción VARCHAR(250),
 	  @inDireccion VARCHAR(250)
 	 
 AS
@@ -46,15 +45,17 @@ INSERT INTO Propiedad(
 	   convert(varchar,cast(@inValor as money),1),
 	   @inDireccion,
 	   1)
+	   return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
 
--- Read de tabla propiedad
+/*-- Read de tabla propiedad
 IF OBJECT_ID('PropiedadRead') IS NOT NULL
 BEGIN 
     DROP PROC PropiedadRead
@@ -67,13 +68,15 @@ BEGIN TRY
     SELECT ID_Propiedad, NumPropiedad, Valor, Direccion
     FROM   Propiedad  
     WHERE  (ID_Propiedad = @inID_Propiedad  AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
-
+*/
 -- Update de tabla propiedad
 IF OBJECT_ID('PropiedadUpdateB') IS NOT NULL
 BEGIN 
@@ -104,14 +107,16 @@ SET  NumPropiedad = @inNewNumPropiedad,
 	 Valor = cast(@inValor as money),
 	 Direccion = @inDireccion
 WHERE  (NumPropiedad = @inNumPropiedad)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
--- Delete de tabla propiedad
+/*-- Delete de tabla propiedad
 IF OBJECT_ID('PropiedadDelete') IS NOT NULL
 BEGIN 
 DROP PROC PropiedadDelete
@@ -124,13 +129,15 @@ BEGIN TRY
 DELETE
 FROM   Propiedad
 WHERE  ID_Propiedad = @inID_Propiedad
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
-
+*/
 ------------------------Procedimientos extras --------------------------
 -- Realiza un search por medio del numero de propiedad
 IF OBJECT_ID('PropiedadSearch') IS NOT NULL
@@ -142,13 +149,15 @@ CREATE PROC PropiedadSearch
     @inNumPropiedad INT
 AS 
 BEGIN TRY
-    SELECT NumPropiedad, convert(varchar,cast(Valor as int),1), Direccion
+    SELECT NumPropiedad/*, convert(varchar,cast(Valor as int),1)*/,ID_Propiedad, Direccion
 	FROM   Propiedad
     WHERE  (NumPropiedad = @inNumPropiedad AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -166,9 +175,11 @@ BEGIN TRY
 UPDATE Propiedad
 SET	Activo = 0
 WHERE  NumPropiedad = @inNumPropiedad
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

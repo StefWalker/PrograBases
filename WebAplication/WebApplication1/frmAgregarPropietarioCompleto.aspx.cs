@@ -22,7 +22,7 @@ namespace WebApplication1
 
             if (txtNumeroPropiedad.Text != "" && txtValor.Text != "" && txtDireccion.Text != "" && txtNumeroPropiedad.Text != "" && NomProp.Text != "" && IdProp.Text != "")
             {
-                entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(2);
+                entTipoDoc objTipo = negTipoDoc.BuscarTipoDoc(Int32.Parse(lista.SelectedValue));
                 if (objTipo == null)
                 {
                     lblerror.Text = "No se pudo agregar, verifique el tipo"; //Sino tira error 

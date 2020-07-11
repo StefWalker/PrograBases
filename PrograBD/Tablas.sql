@@ -58,7 +58,7 @@ CREATE TABLE ConceptoCobro
   TipoCC VARCHAR(50) NOT NULL,
   Concepto VARCHAR(100) NOT NULL,
   FechaVencimiento INT NOT NULL,
-  Fecha INT NOT NULL DEFAULT GETDATE(),
+  Fecha DATE NOT NULL DEFAULT GETDATE(),
   Activo BIT NOT NULL  DEFAULT 1
 );
 
@@ -140,7 +140,8 @@ CREATE TABLE Bitacora
   jsonDespues VARCHAR (500) NOT NULL,
   insertedAt DATETIME NOT NULL, 
   insertedby VARCHAR (20) NOT NULL, 
-  insertedIn VARCHAR(20) NOT NULL
+  insertedIn VARCHAR(20) NOT NULL,
+  FOREIGN KEY (IdEntityType) REFERENCES TipoEntidad(ID_Entidad)
 );
 
 CREATE TABLE TipoTrans
@@ -171,6 +172,13 @@ CREATE TABLE Recibos
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
+CREATE TABLE TipoEntidad
+(
+	ID_Entidad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Nombre Varchar(50) NOT NULL
+);
+
+/*------------------------------------------------------------------------------*/
 IF OBJECT_ID('AcumuladoUpdate') IS NOT NULL
 BEGIN 
 DROP PROC AcumuladoUpdate 

@@ -20,9 +20,9 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropiedadInsert", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", obj.NumPropiedad);
-                cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
+                cmd.Parameters.AddWithValue("@inNumPropiedad", obj.NumPropiedad);
+                cmd.Parameters.AddWithValue("@inValor", obj.Valor);
+                cmd.Parameters.AddWithValue("@inDireccion", obj.Direccion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -49,7 +49,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropiedadSearch", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", numero);
+                cmd.Parameters.AddWithValue("@inNumPropiedad", numero);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -81,7 +81,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropiedadDeleteByNum ", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", numero);
+                cmd.Parameters.AddWithValue("@inNumPropiedad", numero);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -107,10 +107,10 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropiedadUpdateB", cnx);
-                cmd.Parameters.AddWithValue("@NumPropiedad", numViejo);
-                cmd.Parameters.AddWithValue("@NewNumPropiedad", obj.NumPropiedad);
-                cmd.Parameters.AddWithValue("@Valor", obj.Valor);
-                cmd.Parameters.AddWithValue("@Direccion", obj.Direccion);
+                cmd.Parameters.AddWithValue("@inNumPropiedad", numViejo);
+                cmd.Parameters.AddWithValue("@inNewNumPropiedad", obj.NumPropiedad);
+                cmd.Parameters.AddWithValue("@inValor", obj.Valor);
+                cmd.Parameters.AddWithValue("@inDireccion", obj.Direccion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();

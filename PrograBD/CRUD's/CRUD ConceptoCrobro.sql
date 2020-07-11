@@ -45,10 +45,12 @@ INSERT INTO ConceptoCobro(
 	 @inFechaVencimiento,
 	 GETDATE(),
 	 1)
+	 return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -65,10 +67,12 @@ BEGIN TRY
     SELECT ID_CC, FechaVencimiento, Fecha
     FROM   ConceptoCobro  
     WHERE  (ID_CC = @inID_CC AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -94,10 +98,12 @@ SET  TipoCC = @inTipoCC,
 	 Fecha	= @inFecha,
 	 Activo = @inActivo
 WHERE  (ID_CC = @inID_CC AND Activo = 1)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -114,9 +120,11 @@ BEGIN TRY
 DELETE
 FROM   ConceptoCobro
 WHERE  ID_CC = @inID_CC
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

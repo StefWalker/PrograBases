@@ -20,10 +20,10 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("InsertPropietario", cnx);
-                cmd.Parameters.AddWithValue("@Identificacion", obj.Identificacion);
-                cmd.Parameters.AddWithValue("@Nombre", obj.Nombre);
-                cmd.Parameters.AddWithValue("@ID_TDoc", obj.ID_TDoc);
+                cmd = new SqlCommand("PropietarioInsert", cnx);
+                cmd.Parameters.AddWithValue("@inIdentificacion", obj.Identificacion);
+                cmd.Parameters.AddWithValue("@inNombre", obj.Nombre);
+                cmd.Parameters.AddWithValue("@inID_TDoc", obj.ID_TDoc);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -50,7 +50,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropietarioSearch", cnx);
-                cmd.Parameters.AddWithValue("@Identificacion", id);
+                cmd.Parameters.AddWithValue("@inIdentificacion", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -81,8 +81,8 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropietarioDeleteByName ", cnx);
-                cmd.Parameters.AddWithValue("@Identificacion ", identificacion);
-                cmd.Parameters.AddWithValue("@Nombre ", nombre);
+                cmd.Parameters.AddWithValue("@inIdentificacion ", identificacion);
+                cmd.Parameters.AddWithValue("@inNombre ", nombre);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -108,8 +108,8 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("ReadPropietario", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propietario", id);
+                cmd = new SqlCommand("PropietarioRead", cnx);
+                cmd.Parameters.AddWithValue("@inID_Propietario", id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -140,9 +140,9 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("PropietarioUpdateB", cnx);
-                cmd.Parameters.AddWithValue("@Identificacion", idVieja);
-                cmd.Parameters.AddWithValue("@NewNombre", obj.Nombre);
-                cmd.Parameters.AddWithValue("@NewIdentificacion", obj.Identificacion);
+                cmd.Parameters.AddWithValue("@inIdentificacion", idVieja);
+                cmd.Parameters.AddWithValue("@inNewNombre", obj.Nombre);
+                cmd.Parameters.AddWithValue("@inNewIdentificacion", obj.Identificacion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 cmd.ExecuteNonQuery();
@@ -170,7 +170,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarPropietariosFisicos", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Propiedad", ID_Propiedad);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();

@@ -35,10 +35,12 @@ INSERT INTO CC_Fijo(
 	 VALUES(
 	 @inID_Fijo,
 	 @inMonto)
+	 return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -55,10 +57,12 @@ BEGIN TRY
     SELECT ID_Fijo, Monto
     FROM   CC_Fijo  
     WHERE  (ID_Fijo = @inID_Fijo) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -76,10 +80,12 @@ BEGIN TRY
 UPDATE CC_Fijo
 SET  Monto = @inMonto
 WHERE  (ID_Fijo = @inID_Fijo)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -96,9 +102,11 @@ BEGIN TRY
 DELETE
 FROM   CC_Fijo
 WHERE  ID_Fijo = @inID_Fijo
+return 1 
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

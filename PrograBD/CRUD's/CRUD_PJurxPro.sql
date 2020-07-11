@@ -42,10 +42,12 @@ INSERT INTO PJur_x_Pro(
 	   @inID_Propiedad ,
 	   @inID_Juridico,
 	   1)
+	   return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -59,13 +61,15 @@ CREATE PROC PJur_x_ProRead
      @inID_Propiedad int , @inID_Juridico int
 AS 
 BEGIN TRY
-    SELECT ID_JxP, ID_Propiedad ,@inID_Juridico
+    SELECT ID_JxP, ID_Propiedad ,ID_Juridico
     FROM   PJur_x_Pro 
     WHERE  (ID_Propiedad = @inID_Propiedad AND ID_Juridico = @inID_Juridico AND Activo = 1) 
+	return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -87,10 +91,12 @@ SET  ID_Propiedad = @inID_Propiedad,
 	 ID_Juridico= @inID_Juridico
 	 
 WHERE  (ID_JxP = @inID_PxP AND  Activo = 1)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -108,9 +114,11 @@ BEGIN TRY
 UPDATE PJur_x_Pro
 SET Activo = 0
 WHERE  ID_Propiedad = @inID_Propiedad  AND ID_Juridico = @inID_Juridico
+return 1
 END TRY 
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

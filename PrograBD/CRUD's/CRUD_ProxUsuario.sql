@@ -42,10 +42,12 @@ INSERT INTO Pro_x_Usuario(
 	   @inID_Propiedad ,
 	   @inID_Usuario,
 	   1)
+	   return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -62,10 +64,12 @@ BEGIN TRY
     SELECT ID_PxU, ID_Propiedad ,ID_Usuario
     FROM   Pro_x_Usuario 
     WHERE  (ID_Propiedad = @inID_Propiedad AND ID_Usuario = @inID_Usuario AND Activo = 1) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -87,10 +91,12 @@ SET  ID_Propiedad = @inID_Propiedad,
 	 ID_Usuario= @inID_Usuario
 	 
 WHERE  (ID_PxU = @inID_PxU AND Activo = 1)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -108,9 +114,11 @@ BEGIN TRY
 UPDATE Pro_x_Usuario
 SET Activo = 0
 WHERE  ID_Propiedad=@inID_Propiedad AND ID_Usuario =@inID_Usuario
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

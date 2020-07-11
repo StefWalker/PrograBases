@@ -38,7 +38,7 @@ namespace WebApplication1
                             }
                             else
                             {
-                                lblerror.Text = "No se pudo modificar el propietario1";
+                                lblerror.Text = "No se pudo modificar el propietario";
                                 lblerror.Visible = true;
                             }
                         }

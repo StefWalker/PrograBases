@@ -31,10 +31,12 @@ INSERT INTO TipoDoc(TipoDoc,
 					Tipo)
     VALUES (@inTipoDoc,
 			@inTipo)
+			return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -51,10 +53,12 @@ BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (ID_TDoc = @inID_TDoc) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -73,10 +77,12 @@ BEGIN TRY
 UPDATE TipoDoc
 SET  Tipo= @inTipo, TipoDoc = @inTipoDoc
 WHERE  (ID_TDoc = @inID_TDoc)
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -92,10 +98,12 @@ AS
 BEGIN TRY
 DELETE
 FROM  TipoDoc 
+return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO
 
@@ -113,9 +121,11 @@ BEGIN TRY
     SELECT ID_TDoc, TipoDoc, Tipo
 	FROM   TipoDoc
     WHERE  (TipoDoc = @inTipoDoc) 
+	return 1
 END TRY
 BEGIN CATCH
 	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
+	return -1
 END CATCH
 GO

@@ -22,7 +22,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("TipoDocSearch", cnx);
-                cmd.Parameters.AddWithValue("@TipoDoc", tipo);
+                cmd.Parameters.AddWithValue("@inTipoDoc", tipo);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -53,7 +53,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("TipoDocRead", cnx);
-                cmd.Parameters.AddWithValue("@ID_TDoc",id);
+                cmd.Parameters.AddWithValue("@inID_TDoc",id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
