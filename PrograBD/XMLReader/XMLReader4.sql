@@ -2,7 +2,7 @@ Use[ProyectoBases]
 
 DECLARE @x xml
 SELECT @x = P
-FROM OPENROWSET (BULK 'C:\XML\TipoTransConsumo.xml', SINGLE_BLOB) AS TipoTransConsumo(P) 
+FROM OPENROWSET (BULK 'C:\XMLBases\TipoTransConsumo.xml', SINGLE_BLOB) AS TipoTransConsumo(P) 
 DECLARE @hdoc int
 
 EXEC sp_xml_preparedocument @hdoc OUTPUT, @x

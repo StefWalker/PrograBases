@@ -3,7 +3,7 @@ USE[ProyectoBases]
 DECLARE @y xml
 
 SELECT @y = L
-FROM OPENROWSET (BULK 'C:\XML\Concepto de Cobro.xml', SINGLE_BLOB) AS Operaciones_por_Dia(L)
+FROM OPENROWSET (BULK 'C:\XMLBases\ConceptoDeCobro.xml', SINGLE_BLOB) AS Operaciones_por_Dia(L)
 
 --SELECT @y
 
@@ -31,25 +31,27 @@ with(
 
 EXEC sp_xml_removedocument @hdo
 
-Insert into ConceptoCobro(ID_CC, TipoCC, Concepto, FechaVencimiento, Fecha)
-Select ccobro.id, ccobro.TipoCC, ccobro.Nombre, ccobro.QDiasVencimiento, ccobro.DiaCobro
+Insert into ConceptoCobro(ID_CC, TipoCC, Concepto,DiaCobro,DiaVencimiento)
+Select ccobro.id, ccobro.TipoCC, ccobro.Nombre,ccobro.DiaCobro, ccobro.QDiasVencimiento
 FROM ccobro
 
-Insert into Intereses_monetarios(ID_IM, Monto)
+Insert into Intereses_Moratorios(ID_IM, Monto)
 Select ccobro.id, ccobro.TasaInteresMoratoria 
 From ccobro
 
 Insert into CC_ConsumoAgua(ID_Con, Valor_m3,MontoMinimoRecibo)
 Select ccobro.id, ccobro.ValorM3 , ccobro.MontoMinRecibo From ccobro 
-WHERE  EsRecurrente = 'Si'
+WHERE  EsImpuesto ='NO' AND EsRecurrente = 'Si' AND EsFijo='NO'
 
 Insert into CC_Fijo(ID_Fijo, Monto)
 Select ccobro.id, ccobro.Monto From ccobro 
-WHERE  EsFijo = 'Si'
+WHERE  EsImpuesto ='No' AND EsRecurrente = 'Si' AND EsFijo='Si'
 
 Insert into CC_Porcentual(ID_Por, Porcentaje)
 Select ccobro.id, ccobro.ValorPorcentaje From ccobro 
-WHERE  EsImpuesto = 'Si'
+WHERE  EsImpuesto ='Si' AND EsRecurrente = 'Si' AND EsFijo='No'
+
+DROP TABLE ccobro
 
 
 /*

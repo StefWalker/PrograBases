@@ -2,7 +2,7 @@ Use[ProyectoBases]
 
 DECLARE @x xml
 SELECT @x = P
-FROM OPENROWSET (BULK 'C:\XML\TipoDocumentoIdentidad.xml', SINGLE_BLOB) AS TipoDocIdentidad(P)
+FROM OPENROWSET (BULK 'C:\XMLBases\TipoDocumentoIdentidad.xml', SINGLE_BLOB) AS TipoDocIdentidad(P)
 DECLARE @hdoc int
 
 EXEC sp_xml_preparedocument @hdoc OUTPUT, @x

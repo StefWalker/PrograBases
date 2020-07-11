@@ -57,8 +57,8 @@ CREATE TABLE ConceptoCobro
   ID_CC INT PRIMARY KEY NOT NULL,
   TipoCC VARCHAR(50) NOT NULL,
   Concepto VARCHAR(100) NOT NULL,
-  FechaVencimiento INT NOT NULL,
-  Fecha DATE NOT NULL DEFAULT GETDATE(),
+  DiaCobro INT NOT NULL,
+  DiaVencimiento INT NOT NULL,
   Activo BIT NOT NULL  DEFAULT 1
 );
 
@@ -131,6 +131,11 @@ CREATE TABLE PJur_x_Pro
   FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
+CREATE TABLE TipoEntidad
+(
+	ID_Entidad INT PRIMARY KEY NOT NULL,
+	Nombre Varchar(50) NOT NULL
+);
 CREATE TABLE Bitacora
 (
   ID_Bitacora int identity (1, 1) PRIMARY KEY NOT NULL,
@@ -146,7 +151,7 @@ CREATE TABLE Bitacora
 
 CREATE TABLE TipoTrans
 (
-	ID_Trans INT NOT NULL,
+	ID_Trans INT PRIMARY KEY NOT NULL,
 	Nombre VARCHAR(20) NOT NULL
 );
 
@@ -172,11 +177,6 @@ CREATE TABLE Recibos
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
-CREATE TABLE TipoEntidad
-(
-	ID_Entidad INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	Nombre Varchar(50) NOT NULL
-);
 
 /*------------------------------------------------------------------------------*/
 IF OBJECT_ID('AcumuladoUpdate') IS NOT NULL

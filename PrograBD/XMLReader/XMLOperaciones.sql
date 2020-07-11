@@ -30,7 +30,7 @@ BEGIN
 			SELECT @Varios = C	
 			
 
-			FROM OPENROWSET (BULK 'C:\XML\Operaciones.xml', SINGLE_BLOB) AS Varios(C)
+			FROM OPENROWSET (BULK 'C:\XMLBases\Operaciones.xml', SINGLE_BLOB) AS Varios(C)
 			
 			DECLARE @hdoc int
 
@@ -133,18 +133,26 @@ BEGIN
 					SELECT IdentidadTemporal,NomTemp,1,TipoIdTemp,FechaTemp FROM @TemporalPropietario
 					WHERE [@TemporalPropietario].FechaTemp = @fechaActual;
 
-					/*--------------------------------------
-					----INSERT DE PROPIETARIO JURIDICO----
-					Declare @ID int
-					SET @ID = SELECT Propietario.ID_Propietario
-					FROM Propietario
-					where  Propietario.Identificacion = [@TemporalPropJurid].DocidRepresentante
-			
-					INSERT INTO [dbo].[PropJuridico] ([IDPropietario],[IDTipoIdResponsable],[NumIdResponsable],[Responsable])
-					SELECT [Propietario].[ID],[TipoId],[NumIdResponsable], [Responsable] FROM @TemporalPropJurid
-					INNER JOIN Propietario ON [NumId] = [NumIdJurid]
+/*----PropJuridico-----
+	/*						
+					INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,ID_TDoc,Activo,Fecha)
+					SELECT Propietario.ID_Propietario,Documento,ID_TDoc, 1, Fech FROM @TemporalPropJurid
+					INNER JOIN Propietario ON [ID_Propietario] = [NumIdJurid]
 					WHERE [@TemporalPropJurid].[Fech] = @fechaActual;
 					*/
+
+				INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,ID_TDoc,Activo,Fecha)
+
+					SELECT Propiedad.ID_Propiedad,Documento,ID_TDoc,1, @fechaActual
+					FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/PersonaJuridica', 1)
+						WITH(
+							Prop Int  '@DocidRepresentante' ,
+							IdJur VARCHAR(250) '@docidPersonaJuridica',
+							TDoc Int '@TipDocIdPJ',
+							fechaLeida VARCHAR(100) '../@fecha'
+						)
+						INNER JOIN Propietario ON Prop = Propietario.Identificacion
+						WHERE fechaLeida = @fechaActual ;*/
 --Insercion de las otras tablas , las intermedias -------------
 			
 --ProxPro--------------------
