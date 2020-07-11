@@ -14,21 +14,21 @@ BEGIN
 		BEGIN TRAN
 		
 
-			DELETE FROM Pro_x_Pro
+			/*DELETE FROM Pro_x_Pro
 			DELETE FROM Pro_x_Usuario
 			DELETE FROM Pro_x_CC
 			DELETE FROM PropJuridico
 
 			DELETE FROM Propiedad
 			DELETE FROM Propietario
-			DELETE FROM Usuario
+			DELETE FROM Usuario*/
 
 			DECLARE @Varios XML
 			DECLARE @TemporalFechas table (fecha date);
 			DECLARE @TemporalPropietario table (IdentidadTemporal VARCHAR(250),NomTemp VARCHAR(100),Activo bit,TipoIdTemp int,FechaTemp DATE);
 			DECLARE @TemporalUsuario table (NomTemp VARCHAR(100),PasswordTemp VARCHAR(100),TipoTemp Varchar(100),Activo BIT,FechTemp DATE);  
 			DECLARE @TemporalPropiedad table (NumTemp INT,ValTemp MONEY,DireccionTemp VARCHAR(250),Activo BIT,FechTemp DATE); 
-			DECLARE @TemporalPropJurid table (IDPropietario int,Documento Varchar(250),IDTipo int,Activo BIT,Fecha DATE);
+			/*DECLARE @TemporalPropJurid table (IDPropietario int,Documento Varchar(250),IDTipo int,Activo BIT,Fecha DATE);*/
 			SET NOCOUNT ON 
 
 			DECLARE @fechaMin DATE
@@ -37,7 +37,7 @@ BEGIN
 			SELECT @Varios = C	
 			
 
-			FROM OPENROWSET (BULK 'C:\XMLBases\Operaciones.xml', SINGLE_BLOB) AS Varios(C)
+			FROM OPENROWSET (BULK 'C:\XML\Operaciones.xml', SINGLE_BLOB) AS Varios(C)
 			
 			DECLARE @hdoc int
 
@@ -106,8 +106,8 @@ BEGIN
 					fechaL VARCHAR(100) '../@fecha'
 				);
 
-
-			/*--------------------------
+/*
+			--------------------------
 			----INSERT DE PropJurid----
 
 			INSERT INTO @TemporalPropJurid(IDPropietario,Documento,IDTipo ,Activo ,Fecha )
@@ -122,7 +122,7 @@ BEGIN
 
 
 			--------------------------------------------------------*/
-			WHILE (@fechaActual<@fechaMax)
+			WHILE (@fechaActual <= @fechaMax)
 				BEGIN
 					SET NOCOUNT ON 
 					--------------------------
@@ -133,14 +133,14 @@ BEGIN
 
 					
 					------------------------------
-					----INSERT DE PROPIETARIOS----
+					----INSERT DE PROPIETARIOS----*/
 
 					INSERT INTO [dbo].[Propietario] (Identificacion,Nombre,Activo,ID_TDoc,Fecha )
 
 					SELECT IdentidadTemporal,NomTemp,1,TipoIdTemp,FechaTemp FROM @TemporalPropietario
 					WHERE [@TemporalPropietario].FechaTemp = @fechaActual;
 
-
+					
 					--------------------------
 					----INSERT DE USUARIOS----
 			
@@ -163,7 +163,7 @@ BEGIN
 					INNER JOIN Propietario ON [NumId] = [NumIdJurid]
 					WHERE [@TemporalPropJurid].[Fech] = @fechaActual;
 					*/
-					---------------------------------
+				 ---------------------------------
 					-- INSERTS DE TABLAS INTERMEDIAS --
 					---------------------------------
 			
@@ -224,6 +224,7 @@ BEGIN
 	  END TRY
 
 	  BEGIN CATCH 
+	  print error_message()
 		ROLLBACK;
 		THROW 70001,'Error en la insercion de Operaciones',1;
 	  END CATCH
