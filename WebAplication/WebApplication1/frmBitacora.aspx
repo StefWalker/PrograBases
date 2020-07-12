@@ -26,6 +26,7 @@
        <td colspan="2" align ="Center"><asp:Label ID="lblerror" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>
      <br />
+        <asp:Label ID="Label2" runat="server" ></asp:Label>
     <tr>
       <td colspan="2" align ="center"><asp:Button ID="btnBuscar" runat="server" Text="Buscar" width="150px" OnClick="btnBuscar_Click"/></td>
     </tr>
@@ -34,9 +35,8 @@
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID_Bitacora" HeaderText="ID" />
-            <asp:BoundField DataField="IdEntityType" HeaderText="Tipo de entidad" />
+            
             <asp:BoundField DataField="EntityId" HeaderText="Id de la entidad" />
-            <asp:BoundField DataField="jsonAntes" HeaderText="JSON anterior" />
             <asp:BoundField DataField="jsonDespues" HeaderText="JSON Actual" />
             <asp:BoundField DataField="insertedAt" HeaderText="Fecha" />
             <asp:BoundField DataField="insertedby" HeaderText="Usuario " />
