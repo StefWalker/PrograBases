@@ -18,5 +18,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmPrincipal.aspx");
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
