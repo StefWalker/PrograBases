@@ -35,26 +35,11 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	SET	@inID_Prop = (Select k.ID_Propiedad From inserted as k)
 
-	SET @inID_Bitacora = (Select max(Bitacora.ID_Bitacora) from Bitacora
-										 Where Bitacora.EntityId = @inID_Prop)
-
-	if((@inID_Bitacora) IS NOT NULL)
-	BEGIN
 		Set @inJsonDespues = (Select k.ID_Propiedad, k.NumPropiedad, k.Valor, k.Direccion,
 										 k.Fecha, k.M3Acumulados, k.M3AcumuladosUltimoRecibo 
 										 FROM inserted AS k FOR JSON AUTO)
-
-		SET @inJsonAntes = (Select Bitacora.jsonDespues FROM Bitacora
-										 where Bitacora.ID_Bitacora = @inID_Bitacora)
-	END
-	else if((SELECT i.ID_Propiedad from inserted as i) IS NOT NULL)
-	BEGIN
-		Set @inJsonDespues = (Select k.ID_Propiedad, k.NumPropiedad, k.Valor, k.Direccion,
-										 k.Fecha, k.M3Acumulados, k.M3AcumuladosUltimoRecibo 
-										 FROM inserted AS k FOR JSON AUTO)
-	END
+	
 	
     -- Insert statements for trigger here
 	INSERT INTO [dbo].Bitacora
