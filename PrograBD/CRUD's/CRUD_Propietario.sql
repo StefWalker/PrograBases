@@ -176,3 +176,19 @@ BEGIN CATCH
 	return -1
 END CATCH
 GO
+
+------Listar propietarios --------------------
+Create PROC ListarPropietariosFisicos
+	@inID_Propiedad INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT Propietario.ID_Propietario,Propietario.Identificacion,Propietario.Nombre,Propietario.ID_TDoc
+	FROM Propietario INNER JOIN Pro_x_Pro
+	on Pro_x_Pro.ID_Propiedad = @inID_Propiedad AND Propietario.ID_Propietario = Pro_x_Pro.ID_Propietario
+	where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
+END
