@@ -50,7 +50,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_Propiedad, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_Propiedad, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -85,7 +85,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_Propiedad, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_Propiedad, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -121,7 +121,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 2, i.ID_Propietario, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 2, i.ID_Propietario, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -154,7 +154,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 2, i.ID_Propietario, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 2, i.ID_Propietario, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -188,7 +188,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 3, i.ID_Usuario, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 3, i.ID_Usuario, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -219,7 +219,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 3, i.ID_Usuario, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 3, i.ID_Usuario, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -254,7 +254,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 4, i.ID_PxP, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 4, i.ID_PxP, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -286,7 +286,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 4, i.ID_PxP, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 4, i.ID_PxP, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -321,7 +321,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 5, i.ID_PxU, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 5, i.ID_PxU, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -353,7 +353,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 5, i.ID_PxU, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 5, i.ID_PxU, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -388,7 +388,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_Juridico, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_Juridico, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -422,7 +422,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_Juridico, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_Juridico, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
@@ -458,7 +458,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_CC, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_CC, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM inserted AS i
 END
 GO
@@ -492,7 +492,7 @@ BEGIN
 		insertedby, 
 		insertedIn
 	)
-	SELECT 1, i.ID_CC, @inJsonAntes, @inJsonDespues, GETDATE(), 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
+	SELECT 1, i.ID_CC, @inJsonAntes, @inJsonDespues, i.Fecha, 'administrador',CONVERT(char(15), CONNECTIONPROPERTY('client_net_address'))
 	FROM deleted AS i
 
 END
