@@ -141,8 +141,8 @@ CREATE TABLE Bitacora
   ID_Bitacora int identity (1, 1) PRIMARY KEY NOT NULL,
   IdEntityType INT NOT NULL,
   EntityId INT NOT NULL, 
-  jsonAntes VARCHAR (500) NOT NULL,
-  jsonDespues VARCHAR (500) NOT NULL,
+  jsonAntes VARCHAR (500),
+  jsonDespues VARCHAR (500),
   insertedAt DATETIME NOT NULL, 
   insertedby VARCHAR (20) NOT NULL, 
   insertedIn VARCHAR(20) NOT NULL,
@@ -160,9 +160,11 @@ CREATE TABLE TransConsumo
 	ID_TCons INT Identity (1,1) PRIMARY KEY NOT NULL,
 	LecturaM3 INT NOT NULL,
 	Descripcion VARCHAR(150),
-	ID_Finca INT NOT NULL,
+	ID_Propiedad INT NOT NULL,
 	Tipo INT NOT NULL,
-	FOREIGN KEY (ID_Finca) REFERENCES Propiedad(ID_Propiedad)
+	Fecha Date NOT NULL DEFAULT GETDATE(),
+	FOREIGN KEY (Tipo) REFERENCES TipoTrans(ID_Trans),
+	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
 CREATE TABLE Recibos

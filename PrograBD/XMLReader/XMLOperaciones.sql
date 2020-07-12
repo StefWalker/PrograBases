@@ -5,7 +5,7 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-Create PROCEDURE [dbo].[LeerOperaciones]
+Create PROCEDURE [dbo].[CargarOperaciones]
 
 AS
 
@@ -20,7 +20,9 @@ BEGIN
 			DECLARE @TemporalPropietario table (IdentidadTemporal VARCHAR(250),NomTemp VARCHAR(100),Activo bit,TipoIdTemp int,FechaTemp DATE);
 			DECLARE @TemporalUsuario table (NomTemp VARCHAR(100),PasswordTemp VARCHAR(100),TipoTemp Varchar(100),Activo BIT,FechTemp DATE);  
 			DECLARE @TemporalPropiedad table (NumTemp INT,ValTemp MONEY,DireccionTemp VARCHAR(250),Activo BIT,FechTemp DATE); 
-			/*DECLARE @TemporalPropJurid table (IDPropietario int,Documento Varchar(250),IDTipo int,Activo BIT,Fecha DATE);*/
+			DECLARE @TemporalTransConsumo table (Lectura INT,Descripcion varchar(150),Finca Int ,Tipo int,FechTemp DATE); 
+			DECLARE @TemporalPropJurid table (IDPropietario Varchar(250),Documento Varchar(250),Activo BIT,Fech DATE);
+			DECLARE @TemporalCambios table (NumFinca INT , NuevoValor MONEY,Fecha Date );
 			SET NOCOUNT ON 
 -----Declaramos una fecha maxima y una minima para saber el inicio y final -------------------------------
 
@@ -91,23 +93,45 @@ BEGIN
 					TipoId int '@TipoDocIdentidad',
 					FechaL VARCHAR(100) '../@fecha'
 				);
+-----TransConsumo-------
+
+			INSERT INTO @TemporalTransConsumo (Lectura,Descripcion,Finca ,Tipo,FechTemp)
+
+			SELECT lectura,descrip,finca,tipo,convert(date, FechaL, 121) FechaL
+			FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/TransConsumo', 2)
+				WITH(
+					lectura INT '@LecturaM3',
+					descrip VARCHAR(150) '@descripcion' ,
+					finca int '@NumFinca',
+					tipo int '@id',
+					FechaL VARCHAR(100) '../@fecha'
+				)
+				
 
 			
-/*
-			--------------------------
-			----INSERT DE PropJurid----
+--Propietario Juridico--------
 
-			INSERT INTO @TemporalPropJurid(IDPropietario,Documento,IDTipo ,Activo ,Fecha )
+			INSERT INTO @TemporalPropJurid(IDPropietario,Documento ,Activo ,Fech )
 
-			SELECT IDProp,[TipDocIdRepresentante],[Representante],convert(date, [fechaLeida], 121)[fechaLeida],[docidPersonaJuridica]
+			SELECT IDProp,docu,1,convert(date, [fechaLeida], 121)[fechaLeida]
 			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/PersonaJuridica',1)
-				WITH(	[DocidRepresentante] VARCHAR(100) '@DocidRepresentante',
-						[TipDocIdRepresentante] VARCHAR(30) '@TipDocIdRepresentante',
-						[docidPersonaJuridica] VARCHAR(100) '@docidPersonaJuridica',
-						[fechaLeida] VARCHAR(100)	'../@fecha',
-						[Representante]		VARCHAR(100) '@Nombre');
+				WITH(	IDProp Varchar(250) '@docidPersonaJuridica',
+						docu Varchar(250) '@DocidRepresentante',
+						fechaLeida VARCHAR(100)	'../@fecha'
+				);
 
+/*---CambiosPropiedad--------
 
+			INSERT INTO @TemporalCambios(NumFinca , NuevoValor,Fecha)
+
+			SELECT num,valor,convert(date, [fechaLeida], 121)[fechaLeida]
+			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/CambioPropiedad',1)
+				WITH(	num INT '@NumFinca',
+						valor MONEY '@NuevoValor',
+						fechaLeida VARCHAR(100)	'../@fecha'
+				)
+			;*/
+				
 			--------------------------------------------------------*/
 
 -----Inicio del ciclo para insertar los archivos a las tablas reales con fechas------------------------
@@ -133,26 +157,34 @@ BEGIN
 					SELECT IdentidadTemporal,NomTemp,1,TipoIdTemp,FechaTemp FROM @TemporalPropietario
 					WHERE [@TemporalPropietario].FechaTemp = @fechaActual;
 
-/*----PropJuridico-----
-	/*						
-					INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,ID_TDoc,Activo,Fecha)
-					SELECT Propietario.ID_Propietario,Documento,ID_TDoc, 1, Fech FROM @TemporalPropJurid
-					INNER JOIN Propietario ON [ID_Propietario] = [NumIdJurid]
-					WHERE [@TemporalPropJurid].[Fech] = @fechaActual;
-					*/
+---Trans-----
 
-				INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,ID_TDoc,Activo,Fecha)
+				    INSERT INTO [dbo].[TransConsumo] (LecturaM3,Descripcion,ID_Propiedad,Tipo,Fecha)
 
-					SELECT Propiedad.ID_Propiedad,Documento,ID_TDoc,1, @fechaActual
-					FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/PersonaJuridica', 1)
-						WITH(
-							Prop Int  '@DocidRepresentante' ,
-							IdJur VARCHAR(250) '@docidPersonaJuridica',
-							TDoc Int '@TipDocIdPJ',
-							fechaLeida VARCHAR(100) '../@fecha'
-						)
-						INNER JOIN Propietario ON Prop = Propietario.Identificacion
-						WHERE fechaLeida = @fechaActual ;*/
+					SELECT Lectura ,Descripcion,Propiedad.ID_Propiedad,Tipo,FechTemp FROM @TemporalTransConsumo
+					Inner JOIN Propiedad
+					on [@TemporalTransConsumo].Finca = Propiedad.NumPropiedad
+					WHERE [@TemporalTransConsumo].FechTemp = @fechaActual
+				
+					
+
+----PropJuridico-----
+					
+					INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,Activo,Fecha)
+
+					SELECT Propietario.ID_Propietario,Documento,1 ,Fech  FROM @TemporalPropJurid
+					Inner JOIN Propietario
+					on [@TemporalPropJurid].IDPropietario= Propietario.Identificacion
+					WHERE [@TemporalPropJurid].Fech = @fechaActual
+
+/*---Cambios-----
+					
+					UPDATE Propiedad
+					SET Propiedad.Valor = [@TemporalCambios].NuevoValor , Propiedad.Fecha = [@TemporalCambios].Fecha
+					where (Propiedad.NumPropiedad = [@TemporalCambios].NumFinca) AND ([@TemporalCambios].Fecha = @fechaActual)
+ 
+					
+				*/	
 --Insercion de las otras tablas , las intermedias -------------
 			
 --ProxPro--------------------

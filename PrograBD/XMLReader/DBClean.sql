@@ -13,10 +13,10 @@ DROP TABLE Usuario
 DROP TABLE PropJuridico
 DROP TABLE Bitacora
 DROP TABLE Recibos
-DROP TABLE TipoTrans
 DROP TABLE TipoEntidad
 DROP TABLE TransConsumo
 DROP TABLE ConceptoCobro
 DROP TABLE Propiedad
 DROP TABLE Propietario
 DROP TABLE TipoDoc
+DROP TABLE TipoTrans
