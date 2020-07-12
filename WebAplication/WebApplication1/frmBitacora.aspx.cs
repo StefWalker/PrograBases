@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,12 +17,20 @@ namespace WebApplication1
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmPrincipal.aspx");
+            if (txtUser.Text != null && TextBox1.Text != null && lista.SelectedValue != null)
+            {
+
+                GridView1.DataSource = negBitacora.ListarBitacora(Convert.ToInt32(lista.SelectedValue),Convert.ToDateTime(txtUser.Text), Convert.ToDateTime(TextBox1.Text));
+                GridView1.DataBind();
+                
+            }
+            else
+            {
+                lblerror.Text = "Debe ingresar un propietario a buscar";
+                lblerror.Visible = true;
+            }
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

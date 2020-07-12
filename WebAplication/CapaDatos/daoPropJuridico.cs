@@ -136,7 +136,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarPropietariosJuridicos", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propiedad", ID_Propiedad);
+                cmd.Parameters.AddWithValue("@inID_Propiedad", ID_Propiedad);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();

@@ -2,9 +2,9 @@ USE [ProyectoBases]
 
 -----ListaPropiedades ingresando el id
 
-CREATE PROCEDURE ListarPropiedades
+CREATE PROC ListarPropiedades
 	-- Add the parameters for the stored procedure here
-	@ID_Propietario INT
+	@inID_Propietario INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -14,7 +14,7 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad
 	FROM Propiedad INNER JOIN Pro_x_Pro
-	on Pro_x_Pro.ID_Propietario = @ID_Propietario AND Propiedad.ID_Propiedad = Pro_x_Pro.ID_Propiedad
+	on Pro_x_Pro.ID_Propietario = @inID_Propietario AND Propiedad.ID_Propiedad = Pro_x_Pro.ID_Propiedad
 	WHERE Propiedad.Activo = 1
 END
 GO
@@ -22,7 +22,7 @@ GO
 
 CREATE PROC ListarPropiedadesUser
 	-- Add the parameters for the stored procedure here
-	@ID_Usuario INT
+	@inID_Usuario INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -32,7 +32,7 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad
 	FROM Propiedad INNER JOIN Pro_x_Usuario
-	on Pro_x_Usuario.ID_Usuario = @ID_Usuario AND Propiedad.ID_Propiedad = Pro_x_Usuario.ID_Propiedad 
+	on Pro_x_Usuario.ID_Usuario = @inID_Usuario AND Propiedad.ID_Propiedad = Pro_x_Usuario.ID_Propiedad 
 	where Propiedad.Activo = 1
 END
 GO
@@ -52,8 +52,8 @@ BEGIN
 	where Usuario.Activo = 1
 END
 
-ALTER PROC [dbo].[ListarPropietariosJuridicos]
-	@ID_Propiedad INT
+Create PROC [dbo].[ListarPropietariosJuridicos]
+	@inID_Propiedad INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -63,12 +63,12 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT PropJuridico.Documento,PropJuridico.ID_Juridico,PropJuridico.ID_Propietario,PropJuridico.ID_TDoc
 	FROM PropJuridico INNER JOIN PJur_x_Pro
-	on PJur_x_Pro.ID_Propiedad = @ID_Propiedad AND PropJuridico.ID_Juridico = PJur_x_Pro.ID_Juridico
+	on PJur_x_Pro.ID_Propiedad = @inID_Propiedad AND PropJuridico.ID_Juridico = PJur_x_Pro.ID_Juridico
 	where PropJuridico.Activo = 1 AND PJur_x_Pro.Activo=1
 END
 
-ALTER PROC [dbo].[ListarPropietariosFisicos]
-	@ID_Propiedad INT
+Create PROC [dbo].[ListarPropietariosFisicos]
+	@inID_Propiedad INT
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -78,6 +78,27 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT Propietario.ID_Propietario,Propietario.Identificacion,Propietario.Nombre,Propietario.ID_TDoc
 	FROM Propietario INNER JOIN Pro_x_Pro
-	on Pro_x_Pro.ID_Propiedad = @ID_Propiedad AND Propietario.ID_Propietario = Pro_x_Pro.ID_Propietario
+	on Pro_x_Pro.ID_Propiedad = @inID_Propiedad AND Propietario.ID_Propietario = Pro_x_Pro.ID_Propietario
 	where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
 END
+
+-------------Lista Bitacora-----------------
+
+CREATE PROC ListarBitacora
+	-- Add the parameters for the stored procedure here
+	@inIdEntityType INT,
+	@inFechaInicial Date,
+	@inFechaFinal Date
+AS
+BEGIN
+	
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT Bitacora.ID_Bitacora,Bitacora.IdEntityType,Bitacora.EntityId,Bitacora.jsonAntes,Bitacora.jsonDespues,
+	Bitacora.insertedAt,Bitacora.insertedby,Bitacora.insertedIn
+	FROM Bitacora 
+	where Bitacora.IdEntityType = @inIdEntityType AND Bitacora.insertedAt between @inFechaInicial AND @inFechaFinal
+	ORDER BY Bitacora.insertedAt ASC
+END
+GO

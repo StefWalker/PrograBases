@@ -30,10 +30,10 @@
       <td colspan="2" align ="center"><asp:Button ID="btnBuscar" runat="server" Text="Buscar" width="150px" OnClick="btnBuscar_Click"/></td>
     </tr>
      <br />
-    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="Id_Bitacora" HeaderText="ID" />
+            <asp:BoundField DataField="ID_Bitacora" HeaderText="ID" />
             <asp:BoundField DataField="IdEntityType" HeaderText="Tipo de entidad" />
             <asp:BoundField DataField="EntityId" HeaderText="Id de la entidad" />
             <asp:BoundField DataField="jsonAntes" HeaderText="JSON anterior" />

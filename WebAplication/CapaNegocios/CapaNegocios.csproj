@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="negBitacora.cs" />
     <Compile Include="negConceptoCobro.cs" />
     <Compile Include="negProCC.cs" />
     <Compile Include="negPropietario.cs" />

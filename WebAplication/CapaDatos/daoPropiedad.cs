@@ -139,7 +139,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarPropiedades", cnx);
-                cmd.Parameters.AddWithValue("@ID_Propietario", ID_Propietario);
+                cmd.Parameters.AddWithValue("@inID_Propietario", ID_Propietario);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -175,7 +175,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarPropiedadesUser", cnx);
-                cmd.Parameters.AddWithValue("@ID_Usuario", ID_Usuario);
+                cmd.Parameters.AddWithValue("@inID_Usuario", ID_Usuario);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();

@@ -11,7 +11,7 @@ namespace CapaDatos
 {
     public class daoBitacora
     {
-        public static List<entBitacora> ListarBitacora(int IdEntityType,int FechaInicial , int FechaFinal)
+        public static List<entBitacora> ListarBitacora(int IdEntityType,DateTime FechaInicial , DateTime FechaFinal)
         {
 
             SqlCommand cmd = null;
