@@ -28,6 +28,7 @@ BEGIN
 
 			DECLARE @fechaMinima DATE
 			DECLARE @fechaMaxima DATE
+			DECLARE @DiaDeCobro INT
 
 			SELECT @Varios = C	
 			
@@ -139,8 +140,22 @@ BEGIN
 			WHILE (@fechaActual <= @fechaMaxima)
 				BEGIN
 					SET NOCOUNT ON 
----Propiedades-----------
-				
+
+					SET @DiaDeCobro = Day(@fechaActual);
+					IF(@DiaDeCobro = 25 or @DiaDeCobro = 8 or @DiaDeCobro = 9 or @DiaDeCobro = 4
+						or @DiaDeCobro = 3 or @DiaDeCobro = 5 or @DiaDeCobro = 7 or @DiaDeCobro = 6)
+						BEGIN TRY
+							EXEC ProyectoBases.dbo.DiaDeCobro @inDia = @DiaDeCobro, 
+															  @inFecha = @fechaActual,
+															  @monto = null
+						END TRy
+						BEGIN CATCH
+							print error_message()
+						END CATCH
+
+
+---Propiedades-----------				
+					
 					INSERT INTO [dbo].[Propiedad] (NumPropiedad,Valor,Direccion,Activo,Fecha)
 					SELECT NumTemp ,ValTemp,DireccionTemp ,1,FechTemp  FROM @TemporalPropiedad 
 					WHERE [@TemporalPropiedad].[FechTemp] = @fechaActual ;
