@@ -23,6 +23,8 @@ namespace CapaDatos
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarBitacora", cnx);
                 cmd.Parameters.AddWithValue("@inIdEntityType", IdEntityType);
+                cmd.Parameters.AddWithValue("@inFechaInicial", FechaInicial);
+                cmd.Parameters.AddWithValue("@inFechaFinal", FechaFinal);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -32,7 +34,7 @@ namespace CapaDatos
                     entBitacora C = new entBitacora();
                     C.ID_Bitacora = Convert.ToInt32(dr["ID_Bitacora"].ToString());
                     C.IdEntityType = Convert.ToInt32(dr["IdEntityType "].ToString());
-                    C.EntityId = Convert.ToInt32(dr["Identificacion"].ToString();
+                    C.EntityId = Convert.ToInt32(dr["Identificacion"].ToString());
                     C.jsonAntes = dr["jsonAntes"].ToString();
                     C.jsonDespues = dr["jsoDespues"].ToString();
                     C.insertedAt = Convert.ToDateTime(dr["insertedAt"].ToString());
