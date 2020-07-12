@@ -10,9 +10,9 @@ namespace CapaNegocios
 {
     public class negBitacora
     {
-        public static List<entBitacora> ListarBitacora(int IdEntityType, DateTime FechaInicial, DateTime FechaFinal)
+        public static List<entBitacora> ListarBitacora(int IdEntityType/*, DateTime FechaInicial, DateTime FechaFinal*/)
         {
-            return daoBitacora.ListarBitacora(IdEntityType, FechaInicial, FechaFinal);
+            return daoBitacora.ListarBitacora(IdEntityType/*, FechaInicial, FechaFinal*/);
         }
     }
 }

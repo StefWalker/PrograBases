@@ -173,7 +173,7 @@ CREATE TABLE Recibos
 	ID_Propiedad INT NOT NULL,
 	ID_Concepto INT NOT NULL,
 	Fecha Date NOT NULL DEFAULT GETDATE(),
-	Monto INT NOT NULL,
+	Monto Money NOT NULL,
 	Estado INT NOT NULL DEFAULT 0,
 	FOREIGN KEY (ID_Concepto) REFERENCES ConceptoCobro(ID_CC),
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
