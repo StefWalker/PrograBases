@@ -20,10 +20,3 @@ DROP TABLE Propiedad
 DROP TABLE Propietario
 DROP TABLE TipoDoc
 DROP TABLE TipoTrans
-
-Exec ProyectoBases.dbo.XMLTipoEntidad
-Exec ProyectoBases.dbo.XMLUsuarios
-Exec ProyectoBases.dbo.XMLConceptoCobro
-Exec ProyectoBases.dbo.XMLTransConsumo
-Exec ProyectoBases.dbo.XMLTipoEntidad
-
