@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CapaNegocios
 {
-   public class negBitacora
+    public class negRecibos
     {
-        public static List<entBitacora> ListarBitacora(int IdEntityType)
+        public static List<entRecibos> ListarRecibos(int ID_Propiedad)
         {
-            return daoBitacora.ListarBitacora(IdEntityType);
+            return daoRecibos.ListarRecibos(ID_Propiedad);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace CapaDatos
 {
     public class daoBitacora
     {
-        public static List<entBitacora> ListarBitacora(int IdEntityType/*,DateTime FechaInicial , DateTime FechaFinal*/)
+        public static List<entBitacora> ListarBitacora(int IdEntityType)
         {
 
             SqlCommand cmd = null;
@@ -22,9 +22,7 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarBitacora", cnx);
-                cmd.Parameters.AddWithValue("@inIdEntityType", IdEntityType);
-              /*  cmd.Parameters.AddWithValue("@inFechaInicial", FechaInicial);
-                cmd.Parameters.AddWithValue("@inFechaFinal", FechaFinal);*/
+                cmd.Parameters.AddWithValue("@inIdEntityType",IdEntityType);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -33,10 +31,9 @@ namespace CapaDatos
                 {
                     entBitacora C = new entBitacora();
                     C.ID_Bitacora = Convert.ToInt32(dr["ID_Bitacora"].ToString());
-                   // C.IdEntityType = Convert.ToInt32(dr["IdEntityType "].ToString());
+                    C.IdEntityType = Convert.ToInt32(dr["IdEntityType"].ToString());
                     C.EntityId = Convert.ToInt32(dr["EntityId"].ToString());
-                    //C.jsonAntes = dr["jsonAntes"].ToString();
-                    C.jsonDespues = dr["jsoDespues"].ToString();
+                    C.jsonDespues = dr["jsonDespues"].ToString();
                     C.insertedAt = Convert.ToDateTime(dr["insertedAt"].ToString());
                     C.insertedby = dr["insertedby"].ToString();
                     C.insertedIn = dr["insertedIn"].ToString();
@@ -54,6 +51,5 @@ namespace CapaDatos
             }
             return lista;
         }
-
     }
 }

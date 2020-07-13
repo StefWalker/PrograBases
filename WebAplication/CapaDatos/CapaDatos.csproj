@@ -52,6 +52,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="daoPropiedad.cs" />
     <Compile Include="daoProUsuario.cs" />
+    <Compile Include="daoRecibos.cs" />
     <Compile Include="daoTipoDoc.cs" />
     <Compile Include="daoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

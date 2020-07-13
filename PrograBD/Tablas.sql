@@ -235,23 +235,3 @@ BEGIN
 END
 GO
 
-------------Lista Bitacora-----------------
-
-CREATE PROC ListarBitacora
-	-- Add the parameters for the stored procedure here
-	@inIdEntityType INT,
-	@inFechaInicial Date,
-	@inFechaFinal Date
-AS
-BEGIN
-	
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	SELECT Bitacora.ID_Bitacora,Bitacora.IdEntityType,Bitacora.EntityId,Bitacora.jsonAntes,Bitacora.jsonDespues,
-	Bitacora.insertedAt,Bitacora.insertedby,Bitacora.insertedIn
-	FROM Bitacora 
-	where Bitacora.IdEntityType = @inIdEntityType AND Bitacora.insertedAt between @inFechaInicial AND @inFechaFinal
-	ORDER BY Bitacora.insertedAt ASC
-END
-GO
