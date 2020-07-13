@@ -13,10 +13,13 @@ BEGIN
 
 	where Recibos.ID_Propiedad= @inID_Propiedad
 END
+--------Listar Bitacora --------------------------------------
 
 Create PROC [dbo].[ListarBitacora]
 	-- Add the parameters for the stored procedure here
-	@inIdEntityType INT
+	@inIdEntityType INT,
+	@inFechaInicial Varchar(100),
+	@inFechaFinal Varchar (100)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -26,7 +29,7 @@ BEGIN
     -- Insert statements for procedure here
 	SELECT Bitacora.ID_Bitacora,Bitacora.IdEntityType,Bitacora.EntityId,Bitacora.jsonDespues,Bitacora.insertedAt,Bitacora.insertedby,Bitacora.insertedIn
 	FROM Bitacora
-
-	where Bitacora.IdEntityType= @inIdEntityType AND Bitacora.ID_Bitacora < 100
+	
+	where Bitacora.IdEntityType= @inIdEntityType AND Bitacora.insertedAt between (select convert(datetime,@inFechaInicial)) and (select convert(datetime,@inFechaFinal))
 END
 

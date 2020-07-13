@@ -69,10 +69,10 @@ a:hover
 #contenido_derecho
 {
     float: right;
-    width:755px;
+    width:1000px;
     height:400px;
     overflow-y:scroll;
-    margin-left:10px;
+    margin-left:0px;
 }
 .alinear
 {

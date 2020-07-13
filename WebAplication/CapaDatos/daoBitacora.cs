@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace CapaDatos
 {
     public class daoBitacora
     {
-        public static List<entBitacora> ListarBitacora(int IdEntityType)
+        public static List<entBitacora> ListarBitacora(int IdEntityType, string FechaInicial , string FechaFinal)
         {
 
             SqlCommand cmd = null;
@@ -23,6 +24,8 @@ namespace CapaDatos
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarBitacora", cnx);
                 cmd.Parameters.AddWithValue("@inIdEntityType",IdEntityType);
+                cmd.Parameters.AddWithValue("@inFechaInicial", FechaInicial);
+                cmd.Parameters.AddWithValue("@inFechaFinal", FechaFinal);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
