@@ -23,6 +23,7 @@ BEGIN
 			DECLARE @TemporalTransConsumo table (Lectura INT,Descripcion varchar(150),Finca Int ,Tipo int,FechTemp DATE); 
 			DECLARE @TemporalPropJurid table (IDPropietario Varchar(250),Documento Varchar(250),Activo BIT,Fech DATE);
 			DECLARE @TemporalCambios table (NumFinca INT , NuevoValor MONEY,Fecha Date );
+			DECLARE @Pagos table (NumFinca INT, TipoRecibo INT, Fecha DATE)
 			SET NOCOUNT ON 
 -----Declaramos una fecha maxima y una minima para saber el inicio y final -------------------------------
 
@@ -121,6 +122,17 @@ BEGIN
 						fechaLeida VARCHAR(100)	'../@fecha'
 				);
 
+--Tabla Temporal de Pagos--------
+
+			INSERT INTO @Pagos(NumFinca, TipoRecibo, Fecha)
+
+			SELECT TipoRecibo, NumFinca, convert(date, [fechaLeida], 121)[fechaLeida]
+			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',2)
+				WITH(	TipoRecibo INT '@TipoRecibo',
+						NumFinca INT '@NumFinca',
+						fechaLeida VARCHAR(100)	'../@fecha'
+				);
+
 /*---CambiosPropiedad--------
 
 			INSERT INTO @TemporalCambios(NumFinca , NuevoValor,Fecha)
@@ -192,6 +204,17 @@ BEGIN
 					on [@TemporalPropJurid].IDPropietario= Propietario.Identificacion
 					WHERE [@TemporalPropJurid].Fech = @fechaActual
 
+					
+-----Comprobante---------------
+	
+					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
+
+					SELECT MIN(Recibos.ID_Recibo), NumFinca, TipoRecibo, @Pagos.Fecha FROM	@Pagos
+					INNER JOIN Recibos ON @Pagos.TipoRecibo = Recibos.ID_Concepto
+					INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
+					WHERE (Propiedad.NumPropiedad = @Pagos.NumFinca) AND ([@Pagos].Fecha = @fechaActual)
+							AND (Recibos.Estado = 0)
+
 /*---Cambios-----
 					
 					UPDATE Propiedad
@@ -248,7 +271,7 @@ BEGIN
 						)
 						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
 						INNER JOIN Usuario ON Usuario = Usuario.Nombre
-						WHERE [fechaLeida] = @fechaActual ;	
+						WHERE [fechaLeida] = @fechaActual ;
 
 					SELECT @fechaActual = DATEADD(DAY,1,@fechaActual);
 				END
