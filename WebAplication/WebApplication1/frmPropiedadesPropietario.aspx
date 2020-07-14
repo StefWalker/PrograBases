@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
     <asp:Label ID="buscarPropietario" runat="server" Text="Ingrese el numero de identificacion del propietario: "></asp:Label>
     <br />
     <tr>

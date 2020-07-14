@@ -12,6 +12,7 @@ BEGIN Try
 	FROM Recibos 
 
 	where Recibos.ID_Propiedad= @inID_Propiedad
+	Return 1
 END Try
 Begin Catch 
 RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
@@ -27,7 +28,7 @@ Create PROC [dbo].[ListarBitacora]
 	@inFechaInicial Varchar(100),
 	@inFechaFinal Varchar (100)
 AS
-BEGIN
+BEGIN TRY
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -37,5 +38,11 @@ BEGIN
 	FROM Bitacora
 	
 	where Bitacora.IdEntityType= @inIdEntityType AND Bitacora.insertedAt between (select convert(datetime,@inFechaInicial)) and (select convert(datetime,@inFechaFinal))
-END
-
+	return 1
+END TRY
+Begin Catch 
+RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO
