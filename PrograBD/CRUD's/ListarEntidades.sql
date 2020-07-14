@@ -2,7 +2,7 @@ Create PROC [dbo].[ListarRecibos]
 	-- Add the parameters for the stored procedure here
 	@inID_Propiedad INT
 AS
-BEGIN
+BEGIN Try
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -12,7 +12,13 @@ BEGIN
 	FROM Recibos 
 
 	where Recibos.ID_Propiedad= @inID_Propiedad
-END
+END Try
+Begin Catch 
+RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO
 --------Listar Bitacora --------------------------------------
 
 Create PROC [dbo].[ListarBitacora]
