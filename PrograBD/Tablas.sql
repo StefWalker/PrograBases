@@ -179,6 +179,14 @@ CREATE TABLE Recibos
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
 
+CREATE TABLE Comprobante
+(
+	ID_Comprobante INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ID_Recibo INT NOT NULL,
+	NumPropiedad INT NOT NULL,
+	TipoRecibo int NOT NULL,
+	Fecha Date NOT NULL
+);
 
 /*------------------------------------------------------------------------------*/
 IF OBJECT_ID('AcumuladoUpdate') IS NOT NULL

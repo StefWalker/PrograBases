@@ -497,3 +497,22 @@ BEGIN
 
 END
 GO
+
+
+-- TRIGGERS 8 Recibos ===============================================================================================================================
+
+CREATE TRIGGER trg_ComprobanteInsert
+   ON  [dbo].Comprobante
+   AFTER UPDATE
+AS 
+BEGIN
+	Declare @ID_Recibo INT
+
+	Set @ID_Recibo = (Select i.ID_Recibo From inserted as i)
+
+    -- Insert statements for trigger here
+	UPDATE [dbo].Recibos
+	SET Estado = 1
+	WHERE Recibos.ID_Recibo = @ID_Recibo
+END
+GO
