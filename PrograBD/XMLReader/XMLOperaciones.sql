@@ -301,5 +301,15 @@ BEGIN
 		ROLLBACK;
 		THROW 70001,'Error en la insercion de Operaciones',1;
 	  END CATCH
+	  BEGIN TRY
+		UPDATE [dbo].[Recibos]
+		SET Recibos.Estado = 1
+		From Recibos
+		INNER JOIN Comprobante
+		ON Recibos.ID_Recibo = Comprobante.ID_Recibo
+	  END TRY
+	  BEGIN CATCH
+		print error_message()
+	  END CATCH
   END 
   
