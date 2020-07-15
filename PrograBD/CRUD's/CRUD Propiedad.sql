@@ -149,7 +149,7 @@ CREATE PROC PropiedadSearch
     @inNumPropiedad INT
 AS 
 BEGIN TRY
-    SELECT NumPropiedad/*, convert(varchar,cast(Valor as int),1)*/,ID_Propiedad, Direccion
+    SELECT NumPropiedad/*, convert(varchar,cast(Valor as int),1)*/,ID_Propiedad, Direccion,Fecha,M3Acumulados,M3AcumuladosUltimoRecibo
 	FROM   Propiedad
     WHERE  (NumPropiedad = @inNumPropiedad AND Activo = 1) 
 	return 1
@@ -195,7 +195,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad
+	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad,Propiedad.Fecha,Propiedad.M3Acumulados,Propiedad.M3AcumuladosUltimoRecibo
 	FROM Propiedad INNER JOIN Pro_x_Pro
 	on Pro_x_Pro.ID_Propietario = @inID_Propietario AND Propiedad.ID_Propiedad = Pro_x_Pro.ID_Propiedad
 	WHERE Propiedad.Activo = 1
@@ -219,7 +219,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad
+	SELECT Propiedad.NumPropiedad,Propiedad.Direccion,Propiedad.ID_Propiedad,Propiedad.Fecha,Propiedad.M3Acumulados,Propiedad.M3AcumuladosUltimoRecibo
 	FROM Propiedad INNER JOIN Pro_x_Usuario
 	on Pro_x_Usuario.ID_Usuario = @inID_Usuario AND Propiedad.ID_Propiedad = Pro_x_Usuario.ID_Propiedad 
 	where Propiedad.Activo = 1
