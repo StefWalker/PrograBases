@@ -186,6 +186,8 @@ CREATE TABLE Comprobante
 	NumPropiedad INT NOT NULL,
 	TipoRecibo int NOT NULL,
 	Fecha Date NOT NULL,
+	Cobro MONEY NOT NULL Default 0,
+	MontoInteres MONEY NOT NULL Default 0,
 	MontoPagado MONEY NOT NULL Default 0
 );
 

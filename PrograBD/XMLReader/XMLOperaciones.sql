@@ -209,10 +209,10 @@ BEGIN
 ----Comprobante-----
 
 
-					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha, MontoPagado)
+					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha, MontoInteres, Cobro)
 
 					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual, 
-					((Recibos.Monto*Intereses_Moratorios.Monto/365)*abs(Datediff(DAY,@fechaActual,DATEADD(Day,ConceptoCobro.DiaVencimiento,@fechaActual)))+Recibos.Monto)
+					((Recibos.Monto*Intereses_Moratorios.Monto/365)*abs(Datediff(DAY,@fechaActual,DATEADD(Day,ConceptoCobro.DiaVencimiento,@fechaActual)))), Recibos.Monto
 					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
 						WITH(	
 							NumFinca INT '@NumFinca',
@@ -223,17 +223,32 @@ BEGIN
 						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
 						INNER JOIN ConceptoCobro ON Recibos.ID_Concepto = ConceptoCobro.ID_CC
 						INNER JOIN Intereses_Moratorios ON ConceptoCobro.ID_CC = Intereses_Moratorios.ID_IM
-						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0)
+						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual > DATEADD(DAY,ConceptoCobro.DiaVencimiento,Recibos.Fecha))
 						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto, ConceptoCobro.DiaVencimiento, Intereses_Moratorios.Monto
 
+
+
+					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha, Cobro)
+
+					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual, Recibos.Monto
+					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
+						WITH(	
+							NumFinca INT '@NumFinca',
+							TipoRecibo INT '@TipoRecibo',
+							fechaLeida VARCHAR(100)	'../@fecha'
+						)
+						INNER JOIN Recibos ON TipoRecibo = Recibos.ID_Concepto
+						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
+						INNER JOIN ConceptoCobro ON Recibos.ID_Concepto = ConceptoCobro.ID_CC
+						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual <= DATEADD(DAY,ConceptoCobro.DiaVencimiento,@fechaActual))
+						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto
 							  
+
 						UPDATE [dbo].[Recibos]
 						SET Recibos.Estado = 1
 						From Recibos
 						INNER JOIN Comprobante
 						ON Recibos.ID_Recibo = Comprobante.ID_Recibo
-
-
 
 			
 --ProxPro--------------------
@@ -310,5 +325,7 @@ BEGIN
 		ROLLBACK;
 		THROW 70001,'Error en la insercion de Operaciones',1;
 	  END CATCH
+	  UPDATE Comprobante
+	  SET MontoPagado = MontoInteres + Cobro
   END 
   
