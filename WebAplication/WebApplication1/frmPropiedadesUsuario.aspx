@@ -22,6 +22,9 @@
             <asp:BoundField DataField="ID_Propiedad" HeaderText="ID de la Propiedad" />
             <asp:BoundField DataField="NumPropiedad" HeaderText="Numero de Finca" />
             <asp:BoundField DataField="Direccion" HeaderText="Direccion " />
+            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="M3Acumulados" HeaderText="M3Acumulados" />
+            <asp:BoundField DataField="M3AcumuladosUltimoRecibo" HeaderText="M3Acumulados Ultimo Recibo" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />

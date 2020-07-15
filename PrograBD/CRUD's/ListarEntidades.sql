@@ -70,3 +70,26 @@ RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	return -1
 END CATCH
 GO
+-------------------Lista Comprobantes ---------------
+Create PROC [dbo].[ListarComprobantes]
+	-- Add the parameters for the stored procedure here
+	@inNumPropiedad INT
+AS
+BEGIN Try
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT Comprobante.ID_Comprobante,Comprobante.ID_Recibo,Comprobante.NumPropiedad,Comprobante.TipoRecibo,Comprobante.Fecha
+	FROM Comprobante
+
+	where Comprobante.NumPropiedad= @inNumPropiedad 
+	Return 1
+END Try
+Begin Catch 
+RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO

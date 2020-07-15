@@ -27,7 +27,10 @@ namespace WebApplication1
                     Numero.Text = Convert.ToString(obj.NumPropiedad);
                     Valor.Text = Convert.ToString(obj.Valor);
                     Direccion.Text = obj.Direccion;
-                   
+                    Fecha.Text = Convert.ToString(obj.Fecha);
+                    Acumulados.Text = Convert.ToString(obj.M3Acumulados);
+                    UltimosAcumulados.Text = Convert.ToString(obj.M3AcumuladosUltimoRecibo);
+
 
                 }
                 else
