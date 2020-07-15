@@ -23,7 +23,6 @@ BEGIN
 			DECLARE @TemporalTransConsumo table (Lectura INT,Descripcion varchar(150),Finca Int ,Tipo int,FechTemp DATE); 
 			DECLARE @TemporalPropJurid table (IDPropietario Varchar(250),Documento Varchar(250),Activo BIT,Fech DATE);
 			DECLARE @TemporalCambios table (NumFinca INT , NuevoValor MONEY,Fecha Date );
-		--	DECLARE @Pagos table (NumFinca INT, TipoRecibo INT, Fecha DATE);
 			SET NOCOUNT ON 
 -----Declaramos una fecha maxima y una minima para saber el inicio y final -------------------------------
 
@@ -122,30 +121,19 @@ BEGIN
 						fechaLeida VARCHAR(100)	'../@fecha'
 				);
 
---Tabla Temporal de Pagos--------
-/*
-			INSERT INTO @Pagos(NumFinca, TipoRecibo, Fecha)
 
-			SELECT NumFinca, TipoRecibo, convert(date, [fechaLeida], 121)[fechaLeida]
-			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',2)
-				WITH(	NumFinca INT '@NumFinca',
-						TipoRecibo INT '@TipoRecibo',
-						fechaLeida VARCHAR(100)	'../@fecha'
-				);
-				*/
-/*---CambiosPropiedad--------
+---CambiosPropiedad--------
 
 			INSERT INTO @TemporalCambios(NumFinca , NuevoValor,Fecha)
 
-			SELECT num,valor,convert(date, [fechaLeida], 121)[fechaLeida]
+			SELECT num, valor, convert(date, [fechaLeida], 121)[fechaLeida]
 			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/CambioPropiedad',1)
 				WITH(	num INT '@NumFinca',
 						valor MONEY '@NuevoValor',
 						fechaLeida VARCHAR(100)	'../@fecha'
-				)
-			;*/
+				);
 				
-			--------------------------------------------------------*/
+			/*--------------------------------------------------------*/
 
 -----Inicio del ciclo para insertar los archivos a las tablas reales con fechas------------------------
 
@@ -204,29 +192,20 @@ BEGIN
 					on [@TemporalPropJurid].IDPropietario= Propietario.Identificacion
 					WHERE [@TemporalPropJurid].Fech = @fechaActual
 
-					
------Comprobante---------------
-/*
 
-					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
-
-					SELECT MIN(Recibos.ID_Recibo), [@Pagos].NumFinca, [@Pagos].TipoRecibo, [@Pagos].Fecha FROM [@Pagos]
-					INNER JOIN Recibos ON [@Pagos].TipoRecibo = Recibos.ID_Concepto
-					INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
-					WHERE (Propiedad.NumPropiedad = [@Pagos].NumFinca) AND ([@Pagos].Fecha = @fechaActual)
-							AND (Recibos.Estado = 0)*/
-
-
-/*---Cambios-----
+---Cambios-----
 					
 					UPDATE Propiedad
-					SET Propiedad.Valor = [@TemporalCambios].NuevoValor , Propiedad.Fecha = [@TemporalCambios].Fecha
-					where (Propiedad.NumPropiedad = [@TemporalCambios].NumFinca) AND ([@TemporalCambios].Fecha = @fechaActual)
+					SET Propiedad.Valor = [@TemporalCambios].NuevoValor,
+						Propiedad.Fecha = [@TemporalCambios].Fecha
+					From @TemporalCambios
+					where (Propiedad.NumPropiedad = [@TemporalCambios].NumFinca) AND ([@TemporalCambios].Fecha = @fechaActual);
  
 					
-				*/	
+
 --Insercion de las otras tablas , las intermedias -------------
 
+----Comprobante-----
 
 					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
 
