@@ -520,3 +520,19 @@ BEGIN CATCH
 END CATCH
 GO
 */
+use ProyectoBases
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TRIGGER trg_MontoGenerator
+	ON [dbo].Comprobante
+	AFTER INSERT
+AS	
+	DECLARE @FechaLimite int = (Select ConceptoCobro.DiaVencimiento From inserted as i Inner join ConceptoCobro ON ConceptoCobro.ID_CC = i.TipoRecibo)
+	DECLARE @FechaActual int = (Select DAY(i.Fecha)  FROM inserted as i)
+
+	IF( @FechaActual > @FechaLimite )
+	BEGIN
+
+	END

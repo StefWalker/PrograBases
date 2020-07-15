@@ -185,7 +185,8 @@ CREATE TABLE Comprobante
 	ID_Recibo INT NOT NULL,
 	NumPropiedad INT NOT NULL,
 	TipoRecibo int NOT NULL,
-	Fecha Date NOT NULL
+	Fecha Date NOT NULL,
+	MontoPagado MONEY NOT NULL Default 0
 );
 
 /*------------------------------------------------------------------------------*/

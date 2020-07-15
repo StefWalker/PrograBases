@@ -29,6 +29,7 @@ BEGIN
 			DECLARE @fechaMinima DATE
 			DECLARE @fechaMaxima DATE
 			DECLARE @DiaDeCobro INT
+			DECLARE @Monto MONEY
 
 			SELECT @Varios = C	
 			
@@ -207,9 +208,10 @@ BEGIN
 
 ----Comprobante-----
 
-					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
 
-					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual 
+					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha, MontoPagado)
+
+					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual, Recibos.Monto
 					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
 						WITH(	
 							NumFinca INT '@NumFinca',
