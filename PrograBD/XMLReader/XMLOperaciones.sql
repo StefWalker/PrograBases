@@ -121,7 +121,7 @@ BEGIN
 						docu Varchar(250) '@DocidRepresentante',
 						fechaLeida VARCHAR(100)	'../@fecha'
 				);
-
+				
 
 ---CambiosPropiedad--------
 
@@ -211,7 +211,8 @@ BEGIN
 
 					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha, MontoPagado)
 
-					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual, Recibos.Monto
+					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual, 
+					((Recibos.Monto*Intereses_Moratorios.Monto/365)*abs(Datediff(DAY,@fechaActual,DATEADD(Day,ConceptoCobro.DiaVencimiento,@fechaActual)))+Recibos.Monto)
 					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
 						WITH(	
 							NumFinca INT '@NumFinca',
@@ -220,8 +221,19 @@ BEGIN
 						)
 						INNER JOIN Recibos ON TipoRecibo = Recibos.ID_Concepto
 						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
+						INNER JOIN ConceptoCobro ON Recibos.ID_Concepto = ConceptoCobro.ID_CC
+						INNER JOIN Intereses_Moratorios ON ConceptoCobro.ID_CC = Intereses_Moratorios.ID_IM
 						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0)
-						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto
+						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto, ConceptoCobro.DiaVencimiento, Intereses_Moratorios.Monto
+
+							  
+						UPDATE [dbo].[Recibos]
+						SET Recibos.Estado = 1
+						From Recibos
+						INNER JOIN Comprobante
+						ON Recibos.ID_Recibo = Comprobante.ID_Recibo
+
+
 
 			
 --ProxPro--------------------
@@ -241,7 +253,7 @@ BEGIN
 
 
 --ProxProJur--------------------
-
+/*
 					INSERT INTO [dbo].[PJur_x_Pro] (ID_Juridico,ID_Propiedad,Activo,Fecha)
 
 					SELECT PropJuridico.ID_Juridico, Propiedad.ID_Propiedad,1, @fechaActual
@@ -254,7 +266,7 @@ BEGIN
 						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
 						INNER JOIN PropJuridico ON Ident = PropJuridico.Documento
 						WHERE fechaLeida = @fechaActual ;
-
+						*/
 --INSERT ProxCC-----------------REVISAR 
 
 					INSERT INTO [dbo].[Pro_x_CC] (ID_CC,ID_Propiedad,Activo,Fecha)
@@ -297,16 +309,6 @@ BEGIN
 	  print error_message()
 		ROLLBACK;
 		THROW 70001,'Error en la insercion de Operaciones',1;
-	  END CATCH
-	  BEGIN TRY
-		UPDATE [dbo].[Recibos]
-		SET Recibos.Estado = 1
-		From Recibos
-		INNER JOIN Comprobante
-		ON Recibos.ID_Recibo = Comprobante.ID_Recibo
-	  END TRY
-	  BEGIN CATCH
-		print error_message()
 	  END CATCH
   END 
   
