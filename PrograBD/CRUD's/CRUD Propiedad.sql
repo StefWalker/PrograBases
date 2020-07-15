@@ -189,7 +189,7 @@ CREATE PROC ListarPropiedades
 	-- Add the parameters for the stored procedure here
 	@inID_Propietario INT
 AS
-BEGIN
+BEGIN Try
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -199,7 +199,12 @@ BEGIN
 	FROM Propiedad INNER JOIN Pro_x_Pro
 	on Pro_x_Pro.ID_Propietario = @inID_Propietario AND Propiedad.ID_Propiedad = Pro_x_Pro.ID_Propiedad
 	WHERE Propiedad.Activo = 1
-END
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
 GO
 
 -------------Lista las propiedades de un usuario-----------------
@@ -208,7 +213,7 @@ CREATE PROC ListarPropiedadesUser
 	-- Add the parameters for the stored procedure here
 	@inID_Usuario INT
 AS
-BEGIN
+BEGIN Try
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -218,5 +223,10 @@ BEGIN
 	FROM Propiedad INNER JOIN Pro_x_Usuario
 	on Pro_x_Usuario.ID_Usuario = @inID_Usuario AND Propiedad.ID_Propiedad = Pro_x_Usuario.ID_Propiedad 
 	where Propiedad.Activo = 1
-END
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
 GO

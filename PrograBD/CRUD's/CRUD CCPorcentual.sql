@@ -12,7 +12,7 @@ BEGIN
 	CREATE TABLE CC_Porcentual
 	(
 	  ID_Por INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-	  Porcentaje INT NOT NULL
+	  Porcentaje MONEY NOT NULL
 	);
 END
 
@@ -24,7 +24,7 @@ END
 GO
 CREATE PROCEDURE CCPorcentualInsert
 	 @inID_Por INT,
-	 @inPorcentaje INT
+	 @inPorcentaje Money
 AS
 BEGIN TRY
 INSERT INTO CC_Porcentual(
@@ -72,7 +72,7 @@ END
 GO
 CREATE PROC CCPorcentualUpdate
 	 @inID_Por int,
-	 @inPorcentaje INT
+	 @inPorcentaje Money
 AS 
 BEGIN TRY
 UPDATE CC_Porcentual

@@ -13,8 +13,8 @@ BEGIN
 	   ID_CC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	   TipoCC VARCHAR(50) NOT NULL,
 	   Concepto VARCHAR(100) NOT NULL,
-	   FechaVencimiento INT NOT NULL,
-	   Fecha INT NOT NULL DEFAULT GETDATE(),
+	   DiaCobro INT NOT NULL,
+	   DiaVencimiento INT NOT NULL ,
 	   Activo BIT NOT NULL DEFAULT 1
 	);
 END
@@ -28,22 +28,22 @@ GO
 CREATE PROCEDURE CCobroInsert
 	 @inTipoCC VARCHAR(50),
 	 @inConcepto VARCHAR(100),
-	 @inFechaVencimiento DATE,
-	 @inFecha DATE,
+	 @inDiaCobro INT ,
+	 @inDiaVencimiento INT ,
 	 @inActivo BIT
 AS
 BEGIN TRY 
 INSERT INTO ConceptoCobro(
 	 TipoCC,
 	 Concepto,
-	 FechaVencimiento,
-	 Fecha,
+	 DiaCobro,
+	 DiaVencimiento,
 	 Activo)
 	 VALUES(
 	 @inTipoCC,
 	 @inConcepto,
-	 @inFechaVencimiento,
-	 GETDATE(),
+	 @inDiaCobro,
+	 @inDiaVencimiento,
 	 1)
 	 return 1
 END TRY 
@@ -64,7 +64,7 @@ CREATE PROC CCobroRead
 	 @inID_CC int
 AS 
 BEGIN TRY
-    SELECT ID_CC, FechaVencimiento, Fecha
+    SELECT ID_CC, DiaCobro,DiaVencimiento
     FROM   ConceptoCobro  
     WHERE  (ID_CC = @inID_CC AND Activo = 1) 
 	return 1
@@ -86,16 +86,16 @@ CREATE PROC CCobroUpdate
 	 @inTipoCC INT,
 	 @inID_CC INT,
 	 @inConcepto VARCHAR(100),
-	 @inFechaVencimiento DATE,
-	 @inFecha DATE,
+	 @inDiaCobro INT ,
+	 @inDiaVencimiento INT,
 	 @inActivo BIT
 AS 
 BEGIN TRY
 UPDATE ConceptoCobro
 SET  TipoCC = @inTipoCC,
 	 Concepto = @inConcepto,
-	 FechaVencimiento = @inFechaVencimiento,
-	 Fecha	= @inFecha,
+	 DiaCobro = @inDiaCobro,
+	 DiaVencimiento	= @inDiaVencimiento,
 	 Activo = @inActivo
 WHERE  (ID_CC = @inID_CC AND Activo = 1)
 return 1

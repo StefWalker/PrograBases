@@ -188,7 +188,7 @@ GO
 Create PROC ListarUsuarios
 	@ID_Propiedad INT
 AS
-BEGIN
+BEGIN Try
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -198,4 +198,10 @@ BEGIN
 	FROM Usuario INNER JOIN Pro_x_Usuario
 	on Pro_x_Usuario.ID_Propiedad = @ID_Propiedad AND Usuario.ID_Usuario = Pro_x_Usuario.ID_Usuario
 	where Usuario.Activo = 1
-END
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO

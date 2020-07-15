@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="daoBitacora.cs" />
+    <Compile Include="daoComprobante.cs" />
     <Compile Include="daoConceptoCobro.cs" />
     <Compile Include="daoProCC.cs" />
     <Compile Include="daoPropietario.cs" />

@@ -14,5 +14,9 @@ namespace CapaNegocios
         {
             return daoRecibos.ListarRecibos(ID_Propiedad);
         }
+        public static List<entRecibos> ListarRecibosPagos(int ID_Propiedad)
+        {
+            return daoRecibos.ListarRecibosPagos(ID_Propiedad);
+        }
     }
 }

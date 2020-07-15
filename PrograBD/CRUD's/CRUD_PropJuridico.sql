@@ -183,7 +183,7 @@ GO
 Create PROC ListarPropietariosJuridicos
 	@inID_Propiedad INT
 AS
-BEGIN
+BEGIN Try
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
@@ -193,4 +193,10 @@ BEGIN
 	FROM PropJuridico INNER JOIN PJur_x_Pro
 	on PJur_x_Pro.ID_Propiedad = @inID_Propiedad AND PropJuridico.ID_Juridico = PJur_x_Pro.ID_Juridico
 	where PropJuridico.Activo = 1 AND PJur_x_Pro.Activo=1
-END
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO

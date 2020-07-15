@@ -12,7 +12,7 @@ BEGIN
 	CREATE TABLE CC_Fijo
 	(
 	  ID_Fijo INT PRIMARY KEY REFERENCES ConceptoCobro(ID_CC) NOT NULL,
-	  Monto Decimal NOT NULL
+	  Monto Money NOT NULL
 	);
 END
 
@@ -26,7 +26,7 @@ END
 GO
 CREATE PROCEDURE CCFijoInsert
 	 @inID_Fijo INT,
-	 @inMonto Decimal
+	 @inMonto Money
 AS
 BEGIN TRY
 INSERT INTO CC_Fijo(
@@ -74,7 +74,7 @@ END
 GO
 CREATE PROC CCFijoUpdate
 	 @inID_Fijo int,
-	 @inMonto Decimal
+	 @inMonto Money
 AS 
 BEGIN TRY
 UPDATE CC_Fijo
