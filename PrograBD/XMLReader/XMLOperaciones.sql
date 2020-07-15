@@ -239,6 +239,22 @@ BEGIN
 						INNER JOIN Propietario ON Ident = Propietario.Identificacion
 						WHERE fechaLeida = @fechaActual ;
 
+
+--ProxProJur--------------------
+
+					INSERT INTO [dbo].[PJur_x_Pro] (ID_Juridico,ID_Propiedad,Activo,Fecha)
+
+					SELECT PropJuridico.ID_Juridico, Propiedad.ID_Propiedad,1, @fechaActual
+					FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/PropiedadVersusPropietario', 1)
+						WITH(
+							Finca VARCHAR(20) '@NumFinca' ,
+							Ident VARCHAR(20) '@identificacion',
+							fechaLeida VARCHAR(100) '../@fecha'
+						)
+						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
+						INNER JOIN PropJuridico ON Ident = PropJuridico.Documento
+						WHERE fechaLeida = @fechaActual ;
+
 --INSERT ProxCC-----------------REVISAR 
 
 					INSERT INTO [dbo].[Pro_x_CC] (ID_CC,ID_Propiedad,Activo,Fecha)
