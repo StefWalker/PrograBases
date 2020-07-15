@@ -519,7 +519,7 @@ BEGIN CATCH
 	Print error_message()
 END CATCH
 GO
-*/
+
 use ProyectoBases
 SET ANSI_NULLS ON
 GO
@@ -529,10 +529,15 @@ CREATE TRIGGER trg_MontoGenerator
 	ON [dbo].Comprobante
 	AFTER INSERT
 AS	
+BEGIN
 	DECLARE @FechaLimite int = (Select ConceptoCobro.DiaVencimiento From inserted as i Inner join ConceptoCobro ON ConceptoCobro.ID_CC = i.TipoRecibo)
 	DECLARE @FechaActual int = (Select DAY(i.Fecha)  FROM inserted as i)
+	DECLARE @FechaCompleta Date = (Select DATEADD(DAY, @FechaLimite, i.Fecha) FROM inserted as i)
 
-	IF( @FechaActual > @FechaLimite )
-	BEGIN
-
-	END
+		Update Comprobante
+			Set MontoPagado = ((i.MontoPagado*Intereses_Moratorios.Monto/365)*abs(@FechaLimite-@FechaActual))+i.MontoPagado
+			From inserted as i
+			Inner join Intereses_Moratorios on Intereses_Moratorios.ID_IM = i.TipoRecibo
+			where i.ID_Comprobante = Comprobante.ID_Comprobante and (Select i.Fecha FROM inserted as i) > @FechaCompleta
+END
+*/

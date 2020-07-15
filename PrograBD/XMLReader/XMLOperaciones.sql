@@ -221,7 +221,7 @@ BEGIN
 						INNER JOIN Recibos ON TipoRecibo = Recibos.ID_Concepto
 						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
 						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0)
-						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto
+						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto
 
 			
 --ProxPro--------------------
