@@ -23,6 +23,9 @@
             <asp:BoundField DataField="NumPropiedad" HeaderText="Numero" />
             <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
             <asp:CommandField />
+            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="M3Acumulados" HeaderText="M3Acumulados" />
+            <asp:BoundField DataField="M3AcumuladosUltimoRecibo" HeaderText="M3Acumulados Ultimo Recibo" />
         </Columns>
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
