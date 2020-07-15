@@ -1,4 +1,5 @@
 -----XML Usuarios ---
+use ProyectoBases
 
 	DECLARE @x xml
 	SELECT @x = P

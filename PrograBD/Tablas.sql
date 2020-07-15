@@ -189,6 +189,7 @@ CREATE TABLE Comprobante
 );
 
 /*------------------------------------------------------------------------------*/
+/*
 IF OBJECT_ID('AcumuladoUpdate') IS NOT NULL
 BEGIN 
 DROP PROC AcumuladoUpdate 
@@ -243,3 +244,4 @@ BEGIN
 END
 GO
 
+*/

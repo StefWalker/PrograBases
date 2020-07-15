@@ -1,4 +1,5 @@
 ------XML Tipo entidad -----
+use ProyectoBases
 
 	DECLARE @x xml
 	SELECT @x = P

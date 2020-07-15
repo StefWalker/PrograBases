@@ -500,12 +500,12 @@ GO
 
 
 -- TRIGGERS 8 Recibos ===============================================================================================================================
-
+/*
 CREATE TRIGGER trg_ComprobanteInsert
    ON  [dbo].Comprobante
-   AFTER UPDATE
+   AFTER INSERT
 AS 
-BEGIN
+BEGIN TRY
 	Declare @ID_Recibo INT
 
 	Set @ID_Recibo = (Select i.ID_Recibo From inserted as i)
@@ -514,5 +514,9 @@ BEGIN
 	UPDATE [dbo].Recibos
 	SET Estado = 1
 	WHERE Recibos.ID_Recibo = @ID_Recibo
-END
+END TRY 
+BEGIN CATCH
+	Print error_message()
+END CATCH
 GO
+*/

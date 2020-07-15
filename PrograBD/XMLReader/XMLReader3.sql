@@ -1,4 +1,6 @@
 ---XML Concepto Cobro----
+use ProyectoBases
+
 	DECLARE @y xml
 
 	SELECT @y = L

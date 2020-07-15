@@ -23,7 +23,7 @@ BEGIN
 			DECLARE @TemporalTransConsumo table (Lectura INT,Descripcion varchar(150),Finca Int ,Tipo int,FechTemp DATE); 
 			DECLARE @TemporalPropJurid table (IDPropietario Varchar(250),Documento Varchar(250),Activo BIT,Fech DATE);
 			DECLARE @TemporalCambios table (NumFinca INT , NuevoValor MONEY,Fecha Date );
-			DECLARE @Pagos table (NumFinca INT, TipoRecibo INT, Fecha DATE)
+		--	DECLARE @Pagos table (NumFinca INT, TipoRecibo INT, Fecha DATE);
 			SET NOCOUNT ON 
 -----Declaramos una fecha maxima y una minima para saber el inicio y final -------------------------------
 
@@ -123,16 +123,16 @@ BEGIN
 				);
 
 --Tabla Temporal de Pagos--------
-
+/*
 			INSERT INTO @Pagos(NumFinca, TipoRecibo, Fecha)
 
-			SELECT TipoRecibo, NumFinca, convert(date, [fechaLeida], 121)[fechaLeida]
+			SELECT NumFinca, TipoRecibo, convert(date, [fechaLeida], 121)[fechaLeida]
 			FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',2)
-				WITH(	TipoRecibo INT '@TipoRecibo',
-						NumFinca INT '@NumFinca',
+				WITH(	NumFinca INT '@NumFinca',
+						TipoRecibo INT '@TipoRecibo',
 						fechaLeida VARCHAR(100)	'../@fecha'
 				);
-
+				*/
 /*---CambiosPropiedad--------
 
 			INSERT INTO @TemporalCambios(NumFinca , NuevoValor,Fecha)
@@ -206,14 +206,16 @@ BEGIN
 
 					
 -----Comprobante---------------
-	
+/*
+
 					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
 
-					SELECT MIN(Recibos.ID_Recibo), NumFinca, TipoRecibo, @Pagos.Fecha FROM	@Pagos
-					INNER JOIN Recibos ON @Pagos.TipoRecibo = Recibos.ID_Concepto
+					SELECT MIN(Recibos.ID_Recibo), [@Pagos].NumFinca, [@Pagos].TipoRecibo, [@Pagos].Fecha FROM [@Pagos]
+					INNER JOIN Recibos ON [@Pagos].TipoRecibo = Recibos.ID_Concepto
 					INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
-					WHERE (Propiedad.NumPropiedad = @Pagos.NumFinca) AND ([@Pagos].Fecha = @fechaActual)
-							AND (Recibos.Estado = 0)
+					WHERE (Propiedad.NumPropiedad = [@Pagos].NumFinca) AND ([@Pagos].Fecha = @fechaActual)
+							AND (Recibos.Estado = 0)*/
+
 
 /*---Cambios-----
 					
@@ -224,6 +226,22 @@ BEGIN
 					
 				*/	
 --Insercion de las otras tablas , las intermedias -------------
+
+
+					INSERT INTO [dbo].[Comprobante] (ID_Recibo, NumPropiedad, TipoRecibo, Fecha)
+
+					SELECT MIN(Recibos.ID_Recibo), Propiedad.NumPropiedad, Recibos.ID_Concepto, @fechaActual 
+					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
+						WITH(	
+							NumFinca INT '@NumFinca',
+							TipoRecibo INT '@TipoRecibo',
+							fechaLeida VARCHAR(100)	'../@fecha'
+						)
+						INNER JOIN Recibos ON TipoRecibo = Recibos.ID_Concepto
+						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
+						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0)
+						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto
+
 			
 --ProxPro--------------------
 
