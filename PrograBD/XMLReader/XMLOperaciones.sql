@@ -314,6 +314,22 @@ BEGIN
 
 --Insercion de las otras tablas , las intermedias -------------
 
+
+-----------Reconexion ---------------------
+
+					INSERT INTO [dbo].[Recibos] (ID_Propiedad,ID_Concepto,Fecha,Monto,Estado)
+
+					SELECT Propiedad.ID_Propiedad, TipoRecibo, fechaLeida, CC_Fijo.Monto, 0
+					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
+						WITH(	
+							NumFinca INT '@NumFinca',
+							TipoRecibo INT '@TipoRecibo',
+							fechaLeida VARCHAR(100)	'../@fecha'
+						)
+						INNER JOIN Propiedad ON Propiedad.NumPropiedad = NumFinca 
+						INNER JOIN CC_Fijo ON CC_Fijo.ID_Fijo = TipoRecibo
+						where CC_Fijo.ID_Fijo = 10 and TipoRecibo = 10 and fechaLeida = @fechaActual
+
 ----Comprobante-----
 
 
@@ -358,22 +374,11 @@ BEGIN
 						INNER JOIN Comprobante
 						ON Recibos.ID_Recibo = Comprobante.ID_Recibo
 
------------Reconexion ---------------------
-
-					INSERT INTO [dbo].[Recibos] (ID_Propiedad,ID_Concepto,Fecha,Monto,Estado)
-
-					SELECT Propiedad.ID_Propiedad,TipoRecibo,fechaLeida,CC_Fijo.Monto,0
-					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
-						WITH(	
-							NumFinca INT '@NumFinca',
-							TipoRecibo INT '@TipoRecibo',
-							fechaLeida VARCHAR(100)	'../@fecha'
-						)
-						INNER JOIN Propiedad ON Propiedad.NumPropiedad = NumFinca 
-						INNER JOIN CC_Fijo ON CC_Fijo.ID_Fijo = TipoRecibo
-					
-
-
+						UPDATE [dbo].[Recibos]
+						SET Recibos.Estado = 1
+						From Recibos
+						INNER JOIN Recibos AS C ON c.ID_Propiedad = Recibos.ID_Propiedad
+						Where c.ID_Concepto = 10 and Recibos.Estado = 0
 
 --ProxPro--------------------
 

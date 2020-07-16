@@ -52,6 +52,10 @@ use ProyectoBases
 	Select ccobro.id, ccobro.ValorPorcentaje From ccobro 
 	WHERE  EsImpuesto ='Si' AND EsRecurrente = 'Si' AND EsFijo='No'
 
+	Insert into CC_Fijo(ID_Fijo, Monto)
+	Select ccobro.id, ccobro.Monto From ccobro 
+	WHERE  EsImpuesto ='No' AND EsRecurrente = 'No' AND EsFijo='Si'
+
 	DROP TABLE ccobro
 
 
