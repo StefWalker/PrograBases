@@ -331,7 +331,7 @@ BEGIN
 						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
 						INNER JOIN ConceptoCobro ON Recibos.ID_Concepto = ConceptoCobro.ID_CC
 						INNER JOIN Intereses_Moratorios ON ConceptoCobro.ID_CC = Intereses_Moratorios.ID_IM
-						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual > DATEADD(DAY,ConceptoCobro.DiaVencimiento,Recibos.Fecha))
+						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual > DATEADD(DAY,ConceptoCobro.DiaVencimiento,Recibos.Fecha)) 
 						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto, ConceptoCobro.DiaVencimiento, Intereses_Moratorios.Monto
 
 
@@ -348,7 +348,7 @@ BEGIN
 						INNER JOIN Recibos ON TipoRecibo = Recibos.ID_Concepto
 						INNER JOIN Propiedad ON Propiedad.ID_Propiedad = Recibos.ID_Propiedad
 						INNER JOIN ConceptoCobro ON Recibos.ID_Concepto = ConceptoCobro.ID_CC
-						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual <= DATEADD(DAY,ConceptoCobro.DiaVencimiento,@fechaActual))
+						WHERE (Propiedad.NumPropiedad = NumFinca) AND (fechaLeida = @fechaActual) AND (Recibos.Estado = 0) AND (@fechaActual <= DATEADD(DAY,ConceptoCobro.DiaVencimiento,@fechaActual)) 
 						GROUP BY Propiedad.NumPropiedad, Recibos.ID_Concepto, Recibos.Monto
 							  
 
@@ -358,7 +358,23 @@ BEGIN
 						INNER JOIN Comprobante
 						ON Recibos.ID_Recibo = Comprobante.ID_Recibo
 
-			
+-----------Reconexion ---------------------
+
+					INSERT INTO [dbo].[Recibos] (ID_Propiedad,ID_Concepto,Fecha,Monto,Estado)
+
+					SELECT Propiedad.ID_Propiedad,TipoRecibo,fechaLeida,CC_Fijo.Monto,0
+					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
+						WITH(	
+							NumFinca INT '@NumFinca',
+							TipoRecibo INT '@TipoRecibo',
+							fechaLeida VARCHAR(100)	'../@fecha'
+						)
+						INNER JOIN Propiedad ON Propiedad.NumPropiedad = NumFinca 
+						INNER JOIN CC_Fijo ON CC_Fijo.ID_Fijo = TipoRecibo
+					
+
+
+
 --ProxPro--------------------
 
 					INSERT INTO [dbo].[Pro_x_Pro] (ID_Propiedad,ID_Propietario,Activo,Fecha)
@@ -447,5 +463,6 @@ BEGIN
 
 		  Set @contador = @contador + 1
 		END
+
   END 
   
