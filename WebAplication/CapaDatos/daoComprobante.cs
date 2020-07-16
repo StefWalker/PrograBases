@@ -35,6 +35,9 @@ namespace CapaDatos
                     C.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
                     C.TipoRecibo = Convert.ToInt32(dr["TipoRecibo"].ToString());
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Cobro = Convert.ToDouble(dr["Cobro"].ToString());
+                    C.MontoInteres = Convert.ToDouble(dr["MontoInteres"].ToString());
+                    C.MontoPagado = Convert.ToDouble(dr["MontoPagado"].ToString());
                     lista.Add(C);
                 }
             }
