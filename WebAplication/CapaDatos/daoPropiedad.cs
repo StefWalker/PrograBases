@@ -56,8 +56,7 @@ namespace CapaDatos
                 obj = new entPropiedad();
                 dr.Read();
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                // obj.Valor = Convert.ToInt32(dr["Valor"].ToString());
-               // obj.Valor = int.Parse("Valor", NumberStyles.Currency);
+                obj.Valor = Convert.ToDouble(dr["Valor"].ToString());
                 obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                 obj.Direccion = dr["Direccion"].ToString();
                 obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
@@ -154,6 +153,7 @@ namespace CapaDatos
                     C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                     C.Direccion = dr["Direccion"].ToString();
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Valor = Convert.ToDouble(dr["Valor"].ToString());
                     C.M3Acumulados = Convert.ToInt32(dr["M3Acumulados"].ToString());
                     C.M3AcumuladosUltimoRecibo = Convert.ToInt32(dr["M3AcumuladosUltimoRecibo"].ToString());
                     lista.Add(C);
@@ -193,6 +193,7 @@ namespace CapaDatos
                     C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                     C.Direccion = dr["Direccion"].ToString();
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Valor = Convert.ToDouble(dr["Valor"].ToString());
                     C.M3Acumulados = Convert.ToInt32(dr["M3Acumulados"].ToString());
                     C.M3AcumuladosUltimoRecibo = Convert.ToInt32(dr["M3AcumuladosUltimoRecibo"].ToString());
                     lista.Add(C);

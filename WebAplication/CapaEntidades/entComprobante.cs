@@ -13,6 +13,10 @@ namespace CapaEntidades
         public int NumPropiedad { get; set; }
         public int TipoRecibo { get; set; }
         public DateTime Fecha { get; set; }
-        
+        public double Cobro { get; set; }
+        public double MontoInteres { get; set; }
+        public double MontoPagado { get; set; }
     }
+
+
 }

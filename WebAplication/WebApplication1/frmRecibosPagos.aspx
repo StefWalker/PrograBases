@@ -23,6 +23,7 @@
             <asp:BoundField DataField="ID_Propiedad" HeaderText="ID_Propiedad" />
             <asp:BoundField DataField="ID_Concepto" HeaderText="ID_Concepto" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="Monto" HeaderText="Monto" />
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
         </Columns>
         <EditRowStyle BackColor="#2461BF" />

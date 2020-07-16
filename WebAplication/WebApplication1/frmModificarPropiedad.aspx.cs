@@ -58,7 +58,7 @@ namespace WebApplication1
                 obj.NumPropiedad = Int32.Parse(txtNumero.Text);
                 if (txtValor.Text == "")
                 {
-                    int valorp = obj1.Valor;
+                    double valorp = obj1.Valor;
                     obj.Valor = valorp;
                     obj.Direccion = txtDireccion.Text;
                     if (negPropiedad.ModificarPropiedad(obj, Int32.Parse(txtNum.Text)) == 1)

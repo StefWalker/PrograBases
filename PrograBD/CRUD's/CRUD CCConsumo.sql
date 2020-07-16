@@ -25,15 +25,18 @@ END
 GO
 CREATE PROCEDURE CCConsumoInsert
 	 @inID_Cons INT,
-	 @inValor_m3 money
+	 @inValor_m3 money,
+	 @inMontoMinimoRecibo INT
 AS
 BEGIN TRY
 INSERT INTO CC_ConsumoAgua(
 	 ID_Con,
-	 Valor_m3)
+	 Valor_m3,
+	 MontoMinimoRecibo)
 	 VALUES(
 	 @inID_Cons,
-	 @inValor_m3)
+	 @inValor_m3,
+	 @inMontoMinimoRecibo)
 	 return 1
 END TRY
 BEGIN CATCH
@@ -53,7 +56,7 @@ CREATE PROC CCConsumoRead
 	@inID_Cons int
 AS 
 BEGIN TRY
-    SELECT ID_Con, Valor_m3
+    SELECT ID_Con, Valor_m3,MontoMinimoRecibo
     FROM   CC_ConsumoAgua
     WHERE  (ID_Con = @inID_Cons) 
 	return 1 

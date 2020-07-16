@@ -22,7 +22,17 @@
             <asp:BoundField DataField="ID_Recibo" HeaderText="ID_Recibo" />
             <asp:BoundField DataField="NumPropiedad" HeaderText="NumPropiedad" />
             <asp:BoundField DataField="TipoRecibo" HeaderText="TipoRecibo" />
-            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:TemplateField HeaderText="Fecha">
+                <EditItemTemplate>
+                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="Cobro" HeaderText="Cobro por recibo" />
+            <asp:BoundField DataField="MontoInteres" HeaderText="Monto por intereses" />
+            <asp:BoundField DataField="MontoPagado" HeaderText="Monto total a pagar" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
