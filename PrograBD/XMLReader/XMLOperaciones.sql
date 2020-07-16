@@ -353,7 +353,7 @@ BEGIN
 
 					INSERT INTO [dbo].[Recibos] (ID_Propiedad,ID_Concepto,Fecha,Monto,Estado)
 
-					SELECT Propiedad.ID_Propiedad, TipoRecibo, fechaLeida, CC_Fijo.Monto, 0
+					SELECT Propiedad.ID_Propiedad, TipoRecibo, fechaLeida, (CC_Fijo.Monto + sum(Recibos.Monto)), 0
 					FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/Pago',1)
 						WITH(	
 							NumFinca INT '@NumFinca',
@@ -362,7 +362,9 @@ BEGIN
 						)
 						INNER JOIN Propiedad ON Propiedad.NumPropiedad = NumFinca 
 						INNER JOIN CC_Fijo ON CC_Fijo.ID_Fijo = TipoRecibo
+						INNER JOIN Recibos on Propiedad.ID_Propiedad = Recibos.ID_Propiedad
 						where CC_Fijo.ID_Fijo = 10 and TipoRecibo = 10 and fechaLeida = @fechaActual
+						Group by Propiedad.ID_Propiedad, TipoRecibo, fechaLeida, CC_Fijo.Monto
 
 ----Comprobante-----
 
@@ -407,6 +409,12 @@ BEGIN
 						From Recibos
 						INNER JOIN Comprobante
 						ON Recibos.ID_Recibo = Comprobante.ID_Recibo
+
+						Set @Valor = (Select sum(Recibos.Monto) From Recibos
+						INNER JOIN Recibos AS C ON c.ID_Propiedad = Recibos.ID_Propiedad
+						Where c.ID_Concepto = 10 and Recibos.Estado = 0)
+
+
 
 						UPDATE [dbo].[Recibos]
 						SET Recibos.Estado = 1
