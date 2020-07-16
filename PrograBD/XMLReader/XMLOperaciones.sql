@@ -30,6 +30,7 @@ BEGIN
 			DECLARE @fechaMaxima DATE
 			DECLARE @DiaDeCobro INT
 			DECLARE @Monto MONEY
+			DECLARE @VALOR MONEY
 
 			SELECT @Varios = C	
 			
@@ -50,6 +51,7 @@ BEGIN
 			SELECT @fechaMaxima = MAX(fecha) FROM @TemporalFechas 
 			SELECT @fechaMinima = MIN(fecha) FROM @TemporalFechas 
 			
+			Declare @cont int
 			DECLARE @fechaActual date
 			SET @fechaActual = @fechaMinima;
 
@@ -143,6 +145,69 @@ BEGIN
 					SET NOCOUNT ON 
 
 					SET @DiaDeCobro = Day(@fechaActual);
+					if(@DiaDeCobro = 25)
+						begin
+							Set @cont = 0
+							IF((Select max(ID_PxC) from Pro_x_CC)is not null)
+							begin
+								while (@cont <= (Select max(ID_PxC) from Pro_x_CC))
+									begin
+										IF NOT Exists(select Recibos.ID_Propiedad from Recibos inner join Pro_x_CC on Pro_x_CC.ID_Propiedad = Recibos.ID_Propiedad 
+														where Pro_x_CC.ID_PxC = @cont and Pro_x_CC.ID_CC = 1 and Recibos.Estado = 0)
+											BEGIN
+												Insert INTO Recibos (ID_Propiedad,
+																	ID_Concepto,
+																	Fecha,
+																	Monto,
+																	Estado)
+												Select Propiedad.ID_Propiedad, 1, @fechaActual, 1 , 0 FROM Propiedad
+												Inner Join Pro_x_CC ON Propiedad.ID_Propiedad = Pro_x_CC.ID_Propiedad
+												WHERE Pro_x_CC.ID_CC = 1 and Pro_x_CC.ID_PxC = @cont
+
+												Set @cont = @cont + 1
+											END
+										Set @cont = @cont + 1
+									end
+							end
+						end
+					if(@DiaDeCobro = 9 or @DiaDeCobro = 5)
+						begin
+							Declare @cc int
+							if(@DiaDeCobro = 9) begin Set @cc = 3 end
+							if(@DiaDeCobro = 5) begin Set @cc = 6 end
+
+							Set @cont = 0
+							IF((Select max(ID_PxC) from Pro_x_CC)is not null)
+							begin
+								while (@cont <= (Select max(ID_PxC) from Pro_x_CC))
+									begin
+										IF NOT Exists(select Recibos.ID_Propiedad from Recibos inner join Pro_x_CC on Pro_x_CC.ID_Propiedad = Recibos.ID_Propiedad 
+														where Pro_x_CC.ID_PxC = @cont and Pro_x_CC.ID_CC = @cc and Recibos.Estado = 0)
+											BEGIN
+												Insert INTO Recibos (ID_Propiedad,
+																	ID_Concepto,
+																	Fecha,
+																	Monto,
+																	Estado)
+												Select Propiedad.ID_Propiedad, @cc, @fechaActual, 1 , 0 FROM Propiedad
+												Inner Join Pro_x_CC ON Propiedad.ID_Propiedad = Pro_x_CC.ID_Propiedad
+												WHERE Pro_x_CC.ID_CC = @cc and Pro_x_CC.ID_PxC = @cont
+
+												Set @cont = @cont + 1
+											END
+										Set @cont = @cont + 1
+									end
+							end
+						end
+					IF(@DiaDeCobro = 8 or @DiaDeCobro = 4 or @DiaDeCobro = 1
+						or @DiaDeCobro = 3 or @DiaDeCobro = 7 or @DiaDeCobro = 6)
+						begin
+							EXEC ProyectoBases.dbo.DiaDeCobro @inDia = @DiaDeCobro, 
+															  @inFecha = @fechaActual,
+															  @monto = null
+						end
+
+					/*
 					IF(@DiaDeCobro = 25 or @DiaDeCobro = 8 or @DiaDeCobro = 9 or @DiaDeCobro = 4 or @DiaDeCobro = 1
 						or @DiaDeCobro = 3 or @DiaDeCobro = 5 or @DiaDeCobro = 7 or @DiaDeCobro = 6)
 						BEGIN TRY
@@ -153,6 +218,51 @@ BEGIN
 						BEGIN CATCH
 							print error_message()
 						END CATCH
+					*/
+					Set @cont = 0
+					IF((Select max(ID_Recibo) from Recibos)is not null)
+					begin
+						while(@cont <= (Select max(ID_Recibo) from Recibos))
+							begin
+								if((Select ID_Recibo from Recibos WHERE ID_Recibo = @cont and Monto = 1) is not null)
+									BEGIN
+										if((Select Recibos.ID_Concepto from Recibos where ID_Recibo = @cont) = 3)
+											BEGIN
+												SET @VALOR = (Select (((Select CC_Porcentual.Porcentaje from CC_Porcentual where CC_Porcentual.ID_Por = 3) * Propiedad.Valor)/100) FROM Recibos
+																Inner join Propiedad ON Recibos.ID_Propiedad = Propiedad.ID_Propiedad
+																WHERE Recibos.ID_Recibo = @cont)
+												IF(@VALOR is not null)
+													BEGIN
+														UPDATE Recibos
+														SET Monto = @VALOR
+														FROM Recibos
+														where Recibos.ID_Recibo = @cont
+													
+														Set @cont = @cont + 1
+													end
+												Set @cont = @cont + 1
+											end
+										
+										if((Select Recibos.ID_Concepto from Recibos where ID_Recibo = @cont) = 6)
+											BEGIN
+												SET @VALOR = (Select (((Select CC_Porcentual.Porcentaje from CC_Porcentual where CC_Porcentual.ID_Por = 6) * Propiedad.Valor)/100) FROM Recibos
+																Inner join Propiedad ON Recibos.ID_Propiedad = Propiedad.ID_Propiedad
+																WHERE Recibos.ID_Recibo = @cont)
+												IF(@VALOR is not null)
+													BEGIN
+														UPDATE Recibos
+														SET Monto = @VALOR
+														FROM Recibos
+														where Recibos.ID_Recibo = @cont
+
+														Set @cont = @cont + 1
+													end
+												Set @cont = @cont + 1
+											end
+									end
+								Set @cont = @cont + 1
+							end
+						end
 
 
 ---Propiedades-----------				
@@ -183,7 +293,6 @@ BEGIN
 					WHERE [@TemporalTransConsumo].FechTemp = @fechaActual
 				
 					
-
 ----PropJuridico-----
 					
 					INSERT INTO [dbo].[PropJuridico] (ID_Propietario,Documento,Activo,Fecha)
@@ -193,7 +302,6 @@ BEGIN
 					on [@TemporalPropJurid].IDPropietario= Propietario.Identificacion
 					WHERE [@TemporalPropJurid].Fech = @fechaActual
 
-
 ---Cambios-----
 					
 					UPDATE Propiedad
@@ -201,8 +309,8 @@ BEGIN
 						Propiedad.Fecha = [@TemporalCambios].Fecha
 					From @TemporalCambios
 					where (Propiedad.NumPropiedad = [@TemporalCambios].NumFinca) AND ([@TemporalCambios].Fecha = @fechaActual);
- 
-					
+
+
 
 --Insercion de las otras tablas , las intermedias -------------
 
