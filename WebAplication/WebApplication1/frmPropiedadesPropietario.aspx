@@ -24,6 +24,7 @@
             <asp:BoundField DataField="Direccion" HeaderText="Direccion" />
             <asp:CommandField />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="Valor" HeaderText="Valor" />
             <asp:BoundField DataField="M3Acumulados" HeaderText="M3Acumulados" />
             <asp:BoundField DataField="M3AcumuladosUltimoRecibo" HeaderText="M3Acumulados Ultimo Recibo" />
         </Columns>
