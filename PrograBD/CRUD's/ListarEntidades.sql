@@ -9,7 +9,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado
+	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
 	FROM Recibos 
 
 	where Recibos.ID_Propiedad= @inID_Propiedad AND Recibos.Estado = 0
@@ -32,7 +32,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado
+	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
 	FROM Recibos 
 
 	where Recibos.ID_Propiedad= @inID_Propiedad AND Recibos.Estado = 1

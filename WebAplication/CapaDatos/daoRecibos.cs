@@ -34,6 +34,7 @@ namespace CapaDatos
                     C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                     C.ID_Concepto = Convert.ToInt32(dr["ID_Concepto"].ToString());
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Monto = Convert.ToDouble(dr["Monto"].ToString());
                     C.Estado = Convert.ToInt32(dr["Estado"].ToString());
                     lista.Add(C);
                 }
@@ -72,6 +73,7 @@ namespace CapaDatos
                     C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
                     C.ID_Concepto = Convert.ToInt32(dr["ID_Concepto"].ToString());
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Monto = Convert.ToDouble(dr["Monto"].ToString());
                     C.Estado = Convert.ToInt32(dr["Estado"].ToString());
                     lista.Add(C);
                 }

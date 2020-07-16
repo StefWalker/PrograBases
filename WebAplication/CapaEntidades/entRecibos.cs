@@ -12,6 +12,7 @@ namespace CapaEntidades
         public int ID_Propiedad { get; set; }
         public int ID_Concepto { get; set; }
         public DateTime Fecha { get; set; }
+        public Double Monto { get; set; }
         public int Estado { get; set; }
     }
 }
