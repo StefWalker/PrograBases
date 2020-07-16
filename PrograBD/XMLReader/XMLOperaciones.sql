@@ -143,7 +143,7 @@ BEGIN
 					SET NOCOUNT ON 
 
 					SET @DiaDeCobro = Day(@fechaActual);
-					IF(@DiaDeCobro = 25 or @DiaDeCobro = 8 or @DiaDeCobro = 9 or @DiaDeCobro = 4
+					IF(@DiaDeCobro = 25 or @DiaDeCobro = 8 or @DiaDeCobro = 9 or @DiaDeCobro = 4 or @DiaDeCobro = 1
 						or @DiaDeCobro = 3 or @DiaDeCobro = 5 or @DiaDeCobro = 7 or @DiaDeCobro = 6)
 						BEGIN TRY
 							EXEC ProyectoBases.dbo.DiaDeCobro @inDia = @DiaDeCobro, 
@@ -268,7 +268,7 @@ BEGIN
 
 
 --ProxProJur--------------------
-/*
+
 					INSERT INTO [dbo].[PJur_x_Pro] (ID_Juridico,ID_Propiedad,Activo,Fecha)
 
 					SELECT PropJuridico.ID_Juridico, Propiedad.ID_Propiedad,1, @fechaActual
@@ -281,7 +281,7 @@ BEGIN
 						INNER JOIN Propiedad ON Finca = Propiedad.NumPropiedad
 						INNER JOIN PropJuridico ON Ident = PropJuridico.Documento
 						WHERE fechaLeida = @fechaActual ;
-						*/
+						
 --INSERT ProxCC-----------------REVISAR 
 
 					INSERT INTO [dbo].[Pro_x_CC] (ID_CC,ID_Propiedad,Activo,Fecha)
@@ -327,5 +327,17 @@ BEGIN
 	  END CATCH
 	  UPDATE Comprobante
 	  SET MontoPagado = MontoInteres + Cobro
+
+	  Declare @contador int = 0
+	  while(@contador <= (Select MAX(ID_TCons) FROM TransConsumo))
+		BEGIN
+		  UPDATE Propiedad
+		  SET M3AcumuladosUltimoRecibo = M3Acumulados,
+			  M3Acumulados = TransConsumo.LecturaM3
+		  FROM TransConsumo
+		  WHERE (TransConsumo.ID_Propiedad = Propiedad.ID_Propiedad) AND (TransConsumo.ID_TCons = @contador)
+
+		  Set @contador = @contador + 1
+		END
   END 
   
