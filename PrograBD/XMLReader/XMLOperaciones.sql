@@ -259,6 +259,40 @@ BEGIN
 													end
 												Set @cont = @cont + 1
 											end
+										if((Select Recibos.ID_Concepto from Recibos where ID_Recibo = @cont) = 1)
+											BEGIN
+												SET @VALOR = (Select (Propiedad.M3Acumulados - Propiedad.M3AcumuladosUltimoRecibo)*CC_ConsumoAgua.Valor_m3 FROM Recibos
+																	INNER JOIN Propiedad ON Recibos.ID_Propiedad = Propiedad.ID_Propiedad
+																	INNER JOIN CC_ConsumoAgua ON Recibos.ID_Concepto = CC_ConsumoAgua.ID_Con
+																	Where Recibos.ID_Recibo = @cont and Recibos.ID_Concepto = 1)
+					
+
+													if(@VALOR < (Select CC_ConsumoAgua.MontoMinimoRecibo FROM CC_ConsumoAgua))
+														begin
+															Set @VALOR = (Select CC_ConsumoAgua.MontoMinimoRecibo FROM CC_ConsumoAgua)
+
+															IF(@VALOR is not null)
+																BEGIN
+																	UPDATE Recibos
+																	SET Monto = @VALOR
+																	FROM Recibos
+																	where Recibos.ID_Recibo = @cont
+
+																	Set @cont = @cont + 1
+																end
+														end
+
+												IF(@VALOR is not null)
+													BEGIN
+														UPDATE Recibos
+														SET Monto = @VALOR
+														FROM Recibos
+														where Recibos.ID_Recibo = @cont
+
+														Set @cont = @cont + 1
+													end
+												Set @cont = @cont + 1
+											end
 									end
 								Set @cont = @cont + 1
 							end
