@@ -70,7 +70,6 @@
     <Content Include="frmAskAgregarEntidades.aspx" />
     <Content Include="frmAskBuscar.aspx" />
     <Content Include="frmAskCrearUniones.aspx" />
-    <Content Include="frmAskRecibos.aspx" />
     <Content Include="frmBitacora.aspx" />
     <Content Include="frmComprobantes.aspx" />
     <Content Include="frmModificarProCC.aspx" />
@@ -164,13 +163,6 @@
     </Compile>
     <Compile Include="frmAskCrearUniones.aspx.designer.cs">
       <DependentUpon>frmAskCrearUniones.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="frmAskRecibos.aspx.cs">
-      <DependentUpon>frmAskRecibos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmAskRecibos.aspx.designer.cs">
-      <DependentUpon>frmAskRecibos.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmBitacora.aspx.cs">
       <DependentUpon>frmBitacora.aspx</DependentUpon>
