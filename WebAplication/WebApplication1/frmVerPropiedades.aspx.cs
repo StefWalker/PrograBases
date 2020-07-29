@@ -26,5 +26,10 @@ namespace WebApplication1
                 lblerror.Visible = true;
             }
         }
+
+        protected void grvPropiedades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect("frmAskRecibos.aspx?ID_Propiedad="+grvPropiedades.Rows[grvPropiedades.SelectedIndex].Cells[0].Text);
+        }
     }
 }

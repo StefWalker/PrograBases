@@ -14,20 +14,17 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
+            entUsuario obj0 = (entUsuario)Session["nombre"];
+            int ID_Propiedad = Convert.ToInt32(Request.QueryString["ID_Propiedad"]);
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            if (txtFinca.Text != null)
+            if (obj0 != null)
             {
-                entUsuario obj0 = (entUsuario)Session["nombre"];
-                entPropiedad obj = negPropiedad.BuscarPropiedad(Convert.ToInt32(txtFinca.Text));
-                if (obj0 != null && obj != null)
+                if (Request.QueryString["ID_Propiedad"] != null)
                 {
-                    entProUsuario obj2 = negProUsuario.BuscarProUsuario(obj.ID_Propiedad, obj0.ID_Usuario);
+                    entProUsuario obj2 = negProUsuario.BuscarProUsuario(ID_Propiedad, obj0.ID_Usuario);
                     if (obj2 != null)
                     {
-                        GridView1.DataSource = negRecibos.ListarRecibosPagos(obj.ID_Propiedad);
+                        GridView1.DataSource = negRecibos.ListarRecibosPagos(ID_Propiedad);
                         GridView1.DataBind();
                     }
                     else
@@ -36,12 +33,19 @@ namespace WebApplication1
                         lblerror.Visible = true;
                     }
                 }
+                else
+                {
+                    lblerror.Text = "Error al buscar el ID de la propiedad";
+                    lblerror.Visible = true;
+                }
             }
             else
             {
-                lblerror.Text = "Debe ingresar un numero de propiedad";
+                lblerror.Text = "Esta vacio el objeto";
                 lblerror.Visible = true;
             }
         }
+
+       
     }
 }

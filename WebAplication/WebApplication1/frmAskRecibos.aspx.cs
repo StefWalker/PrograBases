@@ -7,26 +7,26 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class frmAskRecibos : System.Web.UI.Page
+    public partial class frmAskRecibo : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnPendientes_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("frmRecibosPendientes.aspx");
-        }
-
         protected void btnPagos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmRecibosPagos.aspx");
+            Response.Redirect("frmRecibosPagos.aspx?ID_Propiedad="+Request.QueryString["ID_Propiedad"]);
         }
 
-        protected void btnComprobantes_Click(object sender, EventArgs e)
+        protected void btnPendientes_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmComprobantes.aspx");
+            Response.Redirect("frmRecibosPendientes.aspx?ID_Propiedad=" + Request.QueryString["ID_Propiedad"]);
+        }
+
+        protected void btnComprbantes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmComprobantes.aspx?ID_Propiedad=" + Request.QueryString["ID_Propiedad"]);
         }
     }
 }
