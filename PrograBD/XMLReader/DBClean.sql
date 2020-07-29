@@ -12,7 +12,12 @@ DROP TABLE Pro_x_Usuario
 DROP TABLE Usuario
 DROP TABLE PropJuridico
 DROP TABLE Bitacora
+DROP TABLE ReciboReconexion
+DROP TABLE Corte
+DROP TABLE Reconexion
+DROP TABLE ReciboXComprobante
 DROP TABLE Recibos
+DROP TABLE RecibosMoratorios
 DROP TABLE TipoEntidad
 DROP TABLE TransConsumo
 DROP TABLE ConceptoCobro

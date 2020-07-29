@@ -158,8 +158,9 @@ CREATE TABLE TipoTrans
 CREATE TABLE TransConsumo
 (
 	ID_TCons INT Identity (1,1) PRIMARY KEY NOT NULL,
+	Monto MONEY NOT NULL,
 	LecturaM3 INT NOT NULL,
-	Descripcion VARCHAR(150),
+	NuevoM3 INT NOT NULL,
 	ID_Propiedad INT NOT NULL,
 	Tipo INT NOT NULL,
 	Fecha Date NOT NULL DEFAULT GETDATE(),
@@ -175,6 +176,19 @@ CREATE TABLE Recibos
 	Fecha Date NOT NULL DEFAULT GETDATE(),
 	Monto Money NOT NULL,
 	Estado INT NOT NULL DEFAULT 0,
+	FechaVencimiento DATE NOT NULL,
+	FOREIGN KEY (ID_Concepto) REFERENCES ConceptoCobro(ID_CC),
+	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
+);
+
+CREATE TABLE RecibosMoratorios
+(
+	ID_ReciboM INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ID_Propiedad INT NOT NULL,
+	ID_Concepto INT NOT NULL,
+	Fecha Date NOT NULL DEFAULT GETDATE(),
+	Monto Money NOT NULL,
+	Estado INT NOT NULL DEFAULT 0,
 	FOREIGN KEY (ID_Concepto) REFERENCES ConceptoCobro(ID_CC),
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
@@ -182,69 +196,46 @@ CREATE TABLE Recibos
 CREATE TABLE Comprobante
 (
 	ID_Comprobante INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	ID_Recibo INT NOT NULL,
-	NumPropiedad INT NOT NULL,
-	TipoRecibo int NOT NULL,
-	Fecha Date NOT NULL,
-	Cobro MONEY NOT NULL Default 0,
-	MontoInteres MONEY NOT NULL Default 0,
-	MontoPagado MONEY NOT NULL Default 0
+	ID_Recibo INT,
+	NumPropiedad INT,
+	TipoRecibo int,
+	Fecha Date,
+	Monto MONEY
 );
 
-/*------------------------------------------------------------------------------*/
-/*
-IF OBJECT_ID('AcumuladoUpdate') IS NOT NULL
-BEGIN 
-DROP PROC AcumuladoUpdate 
-END
-GO
-CREATE PROCEDURE AcumuladoUpdate
-	 @inNumPropiedad INT,
-	 @inLectura int,
-	 @monto int,
-	 @ID_propiedad int
-AS
-IF((Select ID_Propiedad FROM Propiedad Where NumPropiedad = @inNumPropiedad) IS NOT NULL)
-BEGIN
-	SET @ID_propiedad = (Select ID_Propiedad FROM Propiedad Where NumPropiedad = @inNumPropiedad)
-	SET @monto = (Select (M3AcumuladosUltimoRecibo + M3Acumulados) From Propiedad WHERE ID_Propiedad = @ID_propiedad)
-	SET @monto = @monto*(Select Valor_m3 from CC_ConsumoAgua)
-	BEGIN TRY
-			UPDATE Propiedad
-			SET  M3AcumuladosUltimoRecibo = M3Acumulados,
-				 M3Acumulados = @inLectura
-			WHERE  (NumPropiedad = @inNumPropiedad)
-			End TRY
-			BEGIN CATCH
-				RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
-				PRINT error_message()
-			END CATCH
-			BEGIN TRY
-				IF(@monto < (SELECT MontoMinimoRecibo From CC_ConsumoAgua))
-				Begin
-					SET @monto = (SELECT MontoMinimoRecibo From CC_ConsumoAgua)
-				End
-				INSERT INTO Recibos(
-					ID_Propiedad,
-					ID_Concepto,
-					Monto
-				)
-				VALUES
-				(
-					@ID_propiedad,
-					1,
-					@monto
-				)
-			END TRY 
-			BEGIN CATCH
-				RAISERROR('Error en la actualizacion de datos fallida', 16, 1) WITH NOWAIT;
-				PRINT error_message()
-			END CATCH
-END
-ELSE
-BEGIN
-	PRINT ('La propiedad a buscar no se encuentra en la base de datos')
-END
-GO
+CREATE TABLE ReciboXComprobante
+(
+	ID_RxC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ID_Comprobante INT NOT NULL,
+	ID_Recibo INT NOT NULL,
+	FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante),
+	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo)
+)
 
-*/
+
+CREATE TABLE ReciboReconexion
+(
+	ID_Reconexion INT IDENTITY(1,1) NOT NULL,
+	ID_Recibo INT NOT NULL,
+	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo)
+)
+
+CREATE TABLE Corte
+(
+	ID_Corte INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Fecha DATE NOT NULL,
+	ID_Propiedad INT NOT NULL,
+	ID_Recibo INT NOT NULL,
+	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo),
+	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
+)
+
+CREATE TABLE Reconexion
+(
+	ID_Corte INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	Fecha DATE NOT NULL,
+	ID_Propiedad INT NOT NULL,
+	ID_Recibo INT NOT NULL,
+	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo),
+	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
+)
