@@ -29,7 +29,7 @@ namespace WebApplication1
 
         protected void grvPropiedades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Response.Redirect("frmRecibosPagos.aspx?ID_Propiedad="+grvPropiedades.Rows[grvPropiedades.SelectedIndex].Cells[0].Text);
+            Response.Redirect("frmAskRecibos.aspx?ID_Propiedad="+grvPropiedades.Rows[grvPropiedades.SelectedIndex].Cells[0].Text);
         }
     }
 }

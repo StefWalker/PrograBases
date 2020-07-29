@@ -16,7 +16,6 @@ namespace WebApplication1
 
             entUsuario obj0 = (entUsuario)Session["nombre"];
             int ID_Propiedad = Convert.ToInt32(Request.QueryString["ID_Propiedad"]);
-            entPropiedad objPro = negPropiedad.BuscarPropiedad(ID_Propiedad);
 
             if (obj0 != null)
             {
@@ -36,7 +35,7 @@ namespace WebApplication1
                 }
                 else
                 {
-                    lblerror.Text = "Esta vacio el objeto2";
+                    lblerror.Text = "Error al buscar el ID de la propiedad";
                     lblerror.Visible = true;
                 }
             }

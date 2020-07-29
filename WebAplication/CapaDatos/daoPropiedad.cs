@@ -74,6 +74,41 @@ namespace CapaDatos
             }
             return obj;
         }
+        public static entPropiedad BuscarPropiedadID(int id)
+        {
+            entPropiedad obj = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("PropiedadRead", cnx);
+                cmd.Parameters.AddWithValue("@inID_Propiedad", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                obj = new entPropiedad();
+                dr.Read();
+                obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
+                obj.Valor = Convert.ToDouble(dr["Valor"].ToString());
+                obj.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
+                obj.Direccion = dr["Direccion"].ToString();
+                obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                obj.M3Acumulados = Convert.ToInt32(dr["M3Acumulados"].ToString());
+                obj.M3AcumuladosUltimoRecibo = Convert.ToInt32(dr["M3AcumuladosUltimoRecibo"].ToString());
+
+            }
+            catch
+            {
+                obj = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return obj;
+        }
         public static int DeletePropiedad(int numero )
         {
             int Indicador = 0;

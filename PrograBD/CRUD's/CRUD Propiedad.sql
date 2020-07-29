@@ -55,7 +55,7 @@ END CATCH
 GO
 
 
-/*-- Read de tabla propiedad
+-- Read de tabla propiedad
 IF OBJECT_ID('PropiedadRead') IS NOT NULL
 BEGIN 
     DROP PROC PropiedadRead
@@ -65,7 +65,7 @@ CREATE PROC PropiedadRead
     @inID_Propiedad int
 AS 
 BEGIN TRY
-    SELECT ID_Propiedad, NumPropiedad, Valor, Direccion
+    SELECT NumPropiedad, Valor, ID_Propiedad,Direccion,Fecha,M3Acumulados,M3AcumuladosUltimoRecibo
     FROM   Propiedad  
     WHERE  (ID_Propiedad = @inID_Propiedad  AND Activo = 1) 
 	return 1
@@ -76,7 +76,7 @@ BEGIN CATCH
 	return -1
 END CATCH
 GO
-*/
+
 -- Update de tabla propiedad
 IF OBJECT_ID('PropiedadUpdateB') IS NOT NULL
 BEGIN 
