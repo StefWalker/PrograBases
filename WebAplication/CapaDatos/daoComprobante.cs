@@ -52,5 +52,41 @@ namespace CapaDatos
             }
             return lista;
         }
+        public static entComprobante BuscarComprobante(int id)
+        {
+            entComprobante obj = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ComprobanteRead", cnx);
+                cmd.Parameters.AddWithValue("@inID_Comprobante", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                obj = new entComprobante();
+                dr.Read();
+                obj.ID_Comprobante = Convert.ToInt32(dr["ID_Comprobante"].ToString());
+                obj.ID_Recibo = Convert.ToInt32(dr["ID_Recibo"].ToString());
+                obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
+                obj.TipoRecibo = Convert.ToInt32(dr["TipoRecibo"].ToString());
+                obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                obj.Cobro = Convert.ToDouble(dr["Cobro"].ToString());
+                obj.MontoInteres = Convert.ToDouble(dr["MontoInteres"].ToString());
+                obj.MontoPagado = Convert.ToDouble(dr["MontoPagado"].ToString());
+
+            }
+            catch
+            {
+                obj = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return obj;
+        }
     }
 }

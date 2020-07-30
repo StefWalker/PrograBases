@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaEntidades;
+using CapaNegocios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,45 +13,53 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            entUsuario obj0 = (entUsuario)Session["nombre"];
-            int ID_Propiedad = Convert.ToInt32(Request.QueryString["ID_Propiedad"]);
-
-            if (obj0 != null)
+        
+            int ID_Comprobante = Convert.ToInt32(Request.QueryString["ID_Comprobante"]);
+            if (Request.QueryString["ID_Comprobante"] != null)
             {
-                if (Request.QueryString["ID_Propiedad"] != null)
+               
+                entComprobante obj = negComprobante.BuscarComprobante(ID_Comprobante);
+                if (obj != null)
                 {
-                    entProUsuario obj2 = negProUsuario.BuscarProUsuario(ID_Propiedad, obj0.ID_Usuario);
-                    entPropiedad objPropiedad = negPropiedad.BuscarPropiedadID(ID_Propiedad);
-                    if (obj2 != null)
-                    {
-                        if (objPropiedad != null)
+                    numero.Text = Convert.ToString(obj.ID_Comprobante);
+                    propiedad.Text = Convert.ToString(obj.NumPropiedad);
+                    Fecha.Text = Convert.ToString(obj.Fecha);
+                    medio.Text = Convert.ToString(obj.MontoPagado);//eSTE DEBO CAMBIARLO
+                    monto.Text = Convert.ToString(obj.MontoPagado);
+
+                    GridView1.DataSource = negRecibos.ListarRecibos(52); //Debo cambiar el sp que vayamos a utilizar donde me saque aquellas en que su comprobante es igual
+                    GridView1.DataBind();
+                    for (int i = 0; i < GridView1.Rows.Count; i++)
+                     { 
+                        int id = Convert.ToInt32(GridView1.Rows[i].Cells[2].Text);
+                        entConceptoCobro tipo = negConceptoCobro.BuscarConcepto(id);
+                        if (tipo != null)
                         {
-                            GridView1.DataSource = negComprobante.ListarComprobantes(objPropiedad.NumPropiedad);
-                            GridView1.DataBind();
+                            GridView1.Rows[0].Cells[3].Text = tipo.Concepto;
+                            GridView1.Rows[0].Cells[4].Text =Convert.ToString(tipo.DiaVencimiento);
                         }
                         else
                         {
-                            lblerror.Text = "Aqui";
-                            lblerror.Visible = true;
+                            lblError.Text = "No se encontro un concepto de cobro asociado.";
+                            lblError.Visible = true;
                         }
-                    }
-                    else
-                    {
-                        lblerror.Text = "Dicha Propiedad no corresponde a este usuario";
-                        lblerror.Visible = true;
-                    }
-                }
+                     }
+                 }
+           
                 else
                 {
-                    lblerror.Text = "Error al buscar el ID de la propiedad";
-                    lblerror.Visible = true;
+                    lblError.Text = "No se encontro el comprobante";
+                    lblError.Visible = true;
                 }
+
             }
             else
             {
-                lblerror.Text = "Esta vacio el objeto";
-                lblerror.Visible = true;
+                lblError.Text = "Error al buscar el ID del comprobante";
+                lblError.Visible = true;
             }
+            
+            
         }
     }
 }

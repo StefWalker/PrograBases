@@ -15,16 +15,25 @@
     <asp:Label ID="Label3" runat="server" Text="Fecha del comprobante:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="Fecha" runat="server" Font-Size="Medium"></asp:Label>
     <br />
-    <br />
     <asp:Label ID="Label2" runat="server" Text="Medio de pago:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="medio" runat="server" Font-Size="Medium" ></asp:Label>
      <br />
     <asp:Label ID="Label4" runat="server" Text="Monto:  " Font-Size="Medium"></asp:Label>
     <asp:Label ID="monto" runat="server" Font-Size="Medium" ></asp:Label>
+       
     <br />
-    <asp:Button runat="server" Text="Ver Detalle" />
-    <br />
+    <asp:Label ID="Label6" runat="server" Text="Detalle:  " Font-Size="Medium"></asp:Label>
     <tr>
-       <td colspan="2" align ="Center"><asp:Label ID="lbError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+            <Columns>
+                <asp:BoundField DataField="ID_Recibo" HeaderText="Numero de Recibo" />
+                <asp:BoundField DataField="Fecha" HeaderText="Fecha del recibo" />
+                <asp:BoundField DataField="ID_Concepto" HeaderText="ID Concepto" />
+                <asp:BoundField HeaderText="Concepto de cobro" />
+                <asp:BoundField HeaderText="Dia Vencimiento" />
+                <asp:BoundField DataField="Monto" HeaderText="Monto" />
+            </Columns>
+       </asp:GridView>
+       <td colspan="2" align ="Center"><asp:Label ID="lblError" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
     </tr>
 </asp:Content>

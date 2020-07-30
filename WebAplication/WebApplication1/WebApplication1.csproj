@@ -122,6 +122,7 @@
     <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
     <Content Include="frmUserPropiedades.aspx" />
+    <Content Include="frmVerComprobante.aspx" />
     <Content Include="frmVerPropiedades.aspx" />
     <Content Include="Imagenes\descarga.jpg" />
     <Content Include="Imagenes\descarga.png" />
@@ -518,6 +519,13 @@
     </Compile>
     <Compile Include="frmUserPropiedades.aspx.designer.cs">
       <DependentUpon>frmUserPropiedades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerComprobante.aspx.cs">
+      <DependentUpon>frmVerComprobante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVerComprobante.aspx.designer.cs">
+      <DependentUpon>frmVerComprobante.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmVerPropiedades.aspx.cs">
       <DependentUpon>frmVerPropiedades.aspx</DependentUpon>
