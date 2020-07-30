@@ -13,7 +13,7 @@ namespace WebApplication1
 
     public partial class frmPendientes : System.Web.UI.Page
     {
-        Lista lista = new Lista();
+   
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -30,6 +30,20 @@ namespace WebApplication1
 
                         GridView1.DataSource = negRecibos.ListarRecibos(ID_Propiedad);
                         GridView1.DataBind();
+                       for(int i = 0; i < GridView1.Rows.Count; i++)
+                       {
+                            int id = Convert.ToInt32(GridView1.Rows[i].Cells[2].Text);
+                            entConceptoCobro tipo = negConceptoCobro.BuscarConcepto(id);
+                            if(tipo != null)
+                            {
+                                GridView1.Rows[0].Cells[3].Text = tipo.Concepto;
+                            }
+                            else
+                            {
+                                lblerror.Text = "No se encontro un concepto de cobro asociado.";
+                                lblerror.Visible = true;
+                            }
+                       }
                     }
                     else
                     {
@@ -56,7 +70,11 @@ namespace WebApplication1
             List<string> selectedValues = CheckBoxList1.Items.Cast<ListItem>().Where(li => li.Selected).Select(li => li.Value).ToList();
             lblerror.Text = selectedValues[0];
             lblerror.Visible = true;
-            Response.Redirect("frmAskRecibos.aspx?ID_Propiedad=" + selectedValues);
+            CheckBoxList1.Visible = false;
+            GridView1.Visible = false;
+            Label1.Text = "hola";
+            Label1.Visible = true;
+           // Response.Redirect("frmConfirmacion.aspx?lista=" + selectedValues);
 
         }
            

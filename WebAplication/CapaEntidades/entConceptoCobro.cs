@@ -11,7 +11,7 @@ namespace CapaEntidades
         public int ID_CC { get; set; }
         public string TipoCC { get; set; }
         public string Concepto { get; set; }
-        public int FechaVencimiento { get; set; }
-        public int Fecha { get; set; }
+        public int DiaCobro { get; set; }
+        public int DiaVencimiento { get; set; }
     }
 }

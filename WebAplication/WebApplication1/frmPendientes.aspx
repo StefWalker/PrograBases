@@ -11,6 +11,7 @@
             <asp:BoundField DataField="ID_Recibo" HeaderText="ID Recibo" />
             <asp:BoundField DataField="ID_Propiedad" HeaderText="ID_Propiedad" />
             <asp:BoundField DataField="ID_Concepto" HeaderText="ID_Concepto" />
+            <asp:BoundField HeaderText="Concepto" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
             <asp:BoundField DataField="Monto" HeaderText="Monto" />
             <asp:BoundField DataField="Estado" HeaderText="Estado" />
@@ -37,11 +38,15 @@
       </asp:SqlDataSource>
     
      <br />
-    
+    <br />
+     <tr>
+       <td colspan="2" align ="Center"><asp:Label ID="Label1" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
+      <br />
     
     <tr>
       <td colspan="2" align ="center"><asp:Button ID="btnConfirmar" runat="server" Text="Confirmar" width="150px" OnClick="btnConfirmar_Click"/></td>
     </tr>
+    <br />
      <tr>
        <td colspan="2" align ="Center"><asp:Label ID="lblerror" runat="server" Text="" ForeColor="Red" Visible="false"></asp:Label></td>
      

@@ -1,6 +1,4 @@
-﻿using CapaEntidades;
-using CapaNegocios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1
 {
-    public partial class frmComprobantes : System.Web.UI.Page
+    public partial class frmVerComprobante : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -52,11 +50,6 @@ namespace WebApplication1
                 lblerror.Text = "Esta vacio el objeto";
                 lblerror.Visible = true;
             }
-        }
-
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect("frmVerComprobante.aspx?ID_Comprobante=" + GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text);
         }
     }
 }

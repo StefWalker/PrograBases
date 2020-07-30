@@ -33,8 +33,8 @@ namespace WebApplication1
                         Direccion.Text = obj.Direccion;
                         Tipo.Text = Convert.ToString(obj1.TipoCC);
                         Concepto.Text = obj1.Concepto;
-                        FechaVencimiento.Text = Convert.ToString(obj1.FechaVencimiento);
-                        Fecha.Text = Convert.ToString(obj1.Fecha);
+                        FechaVencimiento.Text = Convert.ToString(obj1.DiaVencimiento);
+                        Fecha.Text = Convert.ToString(obj1.DiaCobro);
 
                     }
                     else

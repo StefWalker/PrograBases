@@ -64,7 +64,7 @@ CREATE PROC CCobroRead
 	 @inID_CC int
 AS 
 BEGIN TRY
-    SELECT ID_CC, DiaCobro,DiaVencimiento
+    SELECT ID_CC, TipoCC,Concepto,DiaCobro,DiaVencimiento
     FROM   ConceptoCobro  
     WHERE  (ID_CC = @inID_CC AND Activo = 1) 
 	return 1

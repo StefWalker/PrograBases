@@ -8,13 +8,11 @@
     </tr>
     
      <br />
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID_Comprobante" HeaderText="ID_Comprobante" />
-            <asp:BoundField DataField="ID_Recibo" HeaderText="ID_Recibo" />
             <asp:BoundField DataField="NumPropiedad" HeaderText="NumPropiedad" />
-            <asp:BoundField DataField="TipoRecibo" HeaderText="TipoRecibo" />
             <asp:TemplateField HeaderText="Fecha">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
@@ -23,9 +21,8 @@
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="Cobro" HeaderText="Cobro por recibo" />
-            <asp:BoundField DataField="MontoInteres" HeaderText="Monto por intereses" />
             <asp:BoundField DataField="MontoPagado" HeaderText="Monto total a pagar" />
+              <asp:CommandField HeaderText="Ver Comprobante" ShowSelectButton="True" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />
         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
