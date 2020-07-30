@@ -28,7 +28,7 @@
                 <h2><P><font size=5>Servicios</font></P></h2>
               
                 <div class="etiqueta">
-                    <asp:Button ID="VerReciboProp" runat="server" Text="Ver Recibos de una propiedad" OnClick="VerRecibos_Click" Width="170px"  />
+                    <asp:Button ID="HacerPagos" runat="server" Text="Realizar pagos" OnClick="RealizarPagos_Click" Width="170px"  />
                </div>
                 <div class="etiqueta">
                     <asp:Button ID="VerPropiedades" runat="server" Text="Ver mis propiedades" OnClick="VerPropiedades_Click" Width="170px"  />

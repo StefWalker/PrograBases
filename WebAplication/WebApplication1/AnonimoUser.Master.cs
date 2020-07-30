@@ -36,9 +36,9 @@ namespace WebApplication1
             Response.Redirect("frmVerPropiedades.aspx");
         }
 
-        protected void VerRecibos_Click(object sender, EventArgs e)
+        protected void RealizarPagos_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmAskRecibos.aspx");
+            Response.Redirect("frmRealizarPagos.aspx");
         }
     }
 }

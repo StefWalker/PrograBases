@@ -74,7 +74,9 @@
     <Content Include="frmBitacora.aspx" />
     <Content Include="frmComprobantes.aspx" />
     <Content Include="frmModificarProCC.aspx" />
+    <Content Include="frmPendientes.aspx" />
     <Content Include="frmPrincipalUser.aspx" />
+    <Content Include="frmRealizarPagos.aspx" />
     <Content Include="frmRecibosPagos.aspx" />
     <Content Include="frmRecibosPendientes.aspx" />
     <Content Include="frmUnirProCC.aspx" />
@@ -193,12 +195,26 @@
     <Compile Include="frmModificarProCC.aspx.designer.cs">
       <DependentUpon>frmModificarProCC.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmPendientes.aspx.cs">
+      <DependentUpon>frmPendientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmPendientes.aspx.designer.cs">
+      <DependentUpon>frmPendientes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipalUser.aspx.cs">
       <DependentUpon>frmPrincipalUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmPrincipalUser.aspx.designer.cs">
       <DependentUpon>frmPrincipalUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmRealizarPagos.aspx.cs">
+      <DependentUpon>frmRealizarPagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRealizarPagos.aspx.designer.cs">
+      <DependentUpon>frmRealizarPagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmRecibosPagos.aspx.cs">
       <DependentUpon>frmRecibosPagos.aspx</DependentUpon>
@@ -501,6 +517,7 @@
     <Compile Include="frmVerPropiedades.aspx.designer.cs">
       <DependentUpon>frmVerPropiedades.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Lista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmLogin.aspx.cs">
       <DependentUpon>frmLogin.aspx</DependentUpon>
