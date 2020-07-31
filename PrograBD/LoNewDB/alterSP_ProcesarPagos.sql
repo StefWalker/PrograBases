@@ -109,7 +109,7 @@ AS
 							
 							--CREA UN RECIBO RE TIPO MORATORIO Y LO PAGA
 							INSERT INTO Recibos(ID_Concepto,Monto,Estado,ID_Propiedad,Fecha,FechaVencimiento)
-							SELECT CC.Concepto, @montoMoratorio, 1, @idPropiedad, @fechaOperacion, DATEADD(d,CC.DiaVencimiento,@fechaOperacion)
+							SELECT CC.ID_CC, @montoMoratorio, 1, @idPropiedad, @fechaOperacion, DATEADD(d,CC.DiaVencimiento,@fechaOperacion)
 							FROM ConceptoCobro CC
 							WHERE CC.ID_CC = 11
 							

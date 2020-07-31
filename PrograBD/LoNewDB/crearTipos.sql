@@ -1,7 +1,7 @@
 ﻿USE [ProyectoBases]
-CREATE TYPE PagosTipo AS TABLE (id INT IDENTITY(1,1),numFinca VARCHAR(30),idTipoRecibo INT, fechaOperaciones VARCHAR(100)) 
-CREATE TYPE ConsumoTipo AS TABLE (id INT IDENTITY(1,1),idTipo INT,numFinca VARCHAR(30),LecturaM3 INT, Fecha DATE,descripcion varchar(30)) 
-CREATE TYPE ValorPropiedadTipo AS TABLE (id INT IDENTITY(1,1),numFinca VARCHAR(30),nuevoValor MONEY) 
+CREATE TYPE PagosTipo AS TABLE (id INT IDENTITY(1,1),numFinca INT,idTipoRecibo INT, fechaOperaciones VARCHAR(100)) 
+CREATE TYPE ConsumoTipo AS TABLE (id INT IDENTITY(1,1),idTipo INT,numFinca INT,LecturaM3 INT, Fecha DATE,descripcion varchar(30)) 
+CREATE TYPE ValorPropiedadTipo AS TABLE (id INT IDENTITY(1,1),numFinca INT,nuevoValor MONEY) 
 
 
 
