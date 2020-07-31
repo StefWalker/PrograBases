@@ -1,16 +1,3 @@
-USE [ProyectoBases]
-GO
-
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-Create PROCEDURE [dbo].[PagosTransaction]
-
-AS
-
-BEGIN TRAN
-
 
 USE [ProyectoBases]
 GO
