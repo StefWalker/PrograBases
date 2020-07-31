@@ -41,10 +41,27 @@
     <PropiedadVersusPropietario NumFinca="2201960" identificacion="301240966"/>
     <PropiedadVersusPropietario NumFinca="3206723" identificacion="301116564"/>
     <PropiedadVersusPropietario NumFinca="2512174" identificacion="110670556"/>
+
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="3107084"/>
+    <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="3107084"/>
+    <ConceptoCobroVersusPropiedad idcobro="4" NumFinca="3107084"/>
+    <ConceptoCobroVersusPropiedad idcobro="5" NumFinca="3107084"/>
+
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="1565045"/>
+    <ConceptoCobroVersusPropiedad idcobro="7" NumFinca="1565045"/>
+    <ConceptoCobroVersusPropiedad idcobro="2" NumFinca="1565045"/>
+    <ConceptoCobroVersusPropiedad idcobro="5" NumFinca="1565045"/>
+
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="2346431"/>
+    <ConceptoCobroVersusPropiedad idcobro="3" NumFinca="2346431"/>
+    <ConceptoCobroVersusPropiedad idcobro="2" NumFinca="2346431"/>
+    <ConceptoCobroVersusPropiedad idcobro="5" NumFinca="2346431"/>
+    
+    <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="2132441"/>
+    <ConceptoCobroVersusPropiedad idcobro="2" NumFinca="2132441"/>
+    <ConceptoCobroVersusPropiedad idcobro="4" NumFinca="2132441"/>
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="2132441"/>
+
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="2346334"/>
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="2225118"/>
     <ConceptoCobroVersusPropiedad idcobro="9" NumFinca="2520127"/>
@@ -1744,6 +1761,7 @@
     <ConceptoCobroVersusPropiedad idcobro="3" NumFinca="5605527"/>
     <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="7736703"/>
     <CambioPropiedad NumFinca="4786459" NuevoValor="18735419"/>
+    <AP NumFinca="1565045" Plazo="5"/>
   </OperacionDia>
   <OperacionDia fecha="2020-04-03">
     <Propiedad NumFinca="6536368" Valor="5651629" Direccion="Cementerio de Santa Rosa, 420 m Oeste."/>
@@ -1838,6 +1856,7 @@
     <TransConsumo id="1" LecturaM3="423" descripcion="Cobro Mensual" NumFinca="6732750"/>
     <TransConsumo id="1" LecturaM3="497" descripcion="Cobro Mensual" NumFinca="9324439"/>
     <TransConsumo id="1" LecturaM3="453" descripcion="Cobro Mensual" NumFinca="5649015"/>
+     <AP NumFinca="3107084" Plazo="8"/>
   </OperacionDia>
   <OperacionDia fecha="2020-04-05">
     <Propiedad NumFinca="8434186" Valor="15014331" Direccion=" iglesia de Oreamuno, 891 m Noroeste."/>
@@ -1925,6 +1944,8 @@
     <Pago TipoRecibo="5" NumFinca="3298240"/>
     <Pago TipoRecibo="5" NumFinca="6536368"/>
     <Pago TipoRecibo="5" NumFinca="2995814"/>
+    <AP NumFinca="2346431" Plazo="6"/>
+    <AP NumFinca="2132441" Plazo="12"/>
   </OperacionDia>
   <OperacionDia fecha="2020-04-06">
     <Propiedad NumFinca="8989267" Valor="11206046" Direccion="De Nava Café, 226 m Este."/>
@@ -3512,6 +3533,7 @@
     <Pago TipoRecibo="5" NumFinca="1105999"/>
     <Pago TipoRecibo="5" NumFinca="9971615"/>
     <Pago TipoRecibo="5" NumFinca="6664396"/>
+    
   </OperacionDia>
   <OperacionDia fecha="2020-05-06">
     <Propiedad NumFinca="7706037" Valor="6056189" Direccion="El Alto, 173 m Noreste."/>
@@ -3717,6 +3739,8 @@
     <Pago TipoRecibo="4" NumFinca="6384132"/>
     <Pago TipoRecibo="4" NumFinca="4468106"/>
     <Pago TipoRecibo="4" NumFinca="4566315"/>
+    <Pago TipoRecibo="12" NumFinca="3107084"/>
+    <Pago TipoRecibo="12" NumFinca="1565045"/>
   </OperacionDia>
   <OperacionDia fecha="2020-05-08">
     <Propiedad NumFinca="4829319" Valor="5147395" Direccion="Bar las delicias, 128 m Oeste."/>
@@ -3922,10 +3946,6 @@
     <TransConsumo id="1" LecturaM3="832" descripcion="Cobro Mensual" NumFinca="3312213"/>
     <TransConsumo id="1" LecturaM3="440" descripcion="Cobro Mensual" NumFinca="5480590"/>
     <TransConsumo id="3" LecturaM3="16" descripcion="Lectura errónea" NumFinca="5488897"/>
-    <Pago TipoRecibo="9" NumFinca="3107084"/>
-    <Pago TipoRecibo="9" NumFinca="1565045"/>
-    <Pago TipoRecibo="9" NumFinca="2346431"/>
-    <Pago TipoRecibo="9" NumFinca="2132441"/>
     <Pago TipoRecibo="9" NumFinca="2346334"/>
     <Pago TipoRecibo="9" NumFinca="2225118"/>
     <Pago TipoRecibo="9" NumFinca="2520127"/>
@@ -4866,6 +4886,8 @@
     <TransConsumo id="1" LecturaM3="1270" descripcion="Cobro Mensual" NumFinca="1337841"/>
     <TransConsumo id="1" LecturaM3="797" descripcion="Cobro Mensual" NumFinca="5603734"/>
     <TransConsumo id="1" LecturaM3="719" descripcion="Cobro Mensual" NumFinca="2675651"/>
+    <Pago TipoRecibo="12" NumFinca="2346431"/>
+    <Pago TipoRecibo="12" NumFinca="2132441"/>
   </OperacionDia>
   <OperacionDia fecha="2020-05-25">
     <Propiedad NumFinca="3483977" Valor="9661623" Direccion="Ciruelas, 880 m Norte."/>

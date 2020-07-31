@@ -206,8 +206,8 @@ CREATE TABLE Comprobante
 CREATE TABLE ReciboXComprobante
 (
 	ID_RxC INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	ID_Comprobante INT NOT NULL,
-	ID_Recibo INT NOT NULL,
+	ID_Comprobante INT,
+	ID_Recibo INT,
 	FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante),
 	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo)
 )

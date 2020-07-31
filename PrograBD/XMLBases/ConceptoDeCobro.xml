@@ -9,4 +9,6 @@
 	<conceptocobro id="8" Nombre="Aseo de Sitios Publico" DiaCobro="1" QDiasVencimiento="10" EsImpuesto="No" EsRecurrente="Si" EsFijo="Si" TasaInteresMoratoria="7.8" TipoCC="CC Fijo" Monto="580" ValorM3="" ValorPorcentaje="" MontoMinRecibo=""/>
 	<conceptocobro id="9" Nombre="Acueductos" DiaCobro="6" QDiasVencimiento="6" EsImpuesto="No" EsRecurrente="Si" EsFijo="Si" TasaInteresMoratoria="0.2" TipoCC="CC Fijo" Monto="900" ValorM3="" ValorPorcentaje="" MontoMinRecibo="" />
 	<conceptocobro id="10" Nombre="Reconexion de agua" DiaCobro="" QDiasVencimiento="1" EsImpuesto="No" EsRecurrente="No" EsFijo="Si" TasaInteresMoratoria="" TipoCC="CC Fijo" Monto="5000" ValorM3="" ValorPorcentaje="" MontoMinRecibo="" />
+	<conceptocobro id="11" Nombre="Interes Moratorio" DiaCobro="" QDiasVencimiento="1" EsImpuesto="Si" EsRecurrente="No" EsFijo="No" TasaInteresMoratoria="" TipoCC="CC Interes Moratorio" Monto="" ValorM3="" ValorPorcentaje="" MontoMinRecibo="" />
+	<conceptocobro id="12" Nombre="AP" DiaCobro="" QDiasVencimiento="5" EsImpuesto="No" EsRecurrente="No" EsFijo="No" TasaInteresMoratoria="10.0" TipoCC="Cuota Calculada" Monto="" ValorM3="" ValorPorcentaje="" MontoMinRecibo="" />
 </Conceptos_de_Cobro>
