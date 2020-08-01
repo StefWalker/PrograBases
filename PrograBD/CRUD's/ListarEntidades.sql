@@ -93,3 +93,24 @@ RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	return -1
 END CATCH
 GO
+------Listar  recibos por pagar --------------------
+Create PROC ListarConfirmados
+	@inID_Comprobante INT
+AS
+BEGIN Try
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	SELECT ID_Recibo,ID_Propiedad,ID_Concepto,Fecha,Monto,Estado
+	FROM Recibos INNER JOIN ReciboXComprobante
+	on ReciboXComprobante.ID_Comprobante = @inID_Comprobante AND Recibos.ID_Recibo = ReciboXComprobante.ID_Recibo
+	--where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO
