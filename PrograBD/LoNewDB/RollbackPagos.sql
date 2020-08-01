@@ -8,10 +8,10 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[RollBackPagos] @Value int
+CREATE PROC [dbo].[RollBackPagos] @inValue int
 AS  
 	begin 
-		IF(@Value = 1)Begin ROLLBACK END
+		IF(@inValue = 1)Begin ROLLBACK END
 		Else
 			BEGIN COMMIT END
 	end

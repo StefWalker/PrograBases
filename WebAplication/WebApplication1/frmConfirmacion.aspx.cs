@@ -15,18 +15,17 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-          /*  if (Request.QueryString["lista"] != null)
+            entTemporal obj = negTemporal.IniciarTrans();
+            if(obj != null)
             {
-                ArrayList lista = Cast<ArrayList>(Request.QueryString["lista"]);
-                ArrayList charArr = lista.ToArrayList();
-                MessageBox.Show();
-                
 
-                recibos.Items.Add(Convert.ToString(charArr[0]));
-                recibos.Items.Add("como");
-                recibos.Items.Add("todo");
-            }*/
+            }
+            else
+            {
+                lblerror.Text = "No se recibio id de comprobante";
+                lblerror.Visible = true;
+            }
+          
         }
     }
 }

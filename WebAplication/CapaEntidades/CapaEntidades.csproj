@@ -52,6 +52,7 @@
     <Compile Include="entProUsuario.cs" />
     <Compile Include="entProxProJuridico.cs" />
     <Compile Include="entRecibos.cs" />
+    <Compile Include="entTemporal.cs" />
     <Compile Include="entTipoDoc.cs" />
     <Compile Include="entUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

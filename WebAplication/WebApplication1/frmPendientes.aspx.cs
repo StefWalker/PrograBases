@@ -68,13 +68,21 @@ namespace WebApplication1
         protected void btnConfirmar_Click(object sender, EventArgs e)
         {
             List<string> selectedValues = CheckBoxList1.Items.Cast<ListItem>().Where(li => li.Selected).Select(li => li.Value).ToList();
+            for(int i=0; i < selectedValues.Count; i++)
+            {
+                int id = Convert.ToInt32(selectedValues[i]);
+                negTemporal.AgregarTemporal(id);
+                
+            }
+            Response.Redirect("frmConfirmacion.aspx");
+            /*
             lblerror.Text = selectedValues[0];
             lblerror.Visible = true;
             CheckBoxList1.Visible = false;
             GridView1.Visible = false;
             Label1.Text = "hola";
             Label1.Visible = true;
-           // Response.Redirect("frmConfirmacion.aspx?lista=" + selectedValues);
+           // Response.Redirect("frmConfirmacion.aspx?lista=" + selectedValues);*/
 
         }
            

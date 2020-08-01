@@ -52,6 +52,7 @@
     <Compile Include="negPropiedad.cs" />
     <Compile Include="negProxProJuridico.cs" />
     <Compile Include="negRecibos.cs" />
+    <Compile Include="negTemporal.cs" />
     <Compile Include="negTipoDoc.cs" />
     <Compile Include="negUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
