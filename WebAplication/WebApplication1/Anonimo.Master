@@ -56,9 +56,14 @@
                </div>
                 <div class="etiqueta">
                     <asp:Button ID="Button17" runat="server" Text="Ver Propietarios de una propiedad" OnClick="VerPropietariosPro_Click" Width="170px" />
+
                </div>
                   <div class="etiqueta">
                     <asp:Button ID="Button5" runat="server" Text="Consulta de Bitacora" OnClick="ConsultaBitacora_Click" Width="170px" />
+
+               </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button6" runat="server" Text="Generar AP" OnClick="Generar_Click" Width="170px" />
                </div>
     
             </div>

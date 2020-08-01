@@ -79,5 +79,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmBitacora.aspx");
         }
+
+        protected void Generar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmGenerarAP.aspx");   
+        }
     }
 }

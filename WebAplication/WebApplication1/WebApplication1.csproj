@@ -75,6 +75,7 @@
     <Content Include="frmBitacora.aspx" />
     <Content Include="frmComprobantes.aspx" />
     <Content Include="frmConfirmacion.aspx" />
+    <Content Include="frmGenerarAP.aspx" />
     <Content Include="frmModificarProCC.aspx" />
     <Content Include="frmPendientes.aspx" />
     <Content Include="frmPrincipalUser.aspx" />
@@ -197,6 +198,13 @@
     </Compile>
     <Compile Include="frmConfirmacion.aspx.designer.cs">
       <DependentUpon>frmConfirmacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmGenerarAP.aspx.cs">
+      <DependentUpon>frmGenerarAP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmGenerarAP.aspx.designer.cs">
+      <DependentUpon>frmGenerarAP.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmModificarProCC.aspx.cs">
       <DependentUpon>frmModificarProCC.aspx</DependentUpon>
