@@ -303,7 +303,8 @@ BEGIN
 						DELETE FROM @nuevosValProp
 						DELETE @nuevosValProp
 					
-						/*
+
+
 						--REGISTRO CONSUMO DE AGUA
 						DECLARE @consumo ConsumoTipo  
 						INSERT INTO @consumo(numFinca,LecturaM3,Fecha,descripcion,idTipo)  
@@ -317,7 +318,10 @@ BEGIN
 								WHERE [fechaDeIngreso11] = @fechaActual
 						EXEC [dbo].[ProcesaConsumo] @consumo
 						DELETE @consumo
-							*/
+							
+
+
+
 						--ORDENES DE CORTA
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual

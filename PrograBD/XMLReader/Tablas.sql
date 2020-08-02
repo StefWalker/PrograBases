@@ -159,8 +159,8 @@ CREATE TABLE TransConsumo
 (
 	ID_TCons INT Identity (1,1) PRIMARY KEY NOT NULL,
 	Monto MONEY NOT NULL,
-	LecturaM3 INT NOT NULL,
-	NuevoM3 INT NOT NULL,
+	LecturaM3 INT,
+	NuevoM3 INT,
 	ID_Propiedad INT NOT NULL,
 	Tipo INT NOT NULL,
 	Fecha Date NOT NULL DEFAULT GETDATE(),
