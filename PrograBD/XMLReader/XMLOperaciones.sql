@@ -509,7 +509,7 @@ BEGIN
 						EXEC [dbo].[ProcActualizarValProp] @nuevosValProp,@fechaActual
 						DELETE FROM @nuevosValProp
 						DELETE @nuevosValProp
-
+						/*
 						
 						--REGISTRO CONSUMO DE AGUA||
 						DECLARE @consumo ConsumoTipo  
@@ -524,7 +524,7 @@ BEGIN
 								WHERE [fechaDeIngreso11] = @fechaActual
 						EXEC [dbo].[ProcesaConsumo] @consumo
 						DELETE @consumo
-							/*
+							
 						--ORDENES DE CORTA
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual*/
