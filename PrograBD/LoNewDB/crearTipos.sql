@@ -17,3 +17,4 @@ CREATE TYPE PropietarioTipo AS TABLE (id INT IDENTITY(1,1),nombre varchar(100),v
 DROP TYPE PagosTipo
 DROP TYPE ConsumoTipo
 DROP TYPE ValorPropiedadTipo
+DROP TYPE RecibosTipo

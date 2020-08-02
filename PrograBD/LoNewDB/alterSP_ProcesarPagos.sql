@@ -40,9 +40,9 @@ AS
 					--SI NO EXISTE ENTONCES LO CREA
 					IF @idComprobante IS NULL
 					BEGIN
-						INSERT INTO Comprobante(Fecha,Monto)
-						SELECT @fechaOperacion,0
-						SET @idComprobante = IDENT_CURRENT('[dbo].[ComprobantePago]')
+						INSERT INTO Comprobante(Fecha,Monto,NumFinca)
+						SELECT @fechaOperacion,0, Propiedad.NumPropiedad from Propiedad where Propiedad.ID_Propiedad = @idPropiedad
+						SET @idComprobante = IDENT_CURRENT('[dbo].[Comprobante]')
 					END
 					
 					--SE INSERTAN LOS RECIBOS DE LA PROPIEDAD EN LA TABLA VARIABLE, Y SE VAN ACUMULANDO, PARA ESO SE USA EL CONTADOR
