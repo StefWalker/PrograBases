@@ -4,7 +4,7 @@ CREATE TYPE ConsumoTipo AS TABLE (id INT IDENTITY(1,1),idTipo INT,numFinca INT,L
 CREATE TYPE ValorPropiedadTipo AS TABLE (id INT IDENTITY(1,1),numFinca INT,nuevoValor MONEY) 
 CREATE TYPE RecibosTipo AS TABLE (id INT IDENTITY(1,1), idRecibo int) 
 
-
+/*
 
 CREATE TYPE PropiedadDelUsuarioTipo AS TABLE (id INT IDENTITY(1,1),idUsuario INT,idPropiedad INT,Fecha DATE) 
 
@@ -12,7 +12,7 @@ CREATE TYPE PropiedadDelPropietarioTipo AS TABLE (id INT IDENTITY(1,1),idPropiet
 
 CREATE TYPE UsuarioTipo AS TABLE (id INT IDENTITY(1,1),nombre varchar(100),contrasenna varchar(30),tipoDeUsuario varchar(30),Fecha DATE) 
 CREATE TYPE PropietarioTipo AS TABLE (id INT IDENTITY(1,1),nombre varchar(100),valorDocId INT,identificacion varchar(30),Fecha DATE) 
-
+*/
 
 DROP TYPE PagosTipo
 DROP TYPE ConsumoTipo

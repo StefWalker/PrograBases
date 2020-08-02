@@ -496,13 +496,13 @@ BEGIN
 								WHERE [fechaDeIngreso9] = @fechaActual
 						EXEC [dbo].[ProcesarPagos] @Pagos
 						DELETE @Pagos
-						/*
+						
 						--ACTUALIZACION DE VALOR PROPIEDAD
 						DECLARE @nuevosValProp ValorPropiedadTipo  
 						INSERT INTO @nuevosValProp(numFinca,nuevoValor)  
 							SELECT [NumFinca],[nuevoValor]
 							FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/CambioPropiedad ',1)  
-								WITH (	[NumFinca]			VARCHAR(30)		'@NumFinca',  
+								WITH (	[NumFinca]			INT		'@NumFinca',  
 										[nuevoValor]		MONEY			'@NuevoValor',
 										[fechaDeIngreso10]	VARCHAR(100)	'../@fecha')
 								WHERE [fechaDeIngreso10] = @fechaActual
@@ -510,6 +510,7 @@ BEGIN
 						DELETE FROM @nuevosValProp
 						DELETE @nuevosValProp
 
+						/*
 						--REGISTRO CONSUMO DE AGUA||
 						DECLARE @consumo ConsumoTipo  
 						INSERT INTO @consumo(numFinca,LecturaM3,Fecha,descripcion,idTipo)  
