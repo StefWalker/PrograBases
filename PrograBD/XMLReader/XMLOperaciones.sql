@@ -510,13 +510,13 @@ BEGIN
 						DELETE FROM @nuevosValProp
 						DELETE @nuevosValProp
 
-						/*
+						
 						--REGISTRO CONSUMO DE AGUA||
 						DECLARE @consumo ConsumoTipo  
 						INSERT INTO @consumo(numFinca,LecturaM3,Fecha,descripcion,idTipo)  
 							SELECT [NumFinca],[LecturaM3],CONVERT(DATE,[fechaDeIngreso11],121)[fechaDeIngreso11],[descripcion],[idTipo]
 							FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/TransConsumo',1)  
-								WITH (	[NumFinca]		VARCHAR(30)	'@NumFinca',  
+								WITH (	[NumFinca]		INT	    	'@NumFinca',  
 										[LecturaM3]		INT			'@LecturaM3',
 										[idTipo]		INT			'@id',
 										[descripcion]	VARCHAR(100)	'@descripcion',
@@ -524,7 +524,7 @@ BEGIN
 								WHERE [fechaDeIngreso11] = @fechaActual
 						EXEC [dbo].[ProcesaConsumo] @consumo
 						DELETE @consumo
-		
+							/*
 						--ORDENES DE CORTA
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual*/
