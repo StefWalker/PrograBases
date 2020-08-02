@@ -11,19 +11,21 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROC [dbo].[PagosTransaction]
 AS   
-	BEGIN
-		BEGIN TRY
+	BEGIN Try
+	
 		SET NOCOUNT ON 
 		SET XACT_ABORT ON
 			DECLARE @TOTAL money
 			DECLARE @IDComprobante int, @IDRecibo int
 			DECLARE @contador int, @i int
+			Set @i=1
+			Set @TOTAL=0
 			set @contador = (Select max(id) from tmp)
 
 
-			INSERT INTO Comprobante(Fecha,Monto)
-						SELECT GETDATE(),0
-						SET @idComprobante = IDENT_CURRENT('[dbo].[ComprobantePago]')
+			INSERT INTO Comprobante(Fecha,Monto,NumFinca)
+						SELECT GETDATE(),0,Propiedad.NumPropiedad From Recibos inner join Propiedad on Propiedad.ID_Propiedad = Recibos.ID_Propiedad
+						SET @idComprobante = IDENT_CURRENT('[dbo].[Comprobante]')
 
 			while (@i <= @contador)
 				BEGIN
@@ -33,7 +35,7 @@ AS
 						BEGIN
 							SET @TOTAL = @TOTAL + (Select (Recibos.Monto*Intereses_Moratorios.Monto/365)*ABS(DATEDIFF(d,FechaVencimiento,GETDATE())) FROM Recibos 
 													INNER JOIN Intereses_Moratorios ON Recibos.ID_Concepto = Intereses_Moratorios.ID_IM)
-							INSERT INTO RecibosMoratorios(ID_Propiedad, ID_Concepto,Fecha,Monto,Estado)
+							INSERT INTO Recibos(ID_Propiedad, ID_Concepto,Fecha,Monto,Estado)
 								Select Recibos.ID_Propiedad, ID_Concepto, GETDATE(), @TOTAL, 0 FROM Recibos where @IDRecibo = Recibos.ID_Recibo
 						END
 					ELSE
@@ -41,9 +43,11 @@ AS
 							SET @TOTAL = @TOTAL + (Select Recibos.Monto FROM Recibos where @IDRecibo = Recibos.ID_Recibo)
 						END
 					INSERT INTO ReciboXComprobante(ID_Comprobante, ID_Recibo)
-					Select @IDComprobante, @IDRecibo
+					Select @IDComprobante, @IDRecibo 
+
+					Set @i = @i+1
 					
-				END
+				END 
 
 			Update Comprobante
 			Set Monto = @TOTAL
@@ -52,12 +56,9 @@ AS
 
 			Return @idComprobante
 
-
-		END TRY
+		
+		END Try
 		BEGIN CATCH
 			print error_message()
 		END CATCH
-	END
-
-
-	
+		

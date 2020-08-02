@@ -22,7 +22,7 @@ namespace WebApplication1
                 if (obj != null)
                 {
                     numero.Text = Convert.ToString(obj.ID_Comprobante);
-                    propiedad.Text = Convert.ToString(obj.NumPropiedad);
+                    propiedad.Text = Convert.ToString(obj.NumFinca);
                     Fecha.Text = Convert.ToString(obj.Fecha);
                     medio.Text = Convert.ToString(obj.Monto);//eSTE DEBO CAMBIARLO
                     monto.Text = Convert.ToString(obj.Monto);

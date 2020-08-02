@@ -1,7 +1,8 @@
 Create view vista_recibos
-as 
+AS
 select Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
 From Recibos  --Ver como le mando el parametro, verificar que este bien la estructura 
+Go
 
 -------------------Lista Recibos pendientes ---------------
 Create PROC [dbo].[ListarRecibos]
@@ -12,12 +13,10 @@ BEGIN Try
 	SET NOCOUNT ON;
 	SELECT * FROM vista_recibos
 	where vista_recibos.ID_Propiedad= @inID_Propiedad AND vista_recibos.Estado = 0 ----Nose si esto funciona 
-	Return 1
 END Try
 Begin Catch 
 RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
-	return -1
 END CATCH
 GO
 -------------------Lista Recibos pagos ---------------
@@ -69,9 +68,9 @@ Create PROC [dbo].[ListarComprobantes]
 AS
 BEGIN Try
 	SET NOCOUNT ON;
-	SELECT Comprobante.ID_Comprobante,Comprobante.NumPropiedad,Comprobante.Fecha, Comprobante.Monto 
+	SELECT Comprobante.ID_Comprobante,Comprobante.NumFinca,Comprobante.Fecha, Comprobante.Monto 
 	FROM Comprobante
-	where Comprobante.NumPropiedad= @inNumPropiedad 
+	where Comprobante.NumFinca= @inNumPropiedad 
 	Return 1
 END Try
 Begin Catch 
@@ -86,7 +85,7 @@ Create PROC ListarConfirmados
 AS
 BEGIN Try
 	SET NOCOUNT ON;
-	SELECT ID_Recibo,ID_Propiedad,ID_Concepto,Fecha,Monto,Estado
+	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Monto,Recibos.Estado
 	FROM Recibos INNER JOIN ReciboXComprobante
 	on ReciboXComprobante.ID_Comprobante = @inID_Comprobante AND Recibos.ID_Recibo = ReciboXComprobante.ID_Recibo
 	--where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
@@ -103,7 +102,7 @@ CREATE PROC ComprobanteRead
     @inID_Comprobante int
 AS 
 BEGIN TRY
-    SELECT ID_Comprobante,NumPropiedad,Fecha,Monto
+    SELECT ID_Comprobante,NumFinca,Fecha,Monto
     FROM   Comprobante
     WHERE  (ID_Comprobante = @inID_Comprobante) 
 	return 1

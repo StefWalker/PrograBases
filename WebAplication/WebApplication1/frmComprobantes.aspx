@@ -12,7 +12,7 @@
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ID_Comprobante" HeaderText="ID_Comprobante" />
-            <asp:BoundField DataField="NumPropiedad" HeaderText="NumPropiedad" />
+            <asp:BoundField DataField="NumFinca" HeaderText="Numero Propiedad" />
             <asp:TemplateField HeaderText="Fecha">
                 <EditItemTemplate>
                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Fecha") %>'></asp:TextBox>
