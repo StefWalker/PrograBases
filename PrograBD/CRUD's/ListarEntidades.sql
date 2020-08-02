@@ -1,18 +1,17 @@
+Create view vista_recibos
+as 
+select Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
+From Recibos  --Ver como le mando el parametro, verificar que este bien la estructura 
+
 -------------------Lista Recibos pendientes ---------------
 Create PROC [dbo].[ListarRecibos]
-	-- Add the parameters for the stored procedure here
 	@inID_Propiedad INT
 AS
 BEGIN Try
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
+	
 	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
-	FROM Recibos 
-
-	where Recibos.ID_Propiedad= @inID_Propiedad AND Recibos.Estado = 0
+	SELECT * FROM vista_recibos
+	where vista_recibos.ID_Propiedad= @inID_Propiedad AND vista_recibos.Estado = 0 ----Nose si esto funciona 
 	Return 1
 END Try
 Begin Catch 
@@ -23,19 +22,15 @@ END CATCH
 GO
 -------------------Lista Recibos pagos ---------------
 Create PROC [dbo].[ListarRecibosPagos]
-	-- Add the parameters for the stored procedure here
+
 	@inID_Propiedad INT
 AS
 BEGIN Try
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
+
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
-	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Estado,Recibos.Monto
-	FROM Recibos 
-
-	where Recibos.ID_Propiedad= @inID_Propiedad AND Recibos.Estado = 1
+	SELECT * FROM vista_recibos
+	where vista_recibos.ID_Propiedad= @inID_Propiedad AND vista_recibos.Estado = 1
 	Return 1
 END Try
 Begin Catch 
@@ -47,17 +42,14 @@ GO
 --------Listar Bitacora --------------------------------------
 
 Create PROC [dbo].[ListarBitacora]
-	-- Add the parameters for the stored procedure here
+	
 	@inIdEntityType INT,
 	@inFechaInicial Varchar(100),
 	@inFechaFinal Varchar (100)
 AS
 BEGIN TRY
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
+	SET NOCOUNT ON;
 	SELECT Bitacora.ID_Bitacora,Bitacora.IdEntityType,Bitacora.EntityId,Bitacora.jsonDespues,Bitacora.insertedAt,Bitacora.insertedby,Bitacora.insertedIn
 	FROM Bitacora
 	
@@ -72,18 +64,13 @@ END CATCH
 GO
 -------------------Lista Comprobantes ---------------
 Create PROC [dbo].[ListarComprobantes]
-	-- Add the parameters for the stored procedure here
+	
 	@inNumPropiedad INT
 AS
 BEGIN Try
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
 	SELECT Comprobante.ID_Comprobante,Comprobante.NumPropiedad,Comprobante.Fecha, Comprobante.Monto 
-	FROM Comprobante)
-
+	FROM Comprobante
 	where Comprobante.NumPropiedad= @inNumPropiedad 
 	Return 1
 END Try
@@ -98,11 +85,7 @@ Create PROC ListarConfirmados
 	@inID_Comprobante INT
 AS
 BEGIN Try
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
 	SELECT ID_Recibo,ID_Propiedad,ID_Concepto,Fecha,Monto,Estado
 	FROM Recibos INNER JOIN ReciboXComprobante
 	on ReciboXComprobante.ID_Comprobante = @inID_Comprobante AND Recibos.ID_Recibo = ReciboXComprobante.ID_Recibo
