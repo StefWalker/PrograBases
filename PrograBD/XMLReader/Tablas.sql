@@ -237,3 +237,9 @@ CREATE TABLE Reconexion
 	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo),
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 )
+
+Create Table tmp 
+(
+	id int identity(1,1) NOT NULL, 
+	idRecibo int NOT NULL
+)

@@ -25,3 +25,4 @@ DROP TABLE Propietario
 DROP TABLE TipoDoc
 DROP TABLE TipoTrans
 DROP TABLE Comprobante
+DROP TABLE tmp
