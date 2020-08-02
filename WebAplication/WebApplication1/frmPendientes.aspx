@@ -28,6 +28,7 @@
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
       </asp:GridView>
          <br />
+      <h2>Seleccione los recibos a pagar</h2>
       <asp:CheckBoxList ID="CheckBoxList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="ID_Recibo" DataValueField="ID_Recibo" Width="728px">
       </asp:CheckBoxList>
       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ProyectoBasesConnectionString %>" SelectCommand="SELECT DISTINCT [ID_Recibo], [ID_Concepto], [Fecha], [Monto], [Estado] FROM [Recibos] WHERE (([Estado] = @Estado) AND ([ID_Propiedad] = @ID_Propiedad)) ORDER BY [Fecha] DESC">

@@ -24,9 +24,11 @@ AS
 				BEGIN
 					Insert INTO tmp(idRecibo)
 							VALUES(@Recibo)
+							return 1
 				END
 			END TRY
 			BEGIN CATCH
 				print error_message()
+				return -1
 			END CATCH
 	END
