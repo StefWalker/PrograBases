@@ -35,12 +35,16 @@ BEGIN
 							BEGIN
 								Set @IDRecibo = (Select ID_Recibo FROM Recibos INNER JOIN tmp on tmp.idRecibo = Recibos.ID_Recibo where tmp.id = @i)
 
+								Update Recibos
+								Set Estado = 1
+								WHERE ID_Recibo = @IDRecibo
+
 								IF((Select Recibos.FechaVencimiento From Recibos where @IDRecibo = Recibos.ID_Recibo) > GETDATE())
 									BEGIN
 										SET @TOTAL = @TOTAL + (Select (Recibos.Monto*Intereses_Moratorios.Monto/365)*ABS(DATEDIFF(d,FechaVencimiento,GETDATE())) FROM Recibos 
 																INNER JOIN Intereses_Moratorios ON Recibos.ID_Concepto = Intereses_Moratorios.ID_IM)
 										INSERT INTO Recibos(ID_Propiedad, ID_Concepto,Fecha,Monto,Estado)
-											Select Recibos.ID_Propiedad, ID_Concepto, GETDATE(), @TOTAL, 0 FROM Recibos where @IDRecibo = Recibos.ID_Recibo
+											Select Recibos.ID_Propiedad, ID_Concepto, GETDATE(), @TOTAL, 1 FROM Recibos where @IDRecibo = Recibos.ID_Recibo
 									END
 								ELSE
 									BEGIN
@@ -60,13 +64,13 @@ BEGIN
 	IF(@funcion = 2)
 		BEGIN
 			ROLLBACK --TRAN @TransactionName;
+			DELETE FROM tmp;
 		END
 	IF(@funcion = 3)
 		BEGIN
 			COMMIT --TRAN @TransactionName;
+			DELETE FROM tmp;
 		END
-
-	DELETE FROM tmp;
 END
 
 		
