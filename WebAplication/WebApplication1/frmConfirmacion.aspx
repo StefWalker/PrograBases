@@ -22,4 +22,9 @@
     <asp:Label ID="lblNumero" runat="server" Text="Total a pagar:   " Font-Size="Medium"></asp:Label>
     <asp:Label ID="total" runat="server" Font-Size="Medium"></asp:Label>
     <br />
+    <tr>
+      <td colspan="2" align ="center"><asp:Button ID="Pagar" runat="server"  Text="Pagar" width="150px" OnClick="btnPagar_Click"/></td>
+  
+      <td colspan="2" align ="center"><asp:Button ID="Cancelar" runat="server" style="margin-left: 25px" Text="Cancelar" width="150px" OnClick="btnCancelar_Click"/></td>
+    </tr>
 </asp:Content>

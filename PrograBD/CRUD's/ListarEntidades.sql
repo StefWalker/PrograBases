@@ -81,7 +81,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Comprobante.ID_Comprobante,Comprobante.ID_Recibo,Comprobante.NumPropiedad,Comprobante.TipoRecibo,Comprobante.Fecha, Comprobante.Cobro , Comprobante.MontoInteres,Comprobante.MontoPagado 
+	SELECT Comprobante.ID_Comprobante,Comprobante.ID_Recibo,Comprobante.NumPropiedad,Comprobante.TipoRecibo,Comprobante.Fecha, Comprobante.Monto 
 	FROM Comprobante)
 
 	where Comprobante.NumPropiedad= @inNumPropiedad 
@@ -110,6 +110,23 @@ BEGIN Try
 END Try
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO
+---------Buscar Comprobante ----------------------
+
+CREATE PROC ComprobanteRead
+    @inID_Comprobante int
+AS 
+BEGIN TRY
+    SELECT ID_Comprobante,ID_Recibo,NumPropiedad,TipoRecibo,Fecha,Monto
+    FROM   Comprobante
+    WHERE  (ID_Comprobante = @inID_Comprobante) 
+	return 1
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la datos no validos', 16, 1) WITH NOWAIT;
 	PRINT error_message()
 	return -1
 END CATCH

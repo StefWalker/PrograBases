@@ -19,6 +19,11 @@ namespace WebApplication1
             if(obj != null)
             {
 
+                GridView1.DataSource = negRecibos.ListarConfirmados(obj.idRecibo);
+                GridView1.DataBind();
+                entComprobante comprobante = negComprobante.BuscarComprobante(obj.idRecibo);
+                total.Text = Convert.ToString(comprobante.MontoPagado); //Corregir lo de comprobantes con la nueva tabla
+
             }
             else
             {
@@ -26,6 +31,16 @@ namespace WebApplication1
                 lblerror.Visible = true;
             }
           
+        }
+
+        protected void btnPagar_Click(object sender, EventArgs e)
+        {
+            int indicador = negTemporal.FinalTrans(0);
+        }
+
+        protected void btnCancelar_Click(object sender, EventArgs e)
+        {
+            int indicador = negTemporal.FinalTrans(1);
         }
     }
 }

@@ -24,11 +24,13 @@ namespace WebApplication1
                     numero.Text = Convert.ToString(obj.ID_Comprobante);
                     propiedad.Text = Convert.ToString(obj.NumPropiedad);
                     Fecha.Text = Convert.ToString(obj.Fecha);
-                    medio.Text = Convert.ToString(obj.MontoPagado);//eSTE DEBO CAMBIARLO
-                    monto.Text = Convert.ToString(obj.MontoPagado);
+                    medio.Text = Convert.ToString(obj.Monto);//eSTE DEBO CAMBIARLO
+                    monto.Text = Convert.ToString(obj.Monto);
 
-                    GridView1.DataSource = negRecibos.ListarRecibos(52); //Debo cambiar el sp que vayamos a utilizar donde me saque aquellas en que su comprobante es igual
+                    //tira los recibos que son asociados con el comprobante
+                    GridView1.DataSource = negRecibos.ListarConfirmados(obj.ID_Comprobante);
                     GridView1.DataBind();
+
                     for (int i = 0; i < GridView1.Rows.Count; i++)
                      { 
                         int id = Convert.ToInt32(GridView1.Rows[i].Cells[2].Text);

@@ -18,5 +18,9 @@ namespace CapaNegocios
         {
             return daoTemporal.IniciarTrans();
         }
+        public static int FinalTrans(int num)
+        {
+            return daoTemporal.FinalTrans(num);
+        }
     }
 }

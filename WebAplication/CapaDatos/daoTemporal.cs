@@ -46,7 +46,7 @@ namespace CapaDatos
             {
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
-                cmd = new SqlCommand("PropiedadRead", cnx);
+                cmd = new SqlCommand("PagosTransaction", cnx);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -63,6 +63,29 @@ namespace CapaDatos
                 cmd.Connection.Close();
             }
             return obj;
+        }
+        public static int FinalTrans(int num)
+        {
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            int Indicador = 0;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("RollBackPagos", cnx);
+                cmd.Parameters.AddWithValue("@inValue", num);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+       
+            finally
+            {
+                cmd.Connection.Close();
+            }
+            return Indicador;
         }
 
     }
