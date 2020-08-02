@@ -21,7 +21,7 @@
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="MontoPagado" HeaderText="Monto total a pagar" />
+            <asp:BoundField DataField="Monto" HeaderText="Monto total a pagar" />
               <asp:CommandField HeaderText="Ver Comprobante" ShowSelectButton="True" />
         </Columns>
         <EditRowStyle BackColor="#7C6F57" />

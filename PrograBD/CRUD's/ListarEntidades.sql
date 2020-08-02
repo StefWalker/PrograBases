@@ -81,7 +81,7 @@ BEGIN Try
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT Comprobante.ID_Comprobante,Comprobante.ID_Recibo,Comprobante.NumPropiedad,Comprobante.TipoRecibo,Comprobante.Fecha, Comprobante.Monto 
+	SELECT Comprobante.ID_Comprobante,Comprobante.NumPropiedad,Comprobante.Fecha, Comprobante.Monto 
 	FROM Comprobante)
 
 	where Comprobante.NumPropiedad= @inNumPropiedad 
@@ -120,7 +120,7 @@ CREATE PROC ComprobanteRead
     @inID_Comprobante int
 AS 
 BEGIN TRY
-    SELECT ID_Comprobante,ID_Recibo,NumPropiedad,TipoRecibo,Fecha,Monto
+    SELECT ID_Comprobante,NumPropiedad,Fecha,Monto
     FROM   Comprobante
     WHERE  (ID_Comprobante = @inID_Comprobante) 
 	return 1

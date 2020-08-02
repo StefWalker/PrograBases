@@ -22,7 +22,7 @@ namespace WebApplication1
                 GridView1.DataSource = negRecibos.ListarConfirmados(obj.idRecibo);
                 GridView1.DataBind();
                 entComprobante comprobante = negComprobante.BuscarComprobante(obj.idRecibo);
-                total.Text = Convert.ToString(comprobante.MontoPagado); //Corregir lo de comprobantes con la nueva tabla
+                total.Text = Convert.ToString(comprobante.Monto);
 
             }
             else

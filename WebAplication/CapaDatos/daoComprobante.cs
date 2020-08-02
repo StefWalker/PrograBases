@@ -31,9 +31,7 @@ namespace CapaDatos
                 {
                     entComprobante C = new entComprobante();
                     C.ID_Comprobante = Convert.ToInt32(dr["ID_Comprobante"].ToString());
-                    C.ID_Recibo = Convert.ToInt32(dr["ID_Recibo"].ToString());
                     C.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                    C.TipoRecibo = Convert.ToInt32(dr["TipoRecibo"].ToString());
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
                     C.Monto = Convert.ToDouble(dr["Monto"].ToString());
                     lista.Add(C);
@@ -67,9 +65,7 @@ namespace CapaDatos
                 obj = new entComprobante();
                 dr.Read();
                 obj.ID_Comprobante = Convert.ToInt32(dr["ID_Comprobante"].ToString());
-                obj.ID_Recibo = Convert.ToInt32(dr["ID_Recibo"].ToString());
                 obj.NumPropiedad = Convert.ToInt32(dr["NumPropiedad"].ToString());
-                obj.TipoRecibo = Convert.ToInt32(dr["TipoRecibo"].ToString());
                 obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
                 obj.Monto = Convert.ToDouble(dr["Monto"].ToString());
                
