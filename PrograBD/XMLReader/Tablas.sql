@@ -243,3 +243,31 @@ Create Table tmp
 	id int identity(1,1) NOT NULL, 
 	idRecibo int NOT NULL
 )
+Create Table AP
+(
+	ID_AP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ID_Propiedad INT NOT NULL,
+	ID_Comprobante INT NOT NULL,
+	MontoInicial Money NOT NULL,
+	Saldo MONEY NOT NULL, 
+	TasaInteres MONEY NOT NULL,
+	PlazoInicial INT NOT NULL,
+	Cuota MONEY NOT NULL, 
+	FechaCreacion DATE NOT NULL ,
+	Activo BIT NOT NULL  DEFAULT 1,
+	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
+	FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante)
+) 
+Create Table MovimientoAP 
+(
+	ID_Movimiento INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ID_AP INT NOT NULL,
+	TipoMov INT NOT NULL, --1 Credito 2 Debito
+	InteresMes Money NOT NULL,
+	Amortizacion MONEY NOT NULL, 
+	plazoResta Int not null ,
+	Fecha Date NOT NULL,
+	ID_Recibo INT NOT NULL DEFAULT 0,
+	FOREIGN KEY (ID_AP) REFERENCES AP(ID_AP),
+	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo)
+)
