@@ -4,8 +4,7 @@ BEGIN
 	BEGIN TRY
 		SET NOCOUNT ON
 
-		DECLARE  @montoTotal money
-				,@intereses money 
+		DECLARE  @intereses money 
 				,@ID_AP int
 				,@ID_Comprobante int
 				,@cuota money
@@ -21,11 +20,11 @@ BEGIN
 		BEGIN
 			RETURN -1
 		END
-
+		--Calcular los intereses 
 		Set @contador = (Select max(id) from tmp)
 		SET @i=1
 		SET @Fecha = GETDATE()
-		SET @cuota= @montoTotal * ( (@intereses*(1 + @intereses)*@inPlazo)/((1+@intereses)*@inPlazo - 1))
+		SET @cuota= @inMontoTotal * ( (@intereses*(1 + @intereses)*@inPlazo)/((1+@intereses)*@inPlazo - 1))
 		BEGIN TRAN
 
 -- Crea el AP
@@ -60,7 +59,7 @@ BEGIN
 				NumFinca)
 			values (
 				GETDATE(),
-				@montoTotal,
+				@inMontoTotal,
 				@inID_Propiedad
 			)
 
@@ -89,7 +88,7 @@ BEGIN
 				Set @i = @i+1	
 			END 
 
-
+----Crear recibo , monto le ponemos 0 , estADO PAGO , tipo 12 
 --Movimiento Inicial, un debito al saldo inicial 
 				
 			INSERT INTO MovimientoAP(
