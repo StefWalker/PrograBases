@@ -25,8 +25,21 @@ AS
 END
 GO
 
-
-
+-----------Delete de tmp--------------
+Create PROC TmpDelete 
+    @inidRecibo int
+AS 
+BEGIN TRY
+	DELETE
+	FROM   tmp
+	WHERE  idRecibo = @inidRecibo
+	return 1
+END TRY 
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
 
 
 		

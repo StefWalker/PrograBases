@@ -94,6 +94,18 @@ namespace CapaDatos
             cmd.Connection.Close();
 
         }
+        public static void CancelarTrans()
+        {
+            Conexion cn = new Conexion();
+            SqlConnection cnx = cn.Conectar();
+            SqlCommand cmd = new SqlCommand("RollBackPagos", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cnx.Open();
+            cn.Conectar();
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+
+        }
 
     }
 }

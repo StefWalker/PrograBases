@@ -14,6 +14,9 @@ namespace CapaNegocios
         {
             return daoTemporal.AgregarTemporal(id);
         }
-   
+        public static int DeleteTemp(int id)
+        {
+            return daoTemporal.DeleteTemp(id);
+        }
     }
 }

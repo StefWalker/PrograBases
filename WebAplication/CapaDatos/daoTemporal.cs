@@ -37,8 +37,33 @@ namespace CapaDatos
             }
             return Indicador;
         }
-      
-   
+        public static int DeleteTemp(int id)
+        {
+            int Indicador = 0;
+            SqlCommand cmd = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("TmpDelete ", cnx);
+                cmd.Parameters.AddWithValue("@inidRecibo", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                cmd.ExecuteNonQuery();
+                Indicador = 1;
+            }
+            catch (Exception e)
+            {
+                Indicador = 0;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return Indicador;
+        }
+
 
     }
 }

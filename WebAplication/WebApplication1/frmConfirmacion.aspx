@@ -9,13 +9,14 @@
     <div id="abrigo_formulario"> 
       <h2>Confirmacion de comprobante</h2>
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
             <Columns>
                 <asp:BoundField DataField="ID_Recibo" HeaderText="ID_Recibo" />
                 <asp:BoundField DataField="ID_Propiedad" HeaderText="ID_Propiedad" />
                 <asp:BoundField DataField="ID_Concepto" HeaderText="ID_Concepto" />
                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
                 <asp:BoundField DataField="Monto" HeaderText="Monto" />
+                  <asp:CommandField HeaderText="Eliminar" ShowSelectButton="True"  />
             </Columns>
         </asp:GridView>
         <br />
@@ -27,4 +28,6 @@
   
       <td colspan="2" align ="center"><asp:Button ID="Cancelar" runat="server" style="margin-left: 25px" Text="Cancelar" width="150px" OnClick="btnCancelar_Click"/></td>
     </tr>
+        <br />
+   \
 </asp:Content>

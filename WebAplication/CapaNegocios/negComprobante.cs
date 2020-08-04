@@ -22,6 +22,10 @@ namespace CapaNegocios
         {
            daoComprobante .IniciarTrans();
         }
-       
+        public static void CancelarTrans()
+        {
+            daoComprobante.CancelarTrans();
+        }
+
     }
 }
