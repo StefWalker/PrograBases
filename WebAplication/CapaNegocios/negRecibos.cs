@@ -18,9 +18,17 @@ namespace CapaNegocios
         { 
             return daoRecibos.ListarRecibosPagos(ID_Propiedad);
         }
-        public static List<entRecibos> ListarConfirmados(int Id)
+        public static List<entRecibos> ListarConfirmados()
         {
-            return daoRecibos.ListarConfirmados(Id);
+            return daoRecibos.ListarConfirmados();
+        }
+        public static List<entRecibos> ListarReciboxCom(int id)
+        {
+            return daoRecibos.ListarReciboxCom(id);
+        }
+        public static void GenerarMoratorios()
+        {
+            daoRecibos.GenerarMoratorios();
         }
     }
 }

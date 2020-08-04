@@ -14,13 +14,6 @@ namespace CapaNegocios
         {
             return daoTemporal.AgregarTemporal(id);
         }
-        public static entTemporal IniciarTrans()
-        {
-            return daoTemporal.IniciarTrans();
-        }
-        public static int FinalTrans(int num)
-        {
-            return daoTemporal.FinalTrans(num);
-        }
+   
     }
 }

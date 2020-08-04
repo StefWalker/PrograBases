@@ -14,9 +14,14 @@ namespace CapaNegocios
         {
             return daoComprobante.ListarComprobantes(NumPropiedad);
         }
-        public static entComprobante BuscarComprobante(int id)
+        public static entComprobante ReadComprobante(int id)
         {
-            return daoComprobante.BuscarComprobante(id);
+            return daoComprobante.ReadComprobante(id);
         }
+        public static void IniciarTrans()
+        {
+           daoComprobante .IniciarTrans();
+        }
+       
     }
 }

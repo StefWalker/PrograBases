@@ -38,6 +38,7 @@ RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 	return -1
 END CATCH
 GO
+
 --------Listar Bitacora --------------------------------------
 
 Create PROC [dbo].[ListarBitacora]
@@ -80,15 +81,30 @@ RAISERROR('Error en la insercion de datos', 16, 1) WITH NOWAIT;
 END CATCH
 GO
 ------Listar  recibos por pagar --------------------
-Create PROC ListarConfirmados
-	@inID_Comprobante INT
+Create PROC ListarReciboxCom
+		@inID_Comprobante int
 AS
 BEGIN Try
 	SET NOCOUNT ON;
-	SELECT Recibos.ID_Recibo,Recibos.ID_Propiedad,Recibos.ID_Concepto,Recibos.Fecha,Recibos.Monto,Recibos.Estado
-	FROM Recibos INNER JOIN ReciboXComprobante
-	on ReciboXComprobante.ID_Comprobante = @inID_Comprobante AND Recibos.ID_Recibo = ReciboXComprobante.ID_Recibo
-	--where Propietario.Activo = 1 AND Pro_x_Pro.Activo = 1
+	SELECT * FROM vista_recibos
+	 INNER JOIN ReciboXComprobante
+	on ReciboXComprobante.ID_Comprobante = @inID_Comprobante AND vista_recibos.ID_Recibo = ReciboXComprobante.ID_Recibo
+	
+END Try
+BEGIN CATCH
+	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;
+	PRINT error_message()
+	return -1
+END CATCH
+GO
+------Listar  recibos por pagar --------------------
+Create PROC ListarConfirmados
+AS
+BEGIN Try
+	SET NOCOUNT ON;
+	SELECT * FROM vista_recibos
+	INNER JOIN tmp ON tmp.idRecibo = vista_recibos.ID_Recibo 
+
 END Try
 BEGIN CATCH
 	RAISERROR('Error en la eliminacion de datos', 16, 1) WITH NOWAIT;

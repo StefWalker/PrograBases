@@ -12,15 +12,6 @@ CREATE PROC [dbo].[PagosInsert] @Recibo int
 AS   
 	BEGIN
 		BEGIN TRY
-			/*IF NOT(EXISTS (SELECT * 
-                 FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_SCHEMA = 'TheSchema' 
-                 AND  TABLE_NAME = 'tmp'))
-			BEGIN
-    --Do Stuff
-				Create Table tmp (id int identity(1,1), idRecibo int)
-			END
-			ELSE*/
 				BEGIN
 					Insert INTO tmp(idRecibo)
 							VALUES(@Recibo)
@@ -31,4 +22,11 @@ AS
 				print error_message()
 				return -1
 			END CATCH
-	END
+END
+GO
+
+
+
+
+
+		

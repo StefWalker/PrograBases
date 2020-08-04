@@ -48,7 +48,7 @@ namespace CapaDatos
             }
             return lista;
         }
-        public static entComprobante BuscarComprobante(int id)
+        public static entComprobante ReadComprobante(int id)
         {
             entComprobante obj = null;
             SqlCommand cmd = null;
@@ -68,7 +68,7 @@ namespace CapaDatos
                 obj.NumFinca = Convert.ToInt32(dr["NumFinca"].ToString());
                 obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
                 obj.Monto = Convert.ToDouble(dr["Monto"].ToString());
-               
+
 
             }
             catch
@@ -81,5 +81,19 @@ namespace CapaDatos
             }
             return obj;
         }
+
+        public static void IniciarTrans()
+        {
+            Conexion cn = new Conexion();
+            SqlConnection cnx = cn.Conectar();
+            SqlCommand cmd = new SqlCommand("PagosTransaction", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cnx.Open();
+            cn.Conectar();
+            cmd.ExecuteNonQuery();
+            cmd.Connection.Close();
+
+        }
+
     }
 }

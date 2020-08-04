@@ -15,32 +15,27 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            entTemporal obj = negTemporal.IniciarTrans();
-            if(obj != null)
+            int total = 0;
+           GridView1.DataSource = negRecibos.ListarConfirmados();
+           GridView1.DataBind();
+            for (int i = 0; i < GridView1.Rows.Count; i++)
             {
-
-                GridView1.DataSource = negRecibos.ListarConfirmados(obj.idRecibo);
-                GridView1.DataBind();
-                entComprobante comprobante = negComprobante.BuscarComprobante(obj.idRecibo);
-                total.Text = Convert.ToString(comprobante.Monto);
-
+                int monto = Convert.ToInt32(GridView1.Rows[i].Cells[4].Text);
+                total = total + monto;
             }
-            else
-            {
-                lblerror.Text = "No se recibio id de comprobante";
-                lblerror.Visible = true;
-            }
-          
+            pago.Text = Convert.ToString(total);
+
+
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-            int indicador = negTemporal.FinalTrans(0);
+            negComprobante.IniciarTrans();
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            int indicador = negTemporal.FinalTrans(1);
+            negComprobante.IniciarTrans();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace WebApplication1
             if (Request.QueryString["ID_Comprobante"] != null)
             {
                
-                entComprobante obj = negComprobante.BuscarComprobante(ID_Comprobante);
+                entComprobante obj = negComprobante.ReadComprobante(ID_Comprobante);
                 if (obj != null)
                 {
                     numero.Text = Convert.ToString(obj.ID_Comprobante);
@@ -28,7 +28,7 @@ namespace WebApplication1
                     monto.Text = Convert.ToString(obj.Monto);
 
                     //tira los recibos que son asociados con el comprobante
-                    GridView1.DataSource = negRecibos.ListarConfirmados(obj.ID_Comprobante);
+                    GridView1.DataSource = negRecibos.ListarReciboxCom(obj.ID_Comprobante);
                     GridView1.DataBind();
 
                     for (int i = 0; i < GridView1.Rows.Count; i++)

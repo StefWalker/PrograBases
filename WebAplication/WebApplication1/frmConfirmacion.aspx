@@ -20,7 +20,7 @@
         </asp:GridView>
         <br />
     <asp:Label ID="lblNumero" runat="server" Text="Total a pagar:   " Font-Size="Medium"></asp:Label>
-    <asp:Label ID="total" runat="server" Font-Size="Medium"></asp:Label>
+    <asp:Label ID="pago" runat="server" Font-Size="Medium"></asp:Label>
     <br />
     <tr>
       <td colspan="2" align ="center"><asp:Button ID="Pagar" runat="server"  Text="Pagar" width="150px" OnClick="btnPagar_Click"/></td>

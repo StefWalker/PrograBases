@@ -89,7 +89,7 @@ namespace CapaDatos
             }
             return lista;
         }
-        public static List<entRecibos> ListarConfirmados(int Id)
+        public static List<entRecibos> ListarConfirmados()
         {
 
             SqlCommand cmd = null;
@@ -100,7 +100,6 @@ namespace CapaDatos
                 Conexion cn = new Conexion();
                 SqlConnection cnx = cn.Conectar();
                 cmd = new SqlCommand("ListarConfirmados", cnx);
-                cmd.Parameters.AddWithValue("@inID_Comprobante", Id);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cnx.Open();
                 dr = cmd.ExecuteReader();
@@ -127,6 +126,58 @@ namespace CapaDatos
 
             }
             return lista;
+        }
+        public static List<entRecibos> ListarReciboxCom(int id)
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+            List<entRecibos> lista = null;
+            try
+            {
+                Conexion cn = new Conexion();
+                SqlConnection cnx = cn.Conectar();
+                cmd = new SqlCommand("ListarReciboxCom", cnx);
+                cmd.Parameters.AddWithValue("@inID_Comprobante", id);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cnx.Open();
+                dr = cmd.ExecuteReader();
+                lista = new List<entRecibos>();
+                while (dr.Read())
+                {
+                    entRecibos C = new entRecibos();
+                    C.ID_Recibo = Convert.ToInt32(dr["ID_Recibo"].ToString());
+                    C.ID_Propiedad = Convert.ToInt32(dr["ID_Propiedad"].ToString());
+                    C.ID_Concepto = Convert.ToInt32(dr["ID_Concepto"].ToString());
+                    C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
+                    C.Monto = Convert.ToDouble(dr["Monto"].ToString());
+                    C.Estado = Convert.ToInt32(dr["Estado"].ToString());
+                    lista.Add(C);
+                }
+            }
+            catch (Exception e)
+            {
+                lista = null;
+            }
+            finally
+            {
+                cmd.Connection.Close();
+
+            }
+            return lista;
+        }
+        public static void GenerarMoratorios()
+        {
+
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            Conexion cn = new Conexion();
+            SqlConnection cnx = cn.Conectar();
+            cmd = new SqlCommand("CrearReciboMoratorio", cnx);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cnx.Open();
+            cmd.Connection.Close();
         }
     }
 }
