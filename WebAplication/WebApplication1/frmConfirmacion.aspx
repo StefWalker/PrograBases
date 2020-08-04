@@ -29,5 +29,5 @@
       <td colspan="2" align ="center"><asp:Button ID="Cancelar" runat="server" style="margin-left: 25px" Text="Cancelar" width="150px" OnClick="btnCancelar_Click"/></td>
     </tr>
         <br />
-   \
+   
 </asp:Content>

@@ -35,7 +35,7 @@ namespace WebApplication1
 
         protected void grvPropiedades_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Response.Redirect("frmProxUser.aspx?ID_Propiedad=" + grvPropiedades.Rows[grvPropiedades.SelectedIndex].Cells[0].Text);
         }
     }
 }

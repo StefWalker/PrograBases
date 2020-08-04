@@ -75,10 +75,12 @@
     <Content Include="frmBitacora.aspx" />
     <Content Include="frmComprobantes.aspx" />
     <Content Include="frmConfirmacion.aspx" />
+    <Content Include="frmConfirmarAP.aspx" />
     <Content Include="frmGenerarAP.aspx" />
     <Content Include="frmModificarProCC.aspx" />
     <Content Include="frmPendientes.aspx" />
     <Content Include="frmPrincipalUser.aspx" />
+    <Content Include="frmProxUser.aspx" />
     <Content Include="frmRealizarPagos.aspx" />
     <Content Include="frmRecibosPagos.aspx" />
     <Content Include="frmRecibosPendientes.aspx" />
@@ -199,6 +201,13 @@
     <Compile Include="frmConfirmacion.aspx.designer.cs">
       <DependentUpon>frmConfirmacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmConfirmarAP.aspx.cs">
+      <DependentUpon>frmConfirmarAP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmConfirmarAP.aspx.designer.cs">
+      <DependentUpon>frmConfirmarAP.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmGenerarAP.aspx.cs">
       <DependentUpon>frmGenerarAP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,6 +235,13 @@
     </Compile>
     <Compile Include="frmPrincipalUser.aspx.designer.cs">
       <DependentUpon>frmPrincipalUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmProxUser.aspx.cs">
+      <DependentUpon>frmProxUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmProxUser.aspx.designer.cs">
+      <DependentUpon>frmProxUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmRealizarPagos.aspx.cs">
       <DependentUpon>frmRealizarPagos.aspx</DependentUpon>
