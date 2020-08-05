@@ -16,7 +16,7 @@ AS
 		SET XACT_ABORT ON
 
 		DECLARE @ID_Propiedad INT, @ID_Comprobante INT, @MontoInicial MONEY, @Saldo MONEY, 
-				@TasaInteres DECIMAL, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, 
+				@TasaInteres MONEY, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, 
 				@ID_Recibo INT, @plazo INT, @fechaMovimiento Date
 
 
