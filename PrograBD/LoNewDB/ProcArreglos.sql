@@ -15,20 +15,24 @@ AS
 		SET NOCOUNT ON 
 		SET XACT_ABORT ON
 
-		DECLARE @ID_Propiedad INT, @ID_Comprobante INT, @MontoInicial MONEY, @Saldo MONEY, @TasaInteres DECIMAL, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, @ID_Recibo INT
+		DECLARE @ID_Propiedad INT, @ID_Comprobante INT, @MontoInicial MONEY, @Saldo MONEY, @TasaInteres MONEY, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, @ID_Recibo INT, @plazo INT
 
 
 		DECLARE @idMenor INT, @idMayor INT
 		SELECT @idMenor = min([id]), @idMayor=max([id]) FROM @arreglo
+		SET @TasaInteres = (Select CT.Valor/100 FROM ConfigTable CT where CT.Tipo= 'Decimal')
+
 
 		While @idMenor<=@idMayor
 		BEGIN
 
-			Set @ID_Propiedad = (SELECT ID_Propiedad FROM Propiedad INNER JOIN @arreglo A ON Propiedad.NumPropiedad = A.numFinca where ID = @idMenor)
-			SET @MontoInicial = (SELECT SUM(Monto) FROM Recibos WHERE ID_Propiedad = @ID_Propiedad)
+			SET @ID_Propiedad = (SELECT ID_Propiedad FROM Propiedad INNER JOIN @arreglo A ON Propiedad.NumPropiedad = A.numFinca where ID = @idMenor)
+			SET @MontoInicial = (SELECT SUM(Monto) FROM Recibos WHERE ID_Propiedad = @ID_Propiedad AND Recibos.ID_Concepto != 12 AND Recibos.ID_Concepto != 10 AND Recibos.Estado = 0)
 			SET @Saldo = @MontoInicial
-			SET @TasaInteres = (Select (Valor/100) FROM ConfigTable Where Tipo = 'Decimal')
-			SET @Cuota = (Select @Saldo*(@TasaInteres * POWER((1 + @TasaInteres),A.plazo) / POWER((1+@TasaInteres),A.plazo)-1) From @arreglo A where ID = @idMenor)
+			
+			SET @plazo = (Select A.plazo FROM @arreglo A WHERE ID = @idMenor)
+			SET @Cuota = (SELECT @Saldo*((@TasaInteres * (POWER((1 + @TasaInteres),A.plazo)))/ ((POWER((1+@TasaInteres),A.plazo))-1)) FROM @arreglo A where ID = @idMenor)
+			--SET @Cuota = (Select (@Saldo*((@TasaInteres * POWER((1 + @TasaInteres),A.plazo)) / POWER((1+@TasaInteres),A.plazo)-1)) From @arreglo A where ID = @idMenor)
 
 
 			INSERT INTO Comprobante(Fecha, Monto, NumFinca)
@@ -42,7 +46,7 @@ AS
 			SET @amortizacion = @Cuota - @interesMes
 
 			INSERT INTO AP(ID_Propiedad,ID_Comprobante,MontoInicial,Saldo,TasaInteres,PlazoInicial,Cuota,FechaCreacion,Activo)
-			SELECT @ID_Propiedad, @ID_Comprobante, @MontoInicial, @Saldo, @TasaInteres, A.plazo, @Cuota, A.fecha, 1 FROM @arreglo A where ID = @idMenor
+			SELECT @ID_Propiedad, @ID_Comprobante, @MontoInicial, @Saldo, 0.10, A.plazo, @Cuota, A.fecha, 1 FROM @arreglo A where ID = @idMenor
 
 			INSERT INTO Recibos(ID_Propiedad, ID_Concepto, Fecha, Monto, Estado, FechaVencimiento)
 			SELECT @ID_Propiedad, 12, A.fecha, @MontoInicial, 1, A.fecha FROM @arreglo A where ID = @idMenor

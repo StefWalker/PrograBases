@@ -16,7 +16,6 @@ DROP TABLE ReciboReconexion
 DROP TABLE Corte
 DROP TABLE Reconexion
 DROP TABLE ReciboXComprobante
-DROP TABLE Recibos
 DROP TABLE MovimientoAP
 DROP TABLE AP
 DROP TABLE TipoEntidad
@@ -27,5 +26,6 @@ DROP TABLE TipoTrans
 DROP TABLE Comprobante
 DROP TABLE tmp
 DROP TABLE ConfigTable
+DROP TABLE Recibos
 DROP TABLE ConceptoCobro
 DROP TABLE Propiedad
