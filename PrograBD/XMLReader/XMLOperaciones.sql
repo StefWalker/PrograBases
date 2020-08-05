@@ -334,7 +334,7 @@ BEGIN
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual
 						
-					--GENERACION DE RECIBOS
+						--GENERACION DE RECIBOS
 						EXEC [dbo].[RecibosGenerator] @fechaActual
 
 

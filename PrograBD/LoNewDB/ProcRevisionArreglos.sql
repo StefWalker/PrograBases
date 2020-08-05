@@ -1,14 +1,14 @@
 USE [ProyectoBases]
 GO
-IF OBJECT_ID('[dbo].[ProcesarArreglos]') IS NOT NULL
+IF OBJECT_ID('[dbo].[RevisionArreglos]') IS NOT NULL
 BEGIN 
-    DROP PROC [dbo].[ProcesarArreglos]  
+    DROP PROC [dbo].[RevisionArreglos]  
 END 
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[ProcesarArreglos] @arreglo ArreglosTipo  READONLY
+CREATE PROC [dbo].[RevisionArreglos] @fecha DATE
 AS   
 	BEGIN
 		BEGIN TRY
