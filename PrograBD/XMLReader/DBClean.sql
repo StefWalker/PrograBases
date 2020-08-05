@@ -17,12 +17,15 @@ DROP TABLE Corte
 DROP TABLE Reconexion
 DROP TABLE ReciboXComprobante
 DROP TABLE Recibos
+DROP TABLE MovimientoAP
+DROP TABLE AP
 DROP TABLE TipoEntidad
 DROP TABLE TransConsumo
-DROP TABLE ConceptoCobro
-DROP TABLE Propiedad
 DROP TABLE Propietario
 DROP TABLE TipoDoc
 DROP TABLE TipoTrans
 DROP TABLE Comprobante
 DROP TABLE tmp
+DROP TABLE ConfigTable
+DROP TABLE ConceptoCobro
+DROP TABLE Propiedad
