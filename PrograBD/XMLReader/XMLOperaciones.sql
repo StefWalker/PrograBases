@@ -318,10 +318,18 @@ BEGIN
 								WHERE [fechaDeIngreso11] = @fechaActual
 						EXEC [dbo].[ProcesaConsumo] @consumo
 						DELETE @consumo
+
+						DECLARE @arreglo ArreglosTipo 
+						INSERT INTO @arreglo(numFinca, plazo, fecha)
+							SELECT [NumFinca], [Plazo], CONVERT(DATE,[fechaDeIngreso12],121)[fechaDeIngreso12]
+							FROM OPENXML (@hdoc, 'Operaciones_por_Dia/OperacionDia/AP',1)  
+								WITH (	[NumFinca]		INT	    '@NumFinca', 
+										[Plazo]			INT		'@Plazo',
+										[fechaDeIngreso12] DATE			'../@fecha')
+								WHERE [fechaDeIngreso12] = @fechaActual
+						EXEC [dbo].[ProcesarArreglos] @arreglo
+						DELETE @arreglo
 							
-
-
-
 						--ORDENES DE CORTA
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual
