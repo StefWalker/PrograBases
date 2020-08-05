@@ -55,6 +55,7 @@
     <Compile Include="entTemporal.cs" />
     <Compile Include="entTipoDoc.cs" />
     <Compile Include="entUsuario.cs" />
+    <Compile Include="entAP.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

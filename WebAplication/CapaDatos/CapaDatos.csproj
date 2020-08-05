@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="daoAP.cs" />
     <Compile Include="daoBitacora.cs" />
     <Compile Include="daoComprobante.cs" />
     <Compile Include="daoConceptoCobro.cs" />

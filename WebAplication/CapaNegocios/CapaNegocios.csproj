@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="negAP.cs" />
     <Compile Include="negBitacora.cs" />
     <Compile Include="negComprobante.cs" />
     <Compile Include="negConceptoCobro.cs" />

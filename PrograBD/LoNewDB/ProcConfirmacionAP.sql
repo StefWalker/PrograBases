@@ -1,10 +1,13 @@
-CREATE PROC ConfirmacionAP @inMontoTotal MONEY ,@inID_Propiedad INT,@inPlazo INT --verificar como le pasaba yo lo money 
+USE [ProyectoBases]
+GO
+CREATE PROC ConfirmacionAP @inMontoTotal INT  ,@inID_Propiedad INT,@inPlazo INT --verificar como le pasaba yo lo money 
 AS
 BEGIN
 	BEGIN TRY
 		SET NOCOUNT ON
 
-		DECLARE  @intereses money 
+		DECLARE  @Monto Money,
+				@intereses money 
 				,@ID_AP int
 				,@ID_Comprobante int
 				,@cuota money
@@ -20,11 +23,15 @@ BEGIN
 		BEGIN
 			RETURN -1
 		END
-		--Calcular los intereses 
+
+--Intereses 
+		SET @Monto = (convert(varchar,cast(@inMontoTotal as money),1))
+		SET @intereses =(Select CT.Valor/100 FROM ConfigTable CT where CT.Tipo= 'Decimal')
+
 		Set @contador = (Select max(id) from tmp)
 		SET @i=1
 		SET @Fecha = GETDATE()
-		SET @cuota= @inMontoTotal * ( (@intereses*(1 + @intereses)*@inPlazo)/((1+@intereses)*@inPlazo - 1))
+		SET @cuota= @Monto * ( (@intereses*(1 + @intereses)*@inPlazo)/((1+@intereses)*@inPlazo - 1))
 		BEGIN TRAN
 
 -- Crea el AP
@@ -39,7 +46,7 @@ BEGIN
 			)
 			VALUES  (
 				@inID_Propiedad,
-				@inMontoTotal,
+				@Monto,
 				0,
 				@intereses,
 				@inPlazo,
@@ -59,7 +66,7 @@ BEGIN
 				NumFinca)
 			values (
 				GETDATE(),
-				@inMontoTotal,
+				@Monto,
 				@inID_Propiedad
 			)
 
@@ -89,6 +96,18 @@ BEGIN
 			END 
 
 ----Crear recibo , monto le ponemos 0 , estADO PAGO , tipo 12 
+			INSERT INTO Recibos(
+					ID_Propiedad,
+					ID_Concepto,
+					Fecha,
+					Monto,
+					FechaVencimiento
+			)
+			Values (@inID_Propiedad,12,GETDATE(),0,GETDATE())
+
+---Guardo el idRecibo
+			SET @IDRecibo = (SELECT max(A.ID_Recibo) FROM Recibos A)
+
 --Movimiento Inicial, un debito al saldo inicial 
 				
 			INSERT INTO MovimientoAP(
@@ -100,13 +119,14 @@ BEGIN
 				Fecha,
 				ID_Recibo
 			)
-			Select A.ID_AP,2,A.MontoInicial,A.MontoInicial * @intereses/12,A.PlazoInicial,GETDATE(),
+
+			Select A.ID_AP,2,A.MontoInicial,A.MontoInicial * @intereses/12,A.PlazoInicial,GETDATE(),@IDRecibo
 			from AP A
-			where A.Id = @idAP
+			where A.ID_AP = @ID_AP
 
 -- Actualizacion en AP
-			UPDATE dbo.AP
-			SET AP.Saldo = @montoTotal
+			UPDATE AP
+			SET AP.Saldo = @Monto
 			where AP.ID_AP = @ID_AP
 
 		COMMIT
@@ -120,3 +140,4 @@ BEGIN
 		RETURN @@ERROR * -1
 	END CATCH
 END;
+go

@@ -51,7 +51,7 @@ namespace WebApplication1
 
             }
             negRecibos.GenerarMoratorios();
-            Response.Redirect("frmConfirmarAP.aspx");
+            Response.Redirect("frmConfirmarAP.aspx?ID_Propiedad=" + GridView1.Rows[0].Cells[1].Text);
 
         }
     }
