@@ -72,6 +72,7 @@ namespace WebApplication1
                 int total = Convert.ToInt32(recibos.Text);
                 int meses = Convert.ToInt32(CantidadMeses.Text);
                 cuota.Text = Convert.ToString(total * ((0.10 * Math.Pow((1 + 0.10), 5)) / (Math.Pow((1 + 0.10), 5) - 1)));
+                cuota.Visible = true;
             }
             else
             {
