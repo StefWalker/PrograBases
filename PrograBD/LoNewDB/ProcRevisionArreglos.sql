@@ -8,52 +8,57 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROC [dbo].[RevisionArreglos] @fecha DATE
+CREATE PROC [dbo].[RevisionArreglos] @fechaActual DATE
 AS   
 	BEGIN
 		BEGIN TRY
 		SET NOCOUNT ON 
 		SET XACT_ABORT ON
 
-		DECLARE @ID_Propiedad INT, @ID_Comprobante INT, @MontoInicial MONEY, @Saldo MONEY, @TasaInteres DECIMAL, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, @ID_Recibo INT
+		DECLARE @ID_Propiedad INT, @ID_Comprobante INT, @MontoInicial MONEY, @Saldo MONEY, 
+				@TasaInteres DECIMAL, @Cuota MONEY, @ap INT, @interesMes MONEY, @amortizacion MONEY, 
+				@ID_Recibo INT, @plazo INT, @fechaMovimiento Date
 
 
 		DECLARE @idMenor INT, @idMayor INT
-		SELECT @idMenor = min([id]), @idMayor=max([id]) FROM @arreglo
+		SELECT @idMenor = min([ID_AP]), @idMayor=max([ID_AP]) FROM AP
 
 		While @idMenor<=@idMayor
 		BEGIN
 
-			Set @ID_Propiedad = (SELECT ID_Propiedad FROM Propiedad INNER JOIN @arreglo A ON Propiedad.NumPropiedad = A.numFinca where ID = @idMenor)
-			SET @MontoInicial = (SELECT SUM(Monto) FROM Recibos WHERE ID_Propiedad = @ID_Propiedad)
-			SET @Saldo = @MontoInicial
-			SET @TasaInteres = (Select (Valor/100) FROM ConfigTable Where Tipo = 'Decimal')
-			SET @Cuota = (Select @Saldo*(@TasaInteres * POWER((1 + @TasaInteres),A.plazo) / POWER((1+@TasaInteres),A.plazo)-1) From @arreglo A where ID = @idMenor)
+			SET @fechaMovimiento = (Select Max(Fecha) FROM MovimientoAP Where ID_AP = @idMenor)
+			IF(@fechaActual >= DATEADD(MONTH, 1, @fechaMovimiento))
+				BEGIN
+					Set @ID_Propiedad = (SELECT A.ID_Propiedad FROM AP A where A.ID_AP = @idMenor)
+					SET @MontoInicial = (SELECT A.MontoInicial FROM AP A WHERE A.ID_AP = @idMenor)
+					SET @Saldo = (SELECT A.Saldo FROM AP A WHERE A.ID_AP = @idMenor)
+					SET @TasaInteres = (Select (Valor/100) FROM ConfigTable Where Tipo = 'Decimal')
+					SET @Cuota = (SELECT A.Cuota FROM AP A WHERE A.ID_AP = @idMenor)
 
+					SET @ID_Comprobante = (SELECT A.ID_Comprobante FROM AP A WHERE A.ID_AP = @idMenor)
+					SET @ap = (SELECT A.ID_AP FROM AP A WHERE A.ID_AP = @idMenor)
 
-			INSERT INTO Comprobante(Fecha, Monto, NumFinca)
-			SELECT A.fecha, 0, A.numFinca FROM @arreglo A where ID = @idMenor
-	
+					Update AP
+					Set Saldo = @Saldo - @Cuota
+					WHERE ID_AP = @idMenor
 
-			SET @ID_Comprobante = IDENT_CURRENT('[dbo].[Comprobante]')
-			SET @ap = IDENT_CURRENT('[dbo].[AP]')
+					SET @Saldo = (SELECT A.Saldo FROM AP A WHERE A.ID_AP = @idMenor)
 
-			SET @interesMes = @Saldo * @TasaInteres/12
-			SET @amortizacion = @Cuota - @interesMes
+					SET @interesMes = @Saldo * @TasaInteres/12
+					SET @amortizacion = @Cuota - @interesMes
 
-			INSERT INTO AP(ID_Propiedad,ID_Comprobante,MontoInicial,Saldo,TasaInteres,PlazoInicial,Cuota,FechaCreacion,Activo)
-			SELECT @ID_Propiedad, @ID_Comprobante, @MontoInicial, @Saldo, @TasaInteres, A.plazo, @Cuota, A.fecha, 1 FROM @arreglo A where ID = @idMenor
+					INSERT INTO Recibos(ID_Propiedad, ID_Concepto, Fecha, Monto, Estado, FechaVencimiento)
+					SELECT @ID_Propiedad, 12, @fechaActual, @Cuota, 0, @fechaActual
 
-			INSERT INTO Recibos(ID_Propiedad, ID_Concepto, Fecha, Monto, Estado, FechaVencimiento)
-			SELECT @ID_Propiedad, 12, A.fecha, @MontoInicial, 1, A.fecha FROM @arreglo A where ID = @idMenor
+					SET @ID_Recibo = IDENT_CURRENT('[dbo].[Recibos]')
 
-			SET @ID_Recibo = IDENT_CURRENT('[dbo].[Recibos]')
+					SET @plazo = (Select MIN(plazoResta) From MovimientoAP Where ID_AP = @ap)
 
-			INSERT INTO MovimientoAP(ID_AP, TipoMov, InteresMes, Amortizacion, plazoResta, Fecha, ID_Recibo)
-			SELECT @ap, 2, @interesMes, @amortizacion, A.plazo, A.fecha, @ID_Recibo FROM @arreglo A where ID = @idMenor
+					INSERT INTO MovimientoAP(ID_AP, TipoMov, InteresMes, Amortizacion, plazoResta, Fecha, ID_Recibo)
+					SELECT @ap, 2, @interesMes, @amortizacion, @plazo - 1, @fechaActual, @ID_Recibo FROM AP A where A.ID_AP = @idMenor
 
+				END
 			SET @idMenor = @idMenor + 1
-
 		END
 
 		END TRY

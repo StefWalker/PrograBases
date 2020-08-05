@@ -336,7 +336,7 @@ BEGIN
 						
 						--GENERACION DE RECIBOS
 						EXEC [dbo].[RecibosGenerator] @fechaActual
-
+						EXEC [dbo].[RevisionArreglos] @fechaActual
 
 
 					SELECT @fechaActual = DATEADD(DAY,1,@fechaActual);
