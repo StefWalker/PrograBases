@@ -180,18 +180,6 @@ CREATE TABLE Recibos
 	FOREIGN KEY (ID_Concepto) REFERENCES ConceptoCobro(ID_CC),
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
 );
-/*
-CREATE TABLE RecibosMoratorios
-(
-	ID_ReciboM INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	ID_Propiedad INT NOT NULL,
-	ID_Concepto INT NOT NULL,
-	Fecha Date NOT NULL DEFAULT GETDATE(),
-	Monto Money NOT NULL,
-	Estado INT NOT NULL DEFAULT 0,
-	FOREIGN KEY (ID_Concepto) REFERENCES ConceptoCobro(ID_CC),
-	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad)
-);*/
 
 CREATE TABLE Comprobante
 (

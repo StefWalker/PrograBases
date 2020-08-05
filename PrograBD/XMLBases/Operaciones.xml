@@ -5336,6 +5336,10 @@
     <ConceptoCobroVersusPropiedad idcobro="1" NumFinca="6393847"/>
     <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="6852677"/>
     <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="8920893"/>
+    <ConceptoCobroVersusPropiedad idcobro="6" NumFinca="1423800"/>
+    <ConceptoCobroVersusPropiedad idcobro="2" NumFinca="1423800"/>
+    <ConceptoCobroVersusPropiedad idcobro="3" NumFinca="1423800"/>
+    <ConceptoCobroVersusPropiedad idcobro="4" NumFinca="1423800"/>
     <CambioPropiedad NumFinca="1693614" NuevoValor="15406239"/>
   </OperacionDia>
 </Operaciones_por_Dia>
