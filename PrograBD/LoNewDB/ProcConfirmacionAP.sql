@@ -31,33 +31,10 @@ BEGIN
 		Set @contador = (Select max(id) from tmp)
 		SET @i=1
 		SET @Fecha = GETDATE()
-		SET @cuota= @Monto * ( (@intereses*(1 + @intereses)*@inPlazo)/((1+@intereses)*@inPlazo - 1))
+		SET @Cuota = @Monto*(@intereses * POWER((1 + @intereses),@inPlazo) / POWER((1+@intereses),@inPlazo)-1)
 		BEGIN TRAN
 
--- Crea el AP
-			INSERT INTO AP (
-				ID_Propiedad,
-				MontoInicial,
-				Saldo,
-				TasaInteres,
-				PlazoInicial,
-				Cuota,
-				FechaCreacion
-			)
-			VALUES  (
-				@inID_Propiedad,
-				@Monto,
-				0,
-				@intereses,
-				@inPlazo,
-				@cuota,
-				GETDATE()
-			)
 
---ID _AP para comprobante 
-
-			SELECT @ID_AP = max(A.ID_AP)
-			from AP A
 
 -- Agrega Comprobante de Pago 
 			Insert Into Comprobante( --Añadir medio de pago 'AP# ' + CAST(@idAP AS VARCHAR(10))
@@ -70,14 +47,41 @@ BEGIN
 				@inID_Propiedad
 			)
 
--- Guarda ID Comprobante 
-			SELECT @ID_Comprobante = max(C.ID_Comprobante)
-			from Comprobante C
+SET @ID_Comprobante = IDENT_CURRENT('[dbo].[Comprobante]')
 
+-- Crea el AP
+			INSERT INTO AP (
+				ID_Propiedad,
+				ID_Comprobante,
+				MontoInicial,
+				Saldo,
+				TasaInteres,
+				PlazoInicial,
+				Cuota,
+				FechaCreacion
+			)
+			VALUES  (
+				@inID_Propiedad,
+				@ID_Comprobante,
+				@Monto,
+				0,
+				@intereses,
+				@inPlazo,
+				@cuota,
+				GETDATE()
+			)
+
+--ID _AP para comprobante 
+
+			SET @ID_AP = IDENT_CURRENT('[dbo].[AP]')
+
+			/*
 -- Enlazar el Comprobante con el AP
 			UPDATE AP
 			set AP.ID_Comprobante = @ID_Comprobante
 			where AP.ID_Propiedad = @inID_Propiedad
+			*/
+
 
 -- Enlace del comprobante con los recibos
 			while (@i <= @contador)
