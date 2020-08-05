@@ -12,6 +12,7 @@ namespace CapaEntidades
         public int NumFinca { get; set; }
         public DateTime Fecha { get; set; }
         public double Monto { get; set; }
+        public string MedioPago { get; set; }
     }
 
 

@@ -24,7 +24,7 @@ namespace WebApplication1
                     numero.Text = Convert.ToString(obj.ID_Comprobante);
                     propiedad.Text = Convert.ToString(obj.NumFinca);
                     Fecha.Text = Convert.ToString(obj.Fecha);
-                    medio.Text = Convert.ToString(obj.Monto);//eSTE DEBO CAMBIARLO
+                    medio.Text = Convert.ToString(obj.MedioPago);//eSTE DEBO CAMBIARLO
                     monto.Text = Convert.ToString(obj.Monto);
 
                     //tira los recibos que son asociados con el comprobante

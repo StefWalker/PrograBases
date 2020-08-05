@@ -34,6 +34,7 @@ namespace CapaDatos
                     C.NumFinca = Convert.ToInt32(dr["NumFinca"].ToString());
                     C.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
                     C.Monto = Convert.ToDouble(dr["Monto"].ToString());
+                    C.MedioPago = dr["MedioPago"].ToString();
                     lista.Add(C);
                 }
             }
@@ -68,6 +69,7 @@ namespace CapaDatos
                 obj.NumFinca = Convert.ToInt32(dr["NumFinca"].ToString());
                 obj.Fecha = Convert.ToDateTime(dr["Fecha"].ToString());
                 obj.Monto = Convert.ToDouble(dr["Monto"].ToString());
+                obj.MedioPago = dr["MedioPago"].ToString();
 
 
             }

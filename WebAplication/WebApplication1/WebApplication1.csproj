@@ -125,10 +125,13 @@
     <Content Include="frmUnirProPro.aspx" />
     <Content Include="frmUnirUserPro.aspx" />
     <Content Include="frmUserPropiedades.aspx" />
+    <Content Include="frmVerAPUnico.aspx" />
     <Content Include="frmVerComprobante.aspx" />
+    <Content Include="frmVerPropAP.aspx" />
     <Content Include="frmVerPropiedades.aspx" />
     <Content Include="Imagenes\descarga.jpg" />
     <Content Include="Imagenes\descarga.png" />
+    <Content Include="frmVerAP.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -544,12 +547,26 @@
     <Compile Include="frmUserPropiedades.aspx.designer.cs">
       <DependentUpon>frmUserPropiedades.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmVerAPUnico.aspx.cs">
+      <DependentUpon>frmVerAPUnico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVerAPUnico.aspx.designer.cs">
+      <DependentUpon>frmVerAPUnico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmVerComprobante.aspx.cs">
       <DependentUpon>frmVerComprobante.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmVerComprobante.aspx.designer.cs">
       <DependentUpon>frmVerComprobante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerPropAP.aspx.cs">
+      <DependentUpon>frmVerPropAP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVerPropAP.aspx.designer.cs">
+      <DependentUpon>frmVerPropAP.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmVerPropiedades.aspx.cs">
       <DependentUpon>frmVerPropiedades.aspx</DependentUpon>
@@ -586,6 +603,13 @@
     </Compile>
     <Compile Include="frmBuscarPropJuridico.aspx.designer.cs">
       <DependentUpon>frmBuscarPropJuridico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVerAP.aspx.cs">
+      <DependentUpon>frmVerAP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVerAP.aspx.designer.cs">
+      <DependentUpon>frmVerAP.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
