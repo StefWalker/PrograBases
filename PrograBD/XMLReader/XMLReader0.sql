@@ -17,3 +17,5 @@ use ProyectoBases
 
 	EXEC sp_xml_removedocument @hdoc
 	
+	INSERT INTO ConfigTable(Tipo, Nombre, Valor)
+	VALUES ('Decimal','TasaInteres AP',10.0)

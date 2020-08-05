@@ -243,6 +243,7 @@ Create Table tmp
 	id int identity(1,1) NOT NULL, 
 	idRecibo int NOT NULL
 )
+
 Create Table AP
 (
 	ID_AP INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -258,6 +259,7 @@ Create Table AP
 	FOREIGN KEY (ID_Propiedad) REFERENCES Propiedad(ID_Propiedad),
 	FOREIGN KEY (ID_Comprobante) REFERENCES Comprobante(ID_Comprobante)
 ) 
+
 Create Table MovimientoAP 
 (
 	ID_Movimiento INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
@@ -270,4 +272,12 @@ Create Table MovimientoAP
 	ID_Recibo INT NOT NULL DEFAULT 0,
 	FOREIGN KEY (ID_AP) REFERENCES AP(ID_AP),
 	FOREIGN KEY (ID_Recibo) REFERENCES Recibos(ID_Recibo)
+)
+
+CREATE TABLE ConfigTable
+(
+	ID_Config INT IDENTITY(1,1) NOT NULL,
+	Tipo VARCHAR(10) NOT NULL,
+	Nombre VARCHAR(20) NOT NULL,
+	Valor DECIMAL NOT NULL
 )
