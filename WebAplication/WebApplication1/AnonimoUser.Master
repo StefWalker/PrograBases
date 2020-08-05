@@ -33,6 +33,9 @@
                 <div class="etiqueta">
                     <asp:Button ID="VerPropiedades" runat="server" Text="Ver mis propiedades" OnClick="VerPropiedades_Click" Width="170px"  />
                </div>
+                <div class="etiqueta">
+                    <asp:Button ID="Button1" runat="server" Text="Ver mis AP" OnClick="VerMisAP_Click" Width="170px"  />
+               </div>
             </div>
             <div id="contenido_derecho" class="auto-style2"> 
                 <div style=" width: 740px">

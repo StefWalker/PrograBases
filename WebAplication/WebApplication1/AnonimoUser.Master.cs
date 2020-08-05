@@ -40,5 +40,10 @@ namespace WebApplication1
         {
             Response.Redirect("frmRealizarPagos.aspx");
         }
+
+        protected void VerMisAP_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("frmVerPropAP.aspx");
+        }
     }
 }

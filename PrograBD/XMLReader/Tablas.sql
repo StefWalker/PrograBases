@@ -198,7 +198,8 @@ CREATE TABLE Comprobante
 	ID_Comprobante INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	Fecha Date NOT NULL,
 	Monto MONEY NOT NULL,
-	NumFinca INT NOT NULL
+	NumFinca INT NOT NULL, 
+	MedioPago Varchar(100) NOT NULL DEFAULT 'Debito'
 );
 
 CREATE TABLE ReciboXComprobante

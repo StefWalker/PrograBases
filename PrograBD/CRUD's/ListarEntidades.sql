@@ -69,7 +69,7 @@ Create PROC [dbo].[ListarComprobantes]
 AS
 BEGIN Try
 	SET NOCOUNT ON;
-	SELECT Comprobante.ID_Comprobante,Comprobante.NumFinca,Comprobante.Fecha, Comprobante.Monto 
+	SELECT Comprobante.ID_Comprobante,Comprobante.NumFinca,Comprobante.Fecha, Comprobante.Monto,Comprobante.MedioPago
 	FROM Comprobante
 	where Comprobante.NumFinca= @inNumPropiedad 
 	Return 1
@@ -118,7 +118,7 @@ CREATE PROC ComprobanteRead
     @inID_Comprobante int
 AS 
 BEGIN TRY
-    SELECT ID_Comprobante,NumFinca,Fecha,Monto
+    SELECT ID_Comprobante,NumFinca,Fecha,Monto,MedioPago
     FROM   Comprobante
     WHERE  (ID_Comprobante = @inID_Comprobante) 
 	return 1
