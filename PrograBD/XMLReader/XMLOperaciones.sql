@@ -97,20 +97,6 @@ BEGIN
 					TipoId int '@TipoDocIdentidad',
 					FechaL VARCHAR(100) '../@fecha'
 				);
------TransConsumo-------
-/*
-			INSERT INTO @TemporalTransConsumo (Lectura,Descripcion,Finca ,Tipo,FechTemp)
-
-			SELECT lectura,descrip,finca,tipo,convert(date, FechaL, 121) FechaL
-			FROM OPENXML (@hdoc,'Operaciones_por_Dia/OperacionDia/TransConsumo', 2)
-				WITH(
-					lectura INT '@LecturaM3',
-					descrip VARCHAR(150) '@descripcion' ,
-					finca int '@NumFinca',
-					tipo int '@id',
-					FechaL VARCHAR(100) '../@fecha'
-				)
-				*/
 
 			
 --Propietario Juridico--------
@@ -278,7 +264,10 @@ BEGIN
 						INNER JOIN Usuario ON Usuario = Usuario.Nombre
 						WHERE [fechaLeida] = @fechaActual ;
 
-						--PAGO DE LOS RECIBOS  
+
+-----Pago de los recibos---------------
+
+
 						DECLARE @Pagos PagosTipo  
 						INSERT INTO @Pagos(numFinca,idTipoRecibo,fechaOperaciones)  
 							SELECT [NumFinca],[TipoRecibo],[fechaDeIngreso9]
@@ -289,8 +278,11 @@ BEGIN
 								WHERE [fechaDeIngreso9] = @fechaActual
 						EXEC [dbo].[ProcesarPagos] @Pagos
 						DELETE @Pagos
+
+-----Actualizar valor de propiedad---------------
+
+
 						
-						--ACTUALIZACION DE VALOR PROPIEDAD
 						DECLARE @nuevosValProp ValorPropiedadTipo  
 						INSERT INTO @nuevosValProp(numFinca,nuevoValor)  
 							SELECT [NumFinca],[nuevoValor]
@@ -304,8 +296,9 @@ BEGIN
 						DELETE @nuevosValProp
 					
 
+-----Consumo de agua---------------
 
-						--REGISTRO CONSUMO DE AGUA
+
 						DECLARE @consumo ConsumoTipo  
 						INSERT INTO @consumo(numFinca,LecturaM3,Fecha,descripcion,idTipo)  
 							SELECT [NumFinca],[LecturaM3],CONVERT(DATE,[fechaDeIngreso11],121)[fechaDeIngreso11],[descripcion],[idTipo]
@@ -329,12 +322,17 @@ BEGIN
 								WHERE [fechaDeIngreso12] = @fechaActual
 						EXEC [dbo].[ProcesarArreglos] @arreglo
 						DELETE @arreglo
-							
-						--ORDENES DE CORTA
+
+-----Corta---------------
+
+
 						EXEC [dbo].[CorteAgua]  @fechaActual
 						EXEC [dbo].[ProcReconexionAgua] @fechaActual
-						
-						--GENERACION DE RECIBOS
+
+
+-----Recibos---------------
+
+
 						EXEC [dbo].[RecibosGenerator] @fechaActual
 						EXEC [dbo].[RevisionArreglos] @fechaActual
 

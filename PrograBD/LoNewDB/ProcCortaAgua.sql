@@ -16,8 +16,11 @@ AS
 		SET XACT_ABORT ON 
 			DECLARE @idPropiedades TABLE(id INT IDENTITY(1,1),idPropiedad int,idCC INT,c int)
 			DECLARE @idMenor INT, @idMayor INT, @id int
+
 			BEGIN TRAN
-				INSERT INTO @idPropiedades(idPropiedad, idCC, c)
+				INSERT INTO @idPropiedades(idPropiedad, 
+											idCC, 
+											c)
 				SELECT R.ID_Propiedad,R.ID_Concepto, COUNT(*)
 				FROM Recibos R
 				WHERE R.Estado = 0 AND R.ID_Concepto = 1
@@ -29,7 +32,12 @@ AS
 				
 				WHILE @idMenor <= @idMayor
 				BEGIN
-					INSERT INTO Recibos(ID_Concepto, Monto, Estado, ID_Propiedad, Fecha, FechaVencimiento)
+					INSERT INTO Recibos(ID_Concepto, 
+										Monto, 
+										Estado, 
+										ID_Propiedad, 
+										Fecha, 
+										FechaVencimiento)
 					SELECT 10, CCF.Monto, 0, P.idPropiedad, @inFecha, DATEADD(D,CC.DiaVencimiento,@inFecha)
 					FROM @idPropiedades P
 					INNER JOIN ConceptoCobro CC ON CC.ID_CC = 10
@@ -41,7 +49,9 @@ AS
 					INSERT INTO ReciboReconexion(ID_Recibo)
 					SELECT @id
 
-					INSERT INTO Corte(Fecha,ID_Propiedad,ID_Recibo)
+					INSERT INTO Corte(Fecha,
+										ID_Propiedad,
+										ID_Recibo)
 					SELECT @inFecha,idP.idPropiedad,@id
 					FROM @idPropiedades idP
 					WHERE idP.id =	@idMenor

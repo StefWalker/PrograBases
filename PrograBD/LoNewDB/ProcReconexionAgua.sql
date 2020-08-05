@@ -28,7 +28,9 @@ AS
 				SELECT @idMenor = MIN(id), @idMayor = MAX(id) FROM @idPropiedades
 				WHILE @idMenor<=@idMayor
 				BEGIN
-					INSERT INTO Reconexion(Fecha,ID_Propiedad,ID_Recibo)
+					INSERT INTO Reconexion(Fecha,
+											ID_Propiedad,
+											ID_Recibo)
 					SELECT @inFecha,idP.idPropiedad,R.ID_Recibo
 					FROM @idPropiedades idP
 					INNER JOIN Recibos R ON R.ID_Propiedad = idP.idPropiedad

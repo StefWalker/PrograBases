@@ -17,7 +17,12 @@ AS
 			DECLARE @dia int
 			SET @dia  = DAY(@inFecha)
 			BEGIN TRAN
-				INSERT INTO Recibos(ID_Concepto,Monto,Estado,ID_Propiedad,Fecha,FechaVencimiento)
+				INSERT INTO Recibos(ID_Concepto,
+									Monto,
+									Estado,
+									ID_Propiedad,
+									Fecha,
+									FechaVencimiento)
 				SELECT 
 					CC.ID_CC,
 					CASE	WHEN (CC.TipoCC = 'CC Fijo') THEN CCF.Monto

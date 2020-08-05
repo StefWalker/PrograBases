@@ -15,11 +15,16 @@ AS
 		SET NOCOUNT ON 
 		SET XACT_ABORT ON  
 			DECLARE @idMenor INT, @idMayor INT
-			SELECT @idMenor = min([id]), @idMayor=max([id]) FROM @inConsumo
+			SELECT @idMenor = min(id), @idMayor=max(id) FROM @inConsumo
 			BEGIN TRAN
 				WHILE @idMenor<=@idMayor
 				BEGIN
-					INSERT INTO TransConsumo(Fecha, Monto, LecturaM3, NuevoM3, ID_Propiedad, Tipo)
+					INSERT INTO TransConsumo(Fecha, 
+											Monto, 
+											LecturaM3, 
+											NuevoM3, 
+											ID_Propiedad, 
+											Tipo)
 					SELECT 
 						C.Fecha,
 						CASE WHEN (C.idTipo = 1) THEN C.LecturaM3-P.M3Acumulados
@@ -38,12 +43,12 @@ AS
 					INNER JOIN @inConsumo C ON C.numFinca = P.NumPropiedad
 					WHERE C.id = @idMenor
 
-					UPDATE [Propiedad]
+					UPDATE Propiedad
 					SET M3acumulados = CASE WHEN (C.idTipo = 1) THEN C.LecturaM3
-												WHEN (C.idTipo = 2) THEN M3acumulados-C.LecturaM3
-												ELSE M3acumulados+C.LecturaM3
+												WHEN (C.idTipo = 2) THEN M3acumulados - C.LecturaM3
+												ELSE M3acumulados + C.LecturaM3
 					END
-					FROM [Propiedad] P
+					FROM Propiedad P
 					INNER JOIN @inConsumo C ON C.numFinca = P.NumPropiedad
 					WHERE C.id = @idMenor
 

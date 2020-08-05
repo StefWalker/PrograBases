@@ -21,7 +21,7 @@ AS
 
 
 		DECLARE @idMenor INT, @idMayor INT
-		SELECT @idMenor = min([ID_AP]), @idMayor=max([ID_AP]) FROM AP
+		SELECT @idMenor = min(ID_AP), @idMayor=max(ID_AP) FROM AP
 
 		While @idMenor<=@idMayor
 		BEGIN
@@ -47,14 +47,25 @@ AS
 					SET @interesMes = @Saldo * @TasaInteres/12
 					SET @amortizacion = @Cuota - @interesMes
 
-					INSERT INTO Recibos(ID_Propiedad, ID_Concepto, Fecha, Monto, Estado, FechaVencimiento)
+					INSERT INTO Recibos(ID_Propiedad, 
+										ID_Concepto, 
+										Fecha, 
+										Monto, 
+										Estado,		
+										FechaVencimiento)
 					SELECT @ID_Propiedad, 12, @fechaActual, @Cuota, 0, @fechaActual
 
 					SET @ID_Recibo = IDENT_CURRENT('[dbo].[Recibos]')
 
 					SET @plazo = (Select MIN(plazoResta) From MovimientoAP Where ID_AP = @ap)
 
-					INSERT INTO MovimientoAP(ID_AP, TipoMov, InteresMes, Amortizacion, plazoResta, Fecha, ID_Recibo)
+					INSERT INTO MovimientoAP(ID_AP, 
+								TipoMov, 
+								InteresMes, 
+								Amortizacion, 
+								plazoResta, 
+								Fecha, 
+								ID_Recibo)
 					SELECT @ap, 2, @interesMes, @amortizacion, @plazo - 1, @fechaActual, @ID_Recibo FROM AP A where A.ID_AP = @idMenor
 
 				END
